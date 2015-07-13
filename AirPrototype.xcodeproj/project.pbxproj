@@ -14,6 +14,12 @@
 		A1666F901B54125400A8E39F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1666F8E1B54125400A8E39F /* LaunchScreen.xib */; };
 		A1666F9C1B54125400A8E39F /* AirPrototypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666F9B1B54125400A8E39F /* AirPrototypeTests.swift */; };
 		A1666FA71B54146700A8E39F /* AddressListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FA61B54146700A8E39F /* AddressListController.swift */; };
+		A1666FAA1B54176D00A8E39F /* SimpleAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FA91B54176D00A8E39F /* SimpleAddress.swift */; };
+		A1666FAC1B54190A00A8E39F /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FAB1B54190A00A8E39F /* Feed.swift */; };
+		A1666FAE1B5419D300A8E39F /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FAD1B5419D300A8E39F /* Channel.swift */; };
+		A1666FB21B541CF400A8E39F /* GlobalHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FB11B541CF400A8E39F /* GlobalHandler.swift */; };
+		A1666FB41B541D0500A8E39F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FB31B541D0500A8E39F /* Constants.swift */; };
+		A1666FB61B542E6A00A8E39F /* HttpRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FB51B542E6A00A8E39F /* HttpRequestHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +44,12 @@
 		A1666F9A1B54125400A8E39F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1666F9B1B54125400A8E39F /* AirPrototypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPrototypeTests.swift; sourceTree = "<group>"; };
 		A1666FA61B54146700A8E39F /* AddressListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListController.swift; sourceTree = "<group>"; };
+		A1666FA91B54176D00A8E39F /* SimpleAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleAddress.swift; sourceTree = "<group>"; };
+		A1666FAB1B54190A00A8E39F /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		A1666FAD1B5419D300A8E39F /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		A1666FB11B541CF400A8E39F /* GlobalHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalHandler.swift; sourceTree = "<group>"; };
+		A1666FB31B541D0500A8E39F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A1666FB51B542E6A00A8E39F /* HttpRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				A1666FA51B54142600A8E39F /* activities (ios controllers) */,
+				A1666FA81B54172300A8E39F /* classes */,
+				A1666FAF1B541B1300A8E39F /* helpers */,
 				A1666F821B54125400A8E39F /* AppDelegate.swift */,
 				A1666F891B54125400A8E39F /* Main.storyboard */,
 				A1666F8C1B54125400A8E39F /* Images.xcassets */,
@@ -121,6 +135,34 @@
 				A1666FA61B54146700A8E39F /* AddressListController.swift */,
 			);
 			name = "activities (ios controllers)";
+			sourceTree = "<group>";
+		};
+		A1666FA81B54172300A8E39F /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				A1666FA91B54176D00A8E39F /* SimpleAddress.swift */,
+				A1666FAB1B54190A00A8E39F /* Feed.swift */,
+				A1666FAD1B5419D300A8E39F /* Channel.swift */,
+			);
+			name = classes;
+			sourceTree = "<group>";
+		};
+		A1666FAF1B541B1300A8E39F /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A1666FB01B541B1900A8E39F /* static_classes */,
+				A1666FB11B541CF400A8E39F /* GlobalHandler.swift */,
+				A1666FB51B542E6A00A8E39F /* HttpRequestHandler.swift */,
+			);
+			name = helpers;
+			sourceTree = "<group>";
+		};
+		A1666FB01B541B1900A8E39F /* static_classes */ = {
+			isa = PBXGroup;
+			children = (
+				A1666FB31B541D0500A8E39F /* Constants.swift */,
+			);
+			name = static_classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,8 +266,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1666FA71B54146700A8E39F /* AddressListController.swift in Sources */,
+				A1666FAE1B5419D300A8E39F /* Channel.swift in Sources */,
+				A1666FB21B541CF400A8E39F /* GlobalHandler.swift in Sources */,
+				A1666FAC1B54190A00A8E39F /* Feed.swift in Sources */,
 				A1666F831B54125400A8E39F /* AppDelegate.swift in Sources */,
+				A1666FB61B542E6A00A8E39F /* HttpRequestHandler.swift in Sources */,
+				A1666FAA1B54176D00A8E39F /* SimpleAddress.swift in Sources */,
 				A1666F861B54125400A8E39F /* AirPrototype.xcdatamodeld in Sources */,
+				A1666FB41B541D0500A8E39F /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +471,7 @@
 				A1666FA11B54125400A8E39F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A1666FA21B54125400A8E39F /* Build configuration list for PBXNativeTarget "AirPrototypeTests" */ = {
 			isa = XCConfigurationList;
@@ -431,6 +480,7 @@
 				A1666FA41B54125400A8E39F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
