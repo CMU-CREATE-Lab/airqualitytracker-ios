@@ -20,6 +20,8 @@
 		A1666FB21B541CF400A8E39F /* GlobalHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FB11B541CF400A8E39F /* GlobalHandler.swift */; };
 		A1666FB41B541D0500A8E39F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FB31B541D0500A8E39F /* Constants.swift */; };
 		A1666FB61B542E6A00A8E39F /* HttpRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FB51B542E6A00A8E39F /* HttpRequestHandler.swift */; };
+		A1666FB81B54349200A8E39F /* AddressFeedsHashMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FB71B54349200A8E39F /* AddressFeedsHashMap.swift */; };
+		A1666FBA1B5438AE00A8E39F /* AddressListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FB91B5438AE00A8E39F /* AddressListTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		A1666FB11B541CF400A8E39F /* GlobalHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalHandler.swift; sourceTree = "<group>"; };
 		A1666FB31B541D0500A8E39F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A1666FB51B542E6A00A8E39F /* HttpRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestHandler.swift; sourceTree = "<group>"; };
+		A1666FB71B54349200A8E39F /* AddressFeedsHashMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressFeedsHashMap.swift; sourceTree = "<group>"; };
+		A1666FB91B5438AE00A8E39F /* AddressListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				A1666FA61B54146700A8E39F /* AddressListController.swift */,
+				A1666FB91B5438AE00A8E39F /* AddressListTableViewCell.swift */,
 			);
 			name = "activities (ios controllers)";
 			sourceTree = "<group>";
@@ -153,6 +158,7 @@
 				A1666FB01B541B1900A8E39F /* static_classes */,
 				A1666FB11B541CF400A8E39F /* GlobalHandler.swift */,
 				A1666FB51B542E6A00A8E39F /* HttpRequestHandler.swift */,
+				A1666FB71B54349200A8E39F /* AddressFeedsHashMap.swift */,
 			);
 			name = helpers;
 			sourceTree = "<group>";
@@ -266,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1666FA71B54146700A8E39F /* AddressListController.swift in Sources */,
+				A1666FBA1B5438AE00A8E39F /* AddressListTableViewCell.swift in Sources */,
 				A1666FAE1B5419D300A8E39F /* Channel.swift in Sources */,
 				A1666FB21B541CF400A8E39F /* GlobalHandler.swift in Sources */,
 				A1666FAC1B54190A00A8E39F /* Feed.swift in Sources */,
@@ -274,6 +281,7 @@
 				A1666FAA1B54176D00A8E39F /* SimpleAddress.swift in Sources */,
 				A1666F861B54125400A8E39F /* AirPrototype.xcdatamodeld in Sources */,
 				A1666FB41B541D0500A8E39F /* Constants.swift in Sources */,
+				A1666FB81B54349200A8E39F /* AddressFeedsHashMap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

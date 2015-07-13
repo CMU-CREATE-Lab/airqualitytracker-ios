@@ -11,8 +11,10 @@ import UIKit
 
 class GlobalHandler {
     var appDelegate: AppDelegate
+    var addressFeedsHashMap: AddressFeedsHashMap
     init() {
         appDelegate = (UIApplication.sharedApplication().delegate! as? AppDelegate)!
+        addressFeedsHashMap = AddressFeedsHashMap()
     }
     // singleton pattern; this is the only time the class should be initialized
     class var sharedInstance: GlobalHandler {
