@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A1626DF91B555A79006D990C /* AddressSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1626DF81B555A79006D990C /* AddressSearchController.swift */; };
 		A1666F831B54125400A8E39F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666F821B54125400A8E39F /* AppDelegate.swift */; };
 		A1666F861B54125400A8E39F /* AirPrototype.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1666F841B54125400A8E39F /* AirPrototype.xcdatamodeld */; };
 		A1666F8B1B54125400A8E39F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1666F891B54125400A8E39F /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A1626DF81B555A79006D990C /* AddressSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressSearchController.swift; sourceTree = "<group>"; };
 		A1666F7D1B54125400A8E39F /* AirPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1666F811B54125400A8E39F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1666F821B54125400A8E39F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +76,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A1626DF61B555A56006D990C /* address_list */ = {
+			isa = PBXGroup;
+			children = (
+				A1666FA61B54146700A8E39F /* AddressListController.swift */,
+				A1666FB91B5438AE00A8E39F /* AddressListTableViewCell.swift */,
+			);
+			name = address_list;
+			sourceTree = "<group>";
+		};
+		A1626DF71B555A5F006D990C /* address_search */ = {
+			isa = PBXGroup;
+			children = (
+				A1626DF81B555A79006D990C /* AddressSearchController.swift */,
+			);
+			name = address_search;
+			sourceTree = "<group>";
+		};
 		A1666F741B54125400A8E39F = {
 			isa = PBXGroup;
 			children = (
@@ -136,8 +155,8 @@
 		A1666FA51B54142600A8E39F /* activities (ios controllers) */ = {
 			isa = PBXGroup;
 			children = (
-				A1666FA61B54146700A8E39F /* AddressListController.swift */,
-				A1666FB91B5438AE00A8E39F /* AddressListTableViewCell.swift */,
+				A1626DF61B555A56006D990C /* address_list */,
+				A1626DF71B555A5F006D990C /* address_search */,
 			);
 			name = "activities (ios controllers)";
 			sourceTree = "<group>";
@@ -279,6 +298,7 @@
 				A1666F831B54125400A8E39F /* AppDelegate.swift in Sources */,
 				A1666FB61B542E6A00A8E39F /* HttpRequestHandler.swift in Sources */,
 				A1666FAA1B54176D00A8E39F /* SimpleAddress.swift in Sources */,
+				A1626DF91B555A79006D990C /* AddressSearchController.swift in Sources */,
 				A1666F861B54125400A8E39F /* AirPrototype.xcdatamodeld in Sources */,
 				A1666FB41B541D0500A8E39F /* Constants.swift in Sources */,
 				A1666FB81B54349200A8E39F /* AddressFeedsHashMap.swift in Sources */,

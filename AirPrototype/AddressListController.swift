@@ -11,7 +11,7 @@ import UIKit
 class AddressListController: UITableViewController {
     
     @IBOutlet var tableViewAddressList: UITableView!
-    @IBOutlet var addBarButtonAddressList: UIBarButtonItem!
+//    @IBOutlet var addBarButtonAddressList: UIBarButtonItem!
     var addressList = Array<SimpleAddress>()
     
     override func viewDidLoad() {
@@ -43,14 +43,13 @@ class AddressListController: UITableViewController {
     }
     
     
-    @IBAction func addBarButtonOnTouch(sender: UIBarButtonItem) {
-        NSLog("LOGGING STARTS HERE");
-        var addedAddress = SimpleAddress()
-        addedAddress.name = "Address #" + String(addressList.count+1)
-        addressList.append(addedAddress)
-        NSLog("Added address " + addedAddress.name);
-        tableViewAddressList.reloadData()
-    }
+//    @IBAction func addBarButtonOnTouch(sender: UIBarButtonItem) {
+//        var addedAddress = SimpleAddress()
+//        addedAddress.name = "Address #" + String(addressList.count+1)
+//        addressList.append(addedAddress)
+//        NSLog("Added address " + addedAddress.name);
+//        tableViewAddressList.reloadData()
+//    }
     
     
     
