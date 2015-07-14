@@ -26,4 +26,15 @@ class GlobalHandler {
     
     
     // TODO global stuff
+    func requestAddressesForDisplay() -> Array<SimpleAddress> {
+        var result = Array<SimpleAddress>()
+        var temp: SimpleAddress = SimpleAddress()
+        temp.name = "HELLO"
+        result.append(temp)
+        temp = SimpleAddress()
+        temp.name = "THERE"
+        result.append(temp)
+        
+        return result
+    }
 }

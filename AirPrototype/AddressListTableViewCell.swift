@@ -12,9 +12,9 @@ class AddressListTableViewCell: UITableViewCell {
     
     @IBOutlet var labelAddressList: UILabel!
     
-    func populate(input: String) {
+    func populate(address: SimpleAddress) {
         // TODO given input, populate the cell
-        labelAddressList.text = input
+        labelAddressList.text = address.name
     }
     
     override func awakeFromNib() {

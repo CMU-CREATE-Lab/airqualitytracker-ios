@@ -10,15 +10,14 @@ import UIKit
 
 class AddressListController: UITableViewController {
     
+    @IBOutlet var tableViewAddressList: UITableView!
     @IBOutlet var addBarButtonAddressList: UIBarButtonItem!
-    var list = Array<String>()
+    var addressList = Array<SimpleAddress>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        list.append("Hello")
-        list.append("There")
-        list.append("Listed")
+        addressList = GlobalHandler.sharedInstance.requestAddressesForDisplay()
     }
     
     override func didReceiveMemoryWarning() {
@@ -31,7 +30,7 @@ class AddressListController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list.count
+        return addressList.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -39,13 +38,18 @@ class AddressListController: UITableViewController {
         let cellIdentifier = "reuseAddressList"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AddressListTableViewCell
         
-        cell.populate(list[indexPath.row])
+        cell.populate(addressList[indexPath.row])
         return cell
     }
     
     
     @IBAction func addBarButtonOnTouch(sender: UIBarButtonItem) {
         NSLog("LOGGING STARTS HERE");
+        var addedAddress = SimpleAddress()
+        addedAddress.name = "Address #" + String(addressList.count+1)
+        addressList.append(addedAddress)
+        NSLog("Added address " + addedAddress.name);
+        tableViewAddressList.reloadData()
     }
     
     
