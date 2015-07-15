@@ -16,6 +16,7 @@ class AddressSearchTableViewCell: UITableViewCell {
     func populate(address: SimpleAddress) {
         // TODO given input, populate the cell
         labelAddressSearch.text = address.name
+        self.viewForBaselineLayout()
     }
     
     override func awakeFromNib() {

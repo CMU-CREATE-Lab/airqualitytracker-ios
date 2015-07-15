@@ -60,7 +60,6 @@
         <!--Title-->
         <scene sceneID="RDq-GZ-7sE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bYV-Mj-WhH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="82V-3g-Hks" customClass="AddressSearchController" customModule="AirPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dhn-ft-vVV"/>
@@ -71,7 +70,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="okw-e5-i34">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseAddressSearch" id="ZGq-Tx-uhD" customClass="AddressSearchTableViewCell" customModule="AirPrototype" customModuleProvider="target">
@@ -109,6 +108,7 @@
                         <outlet property="tableViewAddressSearch" destination="okw-e5-i34" id="I4w-qL-NCe"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bYV-Mj-WhH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="648" y="1014"/>
         </scene>

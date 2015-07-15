@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 //class AddressSearchController: UIViewController, UISearchControllerDelegate, UISearchBarDelegate, UITableViewDelegate {
-class AddressSearchController: UIViewController, UITableViewDelegate, UISearchBarDelegate {
+class AddressSearchController: UIViewController, UITableViewDelegate, UISearchBarDelegate, UITableViewDataSource {
 
     @IBOutlet var navItemAddressSearch: UINavigationItem!
     @IBOutlet var tableViewAddressSearch: UITableView!
@@ -27,11 +27,19 @@ class AddressSearchController: UIViewController, UITableViewDelegate, UISearchBa
         searchControllerAddressSearch = UISearchController(searchResultsController: resultsController)
 //        resultsController.tableView = tableViewAddressSearch
         searchControllerAddressSearch!.searchResultsUpdater = resultsController
-        tableViewAddressSearch.tableHeaderView = searchControllerAddressSearch!.searchBar
-        searchControllerAddressSearch!.searchBar.sizeToFit()
+//        tableViewAddressSearch.tableHeaderView = searchControllerAddressSearch!.searchBar
+//        searchControllerAddressSearch!.searchBar.sizeToFit()
         searchControllerAddressSearch!.searchBar.delegate = self
-//        navItemAddressSearch.titleView = searchControllerAddressSearch!.searchBar
-//        self.definesPresentationContext = true
+        searchControllerAddressSearch!.hidesNavigationBarDuringPresentation = false
+        
+        navItemAddressSearch.titleView = searchControllerAddressSearch!.searchBar
+        
+        self.definesPresentationContext = true
+        
+//        resultsController.tableView = UITableView()
+//        resultsController.tableView.delegate = self
+//        resultsController.tableView.dataSource = self
+//        resultsController.tableView.registerClass(AddressSearchTableViewCell.self, forCellReuseIdentifier: "reuseAddressSearch")
         
         var temp = SimpleAddress()
         temp.name = "Test"
