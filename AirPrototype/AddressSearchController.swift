@@ -25,21 +25,17 @@ class AddressSearchController: UIViewController, UITableViewDelegate, UISearchBa
         
         resultsController = ResultsControllerAddressSearch()
         searchControllerAddressSearch = UISearchController(searchResultsController: resultsController)
-//        resultsController.tableView = tableViewAddressSearch
         searchControllerAddressSearch!.searchResultsUpdater = resultsController
-//        tableViewAddressSearch.tableHeaderView = searchControllerAddressSearch!.searchBar
-//        searchControllerAddressSearch!.searchBar.sizeToFit()
         searchControllerAddressSearch!.searchBar.delegate = self
         searchControllerAddressSearch!.hidesNavigationBarDuringPresentation = false
         
         navItemAddressSearch.titleView = searchControllerAddressSearch!.searchBar
-        
         self.definesPresentationContext = true
         
-//        resultsController.tableView = UITableView()
-//        resultsController.tableView.delegate = self
-//        resultsController.tableView.dataSource = self
-//        resultsController.tableView.registerClass(AddressSearchTableViewCell.self, forCellReuseIdentifier: "reuseAddressSearch")
+        resultsController.tableView = UITableView()
+        resultsController.tableView.delegate = self
+        resultsController.tableView.dataSource = self
+        resultsController.tableView.registerNib(UINib(nibName: "ResultsTableViewCellAddressSearch", bundle: nil), forCellReuseIdentifier: "reuseAddressSearch")
         
         var temp = SimpleAddress()
         temp.name = "Test"
@@ -83,8 +79,7 @@ class AddressSearchController: UIViewController, UITableViewDelegate, UISearchBa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "reuseAddressSearch"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AddressSearchTableViewCell
-        
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ResultsTableViewCellAddressSearch
         cell.populate(myList[indexPath.row])
         return cell
     }

@@ -9,5 +9,7 @@
 import Foundation
 
 class Constants {
-    
+    struct CellReuseIdentifiers {
+        static let ADDRESS_SEARCH = "reuseAddressSearch"
+    }
 }
