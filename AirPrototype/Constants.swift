@@ -10,6 +10,7 @@ import Foundation
 
 class Constants {
     struct CellReuseIdentifiers {
+        static let ADDRESS_LIST = "reuseAddressList"
         static let ADDRESS_SEARCH = "reuseAddressSearch"
     }
 }

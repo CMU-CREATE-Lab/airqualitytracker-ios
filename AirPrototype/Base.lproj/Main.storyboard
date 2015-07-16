@@ -80,7 +80,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Address Search" id="MRp-kI-G06"/>
                     <connections>
-                        <outlet property="myView" destination="i0F-5w-CPY" id="N5y-rp-GVT"/>
                         <outlet property="navItemAddressSearch" destination="MRp-kI-G06" id="aE9-eP-SvI"/>
                     </connections>
                 </viewController>

@@ -12,17 +12,21 @@ class AddressListTableViewCell: UITableViewCell {
     
     @IBOutlet var labelAddressList: UILabel!
     
+    
     func populate(address: SimpleAddress) {
         // TODO given input, populate the cell
         labelAddressList.text = address.name
     }
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
     }
+    
 }
