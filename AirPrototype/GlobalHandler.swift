@@ -12,9 +12,18 @@ import UIKit
 class GlobalHandler {
     var appDelegate: AppDelegate
     var addressFeedsHashMap: AddressFeedsHashMap
+    var addressList = Array<SimpleAddress>()
+    
     init() {
         appDelegate = (UIApplication.sharedApplication().delegate! as? AppDelegate)!
         addressFeedsHashMap = AddressFeedsHashMap()
+        
+        var temp: SimpleAddress = SimpleAddress()
+        temp.name = "HELLO"
+        addressList.append(temp)
+        temp = SimpleAddress()
+        temp.name = "THERE"
+        addressList.append(temp)
     }
     // singleton pattern; this is the only time the class should be initialized
     class var sharedInstance: GlobalHandler {
@@ -27,14 +36,6 @@ class GlobalHandler {
     
     // TODO global stuff
     func requestAddressesForDisplay() -> Array<SimpleAddress> {
-        var result = Array<SimpleAddress>()
-        var temp: SimpleAddress = SimpleAddress()
-        temp.name = "HELLO"
-        result.append(temp)
-        temp = SimpleAddress()
-        temp.name = "THERE"
-        result.append(temp)
-        
-        return result
+        return addressList
     }
 }

@@ -29,6 +29,14 @@ class AddressListController: UITableViewController {
     }
     
     
+    override func viewWillAppear(animated: Bool) {
+        NSLog("AddressListController: viewWillAppear")
+        // reload our data
+        addressList = GlobalHandler.sharedInstance.requestAddressesForDisplay()
+        tableViewAddressList.reloadData()
+    }
+    
+    
     // MARK: UITableView delegate
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
