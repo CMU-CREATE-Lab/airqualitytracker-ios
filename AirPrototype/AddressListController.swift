@@ -20,6 +20,18 @@ class AddressListController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         addressList = GlobalHandler.sharedInstance.requestAddressesForDisplay()
+        
+        // testing out HTTP requests
+        var url = NSURL(string: "http://esdr.cmucreatelab.org/api/v1/feeds")
+        func completionHandler (url: NSURL!, response: NSURLResponse!, error: NSError!) -> Void {
+            NSLog("got response (header): " + response.description)
+            NSLog("got datafile: " + url.description)
+            
+            let data = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: nil, error: nil) as? NSDictionary
+            NSLog("data response=" + data!.description)
+        }
+        NSLog("requesting feeds from url=" + url!.description)
+        HttpRequestHandler.sharedInstance.sendJsonRequest(url!, completionHandler: completionHandler)
     }
     
     

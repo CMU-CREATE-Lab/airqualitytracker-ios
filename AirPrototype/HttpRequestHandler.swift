@@ -26,6 +26,6 @@ class HttpRequestHandler {
     // TODO http stuff
     func sendJsonRequest(url: NSURL, completionHandler: ((NSURL!, NSURLResponse!, NSError!) -> Void)? ) {
         let sharedSessionNSURL = NSURLSession.sharedSession()
-        sharedSessionNSURL.downloadTaskWithURL(url, completionHandler: completionHandler)
+        sharedSessionNSURL.downloadTaskWithURL(url, completionHandler: completionHandler).resume()
     }
 }
