@@ -21,17 +21,17 @@ class AddressListController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
         addressList = GlobalHandler.sharedInstance.requestAddressesForDisplay()
         
-        // testing out HTTP requests
-        var url = NSURL(string: "http://esdr.cmucreatelab.org/api/v1/feeds")
-        func completionHandler (url: NSURL!, response: NSURLResponse!, error: NSError!) -> Void {
-            NSLog("got response (header): " + response.description)
-            NSLog("got datafile: " + url.description)
-            
-            let data = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: nil, error: nil) as? NSDictionary
-            NSLog("data response=" + data!.description)
-        }
-        NSLog("requesting feeds from url=" + url!.description)
-        HttpRequestHandler.sharedInstance.sendJsonRequest(url!, completionHandler: completionHandler)
+//        // testing out HTTP requests
+//        var url = NSURL(string: "http://esdr.cmucreatelab.org/api/v1/feeds")
+//        func completionHandler (url: NSURL!, response: NSURLResponse!, error: NSError!) -> Void {
+//            NSLog("got response (header): " + response.description)
+//            NSLog("got datafile: " + url.description)
+//            
+//            let data = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: nil, error: nil) as? NSDictionary
+//            NSLog("data response=" + data!.description)
+//        }
+//        NSLog("requesting feeds from url=" + url!.description)
+//        HttpRequestHandler.sharedInstance.sendJsonRequest(url!, completionHandler: completionHandler)
     }
     
     
@@ -67,6 +67,20 @@ class AddressListController: UITableViewController {
         
         cell.populate(addressList[indexPath.row])
         return cell
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "searchSegue" {
+            NSLog("running search segue")
+        } else if segue.identifier == "showSegue" {
+            NSLog("running show segue")
+            var addressShowController = segue.destinationViewController as! AddressShowController
+            var indexPath = tableViewAddressList.indexPathForSelectedRow()
+            addressShowController.address = addressList[indexPath!.row]
+        } else {
+            NSLog("ERROR - bad segue name")
+        }
     }
     
 }

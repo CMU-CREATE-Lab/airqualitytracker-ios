@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="reuseAddressList" rowHeight="42" id="mJA-5d-IWe" customClass="AddressListTableViewCell" customModule="AirPrototype" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseAddressList" rowHeight="42" id="mJA-5d-IWe" customClass="AddressListTableViewCell" customModule="AirPrototype" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mJA-5d-IWe" id="kd3-F4-zAV">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -28,6 +28,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="labelAddressList" destination="Rbk-C4-FM9" id="nLb-ea-uLe"/>
+                                    <segue destination="Ckw-z9-HQ4" kind="show" identifier="showSegue" id="VhQ-rY-e5t"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -44,7 +45,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vEb-gX-kRO">
                             <connections>
-                                <segue destination="82V-3g-Hks" kind="show" id="N8x-7o-odn"/>
+                                <segue destination="82V-3g-Hks" kind="show" identifier="searchSegue" id="N8x-7o-odn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -56,6 +57,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PYm-TR-Cab" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="648" y="320"/>
+        </scene>
+        <!--Address Show Controller-->
+        <scene sceneID="flw-cH-zgl">
+            <objects>
+                <viewController id="Ckw-z9-HQ4" customClass="AddressShowController" customModule="AirPrototype" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VFb-4d-r8W"/>
+                        <viewControllerLayoutGuide type="bottom" id="cbR-Gh-XfB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Zjw-c5-CdA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address Show" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6Q-SV-Uyk">
+                                <rect key="frame" x="16" y="72" width="568" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="label" destination="z6Q-SV-Uyk" id="RTc-bx-X6G"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4FJ-Wj-5cG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1362" y="320"/>
         </scene>
         <!--Address Search-->
         <scene sceneID="RDq-GZ-7sE">

@@ -12,6 +12,7 @@
 		A15675811B583AAA006982A1 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15675801B583AAA006982A1 /* Converter.swift */; };
 		A15675831B5844C9006982A1 /* MapGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15675821B5844C9006982A1 /* MapGeometry.swift */; };
 		A1626DF91B555A79006D990C /* AddressSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1626DF81B555A79006D990C /* AddressSearchController.swift */; };
+		A16481FB1B5D553F0023DE09 /* AddressShowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16481FA1B5D553F0023DE09 /* AddressShowController.swift */; };
 		A1660FF71B568B6700608C5D /* ResultsControllerAddressSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1660FF61B568B6700608C5D /* ResultsControllerAddressSearch.swift */; };
 		A1666F831B54125400A8E39F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666F821B54125400A8E39F /* AppDelegate.swift */; };
 		A1666F861B54125400A8E39F /* AirPrototype.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1666F841B54125400A8E39F /* AirPrototype.xcdatamodeld */; };
@@ -46,6 +47,7 @@
 		A15675801B583AAA006982A1 /* Converter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		A15675821B5844C9006982A1 /* MapGeometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapGeometry.swift; sourceTree = "<group>"; };
 		A1626DF81B555A79006D990C /* AddressSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressSearchController.swift; sourceTree = "<group>"; };
+		A16481FA1B5D553F0023DE09 /* AddressShowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressShowController.swift; sourceTree = "<group>"; };
 		A1660FF61B568B6700608C5D /* ResultsControllerAddressSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsControllerAddressSearch.swift; sourceTree = "<group>"; };
 		A1666F7D1B54125400A8E39F /* AirPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1666F811B54125400A8E39F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,6 +106,14 @@
 				A156757C1B57D549006982A1 /* ResultsTableViewCellAddressSearch.swift */,
 			);
 			name = address_search;
+			sourceTree = "<group>";
+		};
+		A16481F91B5D552D0023DE09 /* address_show */ = {
+			isa = PBXGroup;
+			children = (
+				A16481FA1B5D553F0023DE09 /* AddressShowController.swift */,
+			);
+			name = address_show;
 			sourceTree = "<group>";
 		};
 		A1666F741B54125400A8E39F = {
@@ -168,6 +178,7 @@
 		A1666FA51B54142600A8E39F /* activities (ios controllers) */ = {
 			isa = PBXGroup;
 			children = (
+				A16481F91B5D552D0023DE09 /* address_show */,
 				A1626DF61B555A56006D990C /* address_list */,
 				A1626DF71B555A5F006D990C /* address_search */,
 			);
@@ -318,6 +329,7 @@
 				A1666FB61B542E6A00A8E39F /* HttpRequestHandler.swift in Sources */,
 				A1666FAA1B54176D00A8E39F /* SimpleAddress.swift in Sources */,
 				A1626DF91B555A79006D990C /* AddressSearchController.swift in Sources */,
+				A16481FB1B5D553F0023DE09 /* AddressShowController.swift in Sources */,
 				A1660FF71B568B6700608C5D /* ResultsControllerAddressSearch.swift in Sources */,
 				A1666F861B54125400A8E39F /* AirPrototype.xcdatamodeld in Sources */,
 				A1666FB41B541D0500A8E39F /* Constants.swift in Sources */,
