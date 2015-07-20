@@ -8,8 +8,12 @@
 
 import Foundation
 
-class SimpleAddress {
+class SimpleAddress: Hashable {
     
+    static var hashId = 1
+    static func generateHash() -> Int {
+        return hashId++
+    }
     enum IconType {
         case GPS, SPECK, DEFAULT
     }
@@ -19,6 +23,8 @@ class SimpleAddress {
     var longitude: Double
     var closestFeed: Feed?
     var iconType: IconType
+    let uid = 1
+    var hashValue: Int { return SimpleAddress.generateHash() }
     
     init() {
         _id = -1
@@ -28,4 +34,10 @@ class SimpleAddress {
         iconType = IconType.DEFAULT
         closestFeed = nil
     }
+}
+
+
+// conforms to Equatable protocol
+func == (lhs: SimpleAddress, rhs: SimpleAddress) -> Bool {
+    return lhs.hashValue == rhs.hashValue
 }

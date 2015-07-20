@@ -88,7 +88,7 @@ class AddressSearchController: UIViewController, UITableViewDelegate, UISearchBa
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         NSLog("adding clicked address to list and returning to AddressList")
-        GlobalHandler.sharedInstance.addressList.append(myList[indexPath.row])
+        GlobalHandler.sharedInstance.addressFeedsHashMap.addAddress(myList[indexPath.row])
         self.navigationController?.popViewControllerAnimated(true)
     }
     
