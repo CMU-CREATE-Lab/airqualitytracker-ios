@@ -29,7 +29,20 @@ class AddressFeedsHashMap {
     // setGpsAddressLocation (waiting for location services to implement this)
     
     
+    func findIndexFromAddress(address: SimpleAddress) -> Int? {
+        let max = addresses.endIndex
+        for i in 0...max {
+            if addresses[i] === address {
+                return i
+            }
+        }
+        return nil
+    }
+    
+    
     func removeAddress(simpleAddress: SimpleAddress) {
+        let index = findIndexFromAddress(simpleAddress)
+        addresses.removeAtIndex(index!)
         hashMap.removeValueForKey(simpleAddress)
         // gh request addresses for display
     }

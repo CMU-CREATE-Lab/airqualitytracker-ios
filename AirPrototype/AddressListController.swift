@@ -83,5 +83,20 @@ class AddressListController: UITableViewController {
         }
     }
     
+    
+    // allows user to swipe a row to display delete button
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            GlobalHandler.sharedInstance.addressFeedsHashMap.removeAddress(addressList[indexPath.row])
+            addressList = GlobalHandler.sharedInstance.requestAddressesForDisplay()
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
+    }
+    
 }
 
