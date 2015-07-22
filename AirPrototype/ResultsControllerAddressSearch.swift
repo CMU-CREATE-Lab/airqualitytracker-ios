@@ -38,20 +38,41 @@ import CoreLocation
 
 class ResultsControllerAddressSearch: UITableViewController, UISearchResultsUpdating {
     
-    let handler: CLGeocodeCompletionHandler = {(response: [AnyObject]!, error: NSError!) in
-        if error == nil {
-            for placemark in response {
-                let temp = placemark as! CLPlacemark
-                NSLog("got placemark \(temp.name)")
-            }
+    var searchText: String?
+//    var textLastChanged: Int64?
+    var timer: NSTimer?
+    
+    
+    func timerExpires() {
+        let input = self.searchText!
+        var url = NSURL(string: "http://autocomplete.wunderground.com/aq?query=\(input)&c=US".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+        func completionHandler (url: NSURL!, response: NSURLResponse!, error: NSError!) -> Void {
+            // TODO handle response by parsing JSON and populating list items
+            NSLog("got response (header): " + response.description)
+            NSLog("got datafile: " + url.description)
+            
+            let data = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: nil, error: nil) as? NSDictionary
+            NSLog("data response=" + data!.description)
         }
+        HttpRequestHandler.sharedInstance.sendJsonRequest(url!, completionHandler: completionHandler)
     }
+    
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let text = searchController.searchBar.text
-        NSLog("updateSearchResultsForSearchController with text " + text)
-        
-        CLGeocoder().geocodeAddressString(text, completionHandler: handler)
+        if text == "" {
+            if let timer = self.timer {
+                timer.invalidate()
+            }
+        } else {
+            let currentTime = Int64(NSDate().timeIntervalSince1970*1000)
+            if let timer = self.timer {
+                timer.invalidate()
+            }
+            self.searchText = text
+//            self.textLastChanged = currentTime
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: Selector("timerExpires"), userInfo: nil, repeats: false)
+        }
     }
+    
 }
-
