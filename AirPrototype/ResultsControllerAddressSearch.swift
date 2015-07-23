@@ -8,38 +8,13 @@
 
 import Foundation
 import UIKit
-//import MapKit
-//
-//class ResultsControllerAddressSearch: UITableViewController, UISearchResultsUpdating {
-//    
-//    let handler: MKLocalSearchCompletionHandler = {(response: MKLocalSearchResponse!, error: NSError!) in
-//        if error == nil {
-//            for mapItem in response.mapItems {
-//                NSLog("Name: \(mapItem.name)")
-//            }
-//        } else {
-//            NSLog("error is not nil: \(error.localizedDescription)")
-//        }
-//    }
-//    
-//    
-//    func updateSearchResultsForSearchController(searchController: UISearchController) {
-//        let text = searchController.searchBar.text
-//        NSLog("updateSearchResultsForSearchController with text " + text)
-//        var searchRequest = MKLocalSearchRequest.alloc()
-//        searchRequest.naturalLanguageQuery = text
-//        var localSearch = MKLocalSearch(request: searchRequest)
-//        localSearch.startWithCompletionHandler(handler)
-//    }
-//    
-//}
-
-import CoreLocation
 
 class ResultsControllerAddressSearch: UITableViewController, UISearchResultsUpdating {
     
+    // keeps track of results from search
+    var myList = Array<SimpleAddress>()
+    
     var searchText: String?
-//    var textLastChanged: Int64?
     var timer: NSTimer?
     
     
@@ -47,12 +22,13 @@ class ResultsControllerAddressSearch: UITableViewController, UISearchResultsUpda
         let input = self.searchText!
         var url = NSURL(string: "http://autocomplete.wunderground.com/aq?query=\(input)&c=US".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
         func completionHandler (url: NSURL!, response: NSURLResponse!, error: NSError!) -> Void {
-            // TODO handle response by parsing JSON and populating list items
-            NSLog("got response (header): " + response.description)
-            NSLog("got datafile: " + url.description)
-            
             let data = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: nil, error: nil) as? NSDictionary
-            NSLog("data response=" + data!.description)
+            var results = JsonParser.parseAddressesFromJson(data!)
+            myList.removeAll()
+            for value in results {
+                myList.append(value)
+            }
+            tableView.reloadData()
         }
         HttpRequestHandler.sharedInstance.sendJsonRequest(url!, completionHandler: completionHandler)
     }
@@ -70,7 +46,6 @@ class ResultsControllerAddressSearch: UITableViewController, UISearchResultsUpda
                 timer.invalidate()
             }
             self.searchText = text
-//            self.textLastChanged = currentTime
             self.timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: Selector("timerExpires"), userInfo: nil, repeats: false)
         }
     }

@@ -15,8 +15,6 @@ class AddressSearchController: UIViewController, UITableViewDelegate, UISearchBa
     @IBOutlet var navItemAddressSearch: UINavigationItem!
     @IBOutlet var resultsController: ResultsControllerAddressSearch!
     var searchControllerAddressSearch: UISearchController?
-    // keeps track of results from search
-    var myList = Array<SimpleAddress>()
     
     
     override func viewDidLoad() {
@@ -38,7 +36,7 @@ class AddressSearchController: UIViewController, UITableViewDelegate, UISearchBa
         
         var temp = SimpleAddress()
         temp.name = "Test"
-        myList.append(temp)
+        resultsController.myList.append(temp)
     }
     
     
@@ -52,6 +50,7 @@ class AddressSearchController: UIViewController, UITableViewDelegate, UISearchBa
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar){
         NSLog("searchBarSearchButtonClicked")
+        resultsController.tableView.reloadData()
     }
     
     
@@ -73,7 +72,7 @@ class AddressSearchController: UIViewController, UITableViewDelegate, UISearchBa
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myList.count
+        return resultsController.myList.count
     }
     
     
@@ -81,14 +80,14 @@ class AddressSearchController: UIViewController, UITableViewDelegate, UISearchBa
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = Constants.CellReuseIdentifiers.ADDRESS_SEARCH
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ResultsTableViewCellAddressSearch
-        cell.populate(myList[indexPath.row])
+        cell.populate(resultsController.myList[indexPath.row])
         return cell
     }
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         NSLog("adding clicked address to list and returning to AddressList")
-        GlobalHandler.sharedInstance.addressFeedsHashMap.addAddress(myList[indexPath.row])
+        GlobalHandler.sharedInstance.addressFeedsHashMap.addAddress(resultsController.myList[indexPath.row])
         self.navigationController?.popViewControllerAnimated(true)
     }
     
