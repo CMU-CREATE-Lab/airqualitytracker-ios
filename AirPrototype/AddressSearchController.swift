@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-class AddressSearchController: UIViewController, UITableViewDelegate, UISearchBarDelegate, UITableViewDataSource {
+class AddressSearchController: UIViewController, UISearchBarDelegate {
 
     // interface
     @IBOutlet var navItemAddressSearch: UINavigationItem!
-    @IBOutlet var resultsController: ResultsControllerAddressSearch!
+    var resultsController: ResultsControllerAddressSearch!
     var searchControllerAddressSearch: UISearchController?
     
     
@@ -21,6 +21,7 @@ class AddressSearchController: UIViewController, UITableViewDelegate, UISearchBa
         super.viewDidLoad()
         
         resultsController = ResultsControllerAddressSearch()
+        resultsController.addressSearchController = self
         searchControllerAddressSearch = UISearchController(searchResultsController: resultsController)
         searchControllerAddressSearch!.searchResultsUpdater = resultsController
         searchControllerAddressSearch!.searchBar.delegate = self
@@ -29,14 +30,7 @@ class AddressSearchController: UIViewController, UITableViewDelegate, UISearchBa
         navItemAddressSearch.titleView = searchControllerAddressSearch!.searchBar
         self.definesPresentationContext = true
         
-        resultsController.tableView = UITableView()
-        resultsController.tableView.delegate = self
-        resultsController.tableView.dataSource = self
         resultsController.tableView.registerNib(UINib(nibName: "ResultsTableViewCellAddressSearch", bundle: nil), forCellReuseIdentifier: Constants.CellReuseIdentifiers.ADDRESS_SEARCH)
-        
-        var temp = SimpleAddress()
-        temp.name = "Test"
-        resultsController.myList.append(temp)
     }
     
     
@@ -61,34 +55,6 @@ class AddressSearchController: UIViewController, UITableViewDelegate, UISearchBa
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         NSLog("searchBarCancelButtonClicked")
-    }
-    
-    
-    // MARK: UITableView delegate
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return resultsController.myList.count
-    }
-    
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        // Table view cells are reused and should be dequeued using a cell identifier.
-        let cellIdentifier = Constants.CellReuseIdentifiers.ADDRESS_SEARCH
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ResultsTableViewCellAddressSearch
-        cell.populate(resultsController.myList[indexPath.row])
-        return cell
-    }
-    
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        NSLog("adding clicked address to list and returning to AddressList")
-        GlobalHandler.sharedInstance.addressFeedsHashMap.addAddress(resultsController.myList[indexPath.row])
-        self.navigationController?.popViewControllerAnimated(true)
     }
     
 }
