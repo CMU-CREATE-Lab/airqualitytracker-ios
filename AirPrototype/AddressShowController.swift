@@ -11,12 +11,24 @@ import UIKit
 
 class AddressShowController: UIViewController {
     
+    @IBOutlet var labelName: UILabel!
+    @IBOutlet var labelLatitude: UILabel!
+    @IBOutlet var labelLongitude: UILabel!
     @IBOutlet var label: UILabel!
     var address: SimpleAddress?
+    
+    func populateView() {
+//        address!.latitude = 1.0
+//        address!.longitude = 2.555
+        labelName.text = address!.name
+        labelLatitude.text = address!.latitude.description
+        labelLongitude.text = address!.longitude.description
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         NSLog("Loaded AddressShow with address " + address!.name)
+        populateView()
     }
     
     

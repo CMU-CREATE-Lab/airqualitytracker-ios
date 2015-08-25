@@ -22,11 +22,15 @@ class JsonParser {
         let addresses = data.valueForKey("RESULTS") as! Array<NSDictionary>
         for address in addresses {
             var resultAddress = SimpleAddress()
-            if let latitude = address.valueForKey("lat") as? Double {
-                resultAddress.latitude = latitude
+//            let s1 = NSString(string: address.valueForKey("lat") as! String).doubleValue
+//            let s2 = NSString(string: address.valueForKey("lon") as! String).doubleValue
+//            NSLog("parsed JSON: lat=\(s1.description),lon=\(s2.description)")
+            
+            if let latitude = address.valueForKey("lat") as? String {
+                resultAddress.latitude = NSString(string: latitude).doubleValue
             }
-            if let longitude = address.valueForKey("lon") as? Double {
-                resultAddress.longitude = longitude
+            if let longitude = address.valueForKey("lon") as? String {
+                resultAddress.longitude = NSString(string: longitude).doubleValue
             }
             if let name = address.valueForKey("name") as? String {
                 resultAddress.name = name
