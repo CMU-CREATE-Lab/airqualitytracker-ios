@@ -14,15 +14,15 @@ class SimpleAddress: Hashable {
     static func generateHash() -> Int {
         return hashId++
     }
-    enum IconType {
-        case GPS, SPECK, DEFAULT
-    }
+//    enum IconType {
+//        case GPS, SPECK, DEFAULT
+//    }
     var _id: Int
     var name: String
     var latitude: Double
     var longitude: Double
     var closestFeed: Feed?
-    var iconType: IconType
+//    var iconType: IconType
     let uid = 1
     var hashValue: Int { return SimpleAddress.generateHash() }
     
@@ -31,7 +31,7 @@ class SimpleAddress: Hashable {
         name = ""
         latitude = 0
         longitude = 0
-        iconType = IconType.DEFAULT
+//        iconType = IconType.DEFAULT
         closestFeed = nil
     }
 }
