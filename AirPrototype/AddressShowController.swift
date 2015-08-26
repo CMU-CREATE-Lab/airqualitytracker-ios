@@ -18,8 +18,6 @@ class AddressShowController: UIViewController {
     var address: SimpleAddress?
     
     func populateView() {
-//        address!.latitude = 1.0
-//        address!.longitude = 2.555
         labelName.text = address!.name
         labelLatitude.text = address!.latitude.description
         labelLongitude.text = address!.longitude.description

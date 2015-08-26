@@ -16,13 +16,6 @@ class AddressFeedsHashMap {
     
     init() {
         gpsAddress = SimpleAddress()
-        
-        var temp: SimpleAddress = SimpleAddress()
-        temp.name = "HELLO"
-        addAddress(temp)
-        temp = SimpleAddress()
-        temp.name = "THERE"
-        addAddress(temp)
     }
     
     
