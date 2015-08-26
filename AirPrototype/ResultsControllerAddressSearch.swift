@@ -23,8 +23,7 @@ class ResultsControllerAddressSearch: UITableViewController, UITableViewDelegate
     func timerExpires() {
         NSLog("In timerExpires()")
         let input = self.searchText!
-        var url = NSURL(string: "http://autocomplete.wunderground.com/aq?query=\(input)&c=US".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-        HttpRequestHandler.sharedInstance.sendJsonRequest(url!, completionHandler: self.completionHandler)
+        HttpRequestHandler.sharedInstance.requestGeocodingFromApi(input, completionHandler: self.completionHandler)
     }
     
     
