@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 class SimpleAddress: Hashable {
     
@@ -14,24 +15,21 @@ class SimpleAddress: Hashable {
     static func generateHash() -> Int {
         return hashId++
     }
-//    enum IconType {
-//        case GPS, SPECK, DEFAULT
-//    }
-    var _id: Int
+    var _id: NSManagedObjectID?
     var name: String
+    var zipcode: String
     var latitude: Double
     var longitude: Double
+    
     var closestFeed: Feed?
-//    var iconType: IconType
     let uid = 1
     var hashValue: Int { return SimpleAddress.generateHash() }
     
     init() {
-        _id = -1
         name = ""
+        zipcode = ""
         latitude = 0
         longitude = 0
-//        iconType = IconType.DEFAULT
         closestFeed = nil
     }
 }

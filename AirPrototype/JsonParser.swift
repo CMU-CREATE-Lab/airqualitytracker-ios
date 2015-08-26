@@ -35,6 +35,10 @@ class JsonParser {
             if let name = address.valueForKey("name") as? String {
                 resultAddress.name = name
             }
+            // TODO string needs formatted
+            if let zip = address.valueForKey("zmw") as? String {
+                resultAddress.zipcode = zip
+            }
             result.append(resultAddress)
         }
         return result

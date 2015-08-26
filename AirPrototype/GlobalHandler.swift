@@ -8,13 +8,14 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class GlobalHandler {
     var appDelegate: AppDelegate
     var addressFeedsHashMap: AddressFeedsHashMap
     
     init() {
-        appDelegate = (UIApplication.sharedApplication().delegate! as? AppDelegate)!
+        appDelegate = (UIApplication.sharedApplication().delegate! as! AppDelegate)
         addressFeedsHashMap = AddressFeedsHashMap()
     }
     // singleton pattern; this is the only time the class should be initialized

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddressListController: UITableViewController {
     
@@ -32,6 +33,8 @@ class AddressListController: UITableViewController {
 //        }
 //        NSLog("requesting feeds from url=" + url!.description)
 //        HttpRequestHandler.sharedInstance.sendJsonRequest(url!, completionHandler: completionHandler)
+        
+        DatabaseHelper.loadFromDb()
     }
     
     
@@ -92,9 +95,11 @@ class AddressListController: UITableViewController {
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            GlobalHandler.sharedInstance.addressFeedsHashMap.removeAddress(addressList[indexPath.row])
+            let address = addressList[indexPath.row]
+            GlobalHandler.sharedInstance.addressFeedsHashMap.removeAddress(address)
             addressList = GlobalHandler.sharedInstance.requestAddressesForDisplay()
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            DatabaseHelper.deleteAddressFromDb(address)
         }
     }
     

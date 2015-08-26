@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class ResultsControllerAddressSearch: UITableViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
@@ -84,6 +85,7 @@ class ResultsControllerAddressSearch: UITableViewController, UITableViewDelegate
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         NSLog("adding clicked address to list and returning to AddressList")
         GlobalHandler.sharedInstance.addressFeedsHashMap.addAddress(myList[indexPath.row])
+        DatabaseHelper.addAddressToDb(myList[indexPath.row])
         addressSearchController!.navigationController?.popViewControllerAnimated(true)
     }
     
