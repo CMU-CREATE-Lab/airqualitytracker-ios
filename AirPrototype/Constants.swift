@@ -16,6 +16,16 @@ class Constants {
         static let ADDRESS_SEARCH = "reuseAddressSearch"
     }
 
+    struct Esdr {
+        static let API_URL = "https://esdr.cmucreatelab.org";
+        static let GRANT_TYPE_TOKEN = "password";
+        static let GRANT_TYPE_REFRESH = "refresh_token";
+        // TODO placeholder for actual Client information (don't push to git)
+        static let CLIENT_ID = "client_id";
+        static let CLIENT_SECRET = "this should never work";
+    }
+
+
     struct MapGeometry {
         // Distance from central point, in kilometers (box dimension will be 2x larger)
         static let BOUNDBOX_HEIGHT = 20.0;

@@ -228,8 +228,8 @@
 				A1666FB01B541B1900A8E39F /* static_classes */,
 				A158F6141B8E502300FCE2E1 /* structs */,
 				A1666FB11B541CF400A8E39F /* GlobalHandler.swift */,
-				A1666FB51B542E6A00A8E39F /* HttpRequestHandler.swift */,
 				A1666FB71B54349200A8E39F /* AddressFeedsHashMap.swift */,
+				A1666FB51B542E6A00A8E39F /* HttpRequestHandler.swift */,
 				A158F6121B8E305A00FCE2E1 /* EsdrFeedsHandler.swift */,
 			);
 			name = helpers;

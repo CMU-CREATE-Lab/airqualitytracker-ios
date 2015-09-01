@@ -24,8 +24,6 @@ class HttpRequestHandler {
     
     
     func sendJsonRequest(urlRequest: NSMutableURLRequest, completionHandler: ((NSURL!, NSURLResponse!, NSError!) -> Void)? ) {
-//        let sharedSessionNSURL = NSURLSession.sharedSession()
-//        sharedSessionNSURL.downloadTaskWithRequest(urlRequest, completionHandler: completionHandler).resume()
         let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         sessionConfiguration.HTTPAdditionalHeaders = [
             "Content-Type" : "application/json"
@@ -48,17 +46,17 @@ class HttpRequestHandler {
     }
 
 
-    func requestFeeds(latitude: Double, longitude: Double, maxTime: Double, completionHandler: ((NSURL!, NSURLResponse!, NSError!) -> Void)?) {
-        // esdrFeedsHandler.requestFeeds(latd, longd, maxTime, response);
+    func requestFeeds(location: Location, withinSeconds: Double, completionHandler: ((NSURL!, NSURLResponse!, NSError!) -> Void)?) {
+        EsdrFeedsHandler.sharedInstance.requestFeeds(location, withinSeconds: withinSeconds, completionHandler: completionHandler)
     }
 
     func requestPrivateFeeds(authToken: String, completionHandler: ((NSURL!, NSURLResponse!, NSError!) -> Void)? ) {
-        // esdrFeedsHandler.requestPrivateFeeds(authToken, response);
+        EsdrFeedsHandler.sharedInstance.requestPrivateFeeds(authToken, completionHandler: completionHandler)
     }
 
 
     func requestChannelReading(feed: Feed, channel: Channel) {
-        // esdrFeedsHandler.requestChannelReading("",feed, channel, 0);
+        EsdrFeedsHandler.sharedInstance.requestChannelReading(nil, feed: feed, channel: channel, maxTime: nil)
     }
 
 
