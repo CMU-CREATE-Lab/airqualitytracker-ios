@@ -13,6 +13,7 @@
 		A15675831B5844C9006982A1 /* MapGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15675821B5844C9006982A1 /* MapGeometry.swift */; };
 		A158F6111B8E000F00FCE2E1 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158F6101B8E000F00FCE2E1 /* DatabaseHelper.swift */; };
 		A158F6131B8E305A00FCE2E1 /* EsdrFeedsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158F6121B8E305A00FCE2E1 /* EsdrFeedsHandler.swift */; };
+		A158F6161B8E504500FCE2E1 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158F6151B8E504500FCE2E1 /* Location.swift */; };
 		A1626DF91B555A79006D990C /* AddressSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1626DF81B555A79006D990C /* AddressSearchController.swift */; };
 		A16481FB1B5D553F0023DE09 /* AddressShowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16481FA1B5D553F0023DE09 /* AddressShowController.swift */; };
 		A1660FF71B568B6700608C5D /* ResultsControllerAddressSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1660FF61B568B6700608C5D /* ResultsControllerAddressSearch.swift */; };
@@ -52,6 +53,7 @@
 		A15675821B5844C9006982A1 /* MapGeometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapGeometry.swift; sourceTree = "<group>"; };
 		A158F6101B8E000F00FCE2E1 /* DatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		A158F6121B8E305A00FCE2E1 /* EsdrFeedsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EsdrFeedsHandler.swift; sourceTree = "<group>"; };
+		A158F6151B8E504500FCE2E1 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		A1626DF81B555A79006D990C /* AddressSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressSearchController.swift; sourceTree = "<group>"; };
 		A16481FA1B5D553F0023DE09 /* AddressShowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressShowController.swift; sourceTree = "<group>"; };
 		A1660FF61B568B6700608C5D /* ResultsControllerAddressSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsControllerAddressSearch.swift; sourceTree = "<group>"; };
@@ -104,6 +106,14 @@
 				A158F6101B8E000F00FCE2E1 /* DatabaseHelper.swift */,
 			);
 			name = database;
+			sourceTree = "<group>";
+		};
+		A158F6141B8E502300FCE2E1 /* structs */ = {
+			isa = PBXGroup;
+			children = (
+				A158F6151B8E504500FCE2E1 /* Location.swift */,
+			);
+			name = structs;
 			sourceTree = "<group>";
 		};
 		A1626DF61B555A56006D990C /* address_list */ = {
@@ -216,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				A1666FB01B541B1900A8E39F /* static_classes */,
+				A158F6141B8E502300FCE2E1 /* structs */,
 				A1666FB11B541CF400A8E39F /* GlobalHandler.swift */,
 				A1666FB51B542E6A00A8E39F /* HttpRequestHandler.swift */,
 				A1666FB71B54349200A8E39F /* AddressFeedsHashMap.swift */,
@@ -349,6 +360,7 @@
 				A1666F831B54125400A8E39F /* AppDelegate.swift in Sources */,
 				A1666FB61B542E6A00A8E39F /* HttpRequestHandler.swift in Sources */,
 				A1666FAA1B54176D00A8E39F /* SimpleAddress.swift in Sources */,
+				A158F6161B8E504500FCE2E1 /* Location.swift in Sources */,
 				A1626DF91B555A79006D990C /* AddressSearchController.swift in Sources */,
 				A16481FB1B5D553F0023DE09 /* AddressShowController.swift in Sources */,
 				A1FEAB411B8CF19D00F9716B /* StoredAddress.swift in Sources */,

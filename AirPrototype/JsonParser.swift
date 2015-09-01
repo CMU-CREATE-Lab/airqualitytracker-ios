@@ -27,10 +27,10 @@ class JsonParser {
 //            NSLog("parsed JSON: lat=\(s1.description),lon=\(s2.description)")
             
             if let latitude = address.valueForKey("lat") as? String {
-                resultAddress.latitude = NSString(string: latitude).doubleValue
+                resultAddress.location.latitude = NSString(string: latitude).doubleValue
             }
             if let longitude = address.valueForKey("lon") as? String {
-                resultAddress.longitude = NSString(string: longitude).doubleValue
+                resultAddress.location.longitude = NSString(string: longitude).doubleValue
             }
             if let name = address.valueForKey("name") as? String {
                 resultAddress.name = name

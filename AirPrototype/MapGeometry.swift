@@ -54,12 +54,12 @@ class MapGeometry {
 
 
     // calculates distance between two points on a Great Sphere
-    func getDistance(lat1: Double, long1: Double, lat2: Double, long2: Double) -> Double {
+    func getDistance(from: Location, to: Location) -> Double {
         // convert units from degrees to radians
-        let p1 = lat1 * MATH_PI / 180.0
-        let p2 = lat2 * MATH_PI / 180.0
-        let l1 = long1 * MATH_PI / 180.0
-        let l2 = long2 * MATH_PI / 180.0
+        let p1 = from.latitude * MATH_PI / 180.0
+        let p2 = to.latitude * MATH_PI / 180.0
+        let l1 = from.longitude * MATH_PI / 180.0
+        let l2 = to.longitude * MATH_PI / 180.0
 
         // Taken from the haversine formula: hsin(d/r) = hsine(p2-p1) + cos(p1)*cos(p2)*hsin(l2-l1)
         // where hsin(t) = sin^2(t/2)
@@ -70,8 +70,7 @@ class MapGeometry {
 
 
     func getDistanceFromFeedToAddress(simpleAddress: SimpleAddress, feed: Feed) -> Double {
-        return getDistance(simpleAddress.latitude,long1: simpleAddress.longitude,
-                lat2: feed.latitude,long2: feed.longitude)
+        return getDistance(simpleAddress.location, to: feed.location)
     }
 
 

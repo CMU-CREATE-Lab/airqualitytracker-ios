@@ -18,8 +18,7 @@ class SimpleAddress: Hashable {
     var _id: NSManagedObjectID?
     var name: String
     var zipcode: String
-    var latitude: Double
-    var longitude: Double
+    var location: Location
     
     var closestFeed: Feed?
     let uid = 1
@@ -28,8 +27,7 @@ class SimpleAddress: Hashable {
     init() {
         name = ""
         zipcode = ""
-        latitude = 0
-        longitude = 0
+        location = Location(latitude: 0, longitude: 0)
         closestFeed = nil
     }
 }

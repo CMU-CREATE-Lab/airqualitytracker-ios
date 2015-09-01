@@ -19,8 +19,8 @@ class AddressShowController: UIViewController {
     
     func populateView() {
         labelName.text = address!.name
-        labelLatitude.text = address!.latitude.description
-        labelLongitude.text = address!.longitude.description
+        labelLatitude.text = address!.location.latitude.description
+        labelLongitude.text = address!.location.longitude.description
     }
     
     override func viewDidLoad() {

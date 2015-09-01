@@ -49,8 +49,8 @@ class DatabaseHelper {
                     address._id = match.objectID
                     address.name = name
                     address.zipcode = zipcode
-                    address.latitude = latitude
-                    address.longitude = longitude
+                    address.location.latitude = latitude
+                    address.location.longitude = longitude
                     GlobalHandler.sharedInstance.addressFeedsHashMap.addAddress(address)
                 }
             } else {
@@ -70,8 +70,8 @@ class DatabaseHelper {
         let storedAddress = StoredAddress(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext)
         storedAddress.name = address.name
         storedAddress.zipcode = address.zipcode
-        storedAddress.latitude = address.latitude
-        storedAddress.longitude = address.longitude
+        storedAddress.latitude = address.location.latitude
+        storedAddress.longitude = address.location.longitude
         
         var error: NSError?
         

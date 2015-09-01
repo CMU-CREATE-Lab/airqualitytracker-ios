@@ -13,8 +13,7 @@ class Feed {
     var name: String
     var exposure: String
     var isMobile: Bool
-    var latitude: Double
-    var longitude: Double
+    var location: Location
     var productId: Int
     var channels: Array<Channel>
     var feedValue: Double
@@ -25,8 +24,7 @@ class Feed {
         name = ""
         exposure = ""
         isMobile = false
-        latitude = 0
-        longitude = 0
+        location = Location(latitude: 0, longitude: 0)
         productId = 0
         feedValue = 0
         lastTime = 0
