@@ -33,6 +33,8 @@
 		A1666FB81B54349200A8E39F /* AddressFeedsHashMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FB71B54349200A8E39F /* AddressFeedsHashMap.swift */; };
 		A1666FBA1B5438AE00A8E39F /* AddressListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FB91B5438AE00A8E39F /* AddressListTableViewCell.swift */; };
 		A16A14711B5FD9070026E9C8 /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16A14701B5FD9070026E9C8 /* JsonParser.swift */; };
+		A1F58E591B97284800D04C91 /* Readable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F58E581B97284800D04C91 /* Readable.swift */; };
+		A1F58E5B1B972DD700D04C91 /* Speck.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F58E5A1B972DD700D04C91 /* Speck.swift */; };
 		A1FEAB411B8CF19D00F9716B /* StoredAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FEAB401B8CF19D00F9716B /* StoredAddress.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +79,8 @@
 		A1666FB71B54349200A8E39F /* AddressFeedsHashMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressFeedsHashMap.swift; sourceTree = "<group>"; };
 		A1666FB91B5438AE00A8E39F /* AddressListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListTableViewCell.swift; sourceTree = "<group>"; };
 		A16A14701B5FD9070026E9C8 /* JsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
+		A1F58E581B97284800D04C91 /* Readable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Readable.swift; sourceTree = "<group>"; };
+		A1F58E5A1B972DD700D04C91 /* Speck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Speck.swift; sourceTree = "<group>"; };
 		A1FEAB401B8CF19D00F9716B /* StoredAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoredAddress.swift; path = ../StoredAddress.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -215,9 +219,11 @@
 		A1666FA81B54172300A8E39F /* classes */ = {
 			isa = PBXGroup;
 			children = (
-				A1666FA91B54176D00A8E39F /* SimpleAddress.swift */,
-				A1666FAB1B54190A00A8E39F /* Feed.swift */,
 				A1666FAD1B5419D300A8E39F /* Channel.swift */,
+				A1666FAB1B54190A00A8E39F /* Feed.swift */,
+				A1F58E581B97284800D04C91 /* Readable.swift */,
+				A1666FA91B54176D00A8E39F /* SimpleAddress.swift */,
+				A1F58E5A1B972DD700D04C91 /* Speck.swift */,
 			);
 			name = classes;
 			sourceTree = "<group>";
@@ -352,6 +358,7 @@
 				A1666FBA1B5438AE00A8E39F /* AddressListTableViewCell.swift in Sources */,
 				A1666FAE1B5419D300A8E39F /* Channel.swift in Sources */,
 				A156757D1B57D549006982A1 /* ResultsTableViewCellAddressSearch.swift in Sources */,
+				A1F58E591B97284800D04C91 /* Readable.swift in Sources */,
 				A15675811B583AAA006982A1 /* Converter.swift in Sources */,
 				A1666FB21B541CF400A8E39F /* GlobalHandler.swift in Sources */,
 				A15675831B5844C9006982A1 /* MapGeometry.swift in Sources */,
@@ -359,6 +366,7 @@
 				A16A14711B5FD9070026E9C8 /* JsonParser.swift in Sources */,
 				A1666F831B54125400A8E39F /* AppDelegate.swift in Sources */,
 				A1666FB61B542E6A00A8E39F /* HttpRequestHandler.swift in Sources */,
+				A1F58E5B1B972DD700D04C91 /* Speck.swift in Sources */,
 				A1666FAA1B54176D00A8E39F /* SimpleAddress.swift in Sources */,
 				A158F6161B8E504500FCE2E1 /* Location.swift in Sources */,
 				A1626DF91B555A79006D990C /* AddressSearchController.swift in Sources */,

@@ -9,7 +9,29 @@
 import Foundation
 import CoreData
 
-class SimpleAddress: Hashable {
+class SimpleAddress: Hashable,Readable {
+    
+    // Readable implementation
+    
+    private let readableType = ReadableType.ADDRESS
+    func getReadableType() -> ReadableType {
+        return self.readableType
+    }
+    func hasReadableValue() -> Bool {
+        return self.closestFeed != nil
+    }
+    func getReadableValue() -> Double {
+        if self.hasReadableValue() {
+            return self.closestFeed!.feedValue
+        }
+        NSLog("Failed to get Readable Value on SimpleAddress; returning 0.0")
+        return 0.0
+    }
+    func getName() -> String {
+        return self.name
+    }
+    
+    // class-specific definitions
     
     static var hashId = 1
     static func generateHash() -> Int {
