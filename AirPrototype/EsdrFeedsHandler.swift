@@ -55,11 +55,12 @@ class EsdrFeedsHandler {
         let channelName = channel.name
         
         func completionHandler(url: NSURL!, response: NSURLResponse!, error: NSError!) -> Void {
-            // TODO handles completion actions
             let data = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: nil, error: nil) as? NSDictionary
             var temp:NSDictionary
             
-            // TODO comment note from Chris
+            // NOTE (from Chris)
+            // "don't expect mostRecentDataSample to always exist in the response for every channel,
+            // and don't expect channelBounds.maxTimeSecs to always equal mostRecentDataSample.timeSecs"
             temp = data?.valueForKey("data") as! NSDictionary
             temp = temp.valueForKey("channels") as! NSDictionary
             temp = temp.valueForKey(channelName) as! NSDictionary
@@ -68,12 +69,21 @@ class EsdrFeedsHandler {
             let resultValue = temp.valueForKey("value") as? String
             let resultTime = temp.valueForKey("timeSecs") as? String
             if resultValue != nil && resultTime != nil {
-                // TODO got value at time
                 if maxTime == nil {
-                    // TODO blindly accept results
+                    feed.feedValue = NSString(string: resultValue!).doubleValue
+                    feed.lastTime = NSString(string: resultTime!).doubleValue
                 } else {
-                    // TODO compare maxTime with resultTime
+                    if maxTime <= NSString(string: resultTime!).doubleValue {
+                        feed.setHasReadableValue(true)
+                        feed.feedValue = NSString(string: resultValue!).doubleValue
+                        feed.lastTime = NSString(string: resultTime!).doubleValue
+                    } else {
+                        feed.setHasReadableValue(false)
+                        feed.feedValue = 0
+                        feed.lastTime = NSString(string: resultTime!).doubleValue
+                    }
                 }
+                // TODO GlobalHandler.sharedInstance.notifyGlobalDataSetChanged()
             }
         }
         

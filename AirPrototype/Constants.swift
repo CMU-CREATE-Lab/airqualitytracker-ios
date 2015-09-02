@@ -11,6 +11,9 @@ import Foundation
 let MATH_PI = 3.14159265358979
 
 class Constants {
+    
+    static let SPECKS_MAX_TIME_RANGE: Double = 1800  // 30 minutes
+    
     struct CellReuseIdentifiers {
         static let ADDRESS_LIST = "reuseAddressList"
         static let ADDRESS_SEARCH = "reuseAddressSearch"

@@ -61,18 +61,18 @@ class HttpRequestHandler {
 
 
     func requestAuthorizedChannelReading(authToken: String, feed: Feed, channel: Channel) {
-        // esdrFeedsHandler.requestChannelReading(authToken, feed, channel,
-        //         (long)(new Date().getTime() / 1000.0) - Constants.SPECKS_MAX_TIME_RANGE);
+        let timeRange = NSDate().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
+        EsdrFeedsHandler.sharedInstance.requestChannelReading(authToken, feed: feed, channel: channel, maxTime: timeRange)
     }
 
 
     func requestEsdrToken(username: String, password: String, completionHandler: ((NSURL!, NSURLResponse!, NSError!) -> Void)? ) {
-        // esdrAuthHandler.requestEsdrToken(username,password,response,error);
+        EsdrAuthHandler.sharedInstance.requestEsdrToken(username, password: password, completionHandler: completionHandler)
     }
 
 
     func requestEsdrRefresh(refreshToken: String) {
-        // esdrAuthHandler.requestEsdrRefresh(refreshToken);
+        EsdrAuthHandler.sharedInstance.requestEsdrRefresh(refreshToken)
     }
     
     
