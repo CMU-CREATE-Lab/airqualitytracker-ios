@@ -12,13 +12,31 @@ let MATH_PI = 3.14159265358979
 
 class Constants {
     
-    static let SPECKS_MAX_TIME_RANGE: Double = 1800  // 30 minutes
+    static let USES_BACKGROUND_SERVICES = true
+
+    // these are the channel names that we want our feeds to report
+    static let channelNames = [
+            "pm2_5", "PM2_5", "pm2_5_1hr",
+            "pm2_5_24hr", "PM25B_UG_M3", "PM25_UG_M3",
+            "particle_concentration"
+    ]
+
+    static let READINGS_MAX_TIME_RANGE: Double = 86400 // 24 hours
     
-    struct CellReuseIdentifiers {
-        static let ADDRESS_LIST = "reuseAddressList"
-        static let ADDRESS_SEARCH = "reuseAddressSearch"
+    static let SPECKS_MAX_TIME_RANGE: Double = 1800  // 30 minutes
+
+    struct Location {
+        static let LOCATION_REQUEST_INTERVAL: Double = 600000 // 10 minutes
+        static let LOCATION_REQUEST_FASTEST_INTERVAL: Double = 60000 // 1 minute
     }
 
+    struct Units {
+        static let MICROGRAMS_PER_CUBIC_METER = "µg/m³";
+        static let AQI = "AQI";
+        static let RANGE_MICROGRAMS_PER_CUBIC_METER = "µg/m³    /500";
+        static let RANGE_AQI = "AQI    /500";
+    }
+    
     struct Esdr {
         static let API_URL = "https://esdr.cmucreatelab.org";
         static let GRANT_TYPE_TOKEN = "password";
@@ -27,8 +45,7 @@ class Constants {
         static let CLIENT_ID = "client_id";
         static let CLIENT_SECRET = "this should never work";
     }
-
-
+    
     struct MapGeometry {
         // Distance from central point, in kilometers (box dimension will be 2x larger)
         static let BOUNDBOX_HEIGHT = 20.0;
@@ -40,4 +57,145 @@ class Constants {
         static let BOUNDBOX_LAT = BOUNDBOX_HEIGHT / ( RADIUS_EARTH * 2 * MATH_PI ) * 360.0;
         static let BOUNDBOX_LONG = BOUNDBOX_LENGTH / ( RADIUS_EARTH * 2 * MATH_PI ) * 360.0;
     }
+    
+    // Interface-related tags
+    
+    static let HEADER_TITLES = [
+        "SPECK DEVICES",
+        "CITIES"
+    ]
+    
+    struct CellReuseIdentifiers {
+        static let ADDRESS_LIST = "reuseAddressList"
+        static let ADDRESS_SEARCH = "reuseAddressSearch"
+    }
+    
+    // Content for Readable
+    
+    struct DefaultReading {
+        static let DEFAULT_LOCATION = "N/A";
+        static let DEFAULT_COLOR_BACKGROUND = "#404041";
+        static let DEFAULT_TITLE = "Unavailable";
+        static let DEFAULT_DESCRIPTION = "The current AQI for this region is unavailable.";
+    }
+    
+    
+    struct SpeckReading {
+        // TODO replace with speck descriptions?
+        static let descriptions = [
+                "Air quality is considered Good.",
+                "Air quality is considered Moderate.",
+                "Air quality is considered Slightly Elevated.",
+                "Air quality is considered Elevated.",
+                "Air quality is considered High.",
+                "Air quality is considered Very High."
+        ]
+        static let normalColors = [
+                "#1a9850", "#91cf60", "#d9ef8b",
+                "#FEE08B", "#FC8D59", "#D73027"
+        ]
+        static let colorblindColors = [
+                "#4575b4", "#91bfdb", "#e0f3f8",
+                "#fee090", "#fc8d59", "#d73027"
+        ]
+        static let titles = [
+                "Good", "Moderate", "Slightly Elevated",
+                "Elevated", "High", "Very High"
+        ]
+        // ranges measured in ug/m^3
+        static let ranges: [Double] = [
+            21, 41, 81,
+            161, 321
+        ]
+
+        static func getIndexFromReading(reading: Double) -> Int {
+            if reading < 0 {
+                return -1
+            }
+            var index: Int
+            for index = 0; index < ranges.count; index++ {
+                if reading < ranges[index] {
+                    return index
+                }
+            }
+            return -1
+        }
+
+        static func getRangeFromIndex(index: Int) -> String {
+            if (index < 0) {
+                NSLog("getRangeFromIndex received index < 0.")
+                return ""
+            } else if index == 0 {
+                return "0-\(ranges[0])"
+            } else if index == 5 {
+                return "\(ranges[4])+"
+            } else {
+                return "\(ranges[index-1])-\(ranges[index])"
+            }
+        }
+    }
+
+    
+    struct AqiReading {
+        static let descriptions = [
+                "Air quality is considered satisfactory, and air pollution poses little or no risk. Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people. For example, people who are unusually sensitive to ozone may experience respiratory symptoms.",
+                "Although general public is not likely to be affected at this AQI range, people with lung disease, older adults and children are at a greater risk from exposure to ozone, whereas persons with heart and lung disease, older adults and children are at greater risk from the presence of particles in the air.",
+                "Everyone may begin to experience some adverse health effects, and members of the sensitive groups may experience more serious effects.",
+                "This would trigger a health alert signifying that everyone may experience more serious health effects.",
+                "This would trigger a health warning of emergency conditions. The entire population is more likely to be affected."
+        ]
+        static let titles = [
+                "Good", "Moderate", "Unhealthy for Sensitive Groups",
+                "Unhealthy", "Very Unhealthy", "Hazardous"
+        ]
+        static let aqiColors = [
+                "#a3ba5c", "#e9b642", "#e98c37",
+                "#e24f36", "#b54382", "#b22651"
+        ]
+        static let aqiFontColors = [
+                "#192015", "#2a1e11", "#261705",
+                "#330004", "#2d0d18", "#28060b"
+        ]
+        
+        static let aqiGradientColorStart = [
+                "#a3ba5c", "#e9b642", "#e98c37",
+                "#e24f36", "#b54382", "#b22651"
+        ]
+        
+        static let aqiGradientColorEnd = [
+                "#7a9055", "#c18f35", "#b44c26",
+                "#ad2227", "#992a68", "#8c1739"
+        ]
+        static let ranges: [Double] = [
+                50, 100, 150,
+                200, 300
+        ]
+
+        static func getIndexFromReading(reading: Double) -> Int {
+            if reading < 0 {
+                return -1;
+            }
+            var index: Int
+            for index = 0; index < ranges.count; index++ {
+                if reading < ranges[index] {
+                    return index
+                }
+            }
+            return -1
+        }
+
+        static func getRangeFromIndex(index: Int) -> String {
+            if (index < 0) {
+                NSLog("getRangeFromIndex received index < 0.")
+                return ""
+            } else if index == 0 {
+                return "0-\(ranges[0])"
+            } else if index == 5 {
+                return "\(ranges[4])+"
+            } else {
+                return "\(ranges[index-1])-\(ranges[index])"
+            }
+        }
+    }
+    
 }
