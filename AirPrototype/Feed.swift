@@ -8,9 +8,9 @@
 
 import Foundation
 
-class Feed: Readable {
+class Feed: Readable, Hashable {
     
-    // Readable implementation
+    // Readable/Hashable implementation
 
     private let readableType = ReadableType.FEED
     private var feedHasReadableValue: Bool
@@ -29,6 +29,7 @@ class Feed: Readable {
     func getName() -> String {
         return self.name
     }
+    var hashValue: Int { return generateHashForReadable() }
     
     // class-specific definitions
     
@@ -54,4 +55,9 @@ class Feed: Readable {
         lastTime = 0
         channels = Array()
     }
+}
+
+// conforms to Equatable protocol
+func == (lhs: Feed, rhs: Feed) -> Bool {
+    return lhs.hashValue == rhs.hashValue
 }

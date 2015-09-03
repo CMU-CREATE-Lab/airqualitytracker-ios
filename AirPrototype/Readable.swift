@@ -12,9 +12,25 @@ enum ReadableType {
     case ADDRESS, FEED, SPECK
 }
 
+private var hashId = 1
+func generateHashForReadable() -> Int {
+    return hashId++
+}
+
+// NOTICE
+// the Readable protocol really should also inherit Hashable. However,
+// due to the trash factor of Swift, you cannot reference a protocol
+// as a constraint if it has a reference to "Self" in its definition.
+// In this case, Hashable inherits Equatable, which uses Self.
+//
+// tl;dr: when classes inherit Readable, inherit Hashable as well.
+//protocol Readable: Hashable {
 protocol Readable {
     func getReadableType() -> ReadableType
     func getName() -> String
     func hasReadableValue() -> Bool
     func getReadableValue() -> Double
+    
+    // ASSERT this should return generateHashForReadable()
+    var hashValue: Int { get }
 }

@@ -24,8 +24,13 @@ class AddressListController: UITableViewController {
         
         // testing out HTTP requests
         func foo(url: NSURL!, response: NSURLResponse!, error: NSError!) {
+            let httpResponse = response as! NSHTTPURLResponse
             if error != nil {
                 NSLog("error is not nil")
+            } else if httpResponse.statusCode != 200 {
+                // not sure if necessary... error usually is not nil but crashed
+                // on me one time when starting up simulator & running
+                NSLog("Got status code \(httpResponse.statusCode) != 200")
             } else {
                 NSLog("Responded with \(response.description)")
                 let data = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: nil, error: nil) as? NSDictionary

@@ -9,9 +9,9 @@
 import Foundation
 import CoreData
 
-class SimpleAddress: Hashable,Readable {
+class SimpleAddress: Readable, Hashable {
     
-    // Readable implementation
+    // Readable/Hashable implementation
     
     private let readableType = ReadableType.ADDRESS
     func getReadableType() -> ReadableType {
@@ -30,30 +30,33 @@ class SimpleAddress: Hashable,Readable {
     func getName() -> String {
         return self.name
     }
+    var hashValue: Int { return generateHashForReadable() }
     
     // class-specific definitions
     
-    static var hashId = 1
-    static func generateHash() -> Int {
-        return hashId++
-    }
     var _id: NSManagedObjectID?
     var name: String
     var zipcode: String
     var location: Location
     
     var closestFeed: Feed?
+    var feeds: Array<Feed>
     let uid = 1
-    var hashValue: Int { return SimpleAddress.generateHash() }
     
     init() {
         name = ""
         zipcode = ""
         location = Location(latitude: 0, longitude: 0)
         closestFeed = nil
+        feeds = []
     }
+    
+    func requestUpdateFeeds() {
+        // TODO Handle updating feeds asynchronously
+        self.feeds.removeAll(keepCapacity: false)
+    }
+    
 }
-
 
 // conforms to Equatable protocol
 func == (lhs: SimpleAddress, rhs: SimpleAddress) -> Bool {

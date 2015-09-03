@@ -35,4 +35,13 @@ class Speck: Feed {
     
     // TODO add speck device-specific attributes
     
+    func requestUpdate() {
+        if self.channels.count > 0 {
+            // TODO SettingsHandler
+            HttpRequestHandler.sharedInstance.requestAuthorizedChannelReading("", feed: self, channel: self.channels[0])
+        } else {
+            NSLog("No channels found from speck id=\(self.feed_id)")
+        }
+    }
+    
 }
