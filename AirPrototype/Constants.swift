@@ -13,6 +13,14 @@ let MATH_PI = 3.14159265358979
 class Constants {
     
     static let USES_BACKGROUND_SERVICES = true
+    
+    static let DEFAULT_SETTINGS: [String:AnyObject] = [
+        SettingsKeys.appUsesLocation: true,
+        SettingsKeys.userLoggedIn: false,
+        SettingsKeys.username: "",
+        SettingsKeys.accessToken: "",
+        SettingsKeys.refreshToken: ""
+    ]
 
     // these are the channel names that we want our feeds to report
     static let channelNames = [
@@ -24,6 +32,14 @@ class Constants {
     static let READINGS_MAX_TIME_RANGE: Double = 86400 // 24 hours
     
     static let SPECKS_MAX_TIME_RANGE: Double = 1800  // 30 minutes
+    
+    struct SettingsKeys {
+        static let appUsesLocation = "app_uses_location"
+        static let userLoggedIn = "user_logged_in"
+        static let username = "username"
+        static let accessToken = "access_token"
+        static let refreshToken = "refresh_token"
+    }
 
     struct Location {
         static let LOCATION_REQUEST_INTERVAL: Double = 600000 // 10 minutes

@@ -33,6 +33,7 @@
 		A1666FB81B54349200A8E39F /* AddressFeedsHashMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FB71B54349200A8E39F /* AddressFeedsHashMap.swift */; };
 		A1666FBA1B5438AE00A8E39F /* AddressListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FB91B5438AE00A8E39F /* AddressListTableViewCell.swift */; };
 		A16A14711B5FD9070026E9C8 /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16A14701B5FD9070026E9C8 /* JsonParser.swift */; };
+		A1E2A91D1B99ED47003A3B3A /* SettingsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E2A91C1B99ED47003A3B3A /* SettingsHandler.swift */; };
 		A1F58E591B97284800D04C91 /* Readable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F58E581B97284800D04C91 /* Readable.swift */; };
 		A1F58E5B1B972DD700D04C91 /* Speck.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F58E5A1B972DD700D04C91 /* Speck.swift */; };
 		A1F58E5D1B975BE700D04C91 /* EsdrAuthHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F58E5C1B975BE700D04C91 /* EsdrAuthHandler.swift */; };
@@ -81,6 +82,7 @@
 		A1666FB71B54349200A8E39F /* AddressFeedsHashMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressFeedsHashMap.swift; sourceTree = "<group>"; };
 		A1666FB91B5438AE00A8E39F /* AddressListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListTableViewCell.swift; sourceTree = "<group>"; };
 		A16A14701B5FD9070026E9C8 /* JsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
+		A1E2A91C1B99ED47003A3B3A /* SettingsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHandler.swift; sourceTree = "<group>"; };
 		A1F58E581B97284800D04C91 /* Readable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Readable.swift; sourceTree = "<group>"; };
 		A1F58E5A1B972DD700D04C91 /* Speck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Speck.swift; sourceTree = "<group>"; };
 		A1F58E5C1B975BE700D04C91 /* EsdrAuthHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EsdrAuthHandler.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				A1666FB71B54349200A8E39F /* AddressFeedsHashMap.swift */,
 				A1F58E5E1B9786C500D04C91 /* HeaderReadingsHashMap.swift */,
 				A1666FB51B542E6A00A8E39F /* HttpRequestHandler.swift */,
+				A1E2A91C1B99ED47003A3B3A /* SettingsHandler.swift */,
 			);
 			name = helpers;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				A1F58E5D1B975BE700D04C91 /* EsdrAuthHandler.swift in Sources */,
 				A1F58E5F1B9786C500D04C91 /* HeaderReadingsHashMap.swift in Sources */,
 				A16A14711B5FD9070026E9C8 /* JsonParser.swift in Sources */,
+				A1E2A91D1B99ED47003A3B3A /* SettingsHandler.swift in Sources */,
 				A1666F831B54125400A8E39F /* AppDelegate.swift in Sources */,
 				A1666FB61B542E6A00A8E39F /* HttpRequestHandler.swift in Sources */,
 				A1F58E5B1B972DD700D04C91 /* Speck.swift in Sources */,

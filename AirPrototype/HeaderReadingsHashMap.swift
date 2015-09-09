@@ -25,10 +25,14 @@ class HeaderReadingsHashMap {
 //    func populateAdapterList() {
 //        
 //    }
+    
+    
     func setGpsAddressLocation(location: Location) {
         gpsAddress.location = location
         gpsAddress.requestUpdateFeeds()
     }
+    
+    
     func addReading(readable: Readable) {
         let type = readable.getReadableType()
         switch type {
@@ -40,6 +44,8 @@ class HeaderReadingsHashMap {
             NSLog("Tried to add Readable of unknown Type in HeaderReadingsHashMap")
         }
     }
+    
+    
     func removeReading(readable: Readable) {
         let type = readable.getReadableType()
         switch type {
@@ -55,20 +61,25 @@ class HeaderReadingsHashMap {
             NSLog("Tried to remove Readable of unknown Type in HeaderReadingsHashMap")
         }
     }
+    
+    
     func updateAddresses() {
         for address in addresses {
             address.requestUpdateFeeds()
         }
     }
+    
+    
     func updateSpecks() {
         for speck in specks {
             speck.requestUpdate()
         }
     }
+    
+    
     func populateSpecks() {
         specks.removeAll(keepCapacity: true)
-        // TODO settings handler
-        if false {
+        if SettingsHandler.sharedInstance.userLoggedIn {
             func completionHandler(url: NSURL!, response: NSURLResponse!, error: NSError!) {
                 var feeds: Array<Feed>
                 let data = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: nil, error: nil) as? NSDictionary
@@ -82,11 +93,12 @@ class HeaderReadingsHashMap {
             HttpRequestHandler.sharedInstance.requestPrivateFeeds("", completionHandler: completionHandler)
         }
     }
+    
+    
     func refreshHash() {
         hashMap.removeAll(keepCapacity: true)
         hashMap[headers[0]] = specks
-        // TODO settings handler
-        if true {
+        if SettingsHandler.sharedInstance.appUsesLocation {
             var tempAddresses = [Readable]()
             tempAddresses.append(gpsAddress)
             for address in addresses {
