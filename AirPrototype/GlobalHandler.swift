@@ -12,13 +12,10 @@ import CoreData
 
 class GlobalHandler {
     var appDelegate: AppDelegate
-    // TODO remove this class
-    var addressFeedsHashMap: AddressFeedsHashMap
     var headerReadingsHashMap: HeaderReadingsHashMap
     
     init() {
         appDelegate = (UIApplication.sharedApplication().delegate! as! AppDelegate)
-        addressFeedsHashMap = AddressFeedsHashMap()
         headerReadingsHashMap = HeaderReadingsHashMap()
     }
     // singleton pattern; this is the only time the class should be initialized
@@ -32,6 +29,6 @@ class GlobalHandler {
     
     // TODO global stuff
     func requestAddressesForDisplay() -> Array<SimpleAddress> {
-        return addressFeedsHashMap.addresses
+        return headerReadingsHashMap.addresses
     }
 }

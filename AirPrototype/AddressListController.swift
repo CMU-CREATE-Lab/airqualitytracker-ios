@@ -22,29 +22,29 @@ class AddressListController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
         addressList = GlobalHandler.sharedInstance.requestAddressesForDisplay()
         
-        // testing out HTTP requests
-        func foo(url: NSURL!, response: NSURLResponse!, error: NSError!) {
-            let httpResponse = response as! NSHTTPURLResponse
-            if error != nil {
-                NSLog("error is not nil")
-            } else if httpResponse.statusCode != 200 {
-                // not sure if necessary... error usually is not nil but crashed
-                // on me one time when starting up simulator & running
-                NSLog("Got status code \(httpResponse.statusCode) != 200")
-            } else {
-                NSLog("Responded with \(response.description)")
-                let data = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: nil, error: nil) as? NSDictionary
-                let access_token = data!.valueForKey("access_token") as? String
-                let refresh_token = data!.valueForKey("refresh_token") as? String
-                if access_token != nil && refresh_token != nil {
-                    NSLog("found access_token=\(access_token), refresh_token=\(refresh_token)")
-                } else {
-                    NSLog("Failed to grab access/refresh token(s)")
-                }
-            }
-        }
-        HttpRequestHandler.sharedInstance.requestEsdrToken("username@example.org", password: "", completionHandler: foo)
-        // /test
+//        // testing out HTTP requests
+//        func foo(url: NSURL!, response: NSURLResponse!, error: NSError!) {
+//            let httpResponse = response as! NSHTTPURLResponse
+//            if error != nil {
+//                NSLog("error is not nil")
+//            } else if httpResponse.statusCode != 200 {
+//                // not sure if necessary... error usually is not nil but crashed
+//                // on me one time when starting up simulator & running
+//                NSLog("Got status code \(httpResponse.statusCode) != 200")
+//            } else {
+//                NSLog("Responded with \(response.description)")
+//                let data = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: nil, error: nil) as? NSDictionary
+//                let access_token = data!.valueForKey("access_token") as? String
+//                let refresh_token = data!.valueForKey("refresh_token") as? String
+//                if access_token != nil && refresh_token != nil {
+//                    NSLog("found access_token=\(access_token), refresh_token=\(refresh_token)")
+//                } else {
+//                    NSLog("Failed to grab access/refresh token(s)")
+//                }
+//            }
+//        }
+//        HttpRequestHandler.sharedInstance.requestEsdrToken("username@example.org", password: "", completionHandler: foo)
+//        // /test
         
         DatabaseHelper.loadFromDb()
     }
@@ -108,7 +108,7 @@ class AddressListController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             let address = addressList[indexPath.row]
-            GlobalHandler.sharedInstance.addressFeedsHashMap.removeAddress(address)
+            GlobalHandler.sharedInstance.headerReadingsHashMap.removeReading(address)
             addressList = GlobalHandler.sharedInstance.requestAddressesForDisplay()
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             DatabaseHelper.deleteAddressFromDb(address)

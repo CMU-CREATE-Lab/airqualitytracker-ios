@@ -51,7 +51,7 @@ class DatabaseHelper {
                     address.zipcode = zipcode
                     address.location.latitude = latitude
                     address.location.longitude = longitude
-                    GlobalHandler.sharedInstance.addressFeedsHashMap.addAddress(address)
+                    GlobalHandler.sharedInstance.headerReadingsHashMap.addReading(address)
                 }
             } else {
                 NSLog("loadFromDb() Found 0 results")

@@ -33,6 +33,28 @@ class HeaderReadingsHashMap {
     }
     
     
+    func findIndexFromAddress(address: SimpleAddress) -> Int? {
+        let max = addresses.endIndex
+        for i in 0...max {
+            if addresses[i] === address {
+                return i
+            }
+        }
+        return nil
+    }
+    
+    
+    func findIndexFromSpeck(speck: Speck) -> Int? {
+        let max = specks.endIndex
+        for i in 0...max {
+            if specks[i] === speck {
+                return i
+            }
+        }
+        return nil
+    }
+    
+    
     func addReading(readable: Readable) {
         let type = readable.getReadableType()
         switch type {
@@ -43,6 +65,7 @@ class HeaderReadingsHashMap {
         default:
             NSLog("Tried to add Readable of unknown Type in HeaderReadingsHashMap")
         }
+        refreshHash()
     }
     
     
@@ -50,16 +73,23 @@ class HeaderReadingsHashMap {
         let type = readable.getReadableType()
         switch type {
         case ReadableType.ADDRESS:
-            if let addressIndex = find(addresses, readable as! SimpleAddress) {
-                addresses.removeAtIndex(addressIndex)
+            if let index = findIndexFromAddress(readable as! SimpleAddress) {
+                addresses.removeAtIndex(index)
+                NSLog("removeReading: removed ADDRESS")
+            } else {
+                NSLog("WARNING - Failed to find index from address")
             }
         case ReadableType.SPECK:
-            if let speckIndex = find(specks, readable as! Speck) {
+            if let speckIndex = findIndexFromSpeck(readable as! Speck) {
                 specks.removeAtIndex(speckIndex)
+                NSLog("removeReading: removed SPECK")
+            } else {
+                NSLog("WARNING - Failed to find index from speck")
             }
         default:
             NSLog("Tried to remove Readable of unknown Type in HeaderReadingsHashMap")
         }
+        refreshHash()
     }
     
     
