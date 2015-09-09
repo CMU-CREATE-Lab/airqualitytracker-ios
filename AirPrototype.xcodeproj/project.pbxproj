@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A14C456B1BA0B2B000D6C9CF /* ReadableIndexController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C456A1BA0B2B000D6C9CF /* ReadableIndexController.swift */; };
+		A14C456D1BA0B45D00D6C9CF /* ReadableIndexHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C456C1BA0B45D00D6C9CF /* ReadableIndexHeader.swift */; };
+		A14C456F1BA0B46700D6C9CF /* ReadableIndexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C456E1BA0B46700D6C9CF /* ReadableIndexCell.swift */; };
 		A156757B1B57D537006982A1 /* ResultsTableViewCellAddressSearch.xib in Resources */ = {isa = PBXBuildFile; fileRef = A156757A1B57D537006982A1 /* ResultsTableViewCellAddressSearch.xib */; };
 		A156757D1B57D549006982A1 /* ResultsTableViewCellAddressSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A156757C1B57D549006982A1 /* ResultsTableViewCellAddressSearch.swift */; };
 		A15675811B583AAA006982A1 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15675801B583AAA006982A1 /* Converter.swift */; };
@@ -51,6 +54,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A14C456A1BA0B2B000D6C9CF /* ReadableIndexController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadableIndexController.swift; sourceTree = "<group>"; };
+		A14C456C1BA0B45D00D6C9CF /* ReadableIndexHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadableIndexHeader.swift; sourceTree = "<group>"; };
+		A14C456E1BA0B46700D6C9CF /* ReadableIndexCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadableIndexCell.swift; sourceTree = "<group>"; };
 		A156757A1B57D537006982A1 /* ResultsTableViewCellAddressSearch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultsTableViewCellAddressSearch.xib; sourceTree = "<group>"; };
 		A156757C1B57D549006982A1 /* ResultsTableViewCellAddressSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCellAddressSearch.swift; sourceTree = "<group>"; };
 		A15675801B583AAA006982A1 /* Converter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
@@ -106,6 +112,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A14C45691BA0B28D00D6C9CF /* readable_index */ = {
+			isa = PBXGroup;
+			children = (
+				A14C456A1BA0B2B000D6C9CF /* ReadableIndexController.swift */,
+				A14C456C1BA0B45D00D6C9CF /* ReadableIndexHeader.swift */,
+				A14C456E1BA0B46700D6C9CF /* ReadableIndexCell.swift */,
+			);
+			name = readable_index;
+			sourceTree = "<group>";
+		};
 		A158F60F1B8DFF6A00FCE2E1 /* database */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +229,7 @@
 		A1666FA51B54142600A8E39F /* activities (ios controllers) */ = {
 			isa = PBXGroup;
 			children = (
+				A14C45691BA0B28D00D6C9CF /* readable_index */,
 				A16481F91B5D552D0023DE09 /* address_show */,
 				A1626DF61B555A56006D990C /* address_list */,
 				A1626DF71B555A5F006D990C /* address_search */,
@@ -379,11 +396,14 @@
 				A1666FAA1B54176D00A8E39F /* SimpleAddress.swift in Sources */,
 				A158F6161B8E504500FCE2E1 /* Location.swift in Sources */,
 				A1626DF91B555A79006D990C /* AddressSearchController.swift in Sources */,
+				A14C456F1BA0B46700D6C9CF /* ReadableIndexCell.swift in Sources */,
 				A16481FB1B5D553F0023DE09 /* AddressShowController.swift in Sources */,
 				A1FEAB411B8CF19D00F9716B /* StoredAddress.swift in Sources */,
 				A1660FF71B568B6700608C5D /* ResultsControllerAddressSearch.swift in Sources */,
+				A14C456B1BA0B2B000D6C9CF /* ReadableIndexController.swift in Sources */,
 				A158F6111B8E000F00FCE2E1 /* DatabaseHelper.swift in Sources */,
 				A158F6131B8E305A00FCE2E1 /* EsdrFeedsHandler.swift in Sources */,
+				A14C456D1BA0B45D00D6C9CF /* ReadableIndexHeader.swift in Sources */,
 				A1666F861B54125400A8E39F /* AirPrototype.xcdatamodeld in Sources */,
 				A1666FB41B541D0500A8E39F /* Constants.swift in Sources */,
 			);
