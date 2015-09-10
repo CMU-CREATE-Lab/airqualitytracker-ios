@@ -11,9 +11,21 @@ import UIKit
 
 class ReadableIndexHeader: UICollectionReusableView {
     
-    func populate() {
-        // TODO given input, populate the cell
+    @IBOutlet var textHeaderTitle: UILabel!
+    
+    
+    func populate(sectionNumber: Int) {
+        switch sectionNumber {
+        case 0:
+            textHeaderTitle.text = Constants.HEADER_TITLES[0]
+        case 1:
+            textHeaderTitle.text = Constants.HEADER_TITLES[1]
+        default:
+            NSLog("WARNING - missing section number")
+            textHeaderTitle.text = ""
+        }
     }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

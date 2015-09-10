@@ -79,6 +79,7 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDataS
         
         if kind == UICollectionElementKindSectionHeader {
             var header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "MyViewHeader", forIndexPath: indexPath) as! ReadableIndexHeader
+            header.populate(indexPath.section)
             reusableView = header
         }
         
