@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 let MATH_PI = 3.14159265358979
 
@@ -90,7 +91,8 @@ class Constants {
     
     struct DefaultReading {
         static let DEFAULT_LOCATION = "N/A";
-        static let DEFAULT_COLOR_BACKGROUND = "#404041";
+//        static let DEFAULT_COLOR_BACKGROUND = "#404041";
+        static let DEFAULT_COLOR_BACKGROUND = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 65.0/255.0, alpha: 1.0)
         static let DEFAULT_TITLE = "Unavailable";
         static let DEFAULT_DESCRIPTION = "The current AQI for this region is unavailable.";
     }
@@ -164,9 +166,17 @@ class Constants {
                 "Good", "Moderate", "Unhealthy for Sensitive Groups",
                 "Unhealthy", "Very Unhealthy", "Hazardous"
         ]
+//        static let aqiColors = [
+//                "#a3ba5c", "#e9b642", "#e98c37",
+//                "#e24f36", "#b54382", "#b22651"
+//        ]
         static let aqiColors = [
-                "#a3ba5c", "#e9b642", "#e98c37",
-                "#e24f36", "#b54382", "#b22651"
+            UIColor(red: 163.0/255.0, green: 186.0/255.0, blue: 92.0/255.0, alpha: 1.0),
+            UIColor(red: 233.0/255.0, green: 182.0/255.0, blue: 66.0/255.0, alpha: 1.0),
+            UIColor(red: 233.0/255.0, green: 140.0/255.0, blue: 55.0/255.0, alpha: 1.0),
+            UIColor(red: 226.0/255.0, green: 79.0/255.0, blue: 54.0/255.0, alpha: 1.0),
+            UIColor(red: 181.0/255.0, green: 67.0/255.0, blue: 130.0/255.0, alpha: 1.0),
+            UIColor(red: 178.0/255.0, green: 38.0/255.0, blue: 81.0/255.0, alpha: 1.0),
         ]
         static let aqiFontColors = [
                 "#192015", "#2a1e11", "#261705",

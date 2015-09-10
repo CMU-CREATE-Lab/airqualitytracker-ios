@@ -17,26 +17,36 @@ class ReadableIndexCell: UICollectionViewCell {
     
     
     func populate(reading: Readable) {
-        var value: String
-        let type = reading.getReadableType()
-        
-        switch type {
-        case .ADDRESS:
-            // actions
-            textItemLabel.text = "AQI"
-            let aqi = Converter.microgramsToAqi(reading.getReadableValue())
-            value = Int(aqi).description
-        case .SPECK:
-            // TODO pretty
-            textItemLabel.text = "ug/m3"
-            value = (Double(Int(reading.getReadableValue()*10))/10.0).description
-        default:
-            NSLog("could not determine Readable type")
-            value = reading.getReadableValue().description
-//            self.backgroundColor = UIColor.blackColor()
+        if reading.hasReadableValue() {
+            var value: String
+            let type = reading.getReadableType()
+            
+            switch type {
+            case .ADDRESS:
+                textItemLabel.text = Constants.Units.AQI
+                let aqi = Converter.microgramsToAqi(reading.getReadableValue())
+                value = Int(aqi).description
+                let index = Constants.AqiReading.getIndexFromReading(aqi)
+                if index >= 0 {
+                    self.backgroundColor = Constants.AqiReading.aqiColors[index]
+                }
+            case .SPECK:
+                textItemLabel.text = Constants.Units.MICROGRAMS_PER_CUBIC_METER
+                value = (Double(Int(reading.getReadableValue()*10))/10.0).description
+                // TODO populate specks
+            default:
+                NSLog("WARNING - could not determine Readable type for ReadableIndexCell")
+                value = reading.getReadableValue().description
+            }
+            textItemName.text = reading.getName()
+            textItemValue.text = value
+            textItemLabel.hidden = false
+        } else {
+            textItemName.text = reading.getName()
+            textItemValue.text = Constants.DefaultReading.DEFAULT_LOCATION
+            textItemLabel.hidden = true
+            self.backgroundColor = Constants.DefaultReading.DEFAULT_COLOR_BACKGROUND
         }
-        textItemName.text = reading.getName()
-        textItemValue.text = value
     }
     
     
