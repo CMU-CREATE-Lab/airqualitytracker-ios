@@ -21,7 +21,7 @@ class HeaderReadingsHashMap {
         gpsAddress = SimpleAddress()
         // TODO remove hardcoded location
         gpsAddress.location = Location(latitude: 40.377384, longitude: -79.892563)
-        gpsAddress.requestUpdateFeeds()
+//        gpsAddress.requestUpdateFeeds()
     }
     
 //    // (Android only)

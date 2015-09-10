@@ -24,7 +24,9 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDataS
         addressList = GlobalHandler.sharedInstance.requestAddressesForDisplay()
         
         DatabaseHelper.loadFromDb()
-        GlobalHandler.sharedInstance.updateReadings()
+        let globalHandler = GlobalHandler.sharedInstance
+        globalHandler.readableIndexListView = self.gridView
+        globalHandler.updateReadings()
     }
     
     override func didReceiveMemoryWarning() {
@@ -68,6 +70,7 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDataS
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         //        return super.collectionView(collectionView, cellForItemAtIndexPath: indexPath)
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier("MyCell", forIndexPath: indexPath) as! ReadableIndexCell
+        cell.populate(addressList[indexPath.row])
         return cell
     }
     
@@ -83,7 +86,7 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDataS
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(collectionView.bounds.size.width/2.0, collectionView.bounds.size.width/2.0)
+        return CGSizeMake(collectionView.bounds.size.width/2.0-0.5, collectionView.bounds.size.width/2.0-1.0)
     }
     
     

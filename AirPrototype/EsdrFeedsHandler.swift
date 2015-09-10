@@ -55,35 +55,48 @@ class EsdrFeedsHandler {
         let channelName = channel.name
         
         func completionHandler(url: NSURL!, response: NSURLResponse!, error: NSError!) -> Void {
-            let data = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: nil, error: nil) as? NSDictionary
-            var temp:NSDictionary
-            
-            // NOTE (from Chris)
-            // "don't expect mostRecentDataSample to always exist in the response for every channel,
-            // and don't expect channelBounds.maxTimeSecs to always equal mostRecentDataSample.timeSecs"
-            temp = data?.valueForKey("data") as! NSDictionary
-            temp = temp.valueForKey("channels") as! NSDictionary
-            temp = temp.valueForKey(channelName) as! NSDictionary
-            temp = temp.valueForKey("mostRecentDataSample") as! NSDictionary
-            
-            let resultValue = temp.valueForKey("value") as? String
-            let resultTime = temp.valueForKey("timeSecs") as? String
-            if resultValue != nil && resultTime != nil {
-                if maxTime == nil {
-                    feed.feedValue = NSString(string: resultValue!).doubleValue
-                    feed.lastTime = NSString(string: resultTime!).doubleValue
-                } else {
-                    if maxTime <= NSString(string: resultTime!).doubleValue {
-                        feed.setHasReadableValue(true)
-                        feed.feedValue = NSString(string: resultValue!).doubleValue
-                        feed.lastTime = NSString(string: resultTime!).doubleValue
+            let httpResponse = response as! NSHTTPURLResponse
+            if error != nil {
+                NSLog("requestChannelReading: error is not nil")
+            } else if httpResponse.statusCode != 200 {
+                // not sure if necessary... error usually is not nil but crashed
+                // on me one time when starting up simulator & running
+                NSLog("requestChannelReading: Got status code \(httpResponse.statusCode) != 200")
+            } else {
+                let data = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: nil, error: nil) as? NSDictionary
+                var temp:NSDictionary
+                
+                // NOTE (from Chris)
+                // "don't expect mostRecentDataSample to always exist in the response for every channel,
+                // and don't expect channelBounds.maxTimeSecs to always equal mostRecentDataSample.timeSecs"
+                temp = data?.valueForKey("data") as! NSDictionary
+                temp = temp.valueForKey("channels") as! NSDictionary
+                temp = temp.valueForKey(channelName) as! NSDictionary
+                temp = temp.valueForKey("mostRecentDataSample") as! NSDictionary
+                
+                let resultValue = temp.valueForKey("value") as? NSNumber
+                let resultTime = temp.valueForKey("timeSecs") as? NSNumber
+                if resultValue != nil && resultTime != nil {
+                    if maxTime == nil {
+                        feed.feedValue = resultValue!.doubleValue
+                        NSLog("forced FEED VALUE of \(feed.feedValue)")
+                        feed.lastTime = resultTime!.doubleValue
                     } else {
-                        feed.setHasReadableValue(false)
-                        feed.feedValue = 0
-                        feed.lastTime = NSString(string: resultTime!).doubleValue
+                        if maxTime <= resultTime!.doubleValue {
+                            feed.setHasReadableValue(true)
+                            feed.feedValue = resultValue!.doubleValue
+                            NSLog("found FEED VALUE of \(feed.feedValue)")
+                            feed.lastTime = resultTime!.doubleValue
+                        } else {
+                            feed.setHasReadableValue(false)
+                            feed.feedValue = 0
+                            NSLog("found FEED VALUE out of bounds")
+                            feed.lastTime = resultTime!.doubleValue
+                        }
                     }
+                    GlobalHandler.sharedInstance.notifyGlobalDataSetChanged()
                 }
-                // TODO GlobalHandler.sharedInstance.notifyGlobalDataSetChanged()
+
             }
         }
         
@@ -92,7 +105,7 @@ class EsdrFeedsHandler {
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "GET"
         
-        if (authToken == nil) {
+        if authToken == nil {
             HttpRequestHandler.sharedInstance.sendJsonRequest(request, completionHandler: completionHandler)
         } else {
             HttpRequestHandler.sharedInstance.sendAuthorizedJsonRequest(authToken!, urlRequest: request, completionHandler: completionHandler)

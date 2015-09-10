@@ -13,6 +13,8 @@ import CoreData
 class GlobalHandler {
     var appDelegate: AppDelegate
     var headerReadingsHashMap: HeaderReadingsHashMap
+    // keep track of ALL adapters for notify
+    var readableIndexListView: UICollectionView?
     
     init() {
         appDelegate = (UIApplication.sharedApplication().delegate! as! AppDelegate)
@@ -35,6 +37,16 @@ class GlobalHandler {
         headerReadingsHashMap.updateSpecks()
         if SettingsHandler.sharedInstance.appUsesLocation {
             // TODO location services
+            headerReadingsHashMap.gpsAddress.requestUpdateFeeds()
+        }
+    }
+    
+    
+    func notifyGlobalDataSetChanged() {
+        if let readableIndexListView = self.readableIndexListView {
+            dispatch_async(dispatch_get_main_queue()) {
+                readableIndexListView.reloadData()
+            }
         }
     }
     
@@ -42,4 +54,5 @@ class GlobalHandler {
     func requestAddressesForDisplay() -> Array<SimpleAddress> {
         return headerReadingsHashMap.addresses
     }
+    
 }

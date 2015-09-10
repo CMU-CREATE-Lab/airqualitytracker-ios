@@ -19,7 +19,7 @@ class Converter {
     }
     
     
-    static func microgramsToApi(inputMicrograms: Double) -> Double {
+    static func microgramsToAqi(inputMicrograms: Double) -> Double {
         var aqi = 0.0
         // round to tenths
         var micrograms = Double(Int(inputMicrograms*10)) / 10.0
