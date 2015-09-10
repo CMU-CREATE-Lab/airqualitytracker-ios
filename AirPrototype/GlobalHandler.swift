@@ -28,6 +28,17 @@ class GlobalHandler {
     
     
     // TODO global stuff
+    
+    
+    func updateReadings() {
+        headerReadingsHashMap.updateAddresses()
+        headerReadingsHashMap.updateSpecks()
+        if SettingsHandler.sharedInstance.appUsesLocation {
+            // TODO location services
+        }
+    }
+    
+    
     func requestAddressesForDisplay() -> Array<SimpleAddress> {
         return headerReadingsHashMap.addresses
     }

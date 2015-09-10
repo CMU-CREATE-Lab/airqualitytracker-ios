@@ -52,8 +52,38 @@ class SimpleAddress: Readable, Hashable {
     }
     
     func requestUpdateFeeds() {
-        // TODO Handle updating feeds asynchronously
+        NSLog("Called requestUpdateFeeds() on Address=\(self.name)")
         self.feeds.removeAll(keepCapacity: false)
+        // the past 24 hours
+        let maxTime = NSDate().timeIntervalSince1970 - Constants.READINGS_MAX_TIME_RANGE
+        
+        func completionHandler(url: NSURL!, response: NSURLResponse!, error: NSError!) {
+            let httpResponse = response as! NSHTTPURLResponse
+            if error != nil {
+                NSLog("error is not nil")
+            } else if httpResponse.statusCode != 200 {
+                // not sure if necessary... error usually is not nil but crashed
+                // on me one time when starting up simulator & running
+                NSLog("Got status code \(httpResponse.statusCode) != 200")
+            } else {
+                let data = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: nil, error: nil) as? NSDictionary
+                
+                var feeds = JsonParser.populateFeedsFromJson(data!, maxTime: maxTime)
+                NSLog("populated \(feeds.count) feeds")
+                if feeds.count > 0 {
+                    NSLog("Found non-zero feeds")
+                    if let closestFeed = MapGeometry.getClosestFeedToAddress(self, feeds: feeds) {
+                        NSLog("closestFeed EXISTS!")
+                        self.closestFeed = closestFeed
+                        HttpRequestHandler.sharedInstance.requestChannelReading(closestFeed, channel: closestFeed.channels[0])
+                    } else {
+                        NSLog("But... closestFeed DNE?")
+                    }
+                }
+            }
+            NSLog("Finished completionHandler in requestUpdateFeeds()")
+        }
+        HttpRequestHandler.sharedInstance.requestFeeds(self.location, withinSeconds: maxTime, completionHandler: completionHandler)
     }
     
 }

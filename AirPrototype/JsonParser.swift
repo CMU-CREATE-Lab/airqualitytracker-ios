@@ -59,21 +59,21 @@ class JsonParser {
         var result = Feed()
         var feedChannels = Array<Channel>()
         
-        let feed_id = dataEntry.valueForKey("id") as! String
+        let feed_id = dataEntry.valueForKey("id") as! Int
         let name = dataEntry.valueForKey("name") as! String
         let exposure = dataEntry.valueForKey("exposure") as! String
-        let isMobile = dataEntry.valueForKey("isMobile") as! String
-        let latitude = dataEntry.valueForKey("latitude") as! String
-        let longitude = dataEntry.valueForKey("longitude") as! String
-        let productId = dataEntry.valueForKey("productId") as! String
+        let isMobile = dataEntry.valueForKey("isMobile") as! Int
+        let latitude = dataEntry.valueForKey("latitude") as! Double
+        let longitude = dataEntry.valueForKey("longitude") as! Double
+        let productId = dataEntry.valueForKey("productId") as! Int
         
-        result.feed_id = NSString(string: feed_id).integerValue
+        result.feed_id = feed_id
         result.name = name
         result.exposure = exposure
-        result.isMobile = isMobile == "1"
-        result.location.latitude = NSString(string: latitude).doubleValue
-        result.location.longitude = NSString(string: longitude).doubleValue
-        result.productId = NSString(string: productId).integerValue
+        result.isMobile = isMobile == 1
+        result.location.latitude = latitude
+        result.location.longitude = longitude
+        result.productId = productId
         
         let channels = dataEntry.valueForKey("channelBounds")?.valueForKey("channels") as! NSDictionary
         let keys = channels.keyEnumerator()
@@ -83,8 +83,8 @@ class JsonParser {
                 // NOTICE: we must also make sure that this specific channel was updated
                 // in the past 24 hours ("maxTime").
                 let channel = channels.valueForKey(channelName) as! NSDictionary
-                let channelTime = channel.valueForKey("maxTimeSecs") as! String
-                if (NSString(string: channelTime).doubleValue >= maxTime) {
+                let channelTime = channel.valueForKey("maxTimeSecs") as! Double
+                if channelTime >= maxTime {
                     feedChannels.append(JsonParser.parseChannelFromJson(channelName, feed: result, dataEntry: channel))
                     break
                 }
@@ -98,17 +98,17 @@ class JsonParser {
     static func parseChannelFromJson(channelName: String, feed: Feed, dataEntry: NSDictionary) -> Channel {
         var channel = Channel()
         
-        let minTimeSecs = dataEntry.valueForKey("minTimeSecs") as! String
-        let maxTimeSecs = dataEntry.valueForKey("maxTimeSecs") as! String
-        let minValue = dataEntry.valueForKey("minValue") as! String
-        let maxValue = dataEntry.valueForKey("maxValue") as! String
+        let minTimeSecs = dataEntry.valueForKey("minTimeSecs") as! Double
+        let maxTimeSecs = dataEntry.valueForKey("maxTimeSecs") as! Double
+        let minValue = dataEntry.valueForKey("minValue") as! Double
+        let maxValue = dataEntry.valueForKey("maxValue") as! Double
         
         channel.name = channelName
         channel.feed = feed
-        channel.minTimeSecs = NSString(string: minTimeSecs).doubleValue
-        channel.maxTimeSecs = NSString(string: maxTimeSecs).doubleValue
-        channel.minValue = NSString(string: minValue).doubleValue
-        channel.maxValue = NSString(string: maxValue).doubleValue
+        channel.minTimeSecs = minTimeSecs
+        channel.maxTimeSecs = maxTimeSecs
+        channel.minValue = minValue
+        channel.maxValue = maxValue
         
         return channel
     }

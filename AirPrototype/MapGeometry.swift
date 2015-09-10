@@ -40,7 +40,7 @@ import Foundation
 
 class MapGeometry {
     // implementation of the haversine function using sine
-    func haversine(theta: Double) -> Double {
+    static func haversine(theta: Double) -> Double {
         let temp = sin(theta / 2.0)
         return temp * temp
     }
@@ -48,13 +48,13 @@ class MapGeometry {
 
     // the inverse of the haversine function
     // ASSERT: value is in range [0,1]
-    func archaversine(value: Double) -> Double {
+    static func archaversine(value: Double) -> Double {
         return 2 * asin( sqrt(value) )
     }
 
 
     // calculates distance between two points on a Great Sphere
-    func getDistance(from: Location, to: Location) -> Double {
+    static func getDistance(from: Location, to: Location) -> Double {
         // convert units from degrees to radians
         let p1 = from.latitude * MATH_PI / 180.0
         let p2 = to.latitude * MATH_PI / 180.0
@@ -69,12 +69,12 @@ class MapGeometry {
     }
 
 
-    func getDistanceFromFeedToAddress(simpleAddress: SimpleAddress, feed: Feed) -> Double {
+    static func getDistanceFromFeedToAddress(simpleAddress: SimpleAddress, feed: Feed) -> Double {
         return getDistance(simpleAddress.location, to: feed.location)
     }
 
 
-    func getClosestFeedToAddress(simpleAddress: SimpleAddress, feeds: Array<Feed>) -> Feed? {
+    static func getClosestFeedToAddress(simpleAddress: SimpleAddress, feeds: Array<Feed>) -> Feed? {
         var closestFeed: Feed? = nil
         var distance: Double? = nil
 

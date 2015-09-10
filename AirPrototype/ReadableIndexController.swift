@@ -24,6 +24,7 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDataS
         addressList = GlobalHandler.sharedInstance.requestAddressesForDisplay()
         
         DatabaseHelper.loadFromDb()
+        GlobalHandler.sharedInstance.updateReadings()
     }
     
     override func didReceiveMemoryWarning() {
