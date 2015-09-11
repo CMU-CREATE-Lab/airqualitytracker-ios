@@ -10,6 +10,24 @@ import Foundation
 import UIKit
 
 class SettingsHandler {
+    
+    // singleton pattern; this is the only time the class should be initialized
+    
+    class var sharedInstance: SettingsHandler {
+        struct Singleton {
+            static let instance = SettingsHandler()
+        }
+        return Singleton.instance
+    }
+    
+    // class variables/constructor
+    
+    var userDefaults: NSUserDefaults
+    var appUsesLocation: Bool
+    var userLoggedIn: Bool
+    var username: String?
+    var accessToken: String?
+    var refreshToken: String?
     var appDelegate: AppDelegate
     init() {
         appDelegate = (UIApplication.sharedApplication().delegate! as? AppDelegate)!
@@ -22,20 +40,6 @@ class SettingsHandler {
         accessToken = userDefaults.valueForKey(Constants.SettingsKeys.accessToken) as? String
         refreshToken = userDefaults.valueForKey(Constants.SettingsKeys.refreshToken) as? String
     }
-    // singleton pattern; this is the only time the class should be initialized
-    class var sharedInstance: SettingsHandler {
-        struct Singleton {
-            static let instance = SettingsHandler()
-        }
-        return Singleton.instance
-    }
-    
-    var userDefaults: NSUserDefaults
-    var appUsesLocation: Bool
-    var userLoggedIn: Bool
-    var username: String?
-    var accessToken: String?
-    var refreshToken: String?
     
     
     func updateSettings() {

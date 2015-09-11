@@ -13,8 +13,7 @@ import CoreData
 class ResultsControllerAddressSearch: UITableViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
     // keeps track of results from search
-    var myList = Array<SimpleAddress>()
-    
+    var searchResultsList = Array<SimpleAddress>()
     var addressSearchController: AddressSearchController?
     var searchText: String?
     var timer: NSTimer?
@@ -32,9 +31,9 @@ class ResultsControllerAddressSearch: UITableViewController, UITableViewDelegate
         let data = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: nil, error: nil) as? NSDictionary
         var results = JsonParser.parseAddressesFromJson(data!)
         
-        myList.removeAll()
+        searchResultsList.removeAll()
         for value in results {
-            myList.append(value)
+            searchResultsList.append(value)
         }
         
         dispatch_async(dispatch_get_main_queue()) {
@@ -68,7 +67,7 @@ class ResultsControllerAddressSearch: UITableViewController, UITableViewDelegate
     
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myList.count
+        return searchResultsList.count
     }
     
     
@@ -76,15 +75,15 @@ class ResultsControllerAddressSearch: UITableViewController, UITableViewDelegate
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = Constants.CellReuseIdentifiers.ADDRESS_SEARCH
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ResultsTableViewCellAddressSearch
-        cell.populate(myList[indexPath.row])
+        cell.populate(searchResultsList[indexPath.row])
         return cell
     }
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         NSLog("adding clicked address to list and returning to AddressList")
-        GlobalHandler.sharedInstance.headerReadingsHashMap.addReading(myList[indexPath.row])
-        DatabaseHelper.addAddressToDb(myList[indexPath.row])
+        GlobalHandler.sharedInstance.headerReadingsHashMap.addReading(searchResultsList[indexPath.row])
+        DatabaseHelper.addAddressToDb(searchResultsList[indexPath.row])
         addressSearchController!.navigationController?.popViewControllerAnimated(true)
     }
     

@@ -10,16 +10,21 @@ import Foundation
 import UIKit
 
 class HttpRequestHandler {
-    var appDelegate: AppDelegate
-    init() {
-        appDelegate = (UIApplication.sharedApplication().delegate! as? AppDelegate)!
-    }
+    
     // singleton pattern; this is the only time the class should be initialized
+    
     class var sharedInstance: HttpRequestHandler {
         struct Singleton {
             static let instance = HttpRequestHandler()
         }
         return Singleton.instance
+    }
+    
+    // class variables/constructor
+    
+    var appDelegate: AppDelegate
+    init() {
+        appDelegate = (UIApplication.sharedApplication().delegate! as? AppDelegate)!
     }
     
     

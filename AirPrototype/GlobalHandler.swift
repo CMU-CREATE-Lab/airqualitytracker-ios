@@ -11,21 +11,25 @@ import UIKit
 import CoreData
 
 class GlobalHandler {
-    var appDelegate: AppDelegate
-    var headerReadingsHashMap: HeaderReadingsHashMap
-    // keep track of ALL adapters for notify
-    var readableIndexListView: UICollectionView?
     
-    init() {
-        appDelegate = (UIApplication.sharedApplication().delegate! as! AppDelegate)
-        headerReadingsHashMap = HeaderReadingsHashMap()
-    }
     // singleton pattern; this is the only time the class should be initialized
+    
     class var sharedInstance: GlobalHandler {
         struct Singleton {
             static let instance = GlobalHandler()
         }
         return Singleton.instance
+    }
+    
+    // class variables/constructor
+    
+    var headerReadingsHashMap: HeaderReadingsHashMap
+    // keep track of ALL adapters for notify
+    var readableIndexListView: UICollectionView?
+    var appDelegate: AppDelegate
+    init() {
+        appDelegate = (UIApplication.sharedApplication().delegate! as! AppDelegate)
+        headerReadingsHashMap = HeaderReadingsHashMap()
     }
     
     

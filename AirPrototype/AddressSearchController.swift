@@ -47,14 +47,4 @@ class AddressSearchController: UIViewController, UISearchBarDelegate {
         resultsController.tableView.reloadData()
     }
     
-    
-    func searchBarTextDidEndEditing(searchBar: UISearchBar){
-        NSLog("searchBarTextDidEndEditing")
-    }
-    
-    
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        NSLog("searchBarCancelButtonClicked")
-    }
-    
 }

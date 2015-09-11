@@ -19,6 +19,7 @@ class ReadableIndexCell: UICollectionViewCell {
     func populate(reading: Readable) {
         if reading.hasReadableValue() {
             var value: String
+            var index: Int
             let type = reading.getReadableType()
             
             switch type {
@@ -26,18 +27,23 @@ class ReadableIndexCell: UICollectionViewCell {
                 textItemLabel.text = Constants.Units.AQI
                 let aqi = Converter.microgramsToAqi(reading.getReadableValue())
                 value = Int(aqi).description
-                let index = Constants.AqiReading.getIndexFromReading(aqi)
+                index = Constants.AqiReading.getIndexFromReading(aqi)
                 if index >= 0 {
                     self.backgroundColor = Constants.AqiReading.aqiColors[index]
                 }
             case .SPECK:
                 textItemLabel.text = Constants.Units.MICROGRAMS_PER_CUBIC_METER
-                value = (Double(Int(reading.getReadableValue()*10))/10.0).description
-                // TODO populate specks
+                let micrograms = Double(Int(reading.getReadableValue()*10))/10.0
+                value = micrograms.description
+                index = Constants.SpeckReading.getIndexFromReading(micrograms)
+                if index >= 0 {
+                    self.backgroundColor = Constants.SpeckReading.normalColors[index]
+                }
             default:
                 NSLog("WARNING - could not determine Readable type for ReadableIndexCell")
                 value = reading.getReadableValue().description
             }
+            
             textItemName.text = reading.getName()
             textItemValue.text = value
             textItemLabel.hidden = false

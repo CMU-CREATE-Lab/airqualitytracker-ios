@@ -21,21 +21,13 @@ class DatabaseHelper {
     
     static func loadFromDb() {
         let managedObjectContext = GlobalHandler.sharedInstance.appDelegate.managedObjectContext
-        
-        let entityDescription =
-        NSEntityDescription.entityForName("StoredAddress",
-            inManagedObjectContext: managedObjectContext!)
-        
+        let entityDescription = NSEntityDescription.entityForName("StoredAddress", inManagedObjectContext: managedObjectContext!)
         let request = NSFetchRequest()
         request.entity = entityDescription
-        
         var error: NSError?
-        
-        var objects = managedObjectContext?.executeFetchRequest(request,
-            error: &error)
+        var objects = managedObjectContext?.executeFetchRequest(request, error: &error)
         
         if let results = objects {
-            
             if results.count > 0 {
                 for r in results {
                     let match = r as! NSManagedObject
@@ -62,22 +54,17 @@ class DatabaseHelper {
     
     static func addAddressToDb(address: SimpleAddress) {
         let managedObjectContext = GlobalHandler.sharedInstance.appDelegate.managedObjectContext
-        
-        let entityDescription =
-        NSEntityDescription.entityForName("StoredAddress",
-            inManagedObjectContext: managedObjectContext!)
-        
+        let entityDescription = NSEntityDescription.entityForName("StoredAddress", inManagedObjectContext: managedObjectContext!)
         let storedAddress = StoredAddress(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext)
+        var error: NSError?
+        
         storedAddress.name = address.name
         storedAddress.zipcode = address.zipcode
         storedAddress.latitude = address.location.latitude
         storedAddress.longitude = address.location.longitude
         
-        var error: NSError?
-        
         managedObjectContext?.save(&error)
-        
-        if let err = error {
+        if error != nil {
             NSLog("Error in addAddressToDb")
         } else {
             address._id = storedAddress.objectID

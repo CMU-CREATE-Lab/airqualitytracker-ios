@@ -10,16 +10,21 @@ import Foundation
 import UIKit
 
 class EsdrFeedsHandler {
-    var appDelegate: AppDelegate
-    init() {
-        appDelegate = (UIApplication.sharedApplication().delegate! as? AppDelegate)!
-    }
+    
     // singleton pattern; this is the only time the class should be initialized
+    
     class var sharedInstance: EsdrFeedsHandler {
         struct Singleton {
             static let instance = EsdrFeedsHandler()
         }
         return Singleton.instance
+    }
+
+    // class variables/constructor
+    
+    var appDelegate: AppDelegate
+    init() {
+        appDelegate = (UIApplication.sharedApplication().delegate! as? AppDelegate)!
     }
     
     
@@ -27,25 +32,33 @@ class EsdrFeedsHandler {
         let bottomLeftPoint = Location(latitude: location.latitude - Constants.MapGeometry.BOUNDBOX_LAT, longitude: location.longitude - Constants.MapGeometry.BOUNDBOX_LONG)
         let topRightPoint = Location(latitude: location.latitude + Constants.MapGeometry.BOUNDBOX_LAT, longitude: location.longitude + Constants.MapGeometry.BOUNDBOX_LONG)
         
+        // generate safe URL
         let address = Constants.Esdr.API_URL + "/api/v1/feeds"
         let params = "?whereOr=ProductId=11,ProductId=1" +
             "&whereAnd=latitude>=\(bottomLeftPoint.latitude),latitude<=\(topRightPoint.latitude),longitude>=\(bottomLeftPoint.longitude),longitude<=\(topRightPoint.longitude),maxTimeSecs>=\(withinSeconds),exposure=outdoor" +
             "&fields=id,name,exposure,isMobile,latitude,latitude,longitude,productId,channelBounds"
         var url = NSURL(string: (address+params).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+        
+        // create request
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "GET"
         
+        // send request
         HttpRequestHandler.sharedInstance.sendJsonRequest(request, completionHandler: completionHandler)
     }
     
     
     func requestPrivateFeeds(authToken: String, completionHandler: ((NSURL!, NSURLResponse!, NSError!) -> Void)? ) {
+        // generate safe URL
         let address = Constants.Esdr.API_URL + "/api/v1/feeds"
         let params = "?whereAnd=isPublic=0,productId=9"
         var url = NSURL(string: (address+params).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+        
+        // create request
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "GET"
         
+        // send request
         HttpRequestHandler.sharedInstance.sendAuthorizedJsonRequest(authToken, urlRequest: request, completionHandler: completionHandler)
     }
     
@@ -54,6 +67,7 @@ class EsdrFeedsHandler {
         let feedId = channel.feed.feed_id.description
         let channelName = channel.name
         
+        // handles http response
         func completionHandler(url: NSURL!, response: NSURLResponse!, error: NSError!) -> Void {
             let httpResponse = response as! NSHTTPURLResponse
             if error != nil {
@@ -100,11 +114,15 @@ class EsdrFeedsHandler {
             }
         }
         
+        // generate safe URL
         let address = Constants.Esdr.API_URL + "/api/v1/feeds/" + feedId + "/channels/" + channelName + "/most-recent"
         var url = NSURL(string: address.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+        
+        // create request
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "GET"
         
+        // send request
         if authToken == nil {
             HttpRequestHandler.sharedInstance.sendJsonRequest(request, completionHandler: completionHandler)
         } else {

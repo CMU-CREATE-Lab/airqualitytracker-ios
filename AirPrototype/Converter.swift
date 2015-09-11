@@ -10,11 +10,11 @@ import Foundation
 
 class Converter {
     
-    static func calculateLinearAqi(micrograms: Double, ihi: Double, ilo: Double, chi: Double, clo: Double) -> Double {
+    private static func calculateLinearAqi(micrograms: Double, ihi: Double, ilo: Double, chi: Double, clo: Double) -> Double {
         return (ihi-ilo) / (chi-clo) * (micrograms-clo) + ilo
     }
     
-    static func calculateLinearMicrograms(aqi: Double, ihi: Double, ilo: Double, chi: Double, clo: Double) -> Double {
+    private static func calculateLinearMicrograms(aqi: Double, ihi: Double, ilo: Double, chi: Double, clo: Double) -> Double {
         return (aqi-ilo) * (chi-clo) / (ihi-ilo) + clo
     }
     

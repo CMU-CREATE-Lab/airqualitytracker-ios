@@ -16,7 +16,6 @@ class HeaderReadingsHashMap {
     var headers = Constants.HEADER_TITLES
     var hashMap = [String: Array<Readable>]()
     // (Android only) adapterList
-    
     init() {
         gpsAddress = SimpleAddress()
         // TODO remove hardcoded location
@@ -24,37 +23,40 @@ class HeaderReadingsHashMap {
 //        gpsAddress.requestUpdateFeeds()
     }
     
+    
 //    // (Android only)
 //    func populateAdapterList() {
 //        
 //    }
     
     
-    func setGpsAddressLocation(location: Location) {
-        gpsAddress.location = location
-        gpsAddress.requestUpdateFeeds()
-    }
-    
-    
-    func findIndexFromAddress(address: SimpleAddress) -> Int? {
+    // required helpers to get the index since find() does not properly
+    // match objects that should be equivalent.
+    private func findIndexFromAddress(address: SimpleAddress) -> Int? {
         let max = addresses.endIndex
         for i in 0...max {
             if addresses[i] === address {
                 return i
             }
         }
+        NSLog("WARNING - Failed to find index from address")
         return nil
     }
-    
-    
-    func findIndexFromSpeck(speck: Speck) -> Int? {
+    private func findIndexFromSpeck(speck: Speck) -> Int? {
         let max = specks.endIndex
         for i in 0...max {
             if specks[i] === speck {
                 return i
             }
         }
+        NSLog("WARNING - Failed to find index from speck")
         return nil
+    }
+    
+    
+    func setGpsAddressLocation(location: Location) {
+        gpsAddress.location = location
+        gpsAddress.requestUpdateFeeds()
     }
     
     
@@ -78,16 +80,10 @@ class HeaderReadingsHashMap {
         case ReadableType.ADDRESS:
             if let index = findIndexFromAddress(readable as! SimpleAddress) {
                 addresses.removeAtIndex(index)
-                NSLog("removeReading: removed ADDRESS")
-            } else {
-                NSLog("WARNING - Failed to find index from address")
             }
         case ReadableType.SPECK:
             if let speckIndex = findIndexFromSpeck(readable as! Speck) {
                 specks.removeAtIndex(speckIndex)
-                NSLog("removeReading: removed SPECK")
-            } else {
-                NSLog("WARNING - Failed to find index from speck")
             }
         default:
             NSLog("Tried to remove Readable of unknown Type in HeaderReadingsHashMap")
@@ -141,7 +137,7 @@ class HeaderReadingsHashMap {
         } else {
             hashMap[headers[1]] = addresses
         }
-        // TODO notify dataset changed
+        GlobalHandler.sharedInstance.notifyGlobalDataSetChanged()
     }
     
 }

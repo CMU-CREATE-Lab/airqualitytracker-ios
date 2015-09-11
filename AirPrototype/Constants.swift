@@ -108,9 +108,17 @@ class Constants {
                 "Air quality is considered High.",
                 "Air quality is considered Very High."
         ]
+//        static let normalColors = [
+//                "#1a9850", "#91cf60", "#d9ef8b",
+//                "#FEE08B", "#FC8D59", "#D73027"
+//        ]
         static let normalColors = [
-                "#1a9850", "#91cf60", "#d9ef8b",
-                "#FEE08B", "#FC8D59", "#D73027"
+            UIColor(red: 26.0/255.0, green: 152.0/255.0, blue: 80.0/255.0, alpha: 1.0),
+            UIColor(red: 145.0/255.0, green: 207.0/255.0, blue: 96.0/255.0, alpha: 1.0),
+            UIColor(red: 217.0/255.0, green: 239.0/255.0, blue: 139.0/255.0, alpha: 1.0),
+            UIColor(red: 254.0/255.0, green: 224.0/255.0, blue: 139.0/255.0, alpha: 1.0),
+            UIColor(red: 252.0/255.0, green: 141.0/255.0, blue: 89.0/255.0, alpha: 1.0),
+            UIColor(red: 215.0/255.0, green: 48.0/255.0, blue: 39.0/255.0, alpha: 1.0)
         ]
         static let colorblindColors = [
                 "#4575b4", "#91bfdb", "#e0f3f8",
@@ -176,7 +184,7 @@ class Constants {
             UIColor(red: 233.0/255.0, green: 140.0/255.0, blue: 55.0/255.0, alpha: 1.0),
             UIColor(red: 226.0/255.0, green: 79.0/255.0, blue: 54.0/255.0, alpha: 1.0),
             UIColor(red: 181.0/255.0, green: 67.0/255.0, blue: 130.0/255.0, alpha: 1.0),
-            UIColor(red: 178.0/255.0, green: 38.0/255.0, blue: 81.0/255.0, alpha: 1.0),
+            UIColor(red: 178.0/255.0, green: 38.0/255.0, blue: 81.0/255.0, alpha: 1.0)
         ]
         static let aqiFontColors = [
                 "#192015", "#2a1e11", "#261705",

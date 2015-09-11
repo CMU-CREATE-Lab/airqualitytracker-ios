@@ -26,14 +26,12 @@
 		A1666F8D1B54125400A8E39F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1666F8C1B54125400A8E39F /* Images.xcassets */; };
 		A1666F901B54125400A8E39F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1666F8E1B54125400A8E39F /* LaunchScreen.xib */; };
 		A1666F9C1B54125400A8E39F /* AirPrototypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666F9B1B54125400A8E39F /* AirPrototypeTests.swift */; };
-		A1666FA71B54146700A8E39F /* AddressListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FA61B54146700A8E39F /* AddressListController.swift */; };
 		A1666FAA1B54176D00A8E39F /* SimpleAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FA91B54176D00A8E39F /* SimpleAddress.swift */; };
 		A1666FAC1B54190A00A8E39F /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FAB1B54190A00A8E39F /* Feed.swift */; };
 		A1666FAE1B5419D300A8E39F /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FAD1B5419D300A8E39F /* Channel.swift */; };
 		A1666FB21B541CF400A8E39F /* GlobalHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FB11B541CF400A8E39F /* GlobalHandler.swift */; };
 		A1666FB41B541D0500A8E39F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FB31B541D0500A8E39F /* Constants.swift */; };
 		A1666FB61B542E6A00A8E39F /* HttpRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FB51B542E6A00A8E39F /* HttpRequestHandler.swift */; };
-		A1666FBA1B5438AE00A8E39F /* AddressListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FB91B5438AE00A8E39F /* AddressListTableViewCell.swift */; };
 		A16A14711B5FD9070026E9C8 /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16A14701B5FD9070026E9C8 /* JsonParser.swift */; };
 		A1E2A91D1B99ED47003A3B3A /* SettingsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E2A91C1B99ED47003A3B3A /* SettingsHandler.swift */; };
 		A1F58E591B97284800D04C91 /* Readable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F58E581B97284800D04C91 /* Readable.swift */; };
@@ -77,14 +75,12 @@
 		A1666F951B54125400A8E39F /* AirPrototypeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirPrototypeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1666F9A1B54125400A8E39F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1666F9B1B54125400A8E39F /* AirPrototypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPrototypeTests.swift; sourceTree = "<group>"; };
-		A1666FA61B54146700A8E39F /* AddressListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListController.swift; sourceTree = "<group>"; };
 		A1666FA91B54176D00A8E39F /* SimpleAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleAddress.swift; sourceTree = "<group>"; };
 		A1666FAB1B54190A00A8E39F /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		A1666FAD1B5419D300A8E39F /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		A1666FB11B541CF400A8E39F /* GlobalHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalHandler.swift; sourceTree = "<group>"; };
 		A1666FB31B541D0500A8E39F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A1666FB51B542E6A00A8E39F /* HttpRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestHandler.swift; sourceTree = "<group>"; };
-		A1666FB91B5438AE00A8E39F /* AddressListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListTableViewCell.swift; sourceTree = "<group>"; };
 		A16A14701B5FD9070026E9C8 /* JsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
 		A1E2A91C1B99ED47003A3B3A /* SettingsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHandler.swift; sourceTree = "<group>"; };
 		A1F58E581B97284800D04C91 /* Readable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Readable.swift; sourceTree = "<group>"; };
@@ -138,15 +134,6 @@
 				A158F6151B8E504500FCE2E1 /* Location.swift */,
 			);
 			name = structs;
-			sourceTree = "<group>";
-		};
-		A1626DF61B555A56006D990C /* address_list */ = {
-			isa = PBXGroup;
-			children = (
-				A1666FA61B54146700A8E39F /* AddressListController.swift */,
-				A1666FB91B5438AE00A8E39F /* AddressListTableViewCell.swift */,
-			);
-			name = address_list;
 			sourceTree = "<group>";
 		};
 		A1626DF71B555A5F006D990C /* address_search */ = {
@@ -231,7 +218,6 @@
 			children = (
 				A14C45691BA0B28D00D6C9CF /* readable_index */,
 				A16481F91B5D552D0023DE09 /* address_show */,
-				A1626DF61B555A56006D990C /* address_list */,
 				A1626DF71B555A5F006D990C /* address_search */,
 			);
 			name = "activities (ios controllers)";
@@ -377,8 +363,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1666FA71B54146700A8E39F /* AddressListController.swift in Sources */,
-				A1666FBA1B5438AE00A8E39F /* AddressListTableViewCell.swift in Sources */,
 				A1666FAE1B5419D300A8E39F /* Channel.swift in Sources */,
 				A156757D1B57D549006982A1 /* ResultsTableViewCellAddressSearch.swift in Sources */,
 				A1F58E591B97284800D04C91 /* Readable.swift in Sources */,
