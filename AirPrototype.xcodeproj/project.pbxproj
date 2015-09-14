@@ -17,6 +17,7 @@
 		A158F6111B8E000F00FCE2E1 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158F6101B8E000F00FCE2E1 /* DatabaseHelper.swift */; };
 		A158F6131B8E305A00FCE2E1 /* EsdrFeedsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158F6121B8E305A00FCE2E1 /* EsdrFeedsHandler.swift */; };
 		A158F6161B8E504500FCE2E1 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158F6151B8E504500FCE2E1 /* Location.swift */; };
+		A15C18601BA757330070D52D /* twitterlogo_small_white.png in Resources */ = {isa = PBXBuildFile; fileRef = A15C185F1BA757330070D52D /* twitterlogo_small_white.png */; };
 		A1626DF91B555A79006D990C /* AddressSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1626DF81B555A79006D990C /* AddressSearchController.swift */; };
 		A16481FB1B5D553F0023DE09 /* AddressShowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16481FA1B5D553F0023DE09 /* AddressShowController.swift */; };
 		A1660FF71B568B6700608C5D /* ResultsControllerAddressSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1660FF61B568B6700608C5D /* ResultsControllerAddressSearch.swift */; };
@@ -62,6 +63,7 @@
 		A158F6101B8E000F00FCE2E1 /* DatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		A158F6121B8E305A00FCE2E1 /* EsdrFeedsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EsdrFeedsHandler.swift; sourceTree = "<group>"; };
 		A158F6151B8E504500FCE2E1 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		A15C185F1BA757330070D52D /* twitterlogo_small_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = twitterlogo_small_white.png; path = Assets/twitterlogo_small_white.png; sourceTree = "<group>"; };
 		A1626DF81B555A79006D990C /* AddressSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressSearchController.swift; sourceTree = "<group>"; };
 		A16481FA1B5D553F0023DE09 /* AddressShowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressShowController.swift; sourceTree = "<group>"; };
 		A1660FF61B568B6700608C5D /* ResultsControllerAddressSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsControllerAddressSearch.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 		A1666F801B54125400A8E39F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A15C185F1BA757330070D52D /* twitterlogo_small_white.png */,
 				A1666F811B54125400A8E39F /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -343,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1666F8B1B54125400A8E39F /* Main.storyboard in Resources */,
+				A15C18601BA757330070D52D /* twitterlogo_small_white.png in Resources */,
 				A156757B1B57D537006982A1 /* ResultsTableViewCellAddressSearch.xib in Resources */,
 				A1666F901B54125400A8E39F /* LaunchScreen.xib in Resources */,
 				A1666F8D1B54125400A8E39F /* Images.xcassets in Resources */,

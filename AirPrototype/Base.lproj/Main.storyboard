@@ -53,6 +53,38 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kvf-Oo-SnU">
+                                <rect key="frame" x="156" y="528" width="288" height="20"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitterlogo_small_white.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZpF-4u-OGe">
+                                        <rect key="frame" x="8" y="0.0" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="UAU-Hw-arT"/>
+                                            <constraint firstAttribute="width" constant="20" id="r6R-Vd-mfB"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join the conversation @SpeckSensor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqO-Kt-TFW">
+                                        <rect key="frame" x="36" y="-1" width="244" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="244" id="b5P-Sa-YC7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="UMd-9V-5zc"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZpF-4u-OGe" secondAttribute="bottom" id="Xck-Wc-Eaq"/>
+                                    <constraint firstAttribute="trailing" secondItem="jqO-Kt-TFW" secondAttribute="trailing" constant="8" id="d3v-WE-aWh"/>
+                                    <constraint firstAttribute="bottom" secondItem="jqO-Kt-TFW" secondAttribute="bottom" id="ebS-ec-yUh"/>
+                                    <constraint firstItem="jqO-Kt-TFW" firstAttribute="top" secondItem="kvf-Oo-SnU" secondAttribute="top" constant="-1" id="lrK-54-hFT"/>
+                                    <constraint firstItem="jqO-Kt-TFW" firstAttribute="leading" secondItem="ZpF-4u-OGe" secondAttribute="trailing" constant="8" id="qGr-Kb-hom"/>
+                                    <constraint firstItem="ZpF-4u-OGe" firstAttribute="top" secondItem="kvf-Oo-SnU" secondAttribute="top" id="sR0-PY-DcE"/>
+                                    <constraint firstItem="ZpF-4u-OGe" firstAttribute="leading" secondItem="kvf-Oo-SnU" secondAttribute="leading" constant="8" id="yQp-pZ-dTT"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.59534305167597767" green="0.59534305167597767" blue="0.59534305167597767" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -60,6 +92,7 @@
                             <constraint firstItem="fpF-6f-Hm5" firstAttribute="leading" secondItem="Zjw-c5-CdA" secondAttribute="leadingMargin" id="1u1-NY-drt"/>
                             <constraint firstItem="fpF-6f-Hm5" firstAttribute="trailing" secondItem="Zjw-c5-CdA" secondAttribute="trailingMargin" id="2PN-L1-koe"/>
                             <constraint firstItem="wpZ-Zs-5F7" firstAttribute="leading" secondItem="Zjw-c5-CdA" secondAttribute="leadingMargin" id="GLu-sF-aVl"/>
+                            <constraint firstAttribute="centerX" secondItem="kvf-Oo-SnU" secondAttribute="centerX" id="IdV-mm-Qs9"/>
                             <constraint firstItem="sJo-27-Cc5" firstAttribute="trailing" secondItem="Zjw-c5-CdA" secondAttribute="trailingMargin" id="KG0-zn-cJX"/>
                             <constraint firstItem="7fF-aT-VuF" firstAttribute="trailing" secondItem="Zjw-c5-CdA" secondAttribute="trailingMargin" id="Ogq-pa-FOH"/>
                             <constraint firstItem="z6Q-SV-Uyk" firstAttribute="top" secondItem="VFb-4d-r8W" secondAttribute="bottom" constant="8" id="Rcx-m3-ZLq"/>
@@ -70,6 +103,7 @@
                             <constraint firstItem="sJo-27-Cc5" firstAttribute="leading" secondItem="Zjw-c5-CdA" secondAttribute="leadingMargin" id="jqP-08-wCR"/>
                             <constraint firstItem="fpF-6f-Hm5" firstAttribute="top" secondItem="z6Q-SV-Uyk" secondAttribute="bottom" constant="40" id="kJe-KR-AWs"/>
                             <constraint firstItem="wpZ-Zs-5F7" firstAttribute="trailing" secondItem="Zjw-c5-CdA" secondAttribute="trailingMargin" id="lHC-no-On2"/>
+                            <constraint firstItem="cbR-Gh-XfB" firstAttribute="top" secondItem="kvf-Oo-SnU" secondAttribute="bottom" constant="8" id="lgb-aT-TbO"/>
                             <constraint firstItem="6PX-Qm-Jcq" firstAttribute="top" secondItem="fpF-6f-Hm5" secondAttribute="bottom" id="pG6-bW-6Yo"/>
                             <constraint firstItem="z6Q-SV-Uyk" firstAttribute="leading" secondItem="Zjw-c5-CdA" secondAttribute="leadingMargin" id="ux8-Dd-g3f"/>
                             <constraint firstItem="7fF-aT-VuF" firstAttribute="top" secondItem="sJo-27-Cc5" secondAttribute="bottom" id="yM7-eB-FGD"/>
@@ -284,4 +318,7 @@
             <point key="canvasLocation" x="-340" y="305"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="twitterlogo_small_white.png" width="64" height="64"/>
+    </resources>
 </document>
