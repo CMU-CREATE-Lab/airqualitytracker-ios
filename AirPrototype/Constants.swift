@@ -186,19 +186,41 @@ class Constants {
             UIColor(red: 181.0/255.0, green: 67.0/255.0, blue: 130.0/255.0, alpha: 1.0),
             UIColor(red: 178.0/255.0, green: 38.0/255.0, blue: 81.0/255.0, alpha: 1.0)
         ]
+//        static let aqiFontColors = [
+//                "#192015", "#2a1e11", "#261705",
+//                "#330004", "#2d0d18", "#28060b"
+//        ]
         static let aqiFontColors = [
-                "#192015", "#2a1e11", "#261705",
-                "#330004", "#2d0d18", "#28060b"
+            UIColor(red: 25.0/255.0, green: 32.0/255.0, blue: 21.0/255.0, alpha: 1.0),
+            UIColor(red: 42.0/255.0, green: 30.0/255.0, blue: 17.0/255.0, alpha: 1.0),
+            UIColor(red: 38.0/255.0, green: 23.0/255.0, blue: 5.0/255.0, alpha: 1.0),
+            UIColor(red: 51.0/255.0, green: 0.0/255.0, blue: 4.0/255.0, alpha: 1.0),
+            UIColor(red: 45.0/255.0, green: 13.0/255.0, blue: 24.0/255.0, alpha: 1.0),
+            UIColor(red: 40.0/255.0, green: 6.0/255.0, blue: 11.0/255.0, alpha: 1.0)
         ]
-        
+//        static let aqiGradientColorStart = [
+//                "#a3ba5c", "#e9b642", "#e98c37",
+//                "#e24f36", "#b54382", "#b22651"
+//        ]
         static let aqiGradientColorStart = [
-                "#a3ba5c", "#e9b642", "#e98c37",
-                "#e24f36", "#b54382", "#b22651"
+            UIColor(red: 163.0/255.0, green: 186.0/255.0, blue: 92.0/255.0, alpha: 1.0).CGColor,
+            UIColor(red: 233.0/255.0, green: 182.0/255.0, blue: 66.0/255.0, alpha: 1.0).CGColor,
+            UIColor(red: 233.0/255.0, green: 140.0/255.0, blue: 55.0/255.0, alpha: 1.0).CGColor,
+            UIColor(red: 226.0/255.0, green: 79.0/255.0, blue: 54.0/255.0, alpha: 1.0).CGColor,
+            UIColor(red: 181.0/255.0, green: 67.0/255.0, blue: 130.0/255.0, alpha: 1.0).CGColor,
+            UIColor(red: 178.0/255.0, green: 38.0/255.0, blue: 81.0/255.0, alpha: 1.0).CGColor
         ]
-        
+//        static let aqiGradientColorEnd = [
+//                "#7a9055", "#c18f35", "#b44c26",
+//                "#ad2227", "#992a68", "#8c1739"
+//        ]
         static let aqiGradientColorEnd = [
-                "#7a9055", "#c18f35", "#b44c26",
-                "#ad2227", "#992a68", "#8c1739"
+            UIColor(red: 122.0/255.0, green: 144.0/255.0, blue: 85.0/255.0, alpha: 1.0).CGColor,
+            UIColor(red: 193.0/255.0, green: 143.0/255.0, blue: 53.0/255.0, alpha: 1.0).CGColor,
+            UIColor(red: 180.0/255.0, green: 76.0/255.0, blue: 38.0/255.0, alpha: 1.0).CGColor,
+            UIColor(red: 173.0/255.0, green: 34.0/255.0, blue: 39.0/255.0, alpha: 1.0).CGColor,
+            UIColor(red: 153.0/255.0, green: 42.0/255.0, blue: 104.0/255.0, alpha: 1.0).CGColor,
+            UIColor(red: 140.0/255.0, green: 23.0/255.0, blue: 57.0/255.0, alpha: 1.0).CGColor
         ]
         static let ranges: [Double] = [
                 50, 100, 150,

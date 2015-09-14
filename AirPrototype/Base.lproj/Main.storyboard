@@ -67,6 +67,7 @@
                         <outlet property="labelLatitude" destination="WcB-E5-SxD" id="Uy9-tj-Y79"/>
                         <outlet property="labelLongitude" destination="H30-So-W8P" id="NIn-79-YRL"/>
                         <outlet property="labelName" destination="z6Q-SV-Uyk" id="2hd-f4-i1j"/>
+                        <outlet property="mainView" destination="Zjw-c5-CdA" id="UL1-DB-A0g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4FJ-Wj-5cG" userLabel="First Responder" sceneMemberID="firstResponder"/>
