@@ -12,16 +12,16 @@ import UIKit
 class AddressShowController: UIViewController {
     
     @IBOutlet var labelName: UILabel!
-    @IBOutlet var labelLatitude: UILabel!
-    @IBOutlet var labelLongitude: UILabel!
+//    @IBOutlet var labelLatitude: UILabel!
+//    @IBOutlet var labelLongitude: UILabel!
     @IBOutlet var label: UILabel!
     @IBOutlet var mainView: UIView!
     var address: SimpleAddress?
     
     func populateView() {
         labelName.text = address!.name
-        labelLatitude.text = address!.location.latitude.description
-        labelLongitude.text = address!.location.longitude.description
+//        labelLatitude.text = address!.location.latitude.description
+//        labelLongitude.text = address!.location.longitude.description
         
         var gradient = CAGradientLayer()
         gradient.frame = mainView.bounds
