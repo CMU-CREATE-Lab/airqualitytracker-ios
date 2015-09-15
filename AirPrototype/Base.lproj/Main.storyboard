@@ -41,21 +41,15 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AQI 0-50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpZ-Zs-5F7">
-                                <rect key="frame" x="16" y="414" width="568" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJo-27-Cc5">
-                                <rect key="frame" x="16" y="438" width="568" height="17"/>
+                                <rect key="frame" x="16" y="428" width="568" height="17"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Air quality is considered satisfactory, and air pollution poses little or no risk" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fF-aT-VuF">
-                                <rect key="frame" x="16" y="455" width="568" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Air quality is considered satisfactory, and air pollution poses little or no risk" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fF-aT-VuF">
+                                <rect key="frame" x="16" y="445" width="568" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -91,10 +85,16 @@
                                     <constraint firstItem="ZpF-4u-OGe" firstAttribute="leading" secondItem="kvf-Oo-SnU" secondAttribute="leading" constant="8" id="yQp-pZ-dTT"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AQI 0-50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpZ-Zs-5F7">
+                                <rect key="frame" x="16" y="404" width="568" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.59534305167597767" green="0.59534305167597767" blue="0.59534305167597767" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="wpZ-Zs-5F7" firstAttribute="top" secondItem="6PX-Qm-Jcq" secondAttribute="bottom" constant="40" id="1s5-34-fqo"/>
+                            <constraint firstItem="wpZ-Zs-5F7" firstAttribute="top" secondItem="6PX-Qm-Jcq" secondAttribute="bottom" constant="30" id="1s5-34-fqo"/>
                             <constraint firstItem="fpF-6f-Hm5" firstAttribute="leading" secondItem="Zjw-c5-CdA" secondAttribute="leadingMargin" id="1u1-NY-drt"/>
                             <constraint firstItem="fpF-6f-Hm5" firstAttribute="trailing" secondItem="Zjw-c5-CdA" secondAttribute="trailingMargin" id="2PN-L1-koe"/>
                             <constraint firstItem="wpZ-Zs-5F7" firstAttribute="leading" secondItem="Zjw-c5-CdA" secondAttribute="leadingMargin" id="GLu-sF-aVl"/>
@@ -117,8 +117,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="label" destination="z6Q-SV-Uyk" id="RTc-bx-X6G"/>
+                        <outlet property="labelMeasurementRange" destination="wpZ-Zs-5F7" id="qri-qg-GsL"/>
                         <outlet property="labelName" destination="z6Q-SV-Uyk" id="2hd-f4-i1j"/>
+                        <outlet property="labelReadingMeasurement" destination="6PX-Qm-Jcq" id="FTN-YW-XQk"/>
+                        <outlet property="labelShowValue" destination="fpF-6f-Hm5" id="Duj-On-NYN"/>
+                        <outlet property="labelValueDescription" destination="7fF-aT-VuF" id="WJC-R4-tDg"/>
+                        <outlet property="labelValueTitle" destination="sJo-27-Cc5" id="Qej-VM-OWL"/>
                         <outlet property="mainView" destination="Zjw-c5-CdA" id="UL1-DB-A0g"/>
                     </connections>
                 </viewController>

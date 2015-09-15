@@ -12,27 +12,68 @@ import UIKit
 class AddressShowController: UIViewController {
     
     @IBOutlet var labelName: UILabel!
-//    @IBOutlet var labelLatitude: UILabel!
-//    @IBOutlet var labelLongitude: UILabel!
-    @IBOutlet var label: UILabel!
+    @IBOutlet var labelShowValue: UILabel!
+    @IBOutlet var labelReadingMeasurement: UILabel!
+    @IBOutlet var labelMeasurementRange: UILabel!
+    @IBOutlet var labelValueTitle: UILabel!
+    @IBOutlet var labelValueDescription: UILabel!
     @IBOutlet var mainView: UIView!
     var address: SimpleAddress?
     
+    func defaultView() {
+        labelMeasurementRange.text = ""
+        labelValueTitle.text = Constants.DefaultReading.DEFAULT_TITLE
+        labelValueDescription.text = Constants.DefaultReading.DEFAULT_DESCRIPTION
+        mainView.backgroundColor = Constants.DefaultReading.DEFAULT_COLOR_BACKGROUND
+        labelShowValue.text = ""
+        labelReadingMeasurement.text = ""
+        labelReadingMeasurement.hidden = true
+    }
+    
+    func addressView() {
+        if address!.hasReadableValue() {
+            let aqi = Converter.microgramsToAqi(address!.getReadableValue())
+            labelShowValue.text = Int(aqi).description
+            let index = Constants.AqiReading.getIndexFromReading(aqi)
+            if index < 0 {
+                defaultView()
+            } else {
+                labelReadingMeasurement.hidden = false
+                labelMeasurementRange.text = "\(Constants.AqiReading.getRangeFromIndex(index)) AQI"
+                labelValueTitle.text = Constants.AqiReading.titles[index]
+                labelValueDescription.text = Constants.AqiReading.descriptions[index]
+                labelReadingMeasurement.text = Constants.Units.RANGE_AQI
+                var gradient = CAGradientLayer()
+                gradient.frame = mainView.bounds
+                let start = Constants.AqiReading.aqiGradientColorStart[index]
+                let end = Constants.AqiReading.aqiGradientColorEnd[index]
+                gradient.colors = [
+                    start,
+                    end
+                    ] as [AnyObject]
+                mainView.layer.insertSublayer(gradient, atIndex: 0)
+            }
+        } else {
+            defaultView()
+        }
+    }
+    
+    func speckView() {
+        // TODO speck view actions
+//        labelReadingMeasurement.hidden = false
+    }
+    
     func populateView() {
         labelName.text = address!.name
-//        labelLatitude.text = address!.location.latitude.description
-//        labelLongitude.text = address!.location.longitude.description
-        
-        var gradient = CAGradientLayer()
-        gradient.frame = mainView.bounds
-        
-        let start = Constants.AqiReading.aqiGradientColorStart[0]
-        let end = Constants.AqiReading.aqiGradientColorEnd[0]
-        gradient.colors = [
-            start,
-            end
-        ] as [AnyObject]
-        mainView.layer.insertSublayer(gradient, atIndex: 0)
+        let type = address!.getReadableType()
+        switch type {
+        case .ADDRESS:
+            addressView()
+        case .SPECK:
+            speckView()
+        default:
+            NSLog("WARNING - could not populate view; unknown readable type")
+        }
     }
     
     override func viewDidLoad() {

@@ -164,7 +164,8 @@ class Constants {
     
     struct AqiReading {
         static let descriptions = [
-                "Air quality is considered satisfactory, and air pollution poses little or no risk. Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people. For example, people who are unusually sensitive to ozone may experience respiratory symptoms.",
+                "Air quality is considered satisfactory, and air pollution poses little or no risk.",
+                "Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people. For example, people who are unusually sensitive to ozone may experience respiratory symptoms.",
                 "Although general public is not likely to be affected at this AQI range, people with lung disease, older adults and children are at a greater risk from exposure to ozone, whereas persons with heart and lung disease, older adults and children are at greater risk from the presence of particles in the air.",
                 "Everyone may begin to experience some adverse health effects, and members of the sensitive groups may experience more serious effects.",
                 "This would trigger a health alert signifying that everyone may experience more serious health effects.",
