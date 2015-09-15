@@ -104,15 +104,13 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDataS
     }
     
     
-    // TODO delete functionality
-//    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//        if editingStyle == .Delete {
-//            let address = addressList[indexPath.row]
-//            GlobalHandler.sharedInstance.headerReadingsHashMap.removeReading(address)
-//            addressList = GlobalHandler.sharedInstance.requestAddressesForDisplay()
-//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-//            DatabaseHelper.deleteAddressFromDb(address)
-//        }
-//    }
+    func removeAddress(address: SimpleAddress) {
+        NSLog("To be removed")
+        GlobalHandler.sharedInstance.headerReadingsHashMap.removeReading(address)
+        addressList = GlobalHandler.sharedInstance.requestAddressesForDisplay()
+//        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        DatabaseHelper.deleteAddressFromDb(address)
+        gridView.reloadData()
+    }
     
 }

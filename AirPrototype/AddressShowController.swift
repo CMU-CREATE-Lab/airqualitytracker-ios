@@ -20,6 +20,13 @@ class AddressShowController: UIViewController {
     @IBOutlet var mainView: UIView!
     var address: SimpleAddress?
     
+    @IBAction func onClickRemove(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+        if let readableIndexController = self.navigationController?.visibleViewController as? ReadableIndexController {
+            readableIndexController.removeAddress(address!)
+        }
+    }
+    
     func defaultView() {
         labelMeasurementRange.text = ""
         labelValueTitle.text = Constants.DefaultReading.DEFAULT_TITLE

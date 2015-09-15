@@ -80,7 +80,9 @@ class HeaderReadingsHashMap {
         case ReadableType.ADDRESS:
             if let index = findIndexFromAddress(readable as! SimpleAddress) {
                 addresses.removeAtIndex(index)
+                NSLog("1..")
             }
+            NSLog("..2")
         case ReadableType.SPECK:
             if let speckIndex = findIndexFromSpeck(readable as! Speck) {
                 specks.removeAtIndex(speckIndex)
