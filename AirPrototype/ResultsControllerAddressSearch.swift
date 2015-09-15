@@ -82,8 +82,14 @@ class ResultsControllerAddressSearch: UITableViewController, UITableViewDelegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         NSLog("adding clicked address to list and returning to AddressList")
-        GlobalHandler.sharedInstance.headerReadingsHashMap.addReading(searchResultsList[indexPath.row])
+        
+        // add to database and data structure
         DatabaseHelper.addAddressToDb(searchResultsList[indexPath.row])
+        let globalHandler = GlobalHandler.sharedInstance
+        globalHandler.headerReadingsHashMap.addReading(searchResultsList[indexPath.row])
+        globalHandler.updateReadings()
+        
+        // finish
         addressSearchController!.navigationController?.popViewControllerAnimated(true)
     }
     
