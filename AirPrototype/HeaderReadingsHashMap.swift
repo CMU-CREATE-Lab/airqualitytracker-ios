@@ -129,16 +129,15 @@ class HeaderReadingsHashMap {
     func refreshHash() {
         hashMap.removeAll(keepCapacity: true)
         hashMap[headers[0]] = specks
+        
+        var tempAddresses = [Readable]()
         if SettingsHandler.sharedInstance.appUsesLocation {
-            var tempAddresses = [Readable]()
             tempAddresses.append(gpsAddress)
-            for address in addresses {
-                tempAddresses.append(address)
-            }
-            hashMap[headers[1]] = tempAddresses
-        } else {
-            hashMap[headers[1]] = addresses
         }
+        for address in addresses {
+            tempAddresses.append(address)
+        }
+        hashMap[headers[1]] = tempAddresses
         GlobalHandler.sharedInstance.notifyGlobalDataSetChanged()
     }
     

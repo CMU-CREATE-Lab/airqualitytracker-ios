@@ -51,6 +51,16 @@ class SettingsHandler {
     }
     
     
+    func setAppUsesCurrentLocation(value: Bool) {
+        appUsesLocation = value
+        userDefaults.setBool(value, forKey: Constants.SettingsKeys.appUsesLocation)
+        if userDefaults.synchronize() {
+            self.appUsesLocation = value
+            GlobalHandler.sharedInstance.updateReadings()
+        }
+    }
+    
+    
     func setUserLoggedIn(userLoggedIn: Bool) {
         userDefaults.setBool(userLoggedIn, forKey: Constants.SettingsKeys.userLoggedIn)
         if userDefaults.synchronize() {

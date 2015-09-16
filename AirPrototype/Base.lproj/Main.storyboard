@@ -11,6 +11,33 @@
         </mutableArray>
     </customFonts>
     <scenes>
+        <!--Speck Account-->
+        <scene sceneID="Bac-JU-zrx">
+            <objects>
+                <viewController id="rgT-Bo-s2K" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Aqj-uh-TT8"/>
+                        <viewControllerLayoutGuide type="bottom" id="iaW-TB-tA9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Abe-No-eCS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SpeckSensor Login" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zd0-cr-s1e">
+                                <rect key="frame" x="16" y="72" width="150" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Speck Account" id="r4S-pl-upk"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hIe-pr-Uca" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1361" y="-389"/>
+        </scene>
         <!--AddressShow Title-->
         <scene sceneID="flw-cH-zgl">
             <objects>
@@ -167,10 +194,10 @@
             </objects>
             <point key="canvasLocation" x="648" y="1014"/>
         </scene>
-        <!--View Controller-->
+        <!--Settings Title-->
         <scene sceneID="ak4-dF-izp">
             <objects>
-                <viewController id="HVd-bc-LBb" sceneMemberID="viewController">
+                <viewController id="HVd-bc-LBb" customClass="SettingsController" customModule="AirPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9c6-uE-See"/>
                         <viewControllerLayoutGuide type="bottom" id="Lt0-Nv-GWQ"/>
@@ -179,15 +206,57 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bR1-VK-VIJ">
-                                <rect key="frame" x="16" y="72" width="568" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use Current Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bR1-VK-VIJ">
+                                <rect key="frame" x="16" y="72" width="158" height="20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c4x-ji-YQ9">
+                                <rect key="frame" x="535" y="72" width="51" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="0MY-HO-rlu"/>
+                                    <constraint firstAttribute="width" constant="49" id="r54-y7-7qS"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="onSwitchUserCurrentLocation:" destination="HVd-bc-LBb" eventType="valueChanged" id="zDm-cP-mGy"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Khm-9L-FWg">
+                                <rect key="frame" x="16" y="92" width="519" height="29"/>
+                                <string key="text">When enabled, the application will pull Feeds closest to your phone’s current location and display as the first address in the list.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="llM-s4-NBc">
+                                <rect key="frame" x="16" y="129" width="142" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="SpeckSensor Login">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="rgT-Bo-s2K" kind="show" id="EN4-8N-F25"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Khm-9L-FWg" firstAttribute="leading" secondItem="0WE-0D-1S6" secondAttribute="leadingMargin" id="4d7-ka-2pj"/>
+                            <constraint firstItem="c4x-ji-YQ9" firstAttribute="leading" secondItem="Khm-9L-FWg" secondAttribute="trailing" id="9ke-AV-s6m"/>
+                            <constraint firstItem="c4x-ji-YQ9" firstAttribute="top" secondItem="9c6-uE-See" secondAttribute="bottom" constant="8" id="Ju0-Ue-igw"/>
+                            <constraint firstItem="c4x-ji-YQ9" firstAttribute="trailing" secondItem="0WE-0D-1S6" secondAttribute="trailingMargin" id="W8c-tt-7x9"/>
+                            <constraint firstItem="llM-s4-NBc" firstAttribute="top" secondItem="Khm-9L-FWg" secondAttribute="bottom" constant="8" id="aTR-iU-DtL"/>
+                            <constraint firstItem="Khm-9L-FWg" firstAttribute="top" secondItem="bR1-VK-VIJ" secondAttribute="bottom" id="d1e-AX-9VO"/>
+                            <constraint firstItem="llM-s4-NBc" firstAttribute="leading" secondItem="0WE-0D-1S6" secondAttribute="leadingMargin" id="dxw-WU-S2I"/>
+                            <constraint firstItem="bR1-VK-VIJ" firstAttribute="leading" secondItem="0WE-0D-1S6" secondAttribute="leadingMargin" id="kK8-iu-RRP"/>
+                            <constraint firstItem="bR1-VK-VIJ" firstAttribute="top" secondItem="9c6-uE-See" secondAttribute="bottom" constant="8" id="mZI-OH-syz"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Settings Title" id="tG2-lo-tnh"/>
+                    <connections>
+                        <outlet property="currentLocationSwitch" destination="c4x-ji-YQ9" id="gbt-zr-I0E"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q65-QK-9Ac" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
