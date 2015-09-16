@@ -104,6 +104,7 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDataS
     }
     
     
+    // ASSERT: address is not current location
     func removeAddress(address: SimpleAddress) {
         NSLog("To be removed")
         GlobalHandler.sharedInstance.headerReadingsHashMap.removeReading(address)

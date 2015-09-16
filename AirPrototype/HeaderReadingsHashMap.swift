@@ -19,8 +19,12 @@ class HeaderReadingsHashMap {
     init() {
         gpsAddress = SimpleAddress()
         // TODO remove hardcoded location
+        gpsAddress.isCurrentLocation = true
+        gpsAddress.name = "HARDCODED LOCATION"
         gpsAddress.location = Location(latitude: 40.377384, longitude: -79.892563)
 //        gpsAddress.requestUpdateFeeds()
+        hashMap[headers[0]] = specks
+        hashMap[headers[1]] = addresses
     }
     
     
@@ -33,7 +37,7 @@ class HeaderReadingsHashMap {
     // required helpers to get the index since find() does not properly
     // match objects that should be equivalent.
     private func findIndexFromAddress(address: SimpleAddress) -> Int? {
-        let max = addresses.endIndex
+        let max = addresses.endIndex - 1
         for i in 0...max {
             if addresses[i] === address {
                 return i
@@ -43,7 +47,7 @@ class HeaderReadingsHashMap {
         return nil
     }
     private func findIndexFromSpeck(speck: Speck) -> Int? {
-        let max = specks.endIndex
+        let max = specks.endIndex - 1
         for i in 0...max {
             if specks[i] === speck {
                 return i
@@ -132,6 +136,7 @@ class HeaderReadingsHashMap {
         
         var tempAddresses = [Readable]()
         if SettingsHandler.sharedInstance.appUsesLocation {
+            // TODO update current location info (request location, request feeds)
             tempAddresses.append(gpsAddress)
         }
         for address in addresses {

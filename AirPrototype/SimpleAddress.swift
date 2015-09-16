@@ -38,7 +38,7 @@ class SimpleAddress: Readable, Hashable {
     var name: String
     var zipcode: String
     var location: Location
-    
+    var isCurrentLocation: Bool
     var closestFeed: Feed?
     var feeds: Array<Feed>
     let uid = 1
@@ -49,6 +49,7 @@ class SimpleAddress: Readable, Hashable {
         location = Location(latitude: 0, longitude: 0)
         closestFeed = nil
         feeds = []
+        isCurrentLocation = false
     }
     
     func requestUpdateFeeds() {

@@ -38,6 +38,9 @@ class AddressShowController: UIViewController {
     }
     
     func addressView() {
+        if address!.isCurrentLocation {
+            self.navigationItem.rightBarButtonItems = []
+        }
         if address!.hasReadableValue() {
             let aqi = Converter.microgramsToAqi(address!.getReadableValue())
             labelShowValue.text = Int(aqi).description
