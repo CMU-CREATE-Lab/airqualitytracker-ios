@@ -14,8 +14,7 @@ class LoginController: UIViewController {
     @IBOutlet var contentView: UIView!
     var loginView: LoginView?
     var logoutView: LogoutView?
-//    var username: String?
-//    var password: String?
+    var username: String?
     var loggedIn: Bool = false
     
     func display() {
@@ -29,6 +28,7 @@ class LoginController: UIViewController {
                 loginView!.removeFromSuperview()
                 loginView = nil
             }
+            logoutView!.labelUsername.text = username
             logoutView!.logoutButton.addTarget(self, action: "onClickLogout", forControlEvents: UIControlEvents.TouchDown)
         } else {
             loginView = NSBundle.mainBundle().loadNibNamed("LoginView", owner: contentView, options: nil).last as? LoginView
@@ -47,19 +47,22 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NSLog("LoginController did load!")
-        
         display()
     }
     
     func onClickLogin() {
-        NSLog("onClickLogin 1")
+        username = loginView!.textFieldUsername.text
+        let password = loginView!.textFieldPassword.text
+        // TODO request esdr token username, password, completionHandler
         loggedIn = true
         display()
     }
     
     func onClickLogout() {
-        NSLog("onClickLogout 2")
+        // TODO stop esdr refresh service
+        SettingsHandler.sharedInstance.setUserLoggedIn(false)
         loggedIn = false
+        GlobalHandler.sharedInstance.headerReadingsHashMap.populateSpecks()
         display()
     }
     
