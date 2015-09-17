@@ -54,15 +54,4 @@ class GlobalHandler {
         }
     }
     
-    
-    func requestAddressesForDisplay() -> Array<SimpleAddress> {
-        // TODO we really should be using hashMap directly in the controller
-        let array = headerReadingsHashMap.hashMap[headerReadingsHashMap.headers[1]]!
-        var result = [SimpleAddress]()
-        for value in array {
-            result.append(value as! SimpleAddress)
-        }
-        return result
-    }
-    
 }

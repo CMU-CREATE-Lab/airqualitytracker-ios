@@ -14,16 +14,8 @@ class ReadableIndexHeader: UICollectionReusableView {
     @IBOutlet var textHeaderTitle: UILabel!
     
     
-    func populate(sectionNumber: Int) {
-        switch sectionNumber {
-        case 0:
-            textHeaderTitle.text = Constants.HEADER_TITLES[0]
-        case 1:
-            textHeaderTitle.text = Constants.HEADER_TITLES[1]
-        default:
-            NSLog("WARNING - missing section number")
-            textHeaderTitle.text = ""
-        }
+    func populate(sectionTitle: String) {
+        textHeaderTitle.text = sectionTitle
     }
     
     

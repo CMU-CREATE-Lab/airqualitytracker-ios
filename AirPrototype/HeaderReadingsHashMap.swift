@@ -16,7 +16,7 @@ class HeaderReadingsHashMap {
     var headers = Constants.HEADER_TITLES
     var hashMap = [String: Array<Readable>]()
     // (Android only) adapterList
-    var adapterList = [Int: [Readable]]()
+    var adapterList = [String: [Readable]]()
     init() {
         gpsAddress = SimpleAddress()
         gpsAddress.isCurrentLocation = true
@@ -43,16 +43,17 @@ class HeaderReadingsHashMap {
 //    }
     func populateAdapterList() {
         var items: [Readable]
-        var index = 0
+        var newHeaders = [String]()
         
         adapterList.removeAll(keepCapacity: true)
         for header in headers {
             items = hashMap[header]!
             if items.count > 0 {
-                adapterList[index] = items
-                index++
+                adapterList[header] = items
+                newHeaders.append(header)
             }
         }
+        headers = newHeaders
     }
     
     
@@ -154,7 +155,7 @@ class HeaderReadingsHashMap {
     
     func refreshHash() {
         hashMap.removeAll(keepCapacity: true)
-        hashMap[headers[0]] = specks
+        hashMap[Constants.HEADER_TITLES[0]] = specks
         
         var tempAddresses = [Readable]()
         if SettingsHandler.sharedInstance.appUsesLocation {
@@ -164,7 +165,7 @@ class HeaderReadingsHashMap {
         for address in addresses {
             tempAddresses.append(address)
         }
-        hashMap[headers[1]] = tempAddresses
+        hashMap[Constants.HEADER_TITLES[1]] = tempAddresses
         populateAdapterList()
         GlobalHandler.sharedInstance.notifyGlobalDataSetChanged()
     }

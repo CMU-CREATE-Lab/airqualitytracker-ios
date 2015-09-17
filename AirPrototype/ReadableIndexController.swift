@@ -74,14 +74,14 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDataS
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         // TODO configure to use hashmap
-        return 2
+        return GlobalHandler.sharedInstance.headerReadingsHashMap.adapterList.keys.array.count
     }
     
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // TODO configure to use hashmap
         let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
-        return headerReadingsHashmap.hashMap[headerReadingsHashmap.headers[section]]!.count
+        return headerReadingsHashmap.adapterList[headerReadingsHashmap.headers[section]]!.count
 //        return addressList.count
     }
     
@@ -91,7 +91,7 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDataS
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier("MyCell", forIndexPath: indexPath) as! ReadableIndexCell
         // TODO configure to use hashmap
         let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
-        let readings = headerReadingsHashmap.hashMap[headerReadingsHashmap.headers[indexPath.section]]!
+        let readings = headerReadingsHashmap.adapterList[headerReadingsHashmap.headers[indexPath.section]]!
         cell.populate(readings[indexPath.row])
 //        cell.populate(addressList[indexPath.row])
         return cell
@@ -104,7 +104,7 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDataS
         if kind == UICollectionElementKindSectionHeader {
             var header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "MyViewHeader", forIndexPath: indexPath) as! ReadableIndexHeader
             // TODO configure to use hashmap
-            header.populate(indexPath.section)
+            header.populate(GlobalHandler.sharedInstance.headerReadingsHashMap.headers[indexPath.section])
             reusableView = header
         }
         
