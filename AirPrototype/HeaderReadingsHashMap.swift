@@ -16,6 +16,7 @@ class HeaderReadingsHashMap {
     var headers = Constants.HEADER_TITLES
     var hashMap = [String: Array<Readable>]()
     // (Android only) adapterList
+    var adapterList = [Int: [Readable]]()
     init() {
         gpsAddress = SimpleAddress()
         gpsAddress.isCurrentLocation = true
@@ -40,6 +41,19 @@ class HeaderReadingsHashMap {
 //    func populateAdapterList() {
 //        
 //    }
+    func populateAdapterList() {
+        var items: [Readable]
+        var index = 0
+        
+        adapterList.removeAll(keepCapacity: true)
+        for header in headers {
+            items = hashMap[header]!
+            if items.count > 0 {
+                adapterList[index] = items
+                index++
+            }
+        }
+    }
     
     
     // required helpers to get the index since find() does not properly
@@ -151,6 +165,7 @@ class HeaderReadingsHashMap {
             tempAddresses.append(address)
         }
         hashMap[headers[1]] = tempAddresses
+        populateAdapterList()
         GlobalHandler.sharedInstance.notifyGlobalDataSetChanged()
     }
     
