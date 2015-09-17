@@ -14,15 +14,11 @@ import CoreLocation
 class ReadableIndexController: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet var gridView: UICollectionView!
-    // TODO configure to use hashmap
-//    var addressList = Array<SimpleAddress>()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-//        addressList = GlobalHandler.sharedInstance.requestAddressesForDisplay()
-        
         DatabaseHelper.loadFromDb()
         let globalHandler = GlobalHandler.sharedInstance
         globalHandler.readableIndexListView = self.gridView
@@ -40,9 +36,6 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDataS
     
     override func viewWillAppear(animated: Bool) {
         NSLog("AddressListController: viewWillAppear")
-        // reload our data
-        // TODO configure to use hashmap
-//        addressList = GlobalHandler.sharedInstance.requestAddressesForDisplay()
         gridView.reloadData()
     }
     
@@ -54,12 +47,10 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDataS
             NSLog("running show segue")
             var addressShowController = segue.destinationViewController as! AddressShowController
             var indexPaths = gridView.indexPathsForSelectedItems() as! Array<NSIndexPath>
-            // TODO abstract to readable and not just SimpleAddress
             let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
             let indexPath = indexPaths[0]
             let reading = headerReadingsHashmap.hashMap[headerReadingsHashmap.headers[indexPath.section]]![indexPath.row]
-            addressShowController.address = reading as? SimpleAddress
-//            addressShowController.address = addressList[indexPaths[0].row]
+            addressShowController.reading = reading
             gridView.deselectItemAtIndexPath(indexPaths[0], animated: true)
         } else if segue.identifier == "settingsSegue" {
             NSLog("running settings segue")
@@ -73,27 +64,21 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDataS
     
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // TODO configure to use hashmap
         return GlobalHandler.sharedInstance.headerReadingsHashMap.adapterList.keys.array.count
     }
     
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // TODO configure to use hashmap
         let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
         return headerReadingsHashmap.adapterList[headerReadingsHashmap.headers[section]]!.count
-//        return addressList.count
     }
     
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        //        return super.collectionView(collectionView, cellForItemAtIndexPath: indexPath)
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier("MyCell", forIndexPath: indexPath) as! ReadableIndexCell
-        // TODO configure to use hashmap
         let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
         let readings = headerReadingsHashmap.adapterList[headerReadingsHashmap.headers[indexPath.section]]!
         cell.populate(readings[indexPath.row])
-//        cell.populate(addressList[indexPath.row])
         return cell
     }
     
@@ -103,7 +88,6 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDataS
         
         if kind == UICollectionElementKindSectionHeader {
             var header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "MyViewHeader", forIndexPath: indexPath) as! ReadableIndexHeader
-            // TODO configure to use hashmap
             header.populate(GlobalHandler.sharedInstance.headerReadingsHashMap.headers[indexPath.section])
             reusableView = header
         }
@@ -121,8 +105,6 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDataS
     func removeAddress(address: SimpleAddress) {
         NSLog("To be removed")
         GlobalHandler.sharedInstance.headerReadingsHashMap.removeReading(address)
-//        addressList = GlobalHandler.sharedInstance.requestAddressesForDisplay()
-//        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         DatabaseHelper.deleteAddressFromDb(address)
         gridView.reloadData()
     }

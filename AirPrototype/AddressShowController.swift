@@ -18,12 +18,13 @@ class AddressShowController: UIViewController {
     @IBOutlet var labelValueTitle: UILabel!
     @IBOutlet var labelValueDescription: UILabel!
     @IBOutlet var mainView: UIView!
-    var address: SimpleAddress?
+    var reading: Readable?
     
     @IBAction func onClickRemove(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
         if let readableIndexController = self.navigationController?.visibleViewController as? ReadableIndexController {
-            readableIndexController.removeAddress(address!)
+            // TODO delete for specks
+            readableIndexController.removeAddress(reading as! SimpleAddress)
         }
     }
     
@@ -37,12 +38,12 @@ class AddressShowController: UIViewController {
         labelReadingMeasurement.hidden = true
     }
     
-    func addressView() {
-        if address!.isCurrentLocation {
+    func addressView(address: SimpleAddress) {
+        if address.isCurrentLocation {
             self.navigationItem.rightBarButtonItems = []
         }
-        if address!.hasReadableValue() {
-            let aqi = Converter.microgramsToAqi(address!.getReadableValue())
+        if address.hasReadableValue() {
+            let aqi = Converter.microgramsToAqi(address.getReadableValue())
             labelShowValue.text = Int(aqi).description
             let index = Constants.AqiReading.getIndexFromReading(aqi)
             if index < 0 {
@@ -74,11 +75,11 @@ class AddressShowController: UIViewController {
     }
     
     func populateView() {
-        labelName.text = address!.name
-        let type = address!.getReadableType()
+        labelName.text = reading!.getName()
+        let type = reading!.getReadableType()
         switch type {
         case .ADDRESS:
-            addressView()
+            addressView(reading as! SimpleAddress)
         case .SPECK:
             speckView()
         default:
@@ -88,7 +89,7 @@ class AddressShowController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSLog("Loaded AddressShow with address " + address!.name)
+        NSLog("Loaded AddressShow with address " + reading!.getName())
         populateView()
     }
     
