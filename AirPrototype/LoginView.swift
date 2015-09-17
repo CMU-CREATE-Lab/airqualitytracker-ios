@@ -12,5 +12,7 @@ import UIKit
 class LoginView: UIView {
     
     @IBOutlet var loginButton: UIButton!
+    @IBOutlet var textFieldUsername: UITextField!
+    @IBOutlet var textFieldPassword: UITextField!
     
 }

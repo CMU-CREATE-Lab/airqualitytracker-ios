@@ -10,21 +10,53 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login View" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcV-2R-eCc">
-                    <rect key="frame" x="8" y="8" width="84" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zda-hI-3xU">
-                    <rect key="frame" x="8" y="37" width="46" height="30"/>
-                    <state key="normal" title="Button">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zda-hI-3xU">
+                    <rect key="frame" x="8" y="134" width="87" height="30"/>
+                    <state key="normal" title="Authenticate">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQg-cv-vIK">
+                    <rect key="frame" x="8" y="8" width="66" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KXu-0R-OTa">
+                    <rect key="frame" x="8" y="33" width="584" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dTd-lI-qKc">
+                    <rect key="frame" x="8" y="96" width="584" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ypw-Ve-rQK">
+                    <rect key="frame" x="8" y="71" width="64" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="KXu-0R-OTa" secondAttribute="trailing" constant="8" id="5wK-EJ-Bca"/>
+                <constraint firstItem="Ypw-Ve-rQK" firstAttribute="top" secondItem="KXu-0R-OTa" secondAttribute="bottom" constant="8" id="Dy3-Tl-T7D"/>
+                <constraint firstAttribute="trailing" secondItem="dTd-lI-qKc" secondAttribute="trailing" constant="8" id="Edw-lL-kQT"/>
+                <constraint firstItem="dTd-lI-qKc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="FIB-gv-YBi"/>
+                <constraint firstItem="dTd-lI-qKc" firstAttribute="top" secondItem="Ypw-Ve-rQK" secondAttribute="bottom" constant="8" id="HXq-qh-yGw"/>
+                <constraint firstItem="Zda-hI-3xU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="NVl-tv-VzZ"/>
+                <constraint firstItem="Ypw-Ve-rQK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="PlQ-eg-6dm"/>
+                <constraint firstItem="Zda-hI-3xU" firstAttribute="top" secondItem="dTd-lI-qKc" secondAttribute="bottom" constant="8" id="VF9-fe-6Nz"/>
+                <constraint firstItem="KXu-0R-OTa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="WV8-J8-5UQ"/>
+                <constraint firstItem="hQg-cv-vIK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="cDW-l2-Tjs"/>
+                <constraint firstItem="KXu-0R-OTa" firstAttribute="top" secondItem="hQg-cv-vIK" secondAttribute="bottom" constant="8" id="i9s-pq-bq9"/>
+                <constraint firstItem="hQg-cv-vIK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="kUH-zd-oS2"/>
+            </constraints>
             <connections>
                 <outlet property="loginButton" destination="Zda-hI-3xU" id="F43-r3-vls"/>
+                <outlet property="textFieldPassword" destination="dTd-lI-qKc" id="8qN-8v-CUE"/>
+                <outlet property="textFieldUsername" destination="KXu-0R-OTa" id="8xB-9I-by4"/>
             </connections>
         </view>
     </objects>

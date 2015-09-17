@@ -12,5 +12,6 @@ import UIKit
 class LogoutView: UIView {
     
     @IBOutlet var logoutButton: UIButton!
+    @IBOutlet var labelUsername: UILabel!
     
 }

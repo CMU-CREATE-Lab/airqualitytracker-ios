@@ -23,24 +23,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CAZ-Qu-aNz">
+                                <rect key="frame" x="0.0" y="109" width="600" height="439"/>
+                                <color key="backgroundColor" red="0.68137386155800828" green="0.6390395068879966" blue="0.76064944134078216" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SpeckSensor Login" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zd0-cr-s1e">
-                                <rect key="frame" x="16" y="72" width="150" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="16" y="72" width="568" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CAZ-Qu-aNz">
-                                <rect key="frame" x="16" y="101" width="568" height="447"/>
-                                <color key="backgroundColor" red="0.68137386155800828" green="0.6390395068879966" blue="0.76064944134078216" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CAZ-Qu-aNz" firstAttribute="trailing" secondItem="Abe-No-eCS" secondAttribute="trailingMargin" id="G3Q-YA-31E"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CAZ-Qu-aNz" secondAttribute="trailing" constant="-16" id="ATH-wf-Azh"/>
                             <constraint firstItem="zd0-cr-s1e" firstAttribute="top" secondItem="Aqj-uh-TT8" secondAttribute="bottom" constant="8" id="Hds-3u-TCU"/>
                             <constraint firstItem="zd0-cr-s1e" firstAttribute="leading" secondItem="Abe-No-eCS" secondAttribute="leadingMargin" id="K8s-cn-TWW"/>
                             <constraint firstItem="CAZ-Qu-aNz" firstAttribute="top" secondItem="zd0-cr-s1e" secondAttribute="bottom" constant="8" id="WuR-QH-Rox"/>
-                            <constraint firstItem="CAZ-Qu-aNz" firstAttribute="leading" secondItem="Abe-No-eCS" secondAttribute="leadingMargin" id="ZqF-8e-f8m"/>
+                            <constraint firstItem="zd0-cr-s1e" firstAttribute="trailing" secondItem="Abe-No-eCS" secondAttribute="trailingMargin" id="bUq-Z2-ciE"/>
+                            <constraint firstItem="CAZ-Qu-aNz" firstAttribute="leading" secondItem="Abe-No-eCS" secondAttribute="leadingMargin" constant="-16" id="mwQ-Tu-611"/>
                             <constraint firstItem="iaW-TB-tA9" firstAttribute="top" secondItem="CAZ-Qu-aNz" secondAttribute="bottom" constant="8" id="pRl-mP-6Gv"/>
                         </constraints>
                     </view>
