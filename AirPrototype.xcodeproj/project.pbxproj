@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A11844AF1BA9E7A600435D11 /* ServicesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11844AE1BA9E7A600435D11 /* ServicesHandler.swift */; };
+		A11844B11BA9FECC00435D11 /* CLLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11844B01BA9FECC00435D11 /* CLLocationService.swift */; };
+		A11844B31BAA0A9D00435D11 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11844B21BAA0A9D00435D11 /* CoreLocation.framework */; };
 		A14C456B1BA0B2B000D6C9CF /* ReadableIndexController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C456A1BA0B2B000D6C9CF /* ReadableIndexController.swift */; };
 		A14C456D1BA0B45D00D6C9CF /* ReadableIndexHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C456C1BA0B45D00D6C9CF /* ReadableIndexHeader.swift */; };
 		A14C456F1BA0B46700D6C9CF /* ReadableIndexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C456E1BA0B46700D6C9CF /* ReadableIndexCell.swift */; };
@@ -55,6 +58,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A11844AE1BA9E7A600435D11 /* ServicesHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesHandler.swift; sourceTree = "<group>"; };
+		A11844B01BA9FECC00435D11 /* CLLocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationService.swift; sourceTree = "<group>"; };
+		A11844B21BAA0A9D00435D11 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A14C456A1BA0B2B000D6C9CF /* ReadableIndexController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadableIndexController.swift; sourceTree = "<group>"; };
 		A14C456C1BA0B45D00D6C9CF /* ReadableIndexHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadableIndexHeader.swift; sourceTree = "<group>"; };
 		A14C456E1BA0B46700D6C9CF /* ReadableIndexCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadableIndexCell.swift; sourceTree = "<group>"; };
@@ -101,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A11844B31BAA0A9D00435D11 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +121,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A11844AD1BA9E6CE00435D11 /* services */ = {
+			isa = PBXGroup;
+			children = (
+				A11844B01BA9FECC00435D11 /* CLLocationService.swift */,
+			);
+			name = services;
+			sourceTree = "<group>";
+		};
 		A14C45691BA0B28D00D6C9CF /* readable_index */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +179,7 @@
 		A1666F741B54125400A8E39F = {
 			isa = PBXGroup;
 			children = (
+				A11844B21BAA0A9D00435D11 /* CoreLocation.framework */,
 				A1666F7F1B54125400A8E39F /* AirPrototype */,
 				A1666F981B54125400A8E39F /* AirPrototypeTests */,
 				A1666F7E1B54125400A8E39F /* Products */,
@@ -185,6 +201,7 @@
 				A1666FA51B54142600A8E39F /* activities (ios controllers) */,
 				A1666FA81B54172300A8E39F /* classes */,
 				A1666FAF1B541B1300A8E39F /* helpers */,
+				A11844AD1BA9E6CE00435D11 /* services */,
 				A1666F821B54125400A8E39F /* AppDelegate.swift */,
 				A1666F891B54125400A8E39F /* Main.storyboard */,
 				A1666F8C1B54125400A8E39F /* Images.xcassets */,
@@ -254,6 +271,7 @@
 				A1666FB11B541CF400A8E39F /* GlobalHandler.swift */,
 				A1F58E5E1B9786C500D04C91 /* HeaderReadingsHashMap.swift */,
 				A1666FB51B542E6A00A8E39F /* HttpRequestHandler.swift */,
+				A11844AE1BA9E7A600435D11 /* ServicesHandler.swift */,
 				A1E2A91C1B99ED47003A3B3A /* SettingsHandler.swift */,
 			);
 			name = helpers;
@@ -392,10 +410,12 @@
 				A158F6161B8E504500FCE2E1 /* Location.swift in Sources */,
 				A1626DF91B555A79006D990C /* AddressSearchController.swift in Sources */,
 				A14C456F1BA0B46700D6C9CF /* ReadableIndexCell.swift in Sources */,
+				A11844AF1BA9E7A600435D11 /* ServicesHandler.swift in Sources */,
 				A16481FB1B5D553F0023DE09 /* AddressShowController.swift in Sources */,
 				A1FEAB411B8CF19D00F9716B /* StoredAddress.swift in Sources */,
 				A1660FF71B568B6700608C5D /* ResultsControllerAddressSearch.swift in Sources */,
 				A14C456B1BA0B2B000D6C9CF /* ReadableIndexController.swift in Sources */,
+				A11844B11BA9FECC00435D11 /* CLLocationService.swift in Sources */,
 				A158F6111B8E000F00FCE2E1 /* DatabaseHelper.swift in Sources */,
 				A158F6131B8E305A00FCE2E1 /* EsdrFeedsHandler.swift in Sources */,
 				A151A6ED1BA99D2900851F05 /* SettingsController.swift in Sources */,

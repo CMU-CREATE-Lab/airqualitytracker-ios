@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CoreData
+import CoreLocation
 
 class ReadableIndexController: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -26,6 +27,8 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDataS
         let globalHandler = GlobalHandler.sharedInstance
         globalHandler.readableIndexListView = self.gridView
         globalHandler.updateReadings()
+        
+        ServicesHandler.sharedInstance.startLocationService()
     }
     
     
