@@ -17,6 +17,8 @@ class CLLocationSService: NSObject, CLLocationManagerDelegate {
     // This is set to false if location services are not enabled on the device or if this app is denied service
     var serviceEnabled: Bool = false
     override init() {
+        super.init()
+        locationManager.delegate = self
         if CLLocationManager.locationServicesEnabled() {
             locationManager.requestWhenInUseAuthorization()
             let authStatus = CLLocationManager.authorizationStatus()
@@ -24,13 +26,17 @@ class CLLocationSService: NSObject, CLLocationManagerDelegate {
                 serviceEnabled = true
             }
         }
-        super.init()
+    }
+    
+    
+    private func updateCurrentLocation(location: Location, name: String) {
+        GlobalHandler.sharedInstance.headerReadingsHashMap.gpsAddress.name = name
+        GlobalHandler.sharedInstance.headerReadingsHashMap.refreshHash()
     }
     
     
     func startLocationService() {
         if (serviceEnabled) {
-            locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
             locationManager.distanceFilter = 1000
             locationManager.startUpdatingLocation()
@@ -56,8 +62,7 @@ class CLLocationSService: NSObject, CLLocationManagerDelegate {
             if error == nil && results.count > 0 {
                 let placemark = results[results.endIndex-1] as! CLPlacemark
                 NSLog("Reverse Geocode discovered locality=\(placemark.locality), zip=\(placemark.postalCode), country=\(placemark.country)")
-                GlobalHandler.sharedInstance.headerReadingsHashMap.gpsAddress.name = placemark.locality
-                GlobalHandler.sharedInstance.headerReadingsHashMap.refreshHash()
+                self.updateCurrentLocation(Location(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude), name: placemark.locality)
             }
         })
         // TODO should we stop updating location once we find one?
@@ -66,16 +71,23 @@ class CLLocationSService: NSObject, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         NSLog("FAIL at CLLocationSService")
+        updateCurrentLocation(Location(latitude:0,longitude:0), name: "Unknown Location")
     }
     
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        NSLog("didChangeAuthorizationStatus")
+        
         let authStatus = CLLocationManager.authorizationStatus()
         if authStatus != .Denied && authStatus != .Restricted && authStatus != .NotDetermined {
             serviceEnabled = true
+            startLocationService()
         } else {
             serviceEnabled = false
         }
         NSLog("Location Authorization Status changed to \(authStatus.rawValue); setting serviceEnabled=\(serviceEnabled)")
+        if authStatus == .Denied || authStatus == .Restricted {
+            SettingsHandler.sharedInstance.setAppUsesCurrentLocation(false)
+        }
     }
     
 }

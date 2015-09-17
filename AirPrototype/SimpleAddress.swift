@@ -55,6 +55,7 @@ class SimpleAddress: Readable, Hashable {
     func requestUpdateFeeds() {
         NSLog("Called requestUpdateFeeds() on Address=\(self.name)")
         self.feeds.removeAll(keepCapacity: false)
+        self.closestFeed = nil
         // the past 24 hours
         let maxTime = NSDate().timeIntervalSince1970 - Constants.READINGS_MAX_TIME_RANGE
         

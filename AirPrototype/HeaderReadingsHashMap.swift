@@ -18,13 +18,21 @@ class HeaderReadingsHashMap {
     // (Android only) adapterList
     init() {
         gpsAddress = SimpleAddress()
-        // TODO remove hardcoded location
         gpsAddress.isCurrentLocation = true
-        gpsAddress.name = "HARDCODED LOCATION"
-        gpsAddress.location = Location(latitude: 40.377384, longitude: -79.892563)
-//        gpsAddress.requestUpdateFeeds()
+        gpsAddress.name = "Loading Current Location"
+        gpsAddress.location = Location(latitude: 0, longitude: 0)
+        
         hashMap[headers[0]] = specks
-        hashMap[headers[1]] = addresses
+        if SettingsHandler.sharedInstance.appUsesLocation {
+            var tempAddresses = [Readable]()
+            tempAddresses.append(gpsAddress)
+            for address in addresses {
+                tempAddresses.append(address)
+            }
+            hashMap[headers[1]] = tempAddresses
+        } else {
+            hashMap[headers[1]] = addresses
+        }
     }
     
     
@@ -136,8 +144,8 @@ class HeaderReadingsHashMap {
         
         var tempAddresses = [Readable]()
         if SettingsHandler.sharedInstance.appUsesLocation {
-            // TODO update current location info (request location, request feeds)
             tempAddresses.append(gpsAddress)
+            gpsAddress.requestUpdateFeeds()
         }
         for address in addresses {
             tempAddresses.append(address)

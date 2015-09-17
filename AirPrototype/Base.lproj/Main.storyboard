@@ -256,6 +256,7 @@
                     <navigationItem key="navigationItem" title="Settings Title" id="tG2-lo-tnh"/>
                     <connections>
                         <outlet property="currentLocationSwitch" destination="c4x-ji-YQ9" id="gbt-zr-I0E"/>
+                        <outlet property="useLocationLabel" destination="Khm-9L-FWg" id="kke-oL-WFA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q65-QK-9Ac" userLabel="First Responder" sceneMemberID="firstResponder"/>
