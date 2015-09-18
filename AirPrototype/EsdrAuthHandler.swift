@@ -78,7 +78,7 @@ class EsdrAuthHandler {
                 let refresh_token = data!.valueForKey("refresh_token") as? String
                 if access_token != nil && refresh_token != nil {
                     NSLog("found access_token=\(access_token), refresh_token=\(refresh_token)")
-                    // TODO SettingsHandler.sharedInstance.updateEsdrTokens
+                    SettingsHandler.sharedInstance.updateEsdrTokens(access_token!, refreshToken: refresh_token!)
                 } else {
                     NSLog("Failed to grab access/refresh token(s)")
                 }
