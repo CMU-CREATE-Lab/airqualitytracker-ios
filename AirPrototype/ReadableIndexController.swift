@@ -36,6 +36,7 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDataS
     
     override func viewWillAppear(animated: Bool) {
         NSLog("AddressListController: viewWillAppear")
+        NSLog("SPECK SIZE/COUNT = \(GlobalHandler.sharedInstance.headerReadingsHashMap.specks.count)")
         gridView.reloadData()
     }
     

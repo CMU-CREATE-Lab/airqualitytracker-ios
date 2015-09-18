@@ -34,6 +34,7 @@ class HeaderReadingsHashMap {
         } else {
             hashMap[headers[1]] = addresses
         }
+        populateSpecks()
     }
     
     
@@ -148,8 +149,9 @@ class HeaderReadingsHashMap {
                     speck.requestUpdate()
                 }
             }
-            // TODO user auth info
-            HttpRequestHandler.sharedInstance.requestSpecks("", userId: 0, completionHandler: completionHandler)
+            let authToken = SettingsHandler.sharedInstance.accessToken
+            let userId = SettingsHandler.sharedInstance.userId
+            HttpRequestHandler.sharedInstance.requestSpecks(authToken!, userId: userId!, completionHandler: completionHandler)
         }
     }
     

@@ -12,12 +12,15 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIX-MT-aId">
                     <rect key="frame" x="8" y="8" width="66" height="17"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="66" id="f2Q-Y4-ZOU"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="my_user_name123" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nZ-Lo-g8s">
-                    <rect key="frame" x="471" y="9" width="121" height="17"/>
+                    <rect key="frame" x="82" y="9" width="510" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -30,6 +33,7 @@
                 </button>
             </subviews>
             <constraints>
+                <constraint firstItem="2nZ-Lo-g8s" firstAttribute="leading" secondItem="pIX-MT-aId" secondAttribute="trailing" constant="8" id="UJz-gn-k34"/>
                 <constraint firstItem="pIX-MT-aId" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="e7h-17-6Mu"/>
                 <constraint firstItem="pIX-MT-aId" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="eTB-iE-gBx"/>
                 <constraint firstAttribute="trailing" secondItem="2nZ-Lo-g8s" secondAttribute="trailing" constant="8" id="hNJ-ov-jcp"/>

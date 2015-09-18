@@ -47,21 +47,35 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NSLog("LoginController did load!")
+        if SettingsHandler.sharedInstance.userLoggedIn {
+            loggedIn = true
+            username = SettingsHandler.sharedInstance.username
+        }
         display()
     }
     
     func onClickLogin() {
         username = loginView!.textFieldUsername.text
         let password = loginView!.textFieldPassword.text
-        // TODO request esdr token username, password, completionHandler
         HttpRequestHandler.sharedInstance.requestEsdrToken(username!, password: password, completionHandler: { (url: NSURL!, response: NSURLResponse!, error: NSError!) -> Void in
-            // TODO request response
-            let userId: Int = -1
-            let accessToken = ""
-            let refreshToken = ""
-            let settingsHandler = SettingsHandler.sharedInstance
-            settingsHandler.setUserLoggedIn(true)
-            settingsHandler.updateEsdrAccount(self.username!, userId: userId, accessToken: accessToken, refreshToken: refreshToken)
+            let httpResponse = response as! NSHTTPURLResponse
+            if error != nil {
+                NSLog("error is not nil")
+            } else if httpResponse.statusCode != 200 {
+                // not sure if necessary... error usually is not nil but crashed
+                // on me one time when starting up simulator & running
+                NSLog("Got status code \(httpResponse.statusCode) != 200")
+            } else {
+                let data = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: nil, error: nil) as! NSDictionary
+                let accessToken = data.valueForKey("access_token") as! String
+                let refreshToken = data.valueForKey("refresh_token") as! String
+                let userId = data.valueForKey("userId") as! Int
+                
+                let settingsHandler = SettingsHandler.sharedInstance
+                settingsHandler.updateEsdrAccount(self.username!, userId: userId, accessToken: accessToken, refreshToken: refreshToken)
+                settingsHandler.setUserLoggedIn(true)
+                // TODO esdr refresh service?
+            }
         })
         loggedIn = true
         display()
