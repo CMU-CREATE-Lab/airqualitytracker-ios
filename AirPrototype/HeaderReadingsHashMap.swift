@@ -44,17 +44,19 @@ class HeaderReadingsHashMap {
 //    }
     func populateAdapterList() {
         var items: [Readable]
-        var newHeaders = [String]()
+//        var newHeaders = [String]()
+        headers.removeAll(keepCapacity: true)
         
         adapterList.removeAll(keepCapacity: true)
-        for header in headers {
+        for header in Constants.HEADER_TITLES {
             items = hashMap[header]!
             if items.count > 0 {
                 adapterList[header] = items
-                newHeaders.append(header)
+//                newHeaders.append(header)
+                headers.append(header)
             }
         }
-        headers = newHeaders
+//        headers = newHeaders
     }
     
     
@@ -108,9 +110,7 @@ class HeaderReadingsHashMap {
         case ReadableType.ADDRESS:
             if let index = findIndexFromAddress(readable as! SimpleAddress) {
                 addresses.removeAtIndex(index)
-                NSLog("1..")
             }
-            NSLog("..2")
         case ReadableType.SPECK:
             if let speckIndex = findIndexFromSpeck(readable as! Speck) {
                 specks.removeAtIndex(speckIndex)
@@ -148,29 +148,47 @@ class HeaderReadingsHashMap {
                     specks.append(speck)
                     speck.requestUpdate()
                 }
+                refreshHash()
             }
             let authToken = SettingsHandler.sharedInstance.accessToken
             let userId = SettingsHandler.sharedInstance.userId
             HttpRequestHandler.sharedInstance.requestSpecks(authToken!, userId: userId!, completionHandler: completionHandler)
         }
+        refreshHash()
     }
     
     
     func refreshHash() {
+        var tempReadables: [Readable]
         hashMap.removeAll(keepCapacity: true)
-        hashMap[Constants.HEADER_TITLES[0]] = specks
         
-        var tempAddresses = [Readable]()
+        // specks
+        if specks.count > 0 {
+            tempReadables = [Readable]()
+            for speck in specks {
+                tempReadables.append(speck)
+            }
+            hashMap[Constants.HEADER_TITLES[0]] = tempReadables
+        } else {
+            hashMap[Constants.HEADER_TITLES[0]] = specks
+        }
+        
+        // cities
+        tempReadables = [Readable]()
         if SettingsHandler.sharedInstance.appUsesLocation {
-            tempAddresses.append(gpsAddress)
+            tempReadables.append(gpsAddress)
             gpsAddress.requestUpdateFeeds()
         }
         for address in addresses {
-            tempAddresses.append(address)
+            tempReadables.append(address)
         }
-        hashMap[Constants.HEADER_TITLES[1]] = tempAddresses
+        hashMap[Constants.HEADER_TITLES[1]] = tempReadables
+        
         populateAdapterList()
-        GlobalHandler.sharedInstance.notifyGlobalDataSetChanged()
+        
+        if GlobalHandler.singletonInstantiated {
+            GlobalHandler.sharedInstance.notifyGlobalDataSetChanged()
+        }
     }
     
 }

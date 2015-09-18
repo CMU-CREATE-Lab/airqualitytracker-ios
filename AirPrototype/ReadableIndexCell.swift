@@ -33,8 +33,9 @@ class ReadableIndexCell: UICollectionViewCell {
                 }
             case .SPECK:
                 textItemLabel.text = Constants.Units.MICROGRAMS_PER_CUBIC_METER
-                let micrograms = Double(Int(reading.getReadableValue()*10))/10.0
-                value = micrograms.description
+//                let micrograms = Double(Int(reading.getReadableValue()*10))/10.0
+                let micrograms = reading.getReadableValue()
+                value = Int(micrograms).description
                 index = Constants.SpeckReading.getIndexFromReading(micrograms)
                 if index >= 0 {
                     self.backgroundColor = Constants.SpeckReading.normalColors[index]

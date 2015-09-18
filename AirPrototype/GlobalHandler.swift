@@ -13,7 +13,7 @@ import CoreData
 class GlobalHandler {
     
     // singleton pattern; this is the only time the class should be initialized
-    
+    static var singletonInstantiated: Bool = false
     class var sharedInstance: GlobalHandler {
         struct Singleton {
             static let instance = GlobalHandler()
@@ -30,6 +30,7 @@ class GlobalHandler {
     init() {
         appDelegate = (UIApplication.sharedApplication().delegate! as! AppDelegate)
         headerReadingsHashMap = HeaderReadingsHashMap()
+        GlobalHandler.singletonInstantiated = true
     }
     
     

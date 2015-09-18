@@ -307,10 +307,10 @@
                                                 <constraint firstAttribute="height" constant="25" id="jtm-SM-qOh"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AQI" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itt-T4-5jm">
-                                            <rect key="frame" x="152" y="33" width="40" height="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="µg/m³" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itt-T4-5jm">
+                                            <rect key="frame" x="149" y="33" width="43" height="20"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="40" id="X4U-7c-jlH"/>
+                                                <constraint firstAttribute="width" constant="43" id="oAn-Rx-EYk"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -326,7 +326,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AD0-Qn-ppI">
-                                            <rect key="frame" x="81" y="33" width="71" height="50"/>
+                                            <rect key="frame" x="8" y="33" width="133" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="z0T-qW-Zbh"/>
                                             </constraints>
@@ -339,15 +339,16 @@
                                 </view>
                                 <color key="backgroundColor" red="0.18371123120300753" green="0.36348684210526316" blue="0.20776550751879694" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="itt-T4-5jm" firstAttribute="leading" secondItem="AD0-Qn-ppI" secondAttribute="trailing" constant="8" id="0Oq-yR-M2a"/>
                                     <constraint firstItem="7tv-xA-TlB" firstAttribute="trailing" secondItem="Xfp-UX-CzV" secondAttribute="trailingMargin" id="2Nk-E5-ujj"/>
                                     <constraint firstItem="AD0-Qn-ppI" firstAttribute="top" secondItem="AEr-9m-ncG" secondAttribute="bottom" id="6Lm-2e-oME"/>
+                                    <constraint firstItem="AD0-Qn-ppI" firstAttribute="leading" secondItem="Xfp-UX-CzV" secondAttribute="leadingMargin" id="6zF-bE-UC0"/>
                                     <constraint firstItem="AEr-9m-ncG" firstAttribute="trailing" secondItem="Xfp-UX-CzV" secondAttribute="trailingMargin" id="9Ha-ge-AYh"/>
                                     <constraint firstItem="AEr-9m-ncG" firstAttribute="leading" secondItem="Xfp-UX-CzV" secondAttribute="leadingMargin" id="IH9-bz-nTb"/>
                                     <constraint firstItem="7tv-xA-TlB" firstAttribute="leading" secondItem="Xfp-UX-CzV" secondAttribute="leadingMargin" id="L7X-TG-NwA"/>
                                     <constraint firstItem="itt-T4-5jm" firstAttribute="trailing" secondItem="Xfp-UX-CzV" secondAttribute="trailingMargin" id="c16-WP-wHn"/>
                                     <constraint firstItem="itt-T4-5jm" firstAttribute="top" secondItem="AEr-9m-ncG" secondAttribute="bottom" id="fTe-K6-u1Q"/>
                                     <constraint firstItem="AEr-9m-ncG" firstAttribute="top" secondItem="Xfp-UX-CzV" secondAttribute="topMargin" id="mvD-wO-sS6"/>
-                                    <constraint firstItem="itt-T4-5jm" firstAttribute="leading" secondItem="AD0-Qn-ppI" secondAttribute="trailing" id="pbT-Pe-Enq"/>
                                     <constraint firstItem="7tv-xA-TlB" firstAttribute="bottom" secondItem="Xfp-UX-CzV" secondAttribute="bottomMargin" id="yEz-Ny-IZo"/>
                                 </constraints>
                                 <connections>

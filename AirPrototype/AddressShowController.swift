@@ -69,9 +69,28 @@ class AddressShowController: UIViewController {
         }
     }
     
-    func speckView() {
+    func speckView(speck: Speck) {
         // TODO speck view actions
 //        labelReadingMeasurement.hidden = false
+        if speck.hasReadableValue() {
+            let micrograms = speck.getReadableValue()
+            labelShowValue.text = Int(micrograms).description
+            let index = Constants.SpeckReading.getIndexFromReading(micrograms)
+            if index < 0{
+                defaultView()
+            } else {
+                labelReadingMeasurement.hidden = false
+                labelMeasurementRange.text = "\(Constants.SpeckReading.getRangeFromIndex(index)) Micrograms"
+                labelValueTitle.text = Constants.SpeckReading.titles[index]
+                // TODO descriptions for speck
+//                labelValueDescription.text = Constants.SpeckReading.descriptions[index]
+                labelValueDescription.text = Constants.AqiReading.descriptions[index]
+                mainView.backgroundColor = Constants.SpeckReading.normalColors[index]
+                labelReadingMeasurement.text = Constants.Units.RANGE_MICROGRAMS_PER_CUBIC_METER
+            }
+        } else {
+            defaultView()
+        }
     }
     
     func populateView() {
@@ -81,7 +100,7 @@ class AddressShowController: UIViewController {
         case .ADDRESS:
             addressView(reading as! SimpleAddress)
         case .SPECK:
-            speckView()
+            speckView(reading as! Speck)
         default:
             NSLog("WARNING - could not populate view; unknown readable type")
         }
