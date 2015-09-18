@@ -102,11 +102,12 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDataS
     }
     
     
-    // ASSERT: address is not current location
-    func removeAddress(address: SimpleAddress) {
-        NSLog("To be removed")
-        GlobalHandler.sharedInstance.headerReadingsHashMap.removeReading(address)
-        DatabaseHelper.deleteAddressFromDb(address)
+    // ASSERT: reading is not current location
+    func removeReading(reading: Readable) {
+        GlobalHandler.sharedInstance.headerReadingsHashMap.removeReading(reading)
+        if reading.getReadableType() == .ADDRESS {
+            DatabaseHelper.deleteAddressFromDb(reading as! SimpleAddress)
+        }
         gridView.reloadData()
     }
     

@@ -23,8 +23,7 @@ class AddressShowController: UIViewController {
     @IBAction func onClickRemove(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
         if let readableIndexController = self.navigationController?.visibleViewController as? ReadableIndexController {
-            // TODO delete for specks
-            readableIndexController.removeAddress(reading as! SimpleAddress)
+            readableIndexController.removeReading(reading!)
         }
     }
     
