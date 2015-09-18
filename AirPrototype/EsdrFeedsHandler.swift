@@ -48,10 +48,10 @@ class EsdrFeedsHandler {
     }
     
     
-    func requestPrivateFeeds(authToken: String, completionHandler: ((NSURL!, NSURLResponse!, NSError!) -> Void)? ) {
+    func requestSpecks(authToken: String, userId: Int, completionHandler: ((NSURL!, NSURLResponse!, NSError!) -> Void)? ) {
         // generate safe URL
         let address = Constants.Esdr.API_URL + "/api/v1/feeds"
-        let params = "?whereAnd=isPublic=0,productId=9"
+        let params = "?whereAnd=userId=\(userId),productId=9"
         var url = NSURL(string: (address+params).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
         
         // create request

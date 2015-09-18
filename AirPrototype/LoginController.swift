@@ -54,6 +54,15 @@ class LoginController: UIViewController {
         username = loginView!.textFieldUsername.text
         let password = loginView!.textFieldPassword.text
         // TODO request esdr token username, password, completionHandler
+        HttpRequestHandler.sharedInstance.requestEsdrToken(username!, password: password, completionHandler: { (url: NSURL!, response: NSURLResponse!, error: NSError!) -> Void in
+            // TODO request response
+            let userId: Int = -1
+            let accessToken = ""
+            let refreshToken = ""
+            let settingsHandler = SettingsHandler.sharedInstance
+            settingsHandler.setUserLoggedIn(true)
+            settingsHandler.updateEsdrAccount(self.username!, userId: userId, accessToken: accessToken, refreshToken: refreshToken)
+        })
         loggedIn = true
         display()
     }
@@ -62,6 +71,7 @@ class LoginController: UIViewController {
         // TODO stop esdr refresh service
         SettingsHandler.sharedInstance.setUserLoggedIn(false)
         loggedIn = false
+        SettingsHandler.sharedInstance.setUserLoggedIn(false)
         GlobalHandler.sharedInstance.headerReadingsHashMap.populateSpecks()
         display()
     }

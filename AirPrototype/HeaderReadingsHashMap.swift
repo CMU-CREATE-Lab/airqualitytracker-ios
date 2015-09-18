@@ -148,7 +148,8 @@ class HeaderReadingsHashMap {
                     speck.requestUpdate()
                 }
             }
-            HttpRequestHandler.sharedInstance.requestPrivateFeeds("", completionHandler: completionHandler)
+            // TODO user auth info
+            HttpRequestHandler.sharedInstance.requestSpecks("", userId: 0, completionHandler: completionHandler)
         }
     }
     

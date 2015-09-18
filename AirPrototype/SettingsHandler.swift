@@ -26,6 +26,7 @@ class SettingsHandler {
     var appUsesLocation: Bool
     var userLoggedIn: Bool
     var username: String?
+    var userId: Int?
     var accessToken: String?
     var refreshToken: String?
     var appDelegate: AppDelegate
@@ -37,6 +38,7 @@ class SettingsHandler {
         appUsesLocation = userDefaults.valueForKey(Constants.SettingsKeys.appUsesLocation) as! Bool
         userLoggedIn = userDefaults.valueForKey(Constants.SettingsKeys.userLoggedIn) as! Bool
         username = userDefaults.valueForKey(Constants.SettingsKeys.username) as? String
+        userId = userDefaults.valueForKey(Constants.SettingsKeys.userId) as? Int
         accessToken = userDefaults.valueForKey(Constants.SettingsKeys.accessToken) as? String
         refreshToken = userDefaults.valueForKey(Constants.SettingsKeys.refreshToken) as? String
     }
@@ -46,6 +48,7 @@ class SettingsHandler {
         appUsesLocation = userDefaults.valueForKey(Constants.SettingsKeys.appUsesLocation) as! Bool
         userLoggedIn = userDefaults.valueForKey(Constants.SettingsKeys.userLoggedIn) as! Bool
         username = userDefaults.valueForKey(Constants.SettingsKeys.username) as? String
+        userId = userDefaults.valueForKey(Constants.SettingsKeys.userId) as? Int
         accessToken = userDefaults.valueForKey(Constants.SettingsKeys.accessToken) as? String
         refreshToken = userDefaults.valueForKey(Constants.SettingsKeys.refreshToken) as? String
     }
@@ -71,12 +74,14 @@ class SettingsHandler {
     }
     
     
-    func updateEsdrAccount(username: String, accessToken: String, refreshToken: String) {
+    func updateEsdrAccount(username: String, userId: Int, accessToken: String, refreshToken: String) {
         userDefaults.setObject(username, forKey: Constants.SettingsKeys.username)
+        userDefaults.setObject(userId, forKey: Constants.SettingsKeys.userId)
         userDefaults.setObject(accessToken, forKey: Constants.SettingsKeys.accessToken)
         userDefaults.setObject(refreshToken, forKey: Constants.SettingsKeys.refreshToken)
         if userDefaults.synchronize() {
             self.username = username
+            self.userId = userId
             self.accessToken = accessToken
             self.refreshToken = refreshToken
         }

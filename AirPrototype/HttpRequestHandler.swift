@@ -55,8 +55,8 @@ class HttpRequestHandler {
         EsdrFeedsHandler.sharedInstance.requestFeeds(location, withinSeconds: withinSeconds, completionHandler: completionHandler)
     }
 
-    func requestPrivateFeeds(authToken: String, completionHandler: ((NSURL!, NSURLResponse!, NSError!) -> Void)? ) {
-        EsdrFeedsHandler.sharedInstance.requestPrivateFeeds(authToken, completionHandler: completionHandler)
+    func requestSpecks(authToken: String, userId: Int, completionHandler: ((NSURL!, NSURLResponse!, NSError!) -> Void)? ) {
+        EsdrFeedsHandler.sharedInstance.requestSpecks(authToken, userId: userId, completionHandler: completionHandler)
     }
 
 

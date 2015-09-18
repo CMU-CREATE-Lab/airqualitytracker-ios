@@ -19,6 +19,7 @@ class Constants {
         SettingsKeys.appUsesLocation: true,
         SettingsKeys.userLoggedIn: false,
         SettingsKeys.username: "",
+        SettingsKeys.userId: -1,
         SettingsKeys.accessToken: "",
         SettingsKeys.refreshToken: ""
     ]
@@ -38,6 +39,7 @@ class Constants {
         static let appUsesLocation = "app_uses_location"
         static let userLoggedIn = "user_logged_in"
         static let username = "username"
+        static let userId = "user_id"
         static let accessToken = "access_token"
         static let refreshToken = "refresh_token"
     }
