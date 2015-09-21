@@ -28,7 +28,7 @@ class EsdrAuthHandler {
     }
     
     
-    func requestEsdrToken(username: String, password: String, completionHandler: ((NSURL!, NSURLResponse!, NSError!) -> Void)? ) {
+    func requestEsdrToken(username: String, password: String, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
         // generate safe URL
         let address = Constants.Esdr.API_URL + "/oauth/token"
         let url = NSURL(string: address.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
@@ -68,12 +68,12 @@ class EsdrAuthHandler {
         request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions())
         
         // response handler
-        func responseHandler(url: NSURL!, response: NSURLResponse!, error: NSError!) {
+        func responseHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
             if error != nil {
                 NSLog("requestEsdrRefresh received error from refreshToken=\(refreshToken)")
             } else {
-                NSLog("Responded with \(response.description)")
-                let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: [])) as? NSDictionary
+                NSLog("Responded with \(response!.description)")
+                let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
                 let access_token = data!.valueForKey("access_token") as? String
                 let refresh_token = data!.valueForKey("refresh_token") as? String
                 if access_token != nil && refresh_token != nil {

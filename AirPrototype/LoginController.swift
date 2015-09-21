@@ -57,16 +57,18 @@ class LoginController: UIViewController {
     func onClickLogin() {
         username = loginView!.textFieldUsername.text
         let password = loginView!.textFieldPassword.text
-        HttpRequestHandler.sharedInstance.requestEsdrToken(username!, password: password!, completionHandler: { (url: NSURL!, response: NSURLResponse!, error: NSError!) -> Void in
+        HttpRequestHandler.sharedInstance.requestEsdrToken(username!, password: password!, completionHandler: { (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void in
             let httpResponse = response as! NSHTTPURLResponse
             if error != nil {
                 NSLog("error is not nil")
+//                self.loggedIn = false
             } else if httpResponse.statusCode != 200 {
                 // not sure if necessary... error usually is not nil but crashed
                 // on me one time when starting up simulator & running
                 NSLog("Got status code \(httpResponse.statusCode) != 200")
+//                self.loggedIn = false
             } else {
-                let data = (try! NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: [])) as! NSDictionary
+                let data = (try! NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as! NSDictionary
                 let accessToken = data.valueForKey("access_token") as! String
                 let refreshToken = data.valueForKey("refresh_token") as! String
                 let userId = data.valueForKey("userId") as! Int
@@ -76,6 +78,11 @@ class LoginController: UIViewController {
                 settingsHandler.setUserLoggedIn(true)
                 // TODO esdr refresh service?
             }
+//            if self.loggedIn == false {
+//                dispatch_async(dispatch_get_main_queue()) {
+//                    self.display()
+//                }
+//            }
         })
         loggedIn = true
         display()

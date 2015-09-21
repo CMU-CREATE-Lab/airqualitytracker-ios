@@ -28,7 +28,7 @@ class HttpRequestHandler {
     }
     
     
-    func sendJsonRequest(urlRequest: NSMutableURLRequest, completionHandler: ((NSURL!, NSURLResponse!, NSError!) -> Void)? ) {
+    func sendJsonRequest(urlRequest: NSMutableURLRequest, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
         let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         sessionConfiguration.HTTPAdditionalHeaders = [
             "Content-Type" : "application/json"
@@ -39,7 +39,7 @@ class HttpRequestHandler {
     }
 
 
-    func sendAuthorizedJsonRequest(authToken: String, urlRequest: NSMutableURLRequest, completionHandler: ((NSURL!, NSURLResponse!, NSError!) -> Void)? ) {
+    func sendAuthorizedJsonRequest(authToken: String, urlRequest: NSMutableURLRequest, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
         let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         sessionConfiguration.HTTPAdditionalHeaders = [
             "Content-Type" : "application/json",
@@ -51,11 +51,11 @@ class HttpRequestHandler {
     }
 
 
-    func requestFeeds(location: Location, withinSeconds: Double, completionHandler: ((NSURL!, NSURLResponse!, NSError!) -> Void)?) {
+    func requestFeeds(location: Location, withinSeconds: Double, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void)) {
         EsdrFeedsHandler.sharedInstance.requestFeeds(location, withinSeconds: withinSeconds, completionHandler: completionHandler)
     }
 
-    func requestSpecks(authToken: String, userId: Int, completionHandler: ((NSURL!, NSURLResponse!, NSError!) -> Void)? ) {
+    func requestSpecks(authToken: String, userId: Int, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
         EsdrFeedsHandler.sharedInstance.requestSpecks(authToken, userId: userId, completionHandler: completionHandler)
     }
 
@@ -71,7 +71,7 @@ class HttpRequestHandler {
     }
 
 
-    func requestEsdrToken(username: String, password: String, completionHandler: ((NSURL!, NSURLResponse!, NSError!) -> Void)? ) {
+    func requestEsdrToken(username: String, password: String, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
         EsdrAuthHandler.sharedInstance.requestEsdrToken(username, password: password, completionHandler: completionHandler)
     }
 
@@ -82,7 +82,7 @@ class HttpRequestHandler {
     
     
     // TODO consider CLGeocoder: func geocodeAddressString(String, CLGeocodeCompletionHandler)
-    func requestGeocodingFromApi(input: String, completionHandler: ((NSURL!, NSURLResponse!, NSError!) -> Void)?) {
+    func requestGeocodingFromApi(input: String, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void)) {
         let url = NSURL(string: "http://autocomplete.wunderground.com/aq?query=\(input)&c=US".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "GET"

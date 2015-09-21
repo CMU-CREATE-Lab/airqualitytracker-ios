@@ -139,9 +139,9 @@ class HeaderReadingsHashMap {
     func populateSpecks() {
         specks.removeAll(keepCapacity: true)
         if SettingsHandler.sharedInstance.userLoggedIn {
-            func completionHandler(url: NSURL!, response: NSURLResponse!, error: NSError!) {
+            func completionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
                 var feeds: Array<Feed>
-                let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: [])) as? NSDictionary
+                let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
                 feeds = JsonParser.populateAllFeedsFromJson(data!)
                 for feed in feeds {
                     let speck = Speck(feed: feed)

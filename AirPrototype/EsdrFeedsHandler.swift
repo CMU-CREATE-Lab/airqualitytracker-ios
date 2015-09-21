@@ -28,7 +28,7 @@ class EsdrFeedsHandler {
     }
     
     
-    func requestFeeds(location: Location, withinSeconds: Double, completionHandler: ((NSURL!, NSURLResponse!, NSError!) -> Void)? ) {
+    func requestFeeds(location: Location, withinSeconds: Double, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
         let bottomLeftPoint = Location(latitude: location.latitude - Constants.MapGeometry.BOUNDBOX_LAT, longitude: location.longitude - Constants.MapGeometry.BOUNDBOX_LONG)
         let topRightPoint = Location(latitude: location.latitude + Constants.MapGeometry.BOUNDBOX_LAT, longitude: location.longitude + Constants.MapGeometry.BOUNDBOX_LONG)
         
@@ -48,7 +48,7 @@ class EsdrFeedsHandler {
     }
     
     
-    func requestSpecks(authToken: String, userId: Int, completionHandler: ((NSURL!, NSURLResponse!, NSError!) -> Void)? ) {
+    func requestSpecks(authToken: String, userId: Int, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
         // generate safe URL
         let address = Constants.Esdr.API_URL + "/api/v1/feeds"
         let params = "?whereAnd=userId=\(userId),productId=9"
@@ -68,7 +68,7 @@ class EsdrFeedsHandler {
         let channelName = channel.name
         
         // handles http response
-        func completionHandler(url: NSURL!, response: NSURLResponse!, error: NSError!) -> Void {
+        func completionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
             let httpResponse = response as! NSHTTPURLResponse
             if error != nil {
                 NSLog("requestChannelReading: error is not nil")
@@ -77,7 +77,7 @@ class EsdrFeedsHandler {
                 // on me one time when starting up simulator & running
                 NSLog("requestChannelReading: Got status code \(httpResponse.statusCode) != 200")
             } else {
-                let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: [])) as? NSDictionary
+                let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
                 var temp:NSDictionary
                 
                 // NOTE (from Chris)

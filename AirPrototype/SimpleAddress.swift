@@ -59,7 +59,7 @@ class SimpleAddress: Readable, Hashable {
         // the past 24 hours
         let maxTime = NSDate().timeIntervalSince1970 - Constants.READINGS_MAX_TIME_RANGE
         
-        func completionHandler(url: NSURL!, response: NSURLResponse!, error: NSError!) {
+        func completionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
             let httpResponse = response as! NSHTTPURLResponse
             if error != nil {
                 NSLog("error is not nil")
@@ -68,7 +68,7 @@ class SimpleAddress: Readable, Hashable {
                 // on me one time when starting up simulator & running
                 NSLog("Got status code \(httpResponse.statusCode) != 200")
             } else {
-                let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: [])) as? NSDictionary
+                let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
                 
                 let feeds = JsonParser.populateFeedsFromJson(data!, maxTime: maxTime)
                 NSLog("populated \(feeds.count) feeds")

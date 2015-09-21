@@ -26,9 +26,9 @@ class ResultsControllerAddressSearch: UITableViewController, UISearchResultsUpda
     }
     
     
-    func completionHandler (url: NSURL!, response: NSURLResponse!, error: NSError!) -> Void {
+    func completionHandler (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
         NSLog("In completionHandler \(self.description)")
-        let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: [])) as? NSDictionary
+        let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
         let results = JsonParser.parseAddressesFromJson(data!)
         
         searchResultsList.removeAll()
