@@ -22,7 +22,7 @@ class Converter {
     static func microgramsToAqi(inputMicrograms: Double) -> Double {
         var aqi = 0.0
         // round to tenths
-        var micrograms = Double(Int(inputMicrograms*10)) / 10.0
+        let micrograms = Double(Int(inputMicrograms*10)) / 10.0
         if micrograms < 0 {
             NSLog("ERROR - tried to convert negative Micrograms.")
             aqi = 0.0;
@@ -51,7 +51,7 @@ class Converter {
     static func aqiToMicrograms(inputAqi: Double) -> Double {
         var micrograms = 0.0;
         // round to tenths
-        var aqi = Double(Int(inputAqi*10))/10.0;
+        let aqi = Double(Int(inputAqi*10))/10.0;
         if (aqi < 0) {
             NSLog("ERROR - tried to convert negative AQI.");
             micrograms = 0.0;

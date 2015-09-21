@@ -41,8 +41,8 @@ class CLLocationSService: NSObject, CLLocationManagerDelegate {
             locationManager.distanceFilter = 1000
             locationManager.startUpdatingLocation()
             if locationManager.location != nil {
-                let latitude = locationManager.location.coordinate.latitude
-                let longitude = locationManager.location.coordinate.longitude
+                let latitude = locationManager.location!.coordinate.latitude
+                let longitude = locationManager.location!.coordinate.longitude
             }
         }
     }
@@ -53,28 +53,28 @@ class CLLocationSService: NSObject, CLLocationManagerDelegate {
     }
     
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = manager.location
-        GlobalHandler.sharedInstance.headerReadingsHashMap.setGpsAddressLocation(Location(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
-        NSLog("CLLocationSService -- Received new locations: Coordinates are lat=\(location.coordinate.latitude),long=\(location.coordinate.longitude)")
+        GlobalHandler.sharedInstance.headerReadingsHashMap.setGpsAddressLocation(Location(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude))
+        NSLog("CLLocationSService -- Received new locations: Coordinates are lat=\(location!.coordinate.latitude),long=\(location!.coordinate.longitude)")
         
-        geocoder.reverseGeocodeLocation(location, completionHandler: { (results: [AnyObject]!, error: NSError!) -> Void in
-            if error == nil && results.count > 0 {
-                let placemark = results[results.endIndex-1] as! CLPlacemark
+        geocoder.reverseGeocodeLocation(location!, completionHandler: { (results: [CLPlacemark]?, error: NSError?) -> Void in
+            if error == nil && results!.count > 0 {
+                let placemark = results![results!.endIndex-1]
                 NSLog("Reverse Geocode discovered locality=\(placemark.locality), zip=\(placemark.postalCode), country=\(placemark.country)")
-                self.updateCurrentLocation(Location(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude), name: placemark.locality)
+                self.updateCurrentLocation(Location(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude), name: placemark.locality!)
             }
         })
         // TODO should we stop updating location once we find one?
 //        locationManager.stopUpdatingLocation()
     }
     
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         NSLog("FAIL at CLLocationSService")
         updateCurrentLocation(Location(latitude:0,longitude:0), name: "Unknown Location")
     }
     
-    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         NSLog("didChangeAuthorizationStatus")
         
         let authStatus = CLLocationManager.authorizationStatus()

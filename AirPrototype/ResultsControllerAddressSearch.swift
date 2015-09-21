@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class ResultsControllerAddressSearch: UITableViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
+class ResultsControllerAddressSearch: UITableViewController, UISearchResultsUpdating {
     
     // keeps track of results from search
     var searchResultsList = Array<SimpleAddress>()
@@ -28,8 +28,8 @@ class ResultsControllerAddressSearch: UITableViewController, UITableViewDelegate
     
     func completionHandler (url: NSURL!, response: NSURLResponse!, error: NSError!) -> Void {
         NSLog("In completionHandler \(self.description)")
-        let data = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: nil, error: nil) as? NSDictionary
-        var results = JsonParser.parseAddressesFromJson(data!)
+        let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: [])) as? NSDictionary
+        let results = JsonParser.parseAddressesFromJson(data!)
         
         searchResultsList.removeAll()
         for value in results {

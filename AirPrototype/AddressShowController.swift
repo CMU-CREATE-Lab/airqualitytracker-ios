@@ -53,7 +53,7 @@ class AddressShowController: UIViewController {
                 labelValueTitle.text = Constants.AqiReading.titles[index]
                 labelValueDescription.text = Constants.AqiReading.descriptions[index]
                 labelReadingMeasurement.text = Constants.Units.RANGE_AQI
-                var gradient = CAGradientLayer()
+                let gradient = CAGradientLayer()
                 gradient.frame = mainView.bounds
                 let start = Constants.AqiReading.aqiGradientColorStart[index]
                 let end = Constants.AqiReading.aqiGradientColorEnd[index]

@@ -37,7 +37,7 @@ class EsdrFeedsHandler {
         let params = "?whereOr=ProductId=11,ProductId=1" +
             "&whereAnd=latitude>=\(bottomLeftPoint.latitude),latitude<=\(topRightPoint.latitude),longitude>=\(bottomLeftPoint.longitude),longitude<=\(topRightPoint.longitude),maxTimeSecs>=\(withinSeconds),exposure=outdoor" +
             "&fields=id,name,exposure,isMobile,latitude,latitude,longitude,productId,channelBounds"
-        var url = NSURL(string: (address+params).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+        let url = NSURL(string: (address+params).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
         
         // create request
         let request = NSMutableURLRequest(URL: url!)
@@ -52,7 +52,7 @@ class EsdrFeedsHandler {
         // generate safe URL
         let address = Constants.Esdr.API_URL + "/api/v1/feeds"
         let params = "?whereAnd=userId=\(userId),productId=9"
-        var url = NSURL(string: (address+params).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+        let url = NSURL(string: (address+params).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
         
         // create request
         let request = NSMutableURLRequest(URL: url!)
@@ -77,7 +77,7 @@ class EsdrFeedsHandler {
                 // on me one time when starting up simulator & running
                 NSLog("requestChannelReading: Got status code \(httpResponse.statusCode) != 200")
             } else {
-                let data = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: nil, error: nil) as? NSDictionary
+                let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: [])) as? NSDictionary
                 var temp:NSDictionary
                 
                 // NOTE (from Chris)
@@ -116,7 +116,7 @@ class EsdrFeedsHandler {
         
         // generate safe URL
         let address = Constants.Esdr.API_URL + "/api/v1/feeds/" + feedId + "/channels/" + channelName + "/most-recent"
-        var url = NSURL(string: address.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+        let url = NSURL(string: address.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
         
         // create request
         let request = NSMutableURLRequest(URL: url!)

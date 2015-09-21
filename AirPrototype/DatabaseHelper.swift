@@ -25,7 +25,13 @@ class DatabaseHelper {
         let request = NSFetchRequest()
         request.entity = entityDescription
         var error: NSError?
-        var objects = managedObjectContext?.executeFetchRequest(request, error: &error)
+        var objects: [AnyObject]?
+        do {
+            objects = try managedObjectContext?.executeFetchRequest(request)
+        } catch let error1 as NSError {
+            error = error1
+            objects = nil
+        }
         
         if let results = objects {
             if results.count > 0 {
@@ -63,7 +69,11 @@ class DatabaseHelper {
         storedAddress.latitude = address.location.latitude
         storedAddress.longitude = address.location.longitude
         
-        managedObjectContext?.save(&error)
+        do {
+            try managedObjectContext?.save()
+        } catch let error1 as NSError {
+            error = error1
+        }
         if error != nil {
             NSLog("Error in addAddressToDb")
         } else {
@@ -80,7 +90,11 @@ class DatabaseHelper {
             managedObjectContext?.deleteObject(storedAddress)
             
             var error: NSError?
-            managedObjectContext?.save(&error)
+            do {
+                try managedObjectContext?.save()
+            } catch let error1 as NSError {
+                error = error1
+            }
             if error != nil {
                 NSLog("received error in deleteAddressFromDb")
             } else {

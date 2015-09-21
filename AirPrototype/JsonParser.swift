@@ -15,7 +15,7 @@ class JsonParser {
         var result = Array<SimpleAddress>()
         let addresses = data.valueForKey("RESULTS") as! Array<NSDictionary>
         for address in addresses {
-            var resultAddress = SimpleAddress()
+            let resultAddress = SimpleAddress()
             if let latitude = address.valueForKey("lat") as? String {
                 resultAddress.location.latitude = NSString(string: latitude).doubleValue
             }
@@ -39,7 +39,7 @@ class JsonParser {
         var feeds = Array<Feed>()
         if let rows = (data.valueForKey("data") as! NSDictionary).valueForKey("rows") as? Array<NSDictionary> {
             for row in rows {
-                var feed = JsonParser.parseFeedFromJson(row, maxTime: maxTime)
+                let feed = JsonParser.parseFeedFromJson(row, maxTime: maxTime)
                 // only consider non-null feeds with at least 1 channel
                 if feed.channels.count > 0 {
                     feeds.append(feed)
@@ -56,7 +56,7 @@ class JsonParser {
     
     
     static func parseFeedFromJson(dataEntry: NSDictionary, maxTime: Double) -> Feed {
-        var result = Feed()
+        let result = Feed()
         var feedChannels = Array<Channel>()
         
         let feed_id = dataEntry.valueForKey("id") as! Int
@@ -79,7 +79,7 @@ class JsonParser {
         let keys = channels.keyEnumerator()
         while let channelName = keys.nextObject() as? String {
             // Only grab channels that we care about
-            if let index = find(Constants.channelNames,channelName) {
+            if let index = Constants.channelNames.indexOf(channelName) {
                 // NOTICE: we must also make sure that this specific channel was updated
                 // in the past 24 hours ("maxTime").
                 let channel = channels.valueForKey(channelName) as! NSDictionary
@@ -96,7 +96,7 @@ class JsonParser {
     
     
     static func parseChannelFromJson(channelName: String, feed: Feed, dataEntry: NSDictionary) -> Channel {
-        var channel = Channel()
+        let channel = Channel()
         
         let minTimeSecs = dataEntry.valueForKey("minTimeSecs") as! Double
         let maxTimeSecs = dataEntry.valueForKey("maxTimeSecs") as! Double

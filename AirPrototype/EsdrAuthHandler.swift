@@ -31,7 +31,7 @@ class EsdrAuthHandler {
     func requestEsdrToken(username: String, password: String, completionHandler: ((NSURL!, NSURLResponse!, NSError!) -> Void)? ) {
         // generate safe URL
         let address = Constants.Esdr.API_URL + "/oauth/token"
-        var url = NSURL(string: address.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+        let url = NSURL(string: address.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
         
         // create request
         let request = NSMutableURLRequest(URL: url!)
@@ -44,7 +44,7 @@ class EsdrAuthHandler {
             "username": username,
             "password": password
         ]
-        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions.allZeros, error: nil)
+        request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions())
         
         // send request
         HttpRequestHandler.sharedInstance.sendJsonRequest(request, completionHandler: completionHandler)
@@ -65,7 +65,7 @@ class EsdrAuthHandler {
             "client_secret": Constants.Esdr.CLIENT_SECRET,
             "refresh_token": refreshToken
         ]
-        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions.allZeros, error: nil)
+        request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions())
         
         // response handler
         func responseHandler(url: NSURL!, response: NSURLResponse!, error: NSError!) {
@@ -73,7 +73,7 @@ class EsdrAuthHandler {
                 NSLog("requestEsdrRefresh received error from refreshToken=\(refreshToken)")
             } else {
                 NSLog("Responded with \(response.description)")
-                let data = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: nil, error: nil) as? NSDictionary
+                let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: [])) as? NSDictionary
                 let access_token = data!.valueForKey("access_token") as? String
                 let refresh_token = data!.valueForKey("refresh_token") as? String
                 if access_token != nil && refresh_token != nil {

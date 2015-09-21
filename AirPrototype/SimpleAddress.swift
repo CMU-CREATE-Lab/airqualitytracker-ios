@@ -68,9 +68,9 @@ class SimpleAddress: Readable, Hashable {
                 // on me one time when starting up simulator & running
                 NSLog("Got status code \(httpResponse.statusCode) != 200")
             } else {
-                let data = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: nil, error: nil) as? NSDictionary
+                let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: [])) as? NSDictionary
                 
-                var feeds = JsonParser.populateFeedsFromJson(data!, maxTime: maxTime)
+                let feeds = JsonParser.populateFeedsFromJson(data!, maxTime: maxTime)
                 NSLog("populated \(feeds.count) feeds")
                 if feeds.count > 0 {
                     NSLog("Found non-zero feeds")

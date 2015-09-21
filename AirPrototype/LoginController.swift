@@ -57,7 +57,7 @@ class LoginController: UIViewController {
     func onClickLogin() {
         username = loginView!.textFieldUsername.text
         let password = loginView!.textFieldPassword.text
-        HttpRequestHandler.sharedInstance.requestEsdrToken(username!, password: password, completionHandler: { (url: NSURL!, response: NSURLResponse!, error: NSError!) -> Void in
+        HttpRequestHandler.sharedInstance.requestEsdrToken(username!, password: password!, completionHandler: { (url: NSURL!, response: NSURLResponse!, error: NSError!) -> Void in
             let httpResponse = response as! NSHTTPURLResponse
             if error != nil {
                 NSLog("error is not nil")
@@ -66,7 +66,7 @@ class LoginController: UIViewController {
                 // on me one time when starting up simulator & running
                 NSLog("Got status code \(httpResponse.statusCode) != 200")
             } else {
-                let data = NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: nil, error: nil) as! NSDictionary
+                let data = (try! NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url)!, options: [])) as! NSDictionary
                 let accessToken = data.valueForKey("access_token") as! String
                 let refreshToken = data.valueForKey("refresh_token") as! String
                 let userId = data.valueForKey("userId") as! Int
