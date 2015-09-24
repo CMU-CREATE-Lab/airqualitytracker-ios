@@ -23,6 +23,11 @@
 		A158F6161B8E504500FCE2E1 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158F6151B8E504500FCE2E1 /* Location.swift */; };
 		A15C18601BA757330070D52D /* twitterlogo_small_white.png in Resources */ = {isa = PBXBuildFile; fileRef = A15C185F1BA757330070D52D /* twitterlogo_small_white.png */; };
 		A15C18621BA757F30070D52D /* Dosis-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A15C18611BA757F30070D52D /* Dosis-Light.ttf */; };
+		A15DCA171BB48AE9000DF2F1 /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = A15DCA121BB48AE9000DF2F1 /* Icon-76.png */; settings = {ASSET_TAGS = (); }; };
+		A15DCA181BB48AE9000DF2F1 /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = A15DCA131BB48AE9000DF2F1 /* Icon-120.png */; settings = {ASSET_TAGS = (); }; };
+		A15DCA191BB48AE9000DF2F1 /* Icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = A15DCA141BB48AE9000DF2F1 /* Icon-152.png */; settings = {ASSET_TAGS = (); }; };
+		A15DCA1A1BB48AE9000DF2F1 /* Icon-167.png in Resources */ = {isa = PBXBuildFile; fileRef = A15DCA151BB48AE9000DF2F1 /* Icon-167.png */; settings = {ASSET_TAGS = (); }; };
+		A15DCA1B1BB48AE9000DF2F1 /* Icon-180.png in Resources */ = {isa = PBXBuildFile; fileRef = A15DCA161BB48AE9000DF2F1 /* Icon-180.png */; settings = {ASSET_TAGS = (); }; };
 		A1626DF91B555A79006D990C /* AddressSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1626DF81B555A79006D990C /* AddressSearchController.swift */; };
 		A16481FB1B5D553F0023DE09 /* AddressShowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16481FA1B5D553F0023DE09 /* AddressShowController.swift */; };
 		A1660FF71B568B6700608C5D /* ResultsControllerAddressSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1660FF61B568B6700608C5D /* ResultsControllerAddressSearch.swift */; };
@@ -79,10 +84,15 @@
 		A158F6151B8E504500FCE2E1 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		A15C185F1BA757330070D52D /* twitterlogo_small_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = twitterlogo_small_white.png; path = Assets/twitterlogo_small_white.png; sourceTree = "<group>"; };
 		A15C18611BA757F30070D52D /* Dosis-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Dosis-Light.ttf"; path = "Assets/Dosis-Light.ttf"; sourceTree = "<group>"; };
+		A15DCA121BB48AE9000DF2F1 /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-76.png"; path = "Assets/Icon-76.png"; sourceTree = "<group>"; };
+		A15DCA131BB48AE9000DF2F1 /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-120.png"; path = "Assets/Icon-120.png"; sourceTree = "<group>"; };
+		A15DCA141BB48AE9000DF2F1 /* Icon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-152.png"; path = "Assets/Icon-152.png"; sourceTree = "<group>"; };
+		A15DCA151BB48AE9000DF2F1 /* Icon-167.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-167.png"; path = "Assets/Icon-167.png"; sourceTree = "<group>"; };
+		A15DCA161BB48AE9000DF2F1 /* Icon-180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-180.png"; path = "Assets/Icon-180.png"; sourceTree = "<group>"; };
 		A1626DF81B555A79006D990C /* AddressSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressSearchController.swift; sourceTree = "<group>"; };
 		A16481FA1B5D553F0023DE09 /* AddressShowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressShowController.swift; sourceTree = "<group>"; };
 		A1660FF61B568B6700608C5D /* ResultsControllerAddressSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsControllerAddressSearch.swift; sourceTree = "<group>"; };
-		A1666F7D1B54125400A8E39F /* AirPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1666F7D1B54125400A8E39F /* SpeckSensor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeckSensor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1666F811B54125400A8E39F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1666F821B54125400A8E39F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1666F851B54125400A8E39F /* AirPrototype.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AirPrototype.xcdatamodel; sourceTree = "<group>"; };
@@ -199,7 +209,7 @@
 		A1666F7E1B54125400A8E39F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A1666F7D1B54125400A8E39F /* AirPrototype.app */,
+				A1666F7D1B54125400A8E39F /* SpeckSensor.app */,
 				A1666F951B54125400A8E39F /* AirPrototypeTests.xctest */,
 			);
 			name = Products;
@@ -224,6 +234,11 @@
 		A1666F801B54125400A8E39F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A15DCA121BB48AE9000DF2F1 /* Icon-76.png */,
+				A15DCA131BB48AE9000DF2F1 /* Icon-120.png */,
+				A15DCA141BB48AE9000DF2F1 /* Icon-152.png */,
+				A15DCA151BB48AE9000DF2F1 /* Icon-167.png */,
+				A15DCA161BB48AE9000DF2F1 /* Icon-180.png */,
 				A15C18611BA757F30070D52D /* Dosis-Light.ttf */,
 				A15C185F1BA757330070D52D /* twitterlogo_small_white.png */,
 				A1666F811B54125400A8E39F /* Info.plist */,
@@ -315,9 +330,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A1666F7C1B54125400A8E39F /* AirPrototype */ = {
+		A1666F7C1B54125400A8E39F /* SpeckSensor */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A1666F9F1B54125400A8E39F /* Build configuration list for PBXNativeTarget "AirPrototype" */;
+			buildConfigurationList = A1666F9F1B54125400A8E39F /* Build configuration list for PBXNativeTarget "SpeckSensor" */;
 			buildPhases = (
 				A1666F791B54125400A8E39F /* Sources */,
 				A1666F7A1B54125400A8E39F /* Frameworks */,
@@ -327,9 +342,9 @@
 			);
 			dependencies = (
 			);
-			name = AirPrototype;
+			name = SpeckSensor;
 			productName = AirPrototype;
-			productReference = A1666F7D1B54125400A8E39F /* AirPrototype.app */;
+			productReference = A1666F7D1B54125400A8E39F /* SpeckSensor.app */;
 			productType = "com.apple.product-type.application";
 		};
 		A1666F941B54125400A8E39F /* AirPrototypeTests */ = {
@@ -389,7 +404,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A1666F7C1B54125400A8E39F /* AirPrototype */,
+				A1666F7C1B54125400A8E39F /* SpeckSensor */,
 				A1666F941B54125400A8E39F /* AirPrototypeTests */,
 			);
 		};
@@ -403,11 +418,16 @@
 				A1666F8B1B54125400A8E39F /* Main.storyboard in Resources */,
 				A15C18601BA757330070D52D /* twitterlogo_small_white.png in Resources */,
 				A156757B1B57D537006982A1 /* ResultsTableViewCellAddressSearch.xib in Resources */,
+				A15DCA1B1BB48AE9000DF2F1 /* Icon-180.png in Resources */,
 				A16F708D1BAB316500F616F6 /* LoginView.xib in Resources */,
 				A16F708F1BAB370600F616F6 /* LogoutView.xib in Resources */,
 				A1666F901B54125400A8E39F /* LaunchScreen.xib in Resources */,
 				A15C18621BA757F30070D52D /* Dosis-Light.ttf in Resources */,
+				A15DCA1A1BB48AE9000DF2F1 /* Icon-167.png in Resources */,
 				A1666F8D1B54125400A8E39F /* Images.xcassets in Resources */,
+				A15DCA191BB48AE9000DF2F1 /* Icon-152.png in Resources */,
+				A15DCA181BB48AE9000DF2F1 /* Icon-120.png in Resources */,
+				A15DCA171BB48AE9000DF2F1 /* Icon-76.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,7 +494,7 @@
 /* Begin PBXTargetDependency section */
 		A1666F971B54125400A8E39F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A1666F7C1B54125400A8E39F /* AirPrototype */;
+			target = A1666F7C1B54125400A8E39F /* SpeckSensor */;
 			targetProxy = A1666F961B54125400A8E39F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -662,7 +682,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A1666F9F1B54125400A8E39F /* Build configuration list for PBXNativeTarget "AirPrototype" */ = {
+		A1666F9F1B54125400A8E39F /* Build configuration list for PBXNativeTarget "SpeckSensor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A1666FA01B54125400A8E39F /* Debug */,
