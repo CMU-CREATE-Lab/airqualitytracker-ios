@@ -76,8 +76,8 @@ class HttpRequestHandler {
     }
 
 
-    func requestEsdrRefresh(refreshToken: String) {
-        EsdrAuthHandler.sharedInstance.requestEsdrRefresh(refreshToken)
+    func requestEsdrRefresh(refreshToken: String, responseHandler: (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void) {
+        EsdrAuthHandler.sharedInstance.requestEsdrRefresh(refreshToken, responseHandler: responseHandler)
     }
     
     

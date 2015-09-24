@@ -51,7 +51,7 @@ class EsdrAuthHandler {
     }
     
     
-    func requestEsdrRefresh(refreshToken: String) {
+    func requestEsdrRefresh(refreshToken: String, responseHandler: (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void ) {
         // generate safe URL
         let address = Constants.Esdr.API_URL + "/oauth/token"
         var url = NSURL(string: address.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
@@ -66,24 +66,6 @@ class EsdrAuthHandler {
             "refresh_token": refreshToken
         ]
         request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions())
-        
-        // response handler
-        func responseHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
-            if error != nil {
-                NSLog("requestEsdrRefresh received error from refreshToken=\(refreshToken)")
-            } else {
-                NSLog("Responded with \(response!.description)")
-                let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
-                let access_token = data!.valueForKey("access_token") as? String
-                let refresh_token = data!.valueForKey("refresh_token") as? String
-                if access_token != nil && refresh_token != nil {
-                    NSLog("found access_token=\(access_token), refresh_token=\(refresh_token)")
-                    SettingsHandler.sharedInstance.updateEsdrTokens(access_token!, refreshToken: refresh_token!)
-                } else {
-                    NSLog("Failed to grab access/refresh token(s)")
-                }
-            }
-        }
         
         // send request
         HttpRequestHandler.sharedInstance.sendJsonRequest(request, completionHandler: responseHandler)

@@ -53,10 +53,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        // TODO code here
-        NSLog("Background Task STARTING")
-        completionHandler(UIBackgroundFetchResult.NewData)
-        NSLog("Background Task FINISHED")
+        if SettingsHandler.sharedInstance.userLoggedIn {
+            let refreshToken = SettingsHandler.sharedInstance.refreshToken!
+            
+            // response handler
+            func responseHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
+                if error != nil {
+                    NSLog("requestEsdrRefresh received error from refreshToken=\(refreshToken)")
+                    completionHandler(UIBackgroundFetchResult.Failed)
+                } else {
+                    NSLog("Responded with \(response!.description)")
+                    let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
+                    let access_token = data!.valueForKey("access_token") as? String
+                    let refresh_token = data!.valueForKey("refresh_token") as? String
+                    if access_token != nil && refresh_token != nil {
+                        NSLog("found access_token=\(access_token), refresh_token=\(refresh_token)")
+                        SettingsHandler.sharedInstance.updateEsdrTokens(access_token!, refreshToken: refresh_token!)
+                        NSLog("Background fetch was successful!")
+                        completionHandler(UIBackgroundFetchResult.NewData)
+                    } else {
+                        NSLog("Failed to grab access/refresh token(s)")
+                        completionHandler(UIBackgroundFetchResult.Failed)
+                    }
+                }
+            }
+            
+            HttpRequestHandler.sharedInstance.requestEsdrRefresh(refreshToken, responseHandler: responseHandler)
+        } else {
+            NSLog("Background fetch was successful! (not logged in)")
+            completionHandler(UIBackgroundFetchResult.NewData)
+        }
     }
 
     // MARK: - Core Data stack
