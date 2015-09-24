@@ -14,6 +14,7 @@ import CoreLocation
 class ReadableIndexController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet var gridView: UICollectionView!
+    var refreshController: UIRefreshControl?
     
     
     override func viewDidLoad() {
@@ -25,6 +26,16 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
         globalHandler.updateReadings()
         
         ServicesHandler.sharedInstance.startLocationService()
+        
+        self.refreshController = UIRefreshControl()
+        self.gridView.addSubview(self.refreshController!)
+        self.gridView.scrollEnabled = true
+        self.gridView.alwaysBounceVertical = true
+        self.refreshController!.addTarget(self, action:"refreshLayout", forControlEvents: UIControlEvents.ValueChanged)
+    }
+    func refreshLayout() {
+        GlobalHandler.sharedInstance.updateReadings()
+        self.refreshController!.endRefreshing()
     }
     
     
