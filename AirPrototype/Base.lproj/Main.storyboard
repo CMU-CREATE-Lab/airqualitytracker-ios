@@ -54,7 +54,7 @@
             </objects>
             <point key="canvasLocation" x="1361" y="-389"/>
         </scene>
-        <!--AddressShow Title-->
+        <!--Speck Sensor-->
         <scene sceneID="flw-cH-zgl">
             <objects>
                 <viewController id="Ckw-z9-HQ4" customClass="AddressShowController" customModule="AirPrototype" customModuleProvider="target" sceneMemberID="viewController">
@@ -159,7 +159,7 @@
                             <constraint firstItem="6PX-Qm-Jcq" firstAttribute="leading" secondItem="Zjw-c5-CdA" secondAttribute="leadingMargin" id="yjv-cH-Ell"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="AddressShow Title" id="wdX-hE-7BW">
+                    <navigationItem key="navigationItem" title="Speck Sensor" id="wdX-hE-7BW">
                         <barButtonItem key="rightBarButtonItem" title="Remove" id="6nY-E2-g0j">
                             <connections>
                                 <action selector="onClickRemove:" destination="Ckw-z9-HQ4" id="8Aj-pz-WwL"/>
@@ -210,7 +210,7 @@
             </objects>
             <point key="canvasLocation" x="648" y="1014"/>
         </scene>
-        <!--Settings Title-->
+        <!--Settings-->
         <scene sceneID="ak4-dF-izp">
             <objects>
                 <viewController id="HVd-bc-LBb" customClass="SettingsController" customModule="AirPrototype" customModuleProvider="target" sceneMemberID="viewController">
@@ -269,7 +269,7 @@
                             <constraint firstItem="bR1-VK-VIJ" firstAttribute="top" secondItem="9c6-uE-See" secondAttribute="bottom" constant="8" id="mZI-OH-syz"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Settings Title" id="tG2-lo-tnh"/>
+                    <navigationItem key="navigationItem" title="Settings" id="tG2-lo-tnh"/>
                     <connections>
                         <outlet property="currentLocationSwitch" destination="c4x-ji-YQ9" id="gbt-zr-I0E"/>
                         <outlet property="useLocationLabel" destination="Khm-9L-FWg" id="kke-oL-WFA"/>
@@ -279,7 +279,7 @@
             </objects>
             <point key="canvasLocation" x="648" y="-390"/>
         </scene>
-        <!--ReadableIndex Title-->
+        <!--Speck Sensor-->
         <scene sceneID="cDY-Mg-93x">
             <objects>
                 <collectionViewController id="gJr-qm-Dfq" customClass="ReadableIndexController" customModule="AirPrototype" customModuleProvider="target" sceneMemberID="viewController">
@@ -386,7 +386,7 @@
                         </connections>
                     </collectionView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="ReadableIndex Title" id="ete-WI-Qqo">
+                    <navigationItem key="navigationItem" title="Speck Sensor" id="ete-WI-Qqo">
                         <barButtonItem key="leftBarButtonItem" title="Settings" id="hQx-gw-7c4">
                             <connections>
                                 <segue destination="HVd-bc-LBb" kind="show" identifier="settingsSegue" id="JwG-tK-b3f"/>
