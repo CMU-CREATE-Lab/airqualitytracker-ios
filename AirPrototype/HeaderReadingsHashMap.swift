@@ -15,7 +15,6 @@ class HeaderReadingsHashMap {
     var specks = Array<Speck>()
     var headers = Constants.HEADER_TITLES
     var hashMap = [String: Array<Readable>]()
-    // (Android only) adapterList
     var adapterList = [String: [Readable]]()
     init() {
         gpsAddress = SimpleAddress()
@@ -36,30 +35,6 @@ class HeaderReadingsHashMap {
         }
         populateSpecks()
     }
-    
-    
-//    // (Android only)
-//    func populateAdapterList() {
-//        
-//    }
-    func populateAdapterList() {
-        var items: [Readable]
-//        var newHeaders = [String]()
-        headers.removeAll(keepCapacity: true)
-        
-        adapterList.removeAll(keepCapacity: true)
-        for header in Constants.HEADER_TITLES {
-            items = hashMap[header]!
-            if items.count > 0 {
-                adapterList[header] = items
-//                newHeaders.append(header)
-                headers.append(header)
-            }
-        }
-//        headers = newHeaders
-    }
-    
-    
     // required helpers to get the index since find() does not properly
     // match objects that should be equivalent.
     private func findIndexFromAddress(address: SimpleAddress) -> Int? {
@@ -81,6 +56,21 @@ class HeaderReadingsHashMap {
         }
         NSLog("WARNING - Failed to find index from speck")
         return nil
+    }
+    
+    
+    func populateAdapterList() {
+        var items: [Readable]
+        headers.removeAll(keepCapacity: true)
+        
+        adapterList.removeAll(keepCapacity: true)
+        for header in Constants.HEADER_TITLES {
+            items = hashMap[header]!
+            if items.count > 0 {
+                adapterList[header] = items
+                headers.append(header)
+            }
+        }
     }
     
     

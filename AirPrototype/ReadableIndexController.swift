@@ -33,10 +33,6 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
         self.gridView.alwaysBounceVertical = true
         self.refreshController!.addTarget(self, action:"refreshLayout", forControlEvents: UIControlEvents.ValueChanged)
     }
-    func refreshLayout() {
-        GlobalHandler.sharedInstance.updateReadings()
-        self.refreshController!.endRefreshing()
-    }
     
     
     override func didReceiveMemoryWarning() {
@@ -71,8 +67,12 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
     }
     
     
-    // MARK: Collection View Delegate
+    func refreshLayout() {
+        GlobalHandler.sharedInstance.updateReadings()
+        self.refreshController!.endRefreshing()
+    }
     
+    // MARK: Collection View Delegate
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
 //        return GlobalHandler.sharedInstance.headerReadingsHashMap.adapterList.keys.array.count

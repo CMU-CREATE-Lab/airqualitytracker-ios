@@ -39,7 +39,6 @@ class AddressSearchController: UIViewController, UISearchBarDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    
     // MARK: SearchBar delegate
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar){

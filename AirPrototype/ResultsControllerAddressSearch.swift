@@ -58,7 +58,6 @@ class ResultsControllerAddressSearch: UITableViewController, UISearchResultsUpda
         }
     }
     
-    
     // MARK: UITableView delegate
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

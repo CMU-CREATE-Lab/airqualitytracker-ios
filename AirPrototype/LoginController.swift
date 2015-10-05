@@ -17,6 +17,18 @@ class LoginController: UIViewController {
     var username: String?
     var loggedIn: Bool = false
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NSLog("LoginController did load!")
+        if SettingsHandler.sharedInstance.userLoggedIn {
+            loggedIn = true
+            username = SettingsHandler.sharedInstance.username
+        }
+        display()
+    }
+    
+    
     func display() {
         if loggedIn {
             logoutView = NSBundle.mainBundle().loadNibNamed("LogoutView", owner: contentView, options: nil).last as? LogoutView
@@ -44,15 +56,6 @@ class LoginController: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        NSLog("LoginController did load!")
-        if SettingsHandler.sharedInstance.userLoggedIn {
-            loggedIn = true
-            username = SettingsHandler.sharedInstance.username
-        }
-        display()
-    }
     
     func onClickLogin() {
         username = loginView!.textFieldUsername.text
@@ -87,6 +90,7 @@ class LoginController: UIViewController {
         loggedIn = true
         display()
     }
+    
     
     func onClickLogout() {
         // TODO stop esdr refresh service

@@ -16,6 +16,11 @@ class ReadableIndexCell: UICollectionViewCell {
     @IBOutlet var textItemName: UILabel!
     
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    
     func populate(reading: Readable) {
         if reading.hasReadableValue() {
             var value: String
@@ -54,11 +59,6 @@ class ReadableIndexCell: UICollectionViewCell {
             textItemLabel.hidden = true
             self.backgroundColor = Constants.DefaultReading.DEFAULT_COLOR_BACKGROUND
         }
-    }
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
     }
     
 }

@@ -20,12 +20,27 @@ class AddressShowController: UIViewController {
     @IBOutlet var mainView: UIView!
     var reading: Readable?
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NSLog("Loaded AddressShow with address " + reading!.getName())
+        populateView()
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
     @IBAction func onClickRemove(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
         if let readableIndexController = self.navigationController?.visibleViewController as? ReadableIndexController {
             readableIndexController.removeReading(reading!)
         }
     }
+    
     
     func defaultView() {
         labelMeasurementRange.text = ""
@@ -36,6 +51,7 @@ class AddressShowController: UIViewController {
         labelReadingMeasurement.text = ""
         labelReadingMeasurement.hidden = true
     }
+    
     
     func addressView(address: SimpleAddress) {
         if address.isCurrentLocation {
@@ -68,6 +84,7 @@ class AddressShowController: UIViewController {
         }
     }
     
+    
     func speckView(speck: Speck) {
         // TODO speck view actions
 //        labelReadingMeasurement.hidden = false
@@ -92,6 +109,7 @@ class AddressShowController: UIViewController {
         }
     }
     
+    
     func populateView() {
         labelName.text = reading!.getName()
         let type = reading!.getReadableType()
@@ -103,18 +121,6 @@ class AddressShowController: UIViewController {
         default:
             NSLog("WARNING - could not populate view; unknown readable type")
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        NSLog("Loaded AddressShow with address " + reading!.getName())
-        populateView()
-    }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 }
