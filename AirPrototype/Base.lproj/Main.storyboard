@@ -15,7 +15,7 @@
         <!--Speck Account-->
         <scene sceneID="Bac-JU-zrx">
             <objects>
-                <viewController id="rgT-Bo-s2K" customClass="LoginController" customModule="AirPrototype" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="rgT-Bo-s2K" customClass="LoginController" customModule="SpeckSensor" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Aqj-uh-TT8"/>
                         <viewControllerLayoutGuide type="bottom" id="iaW-TB-tA9"/>
@@ -52,12 +52,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hIe-pr-Uca" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1361" y="-389"/>
+            <point key="canvasLocation" x="1464" y="-390"/>
         </scene>
         <!--Speck Sensor-->
         <scene sceneID="flw-cH-zgl">
             <objects>
-                <viewController id="Ckw-z9-HQ4" customClass="AddressShowController" customModule="AirPrototype" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ckw-z9-HQ4" customClass="AddressShowController" customModule="SpeckSensor" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VFb-4d-r8W"/>
                         <viewControllerLayoutGuide type="bottom" id="cbR-Gh-XfB"/>
@@ -183,7 +183,7 @@
         <!--Address Search-->
         <scene sceneID="RDq-GZ-7sE">
             <objects>
-                <viewController id="82V-3g-Hks" customClass="AddressSearchController" customModule="AirPrototype" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="82V-3g-Hks" customClass="AddressSearchController" customModule="SpeckSensor" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dhn-ft-vVV"/>
                         <viewControllerLayoutGuide type="bottom" id="X28-cN-SwD"/>
@@ -210,10 +210,132 @@
             </objects>
             <point key="canvasLocation" x="648" y="1014"/>
         </scene>
+        <!--About Air Quality Index-->
+        <scene sceneID="Vna-ER-llP">
+            <objects>
+                <viewController id="38L-uv-yio" customClass="AboutAirQualityController" customModule="SpeckSensor" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oJD-vo-ZzW"/>
+                        <viewControllerLayoutGuide type="bottom" id="f2J-cE-Mu0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gvm-Sj-nwd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxa-mp-8YL">
+                                <rect key="frame" x="20" y="64" width="560" height="492"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jI2-cX-eCT">
+                                        <rect key="frame" x="0.0" y="-50" width="560" height="800"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Air Quality Index" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDc-dq-dVY">
+                                                <rect key="frame" x="0.0" y="8" width="143" height="22"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FY4-F1-HZv">
+                                                <rect key="frame" x="0.0" y="38" width="560" height="819"/>
+                                                <string key="text">The Air Quality Index (AQI) is a measure for reporting daily air quality based on how clean or polluted the air is in your community. A high AQI value is associated with a greater level of air pollution and increased health risks. AQI is based on five major pollutants - ozone, fine particulate matter, nitrogen dioxide, carbon monoxide, and sulphur dioxide. The two that pose the highest health risks are ozone and fine particulate matter.The EPA implemented the Clean Air Act to control air pollution, but millions of Americans live in areas that exceed government-established safety levels.
+
+People with diabetes, lung disease, asthma, or heart disease are very sensitive to air pollution. A high AQI reading can make it harder to breathe or worsen chronic disease by irritating lungs and airways. Fine particles can lodge deep in the lungs and enter the bloodstream.
+
+Children are particularly susceptible to asthma because their lungs and defense systems are developing. Children breathe more rapidly than adults, and take in more air per pound, which exposes them to higher levels of fine particles or pollutants.
+
+Help keep our air pollution laws strong by joining the @SpeckSensor conversation on Facebook and Twitter! You can also purchase your own indoor air quality monitor at http://www.specksensor.com.
+
+
+AQI Scale
+
+
+Each category corresponds to a different level of health concern. The six levels of health concern and what they mean are taken from AirNow's website: http://airnow.gov
+
+Good AQI is 0 - 50. Air quality is considered satisfactory, and air pollution poses little or no risk.
+
+Moderate AQI is 51 - 100. Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people. For example, people who are unusually sensitive to ozone may experience respiratory symptoms.
+
+Unhealthy for Sensitive Groups AQI is 101 - 150. Although general public is not likely to be affected at this AQI range, people with lung disease, older adults and children are at a greater risk from exposure to ozone, whereas persons with heart and lung disease, older adults and children are at greater risk from the presence of particles in the air.
+
+Unhealthy AQI is 151 - 200. Everyone may begin to experience some adverse health effects, and members of the sensitive groups may experience more serious effects.
+
+Very Unhealthy AQI is 201 - 300. This would trigger a health alert signifying that everyone may experience more serious health effects.
+
+Hazardous AQI is greater than 300. This would trigger a health warning of emergency conditions. The entire population is more likely to be affected.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="sDc-dq-dVY" firstAttribute="leading" secondItem="jI2-cX-eCT" secondAttribute="leading" id="Jqn-DR-m3k"/>
+                                            <constraint firstItem="FY4-F1-HZv" firstAttribute="top" secondItem="sDc-dq-dVY" secondAttribute="bottom" constant="8" id="Ku7-0D-jPW"/>
+                                            <constraint firstAttribute="trailing" secondItem="FY4-F1-HZv" secondAttribute="trailing" id="TTx-Dr-Z6d"/>
+                                            <constraint firstItem="sDc-dq-dVY" firstAttribute="top" secondItem="jI2-cX-eCT" secondAttribute="top" constant="8" id="XTN-Df-4Va"/>
+                                            <constraint firstItem="FY4-F1-HZv" firstAttribute="leading" secondItem="jI2-cX-eCT" secondAttribute="leading" id="YLJ-Eh-uYF"/>
+                                            <constraint firstAttribute="height" constant="800" id="hli-5C-ioX"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="jI2-cX-eCT" firstAttribute="centerX" secondItem="vxa-mp-8YL" secondAttribute="centerX" id="3XF-fe-n8v"/>
+                                    <constraint firstItem="jI2-cX-eCT" firstAttribute="top" secondItem="vxa-mp-8YL" secondAttribute="top" constant="-50" id="Ach-RN-fGh"/>
+                                    <constraint firstAttribute="trailing" secondItem="jI2-cX-eCT" secondAttribute="trailing" id="FhJ-8r-b5I"/>
+                                    <constraint firstAttribute="bottom" secondItem="jI2-cX-eCT" secondAttribute="bottom" id="Tq8-XC-2yt"/>
+                                    <constraint firstItem="jI2-cX-eCT" firstAttribute="leading" secondItem="vxa-mp-8YL" secondAttribute="leading" id="c3c-IK-iba"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="vxa-mp-8YL" secondAttribute="trailing" id="NyI-zM-gI3"/>
+                            <constraint firstItem="f2J-cE-Mu0" firstAttribute="top" secondItem="vxa-mp-8YL" secondAttribute="bottom" id="S7C-qe-OmT"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="vxa-mp-8YL" secondAttribute="leading" id="Txb-JA-U69"/>
+                            <constraint firstItem="vxa-mp-8YL" firstAttribute="top" secondItem="oJD-vo-ZzW" secondAttribute="bottom" id="Z2l-44-267"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="About Air Quality Index" id="bkt-LX-dWR"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cnn-3Y-XaH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="807" y="-1074"/>
+        </scene>
+        <!--About Speck Controller-->
+        <scene sceneID="fz1-E2-LkE">
+            <objects>
+                <viewController id="OcZ-Rd-X1d" customClass="AboutSpeckController" customModule="SpeckSensor" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dzv-KA-x26"/>
+                        <viewControllerLayoutGuide type="bottom" id="dxK-EY-4gG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="r5t-SU-Phf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Speck" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rbk-DJ-6fY">
+                                <rect key="frame" x="20" y="28" width="48" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Speck" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iug-sn-OhZ">
+                                <rect key="frame" x="20" y="72" width="48" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9yS-nS-pr4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1464" y="-1074"/>
+        </scene>
         <!--Settings-->
         <scene sceneID="ak4-dF-izp">
             <objects>
-                <viewController id="HVd-bc-LBb" customClass="SettingsController" customModule="AirPrototype" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="HVd-bc-LBb" customClass="SettingsController" customModule="SpeckSensor" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9c6-uE-See"/>
                         <viewControllerLayoutGuide type="bottom" id="Lt0-Nv-GWQ"/>
@@ -255,14 +377,38 @@
                                     <segue destination="rgT-Bo-s2K" kind="show" id="EN4-8N-F25"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAJ-gw-u1a">
+                                <rect key="frame" x="20" y="169" width="123" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="About Air Quality">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="38L-uv-yio" kind="show" id="qJ7-DW-LNg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eh2-Y3-IaQ">
+                                <rect key="frame" x="20" y="209" width="94" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="About Speck">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="OcZ-Rd-X1d" kind="show" id="UzC-FP-Oe1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="eh2-Y3-IaQ" firstAttribute="top" secondItem="uAJ-gw-u1a" secondAttribute="bottom" constant="8" id="3xo-1E-arY"/>
                             <constraint firstItem="Khm-9L-FWg" firstAttribute="leading" secondItem="0WE-0D-1S6" secondAttribute="leadingMargin" id="4d7-ka-2pj"/>
+                            <constraint firstItem="uAJ-gw-u1a" firstAttribute="top" secondItem="llM-s4-NBc" secondAttribute="bottom" constant="8" id="9Zp-pY-O3Y"/>
                             <constraint firstItem="c4x-ji-YQ9" firstAttribute="leading" secondItem="Khm-9L-FWg" secondAttribute="trailing" id="9ke-AV-s6m"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="eh2-Y3-IaQ" secondAttribute="leading" id="BNM-Oq-7xW"/>
                             <constraint firstItem="c4x-ji-YQ9" firstAttribute="top" secondItem="9c6-uE-See" secondAttribute="bottom" constant="8" id="Ju0-Ue-igw"/>
                             <constraint firstItem="c4x-ji-YQ9" firstAttribute="trailing" secondItem="0WE-0D-1S6" secondAttribute="trailingMargin" id="W8c-tt-7x9"/>
                             <constraint firstItem="llM-s4-NBc" firstAttribute="top" secondItem="Khm-9L-FWg" secondAttribute="bottom" constant="8" id="aTR-iU-DtL"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="uAJ-gw-u1a" secondAttribute="leading" id="cJI-dp-kOg"/>
                             <constraint firstItem="Khm-9L-FWg" firstAttribute="top" secondItem="bR1-VK-VIJ" secondAttribute="bottom" id="d1e-AX-9VO"/>
                             <constraint firstItem="llM-s4-NBc" firstAttribute="leading" secondItem="0WE-0D-1S6" secondAttribute="leadingMargin" id="dxw-WU-S2I"/>
                             <constraint firstItem="bR1-VK-VIJ" firstAttribute="leading" secondItem="0WE-0D-1S6" secondAttribute="leadingMargin" id="kK8-iu-RRP"/>
@@ -282,7 +428,7 @@
         <!--Speck Sensor-->
         <scene sceneID="cDY-Mg-93x">
             <objects>
-                <collectionViewController id="gJr-qm-Dfq" customClass="ReadableIndexController" customModule="AirPrototype" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="gJr-qm-Dfq" customClass="ReadableIndexController" customModule="SpeckSensor" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="e22-yQ-692">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -293,7 +439,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MyCell" id="Xfp-UX-CzV" customClass="ReadableIndexCell" customModule="AirPrototype" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MyCell" id="Xfp-UX-CzV" customClass="ReadableIndexCell" customModule="SpeckSensor" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="104" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -359,7 +505,7 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MyViewHeader" id="FSf-Xy-hCo" customClass="ReadableIndexHeader" customModule="AirPrototype" customModuleProvider="target">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MyViewHeader" id="FSf-Xy-hCo" customClass="ReadableIndexHeader" customModule="SpeckSensor" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="64" width="600" height="40"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
@@ -422,6 +568,13 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TtK-cN-bB9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-340" y="305"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="SaC-Ap-8kT">
+            <objects>
+                <viewControllerPlaceholder id="P9c-Q7-lMy" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5ZF-DJ-VgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>

@@ -53,6 +53,8 @@
 		A16F708F1BAB370600F616F6 /* LogoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A16F708E1BAB370600F616F6 /* LogoutView.xib */; };
 		A16F70911BAB3BD500F616F6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16F70901BAB3BD500F616F6 /* LoginView.swift */; };
 		A16F70931BAB3D8100F616F6 /* LogoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16F70921BAB3D8100F616F6 /* LogoutView.swift */; };
+		A1740DBA1BC41B3100617185 /* AboutAirQualityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1740DB91BC41B3100617185 /* AboutAirQualityController.swift */; settings = {ASSET_TAGS = (); }; };
+		A1740DBC1BC41B5B00617185 /* AboutSpeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1740DBB1BC41B5B00617185 /* AboutSpeckController.swift */; settings = {ASSET_TAGS = (); }; };
 		A1E2A91D1B99ED47003A3B3A /* SettingsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E2A91C1B99ED47003A3B3A /* SettingsHandler.swift */; };
 		A1F58E591B97284800D04C91 /* Readable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F58E581B97284800D04C91 /* Readable.swift */; };
 		A1F58E5B1B972DD700D04C91 /* Speck.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F58E5A1B972DD700D04C91 /* Speck.swift */; };
@@ -122,6 +124,8 @@
 		A16F708E1BAB370600F616F6 /* LogoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogoutView.xib; sourceTree = "<group>"; };
 		A16F70901BAB3BD500F616F6 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A16F70921BAB3D8100F616F6 /* LogoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutView.swift; sourceTree = "<group>"; };
+		A1740DB91BC41B3100617185 /* AboutAirQualityController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAirQualityController.swift; sourceTree = "<group>"; };
+		A1740DBB1BC41B5B00617185 /* AboutSpeckController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutSpeckController.swift; sourceTree = "<group>"; };
 		A1E2A91C1B99ED47003A3B3A /* SettingsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHandler.swift; sourceTree = "<group>"; };
 		A1F58E581B97284800D04C91 /* Readable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Readable.swift; sourceTree = "<group>"; };
 		A1F58E5A1B972DD700D04C91 /* Speck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Speck.swift; sourceTree = "<group>"; };
@@ -283,6 +287,8 @@
 				A16481F91B5D552D0023DE09 /* address_show */,
 				A1626DF71B555A5F006D990C /* address_search */,
 				A151A6EC1BA99D2900851F05 /* SettingsController.swift */,
+				A1740DB91BC41B3100617185 /* AboutAirQualityController.swift */,
+				A1740DBB1BC41B5B00617185 /* AboutSpeckController.swift */,
 			);
 			name = "activities (ios controllers)";
 			sourceTree = "<group>";
@@ -471,6 +477,7 @@
 				A1666FAC1B54190A00A8E39F /* Feed.swift in Sources */,
 				A1F58E5D1B975BE700D04C91 /* EsdrAuthHandler.swift in Sources */,
 				A1F58E5F1B9786C500D04C91 /* HeaderReadingsHashMap.swift in Sources */,
+				A1740DBC1BC41B5B00617185 /* AboutSpeckController.swift in Sources */,
 				A16A14711B5FD9070026E9C8 /* JsonParser.swift in Sources */,
 				A1E2A91D1B99ED47003A3B3A /* SettingsHandler.swift in Sources */,
 				A1666F831B54125400A8E39F /* AppDelegate.swift in Sources */,
@@ -485,6 +492,7 @@
 				A1FEAB411B8CF19D00F9716B /* StoredAddress.swift in Sources */,
 				A1660FF71B568B6700608C5D /* ResultsControllerAddressSearch.swift in Sources */,
 				A14C456B1BA0B2B000D6C9CF /* ReadableIndexController.swift in Sources */,
+				A1740DBA1BC41B3100617185 /* AboutAirQualityController.swift in Sources */,
 				A11844B11BA9FECC00435D11 /* CLLocationService.swift in Sources */,
 				A158F6111B8E000F00FCE2E1 /* DatabaseHelper.swift in Sources */,
 				A158F6131B8E305A00FCE2E1 /* EsdrFeedsHandler.swift in Sources */,
