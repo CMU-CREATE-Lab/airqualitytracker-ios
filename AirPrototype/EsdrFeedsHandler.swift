@@ -48,9 +48,24 @@ class EsdrFeedsHandler {
     }
     
     
-    func requestSpecks(authToken: String, userId: Int, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
+    func requestSpeckFeeds(authToken: String, userId: Int, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
         // generate safe URL
         let address = Constants.Esdr.API_URL + "/api/v1/feeds"
+        let params = "?whereAnd=userId=\(userId),productId=9"
+        let url = NSURL(string: (address+params).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+        
+        // create request
+        let request = NSMutableURLRequest(URL: url!)
+        request.HTTPMethod = "GET"
+        
+        // send request
+        HttpRequestHandler.sharedInstance.sendAuthorizedJsonRequest(authToken, urlRequest: request, completionHandler: completionHandler)
+    }
+    
+    
+    func requestSpeckDevices(authToken: String, userId: Int, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
+        // generate safe URL
+        let address = Constants.Esdr.API_URL + "/api/v1/devices"
         let params = "?whereAnd=userId=\(userId),productId=9"
         let url = NSURL(string: (address+params).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
         

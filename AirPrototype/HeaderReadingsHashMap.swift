@@ -127,22 +127,40 @@ class HeaderReadingsHashMap {
     
     
     func populateSpecks() {
-        specks.removeAll(keepCapacity: true)
+        self.specks.removeAll(keepCapacity: true)
         if SettingsHandler.sharedInstance.userLoggedIn {
-            func completionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
-                var feeds: Array<Feed>
+            let authToken = SettingsHandler.sharedInstance.accessToken
+            let userId = SettingsHandler.sharedInstance.userId
+            
+            func feedsCompletionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
+                var resultSpecks: Array<Speck>
                 let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
-                feeds = JsonParser.populateAllFeedsFromJson(data!)
-                for feed in feeds {
-                    let speck = Speck(feed: feed)
-                    specks.append(speck)
+                resultSpecks = JsonParser.populateSpecksFromJson(data!)
+                for speck in resultSpecks {
+                    self.specks.append(speck)
                     speck.requestUpdate()
+                }
+                HttpRequestHandler.sharedInstance.requestSpeckDevices(authToken!, userId: userId!, completionHandler: devicesCompletionHandler)
+            }
+            func devicesCompletionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
+                let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as! NSDictionary
+                if let rows = (data.valueForKey("data") as! NSDictionary).valueForKey("rows") as? Array<NSDictionary> {
+                    var deviceId: Int
+                    var prettyName: String
+                    for row in rows {
+                        deviceId = row.valueForKey("id") as! Int
+                        prettyName = row.valueForKey("name") as! String
+                        for speck in self.specks {
+                            if speck.deviceId == deviceId {
+                                speck.name = prettyName
+                                break;
+                            }
+                        }
+                    }
                 }
                 refreshHash()
             }
-            let authToken = SettingsHandler.sharedInstance.accessToken
-            let userId = SettingsHandler.sharedInstance.userId
-            HttpRequestHandler.sharedInstance.requestSpecks(authToken!, userId: userId!, completionHandler: completionHandler)
+            HttpRequestHandler.sharedInstance.requestSpeckFeeds(authToken!, userId: userId!, completionHandler: feedsCompletionHandler)
         }
         refreshHash()
     }

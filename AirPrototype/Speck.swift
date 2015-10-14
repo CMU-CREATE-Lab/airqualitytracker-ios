@@ -19,7 +19,8 @@ class Speck: Feed {
     
     // class-specific definitions
 
-    init(feed: Feed) {
+    init(feed: Feed, deviceId: Int) {
+        self.deviceId = deviceId
         super.init()
         
         self.feed_id = feed.feed_id
@@ -34,7 +35,7 @@ class Speck: Feed {
         NSLog("Constructed a new Speck! name=\(name), location=\(location), feedValue=\(feedValue)")
     }
     
-    // TODO add speck device-specific attributes
+    var deviceId: Int
     
     func requestUpdate() {
         if self.channels.count > 0 {

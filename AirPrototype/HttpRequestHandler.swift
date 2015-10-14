@@ -54,9 +54,15 @@ class HttpRequestHandler {
     func requestFeeds(location: Location, withinSeconds: Double, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void)) {
         EsdrFeedsHandler.sharedInstance.requestFeeds(location, withinSeconds: withinSeconds, completionHandler: completionHandler)
     }
-
-    func requestSpecks(authToken: String, userId: Int, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
-        EsdrFeedsHandler.sharedInstance.requestSpecks(authToken, userId: userId, completionHandler: completionHandler)
+    
+    
+    func requestSpeckFeeds(authToken: String, userId: Int, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
+        EsdrFeedsHandler.sharedInstance.requestSpeckFeeds(authToken, userId: userId, completionHandler: completionHandler)
+    }
+    
+    
+    func requestSpeckDevices(authToken: String, userId: Int, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
+        EsdrFeedsHandler.sharedInstance.requestSpeckDevices(authToken, userId: userId, completionHandler: completionHandler)
     }
 
 

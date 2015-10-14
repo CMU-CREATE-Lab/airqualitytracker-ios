@@ -50,8 +50,20 @@ class JsonParser {
     }
     
     
-    static func populateAllFeedsFromJson(data: NSDictionary) -> [Feed] {
-        return populateFeedsFromJson(data, maxTime: 0)
+    static func populateSpecksFromJson(data: NSDictionary) -> [Speck] {
+        var specks = Array<Speck>()
+        if let rows = (data.valueForKey("data") as! NSDictionary).valueForKey("rows") as? Array<NSDictionary> {
+            for row in rows {
+                let feed = JsonParser.parseFeedFromJson(row, maxTime: 0)
+                // only consider non-null feeds with at least 1 channel
+                if feed.channels.count > 0 {
+                    let deviceId = row.valueForKey("deviceId") as! Int
+                    let speck = Speck(feed: feed, deviceId: deviceId)
+                    specks.append(speck)
+                }
+            }
+        }
+        return specks
     }
     
     
