@@ -27,6 +27,9 @@
 		A156757D1B57D549006982A1 /* ResultsTableViewCellAddressSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A156757C1B57D549006982A1 /* ResultsTableViewCellAddressSearch.swift */; };
 		A15675811B583AAA006982A1 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15675801B583AAA006982A1 /* Converter.swift */; };
 		A15675831B5844C9006982A1 /* MapGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15675821B5844C9006982A1 /* MapGeometry.swift */; };
+		A158E1361BCFE6370026944E /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158E1351BCFE6370026944E /* Timer.swift */; settings = {ASSET_TAGS = (); }; };
+		A158E1381BCFE9B20026944E /* RefreshTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158E1371BCFE9B20026944E /* RefreshTimer.swift */; settings = {ASSET_TAGS = (); }; };
+		A158E13A1BCFF9440026944E /* AutocompleteTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158E1391BCFF9440026944E /* AutocompleteTimer.swift */; settings = {ASSET_TAGS = (); }; };
 		A158F6111B8E000F00FCE2E1 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158F6101B8E000F00FCE2E1 /* DatabaseHelper.swift */; };
 		A158F6131B8E305A00FCE2E1 /* EsdrFeedsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158F6121B8E305A00FCE2E1 /* EsdrFeedsHandler.swift */; };
 		A158F6161B8E504500FCE2E1 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158F6151B8E504500FCE2E1 /* Location.swift */; };
@@ -94,6 +97,9 @@
 		A156757C1B57D549006982A1 /* ResultsTableViewCellAddressSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCellAddressSearch.swift; sourceTree = "<group>"; };
 		A15675801B583AAA006982A1 /* Converter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		A15675821B5844C9006982A1 /* MapGeometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapGeometry.swift; sourceTree = "<group>"; };
+		A158E1351BCFE6370026944E /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		A158E1371BCFE9B20026944E /* RefreshTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTimer.swift; sourceTree = "<group>"; };
+		A158E1391BCFF9440026944E /* AutocompleteTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteTimer.swift; sourceTree = "<group>"; };
 		A158F6101B8E000F00FCE2E1 /* DatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		A158F6121B8E305A00FCE2E1 /* EsdrFeedsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EsdrFeedsHandler.swift; sourceTree = "<group>"; };
 		A158F6151B8E504500FCE2E1 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -301,6 +307,9 @@
 				A1F58E581B97284800D04C91 /* Readable.swift */,
 				A1666FA91B54176D00A8E39F /* SimpleAddress.swift */,
 				A1F58E5A1B972DD700D04C91 /* Speck.swift */,
+				A158E1351BCFE6370026944E /* Timer.swift */,
+				A158E1371BCFE9B20026944E /* RefreshTimer.swift */,
+				A158E1391BCFF9440026944E /* AutocompleteTimer.swift */,
 			);
 			name = classes;
 			sourceTree = "<group>";
@@ -482,6 +491,7 @@
 				A1E2A91D1B99ED47003A3B3A /* SettingsHandler.swift in Sources */,
 				A1666F831B54125400A8E39F /* AppDelegate.swift in Sources */,
 				A1666FB61B542E6A00A8E39F /* HttpRequestHandler.swift in Sources */,
+				A158E1361BCFE6370026944E /* Timer.swift in Sources */,
 				A1F58E5B1B972DD700D04C91 /* Speck.swift in Sources */,
 				A1666FAA1B54176D00A8E39F /* SimpleAddress.swift in Sources */,
 				A158F6161B8E504500FCE2E1 /* Location.swift in Sources */,
@@ -501,6 +511,8 @@
 				A1666F861B54125400A8E39F /* AirPrototype.xcdatamodeld in Sources */,
 				A16F70911BAB3BD500F616F6 /* LoginView.swift in Sources */,
 				A16F70931BAB3D8100F616F6 /* LogoutView.swift in Sources */,
+				A158E13A1BCFF9440026944E /* AutocompleteTimer.swift in Sources */,
+				A158E1381BCFE9B20026944E /* RefreshTimer.swift in Sources */,
 				A1666FB41B541D0500A8E39F /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

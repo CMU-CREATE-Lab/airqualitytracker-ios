@@ -27,23 +27,23 @@ class GlobalHandler {
     // keep track of ALL adapters for notify
     var readableIndexListView: UICollectionView?
     var appDelegate: AppDelegate
+    var refreshTimer: RefreshTimer
     init() {
         appDelegate = (UIApplication.sharedApplication().delegate! as! AppDelegate)
         headerReadingsHashMap = HeaderReadingsHashMap()
         GlobalHandler.singletonInstantiated = true
+        // expires in 5 minutes, with tolerance up to 30 seconds
+        self.refreshTimer = RefreshTimer(interval: 300.0, withTolerance: 30.0)
     }
-    
-    
-    // TODO global stuff
     
     
     func updateReadings() {
         headerReadingsHashMap.updateAddresses()
         headerReadingsHashMap.updateSpecks()
         if SettingsHandler.sharedInstance.appUsesLocation {
-            // TODO location services
             headerReadingsHashMap.gpsAddress.requestUpdateFeeds()
         }
+        self.refreshTimer.startTimer()
     }
     
     

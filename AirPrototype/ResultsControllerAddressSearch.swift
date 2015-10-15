@@ -16,45 +16,22 @@ class ResultsControllerAddressSearch: UITableViewController, UISearchResultsUpda
     var searchResultsList = Array<SimpleAddress>()
     var addressSearchController: AddressSearchController?
     var searchText: String?
-    var timer: NSTimer?
-    
-    
-    func timerExpires() {
-        NSLog("In timerExpires()")
-        let input = self.searchText!
-        HttpRequestHandler.sharedInstance.requestGeocodingFromApi(input, completionHandler: self.completionHandler)
-    }
-    
-    
-    func completionHandler (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
-        NSLog("In completionHandler \(self.description)")
-        let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
-        let results = JsonParser.parseAddressesFromJson(data!)
-        
-        searchResultsList.removeAll()
-        for value in results {
-            searchResultsList.append(value)
-        }
-        
-        dispatch_async(dispatch_get_main_queue()) {
-            self.tableView.reloadData()
-        }
-    }
+    var autocompleteTimer: AutocompleteTimer?
     
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let text = searchController.searchBar.text
         if text == "" {
-            if let timer = self.timer {
-                timer.invalidate()
+            if let timer = autocompleteTimer {
+                timer.stopTimer()
             }
         } else {
-            let currentTime = Int64(NSDate().timeIntervalSince1970*1000)
-            if let timer = self.timer {
-                timer.invalidate()
+            if let timer = autocompleteTimer {
+                timer.stopTimer()
             }
             self.searchText = text
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: Selector("timerExpires"), userInfo: nil, repeats: false)
+            self.autocompleteTimer = AutocompleteTimer(controller: self, interval: 0.2, withTolerance: nil)
+            self.autocompleteTimer!.startTimer()
         }
     }
     
