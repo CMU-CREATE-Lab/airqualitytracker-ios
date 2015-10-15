@@ -50,8 +50,14 @@ class EsdrFeedsHandler {
     
     func requestSpeckFeeds(authToken: String, userId: Int, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
         // generate safe URL
+        var listDevices = ""
+        if let blacklistedDevices = SettingsHandler.sharedInstance.blacklistedDevices {
+            for id in blacklistedDevices {
+                listDevices += ",deviceId<>\(id)"
+            }
+        }
         let address = Constants.Esdr.API_URL + "/api/v1/feeds"
-        let params = "?whereAnd=userId=\(userId),productId=9"
+        let params = "?whereAnd=userId=\(userId),productId=9\(listDevices)"
         let url = NSURL(string: (address+params).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
         
         // create request
@@ -65,8 +71,14 @@ class EsdrFeedsHandler {
     
     func requestSpeckDevices(authToken: String, userId: Int, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
         // generate safe URL
+        var listDevices = ""
+        if let blacklistedDevices = SettingsHandler.sharedInstance.blacklistedDevices {
+            for id in blacklistedDevices {
+                listDevices += ",id<>\(id)"
+            }
+        }
         let address = Constants.Esdr.API_URL + "/api/v1/devices"
-        let params = "?whereAnd=userId=\(userId),productId=9"
+        let params = "?whereAnd=userId=\(userId),productId=9\(listDevices)"
         let url = NSURL(string: (address+params).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
         
         // create request

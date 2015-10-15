@@ -29,6 +29,7 @@ class SettingsHandler {
     var userId: Int?
     var accessToken: String?
     var refreshToken: String?
+    var blacklistedDevices: [Int]?
     var appDelegate: AppDelegate
     init() {
         appDelegate = (UIApplication.sharedApplication().delegate! as? AppDelegate)!
@@ -41,6 +42,7 @@ class SettingsHandler {
         userId = userDefaults.valueForKey(Constants.SettingsKeys.userId) as? Int
         accessToken = userDefaults.valueForKey(Constants.SettingsKeys.accessToken) as? String
         refreshToken = userDefaults.valueForKey(Constants.SettingsKeys.refreshToken) as? String
+        blacklistedDevices = userDefaults.valueForKey(Constants.SettingsKeys.blacklistedDevices) as? [Int]
     }
     
     
@@ -51,6 +53,29 @@ class SettingsHandler {
         userId = userDefaults.valueForKey(Constants.SettingsKeys.userId) as? Int
         accessToken = userDefaults.valueForKey(Constants.SettingsKeys.accessToken) as? String
         refreshToken = userDefaults.valueForKey(Constants.SettingsKeys.refreshToken) as? String
+        blacklistedDevices = userDefaults.valueForKey(Constants.SettingsKeys.blacklistedDevices) as? [Int]
+    }
+    
+    
+    func deviceIsBlacklisted(deviceId: Int) -> Bool {
+        for id in blacklistedDevices! {
+            if id == deviceId {
+                return true
+            }
+        }
+        return false
+    }
+    
+    
+    func addToBlacklistedDevices(deviceId: Int) {
+        blacklistedDevices!.append(deviceId)
+        userDefaults.setObject(blacklistedDevices, forKey: Constants.SettingsKeys.blacklistedDevices)
+    }
+    
+    
+    func clearBlacklistedDevices() {
+        blacklistedDevices!.removeAll()
+        userDefaults.setObject(blacklistedDevices, forKey: Constants.SettingsKeys.blacklistedDevices)
     }
     
     
@@ -70,6 +95,8 @@ class SettingsHandler {
             self.userLoggedIn = userLoggedIn
             // repopulates specks on successful login/logout
             GlobalHandler.sharedInstance.headerReadingsHashMap.populateSpecks()
+            // also clears the blacklisted devices
+            self.clearBlacklistedDevices()
         }
     }
     

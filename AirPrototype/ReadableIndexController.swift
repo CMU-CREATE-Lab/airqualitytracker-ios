@@ -118,7 +118,11 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
         GlobalHandler.sharedInstance.headerReadingsHashMap.removeReading(reading)
         if reading.getReadableType() == .ADDRESS {
             DatabaseHelper.deleteAddressFromDb(reading as! SimpleAddress)
+        } else if reading.getReadableType() == .SPECK {
+            let speck = reading as! Speck
+            SettingsHandler.sharedInstance.addToBlacklistedDevices(speck.deviceId)
         }
+        
         gridView.reloadData()
     }
     

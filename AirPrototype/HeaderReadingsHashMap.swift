@@ -140,7 +140,9 @@ class HeaderReadingsHashMap {
                     self.specks.append(speck)
                     speck.requestUpdate()
                 }
-                HttpRequestHandler.sharedInstance.requestSpeckDevices(authToken!, userId: userId!, completionHandler: devicesCompletionHandler)
+                if resultSpecks.count > 0 {
+                    HttpRequestHandler.sharedInstance.requestSpeckDevices(authToken!, userId: userId!, completionHandler: devicesCompletionHandler)
+                }
             }
             func devicesCompletionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
                 let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as! NSDictionary
