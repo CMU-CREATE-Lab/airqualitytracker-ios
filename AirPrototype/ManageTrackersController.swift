@@ -12,11 +12,17 @@ import UIKit
 class ManageTrackersController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var currentLocationSwitch: UISwitch!
+    
+    @IBAction func onSwitchUserCurrentLocation(sender: AnyObject) {
+        SettingsHandler.sharedInstance.setAppUsesCurrentLocation(currentLocationSwitch.on)
+    }
     
     override func viewDidLoad() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.setEditing(true, animated: true)
+        currentLocationSwitch.on = SettingsHandler.sharedInstance.appUsesLocation
     }
     
     // MARK table view
