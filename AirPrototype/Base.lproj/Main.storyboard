@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -223,45 +224,70 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SbG-dy-Kdw">
-                                <rect key="frame" x="0.0" y="64" width="600" height="100"/>
-                                <color key="backgroundColor" red="0.61491794690000001" green="0.50509379369999996" blue="0.43094143820000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="49"/>
+                                <subviews>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lCE-Nl-S1k">
+                                        <rect key="frame" x="543" y="8" width="51" height="31"/>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXg-Eg-p2y">
+                                        <rect key="frame" x="8" y="13" width="128" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.34509803921568627" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="XmM-W7-BCT"/>
+                                    <constraint firstItem="gXg-Eg-p2y" firstAttribute="leading" secondItem="SbG-dy-Kdw" secondAttribute="leading" constant="8" id="1RS-l5-6QP"/>
+                                    <constraint firstItem="lCE-Nl-S1k" firstAttribute="top" secondItem="SbG-dy-Kdw" secondAttribute="top" constant="8" id="705-8e-e63"/>
+                                    <constraint firstAttribute="trailing" secondItem="lCE-Nl-S1k" secondAttribute="trailing" constant="8" id="9ZR-FB-iT7"/>
+                                    <constraint firstAttribute="height" constant="49" id="XmM-W7-BCT"/>
+                                    <constraint firstItem="gXg-Eg-p2y" firstAttribute="top" secondItem="lCE-Nl-S1k" secondAttribute="bottom" constant="-26" id="um2-T5-Ysw"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xbD-na-VIy">
-                                <rect key="frame" x="0.0" y="172" width="600" height="384"/>
-                                <color key="backgroundColor" red="0.24572955909708427" green="0.13404359785930436" blue="0.42056564245810057" alpha="1" colorSpace="calibratedRGB"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="50" sectionHeaderHeight="30" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="xbD-na-VIy">
+                                <rect key="frame" x="0.0" y="113" width="600" height="443"/>
+                                <color key="backgroundColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="TrackerReuse" id="wm4-a0-xQi" customClass="ManageTrackersTableViewCell" customModule="SpeckSensor" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="TrackerReuse" id="wm4-a0-xQi" customClass="ManageTrackersTableViewCell" customModule="SpeckSensor" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="30" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" tableViewCell="wm4-a0-xQi" id="Irq-WM-aI4">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJ2-Gy-w4T">
-                                                    <rect key="frame" x="8" y="10" width="46" height="30"/>
-                                                    <state key="normal" title="Button">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJ2-Gy-w4T">
+                                                    <rect key="frame" x="562" y="10" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="dJ2-Gy-w4T" secondAttribute="height" multiplier="1:1" id="jrJ-AO-EYk"/>
+                                                    </constraints>
+                                                    <state key="normal" image="ic_mode_edit_3x.png">
                                                         <color key="titleColor" red="0.0039215686274509803" green="0.47843137254901963" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="onClickEditName:" destination="wm4-a0-xQi" eventType="touchDown" id="Mb3-6W-AUI"/>
+                                                    </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&gt;&gt;" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kq0-mx-q2z">
-                                                    <rect key="frame" x="570" y="10" width="22" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tracker Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CKD-fG-kDn">
+                                                    <rect key="frame" x="8" y="10" width="546" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.60411574720670391" green="0.60411574720670391" blue="0.60411574720670391" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.34509803921568627" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="topMargin" secondItem="dJ2-Gy-w4T" secondAttribute="top" id="DAg-is-ISe"/>
-                                                <constraint firstAttribute="topMargin" secondItem="Kq0-mx-q2z" secondAttribute="top" id="EYY-uw-Phs"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="dJ2-Gy-w4T" secondAttribute="leading" id="XnK-kx-XDA"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Kq0-mx-q2z" secondAttribute="trailing" id="gWA-wn-a6f"/>
+                                                <constraint firstAttribute="topMargin" secondItem="dJ2-Gy-w4T" secondAttribute="top" id="47z-U1-FOe"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="CKD-fG-kDn" secondAttribute="leading" id="7mD-18-en8"/>
+                                                <constraint firstAttribute="topMargin" secondItem="CKD-fG-kDn" secondAttribute="top" id="Mbt-5S-fne"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="dJ2-Gy-w4T" secondAttribute="trailing" id="XOm-Xc-rqg"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="dJ2-Gy-w4T" secondAttribute="bottom" id="YN6-8J-X0O"/>
+                                                <constraint firstItem="dJ2-Gy-w4T" firstAttribute="leading" secondItem="CKD-fG-kDn" secondAttribute="trailing" constant="8" id="kJz-gK-Tdp"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="CKD-fG-kDn" secondAttribute="bottom" id="nxG-yj-LEK"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.17449371508379885" green="0.17449371508379885" blue="0.17449371508379885" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.34509803921568627" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="editName" destination="dJ2-Gy-w4T" id="py7-Rz-ZSd"/>
                                         </connections>
@@ -269,13 +295,13 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.58039215686274503" green="0.58039215686274503" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="xbD-na-VIy" secondAttribute="trailing" constant="-20" id="7aW-zc-sMm"/>
                             <constraint firstItem="1Bh-WY-LGJ" firstAttribute="top" secondItem="xbD-na-VIy" secondAttribute="bottom" id="EVt-Qy-GAB"/>
                             <constraint firstItem="SbG-dy-Kdw" firstAttribute="leading" secondItem="MW7-2g-p9Z" secondAttribute="leadingMargin" constant="-20" id="VbD-zi-lQ4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="SbG-dy-Kdw" secondAttribute="trailing" constant="-20" id="c1S-oJ-AX5"/>
-                            <constraint firstItem="xbD-na-VIy" firstAttribute="top" secondItem="SbG-dy-Kdw" secondAttribute="bottom" constant="8" id="f4U-Jr-pA7"/>
+                            <constraint firstItem="xbD-na-VIy" firstAttribute="top" secondItem="SbG-dy-Kdw" secondAttribute="bottom" id="f4U-Jr-pA7"/>
                             <constraint firstItem="xbD-na-VIy" firstAttribute="leading" secondItem="MW7-2g-p9Z" secondAttribute="leadingMargin" constant="-20" id="fQw-2U-1bA"/>
                             <constraint firstItem="SbG-dy-Kdw" firstAttribute="top" secondItem="eyb-Oe-xR4" secondAttribute="bottom" id="lmo-Mo-xB7"/>
                         </constraints>
@@ -729,6 +755,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
         </scene>
     </scenes>
     <resources>
+        <image name="ic_mode_edit_3x.png" width="72" height="72"/>
         <image name="twitterlogo_small_white.png" width="64" height="64"/>
     </resources>
 </document>

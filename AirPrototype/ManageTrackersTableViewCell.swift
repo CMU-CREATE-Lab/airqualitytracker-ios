@@ -12,4 +12,7 @@ import UIKit
 class ManageTrackersTableViewCell: UITableViewCell {
     
     @IBOutlet var editName: UIButton!
+    @IBAction func onClickEditName(sender: AnyObject) {
+        NSLog("Clicked editName button")
+    }
 }
