@@ -293,6 +293,7 @@
                                         <color key="backgroundColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.34509803921568627" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="editName" destination="dJ2-Gy-w4T" id="py7-Rz-ZSd"/>
+                                            <outlet property="labelReadingName" destination="CKD-fG-kDn" id="KhJ-uO-sUq"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

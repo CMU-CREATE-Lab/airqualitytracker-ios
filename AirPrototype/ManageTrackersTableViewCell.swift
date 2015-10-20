@@ -9,10 +9,41 @@
 import Foundation
 import UIKit
 
-class ManageTrackersTableViewCell: UITableViewCell {
+class ManageTrackersTableViewCell: UITableViewCell, UIAlertViewDelegate {
     
     @IBOutlet var editName: UIButton!
+    @IBOutlet var labelReadingName: UILabel!
+    var reading: Readable?
+    
+    
     @IBAction func onClickEditName(sender: AnyObject) {
         NSLog("Clicked editName button")
+        let reading = self.reading!
+        switch(reading.getReadableType()) {
+        case .ADDRESS:
+            let dialog = UIAlertView.init(title: "Change Address Name", message: reading.getName(), delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Save")
+            dialog.alertViewStyle = UIAlertViewStyle.PlainTextInput
+            dialog.show()
+        case .SPECK:
+            NSLog("TODO name change on Speck")
+        default:
+            NSLog("Error - could not find readable type")
+        }
     }
+    
+    
+    func populate(reading: Readable) {
+        // label
+        self.reading = reading
+        labelReadingName.text = reading.getName()
+    }
+    
+    
+    func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
+        NSLog("Dismissed at index \(buttonIndex)")
+        if buttonIndex == 1{
+            NSLog(alertView.textFieldAtIndex(0)!.text!)
+        }
+    }
+    
 }

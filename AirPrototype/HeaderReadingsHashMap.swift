@@ -11,11 +11,12 @@ import Foundation
 class HeaderReadingsHashMap {
     
     var gpsAddress: SimpleAddress
-    var addresses = Array<SimpleAddress>()
-    var specks = Array<Speck>()
+    var addresses = [SimpleAddress]()
+    var specks = [Speck]()
     var headers = Constants.HEADER_TITLES
-    var hashMap = [String: Array<Readable>]()
+    var hashMap = [String: [Readable]]()
     var adapterList = [String: [Readable]]()
+    var adapterListTracker = [String: [Readable]]()
     init() {
         gpsAddress = SimpleAddress()
         gpsAddress.isCurrentLocation = true
@@ -63,12 +64,26 @@ class HeaderReadingsHashMap {
         var items: [Readable]
         headers.removeAll(keepCapacity: true)
         
+        
         adapterList.removeAll(keepCapacity: true)
         for header in Constants.HEADER_TITLES {
             items = hashMap[header]!
-            if items.count > 0 {
+            
+            if header == Constants.HEADER_TITLES[1] && SettingsHandler.sharedInstance.appUsesLocation {
+                items.insert(gpsAddress, atIndex: 0)
                 adapterList[header] = items
                 headers.append(header)
+            } else if items.count > 0 {
+                adapterList[header] = items
+                headers.append(header)
+            }
+        }
+        
+        adapterListTracker.removeAll(keepCapacity: true)
+        for header in Constants.HEADER_TITLES {
+            items = hashMap[header]!
+            if items.count > 0 {
+                adapterListTracker[header] = items
             }
         }
     }
@@ -185,10 +200,10 @@ class HeaderReadingsHashMap {
         
         // cities
         tempReadables = [Readable]()
-        if SettingsHandler.sharedInstance.appUsesLocation {
-            tempReadables.append(gpsAddress)
-            gpsAddress.requestUpdateFeeds()
-        }
+//        if SettingsHandler.sharedInstance.appUsesLocation {
+//            tempReadables.append(gpsAddress)
+//            gpsAddress.requestUpdateFeeds()
+//        }
         for address in addresses {
             tempReadables.append(address)
         }

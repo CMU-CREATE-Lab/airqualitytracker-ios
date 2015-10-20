@@ -28,25 +28,30 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
     // MARK table view
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return GlobalHandler.sharedInstance.headerReadingsHashMap.headers.count
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 2
+        let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
+        if let readings = headerReadingsHashmap.adapterListTracker[headerReadingsHashmap.headers[section]] {
+            return readings.count
         }
-        return 3
+        return 0
     }
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "TITLE"
+        return Constants.HEADER_TITLES[section]
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let identifier = "TrackerReuse"
-        var cell: UITableViewCell?
+        let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
+        let readings = headerReadingsHashmap.adapterListTracker[headerReadingsHashmap.headers[indexPath.section]]!
         
-        cell = tableView.dequeueReusableCellWithIdentifier(identifier)
+        var cell: ManageTrackersTableViewCell?
+        
+        cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? ManageTrackersTableViewCell
         if cell == nil {
             cell = ManageTrackersTableViewCell()
         }
+        cell?.populate(readings[indexPath.row])
         cell?.setEditing(true, animated: true)
         return cell!
     }
@@ -58,6 +63,11 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
     }
     func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
         // TODO things
+        let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
+        let from = headerReadingsHashmap.adapterListTracker[headerReadingsHashmap.headers[sourceIndexPath.section]]![sourceIndexPath.row]
+        let to = headerReadingsHashmap.adapterListTracker[headerReadingsHashmap.headers[destinationIndexPath.section]]![destinationIndexPath.row]
+        
+        NSLog("TODO swap out \(from.getName()) and \(to.getName())")
     }
     func tableView(tableView: UITableView, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {
         // TODO idk

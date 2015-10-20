@@ -56,7 +56,7 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
             var indexPaths = gridView.indexPathsForSelectedItems()!
             let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
             let indexPath = indexPaths[0]
-            let reading = headerReadingsHashmap.hashMap[headerReadingsHashmap.headers[indexPath.section]]![indexPath.row]
+            let reading = headerReadingsHashmap.adapterList[headerReadingsHashmap.headers[indexPath.section]]![indexPath.row]
             addressShowController.reading = reading
             gridView.deselectItemAtIndexPath(indexPaths[0], animated: true)
         } else if segue.identifier == "settingsSegue" {
@@ -90,6 +90,7 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MyCell", forIndexPath: indexPath) as! ReadableIndexCell
         let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
         let readings = headerReadingsHashmap.adapterList[headerReadingsHashmap.headers[indexPath.section]]!
+        // TODO sometimes we get out of index here?
         cell.populate(readings[indexPath.row])
         return cell
     }
