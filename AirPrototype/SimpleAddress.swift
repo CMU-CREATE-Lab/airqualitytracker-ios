@@ -35,6 +35,7 @@ class SimpleAddress: Readable, Hashable {
     // class-specific definitions
     
     var _id: NSManagedObjectID?
+    var positionId: Int?
     var name: String
     var zipcode: String
     var location: Location

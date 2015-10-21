@@ -58,6 +58,16 @@ class HeaderReadingsHashMap {
         NSLog("WARNING - Failed to find index from speck")
         return nil
     }
+    private func reorderAddressPositions() {
+        // TODO this is slow; it could be sped up if we group the jobs together (so we only have to save/synchronize once)
+        var index = 1
+        for address in addresses {
+            address.positionId = index
+            DatabaseHelper.updateAddressInDb(address)
+            index += 1
+        }
+        SettingsHandler.sharedInstance.setAddressLastPosition(index)
+    }
     
     
     func populateAdapterList() {
@@ -131,9 +141,8 @@ class HeaderReadingsHashMap {
     func renameReading(reading: Readable, name: String) {
         if reading.getReadableType() == ReadableType.ADDRESS {
             let address = reading as! SimpleAddress
-            DatabaseHelper.deleteAddressFromDb(address)
             address.name = name
-            DatabaseHelper.addAddressToDb(address)
+            DatabaseHelper.updateAddressInDb(address)
         }
     }
     func reorderReading(reading: Readable, destination: Readable) {
@@ -149,6 +158,7 @@ class HeaderReadingsHashMap {
                 specks.removeAtIndex(from!)
                 specks.insert(reading as! Speck, atIndex: to!)
             }
+            reorderAddressPositions()
             refreshHash()
         }
     }

@@ -15,5 +15,6 @@ class StoredAddress: NSManagedObject {
     @NSManaged var zipcode: String
     @NSManaged var latitude: NSNumber
     @NSManaged var longitude: NSNumber
+    @NSManaged var position_id: Int
 
 }

@@ -16,6 +16,7 @@ class DatabaseHelper {
         static let zipcodeKey = "zipcode"
         static let latitudeKey = "latitude"
         static let longitudeKey = "longitude"
+        static let positionIdKey = "position_id"
     }
     
     
@@ -24,6 +25,8 @@ class DatabaseHelper {
         let entityDescription = NSEntityDescription.entityForName("StoredAddress", inManagedObjectContext: managedObjectContext!)
         let request = NSFetchRequest()
         request.entity = entityDescription
+        // sort results
+        request.sortDescriptors = [ NSSortDescriptor(key: SimpleAddressKeys.positionIdKey, ascending: true) ]
         var error: NSError?
         var objects: [AnyObject]?
         do {
@@ -41,14 +44,15 @@ class DatabaseHelper {
                     let zipcode = match.valueForKey(SimpleAddressKeys.zipcodeKey) as! String
                     let latitude = match.valueForKey(SimpleAddressKeys.latitudeKey) as! Double
                     let longitude = match.valueForKey(SimpleAddressKeys.longitudeKey) as! Double
+                    let positionId = match.valueForKey(SimpleAddressKeys.longitudeKey) as! Int
                     
-                    NSLog("Retrieving result name=\(name), zip=\(zipcode), lat=\(latitude), long=\(longitude)")
                     let address = SimpleAddress()
                     address._id = match.objectID
                     address.name = name
                     address.zipcode = zipcode
                     address.location.latitude = latitude
                     address.location.longitude = longitude
+                    address.positionId = positionId
                     GlobalHandler.sharedInstance.headerReadingsHashMap.addReading(address)
                 }
             } else {
@@ -64,10 +68,22 @@ class DatabaseHelper {
         let storedAddress = StoredAddress(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext)
         var error: NSError?
         
-        storedAddress.name = address.name
-        storedAddress.zipcode = address.zipcode
-        storedAddress.latitude = address.location.latitude
-        storedAddress.longitude = address.location.longitude
+        if let position = address.positionId {
+            storedAddress.position_id = position
+        } else if let position = SettingsHandler.sharedInstance.getAdressLastPosition() {
+            address.positionId = position
+        } else {
+            storedAddress.position_id = 0
+        }
+        
+        let insertValues: [String:AnyObject] = [
+            SimpleAddressKeys.nameKey: address.name,
+            SimpleAddressKeys.zipcodeKey: address.zipcode,
+            SimpleAddressKeys.latitudeKey: address.location.latitude,
+            SimpleAddressKeys.longitudeKey: address.location.longitude,
+            SimpleAddressKeys.positionIdKey: address.positionId!
+        ]
+        storedAddress.setValuesForKeysWithDictionary(insertValues)
         
         do {
             try managedObjectContext?.save()
@@ -79,6 +95,43 @@ class DatabaseHelper {
         } else {
             address._id = storedAddress.objectID
             NSLog("Saved address._id=\(address._id?.description); saved objectID=\(storedAddress.objectID.description)")
+        }
+    }
+    
+    
+    static func updateAddressInDb(address: SimpleAddress) {
+        let managedObjectContext = GlobalHandler.sharedInstance.appDelegate.managedObjectContext
+        var error: NSError?
+        
+        if let storedAddress = managedObjectContext?.objectWithID(address._id!) {
+            if address.positionId == nil {
+                if let position = SettingsHandler.sharedInstance.getAdressLastPosition() {
+                    address.positionId = position
+                } else {
+                    address.positionId = 0
+                }
+            }
+            
+            let updateValues: [String:AnyObject] = [
+                SimpleAddressKeys.nameKey: address.name,
+                SimpleAddressKeys.zipcodeKey: address.zipcode,
+                SimpleAddressKeys.latitudeKey: address.location.latitude,
+                SimpleAddressKeys.longitudeKey: address.location.longitude,
+                SimpleAddressKeys.positionIdKey: address.positionId!
+            ]
+            storedAddress.setValuesForKeysWithDictionary(updateValues)
+            
+            do {
+                try managedObjectContext?.save()
+            } catch let error1 as NSError {
+                error = error1
+            }
+            if error != nil {
+                NSLog("Error in updateAddressInDb")
+            } else {
+                address._id = storedAddress.objectID
+                NSLog("Saved address._id=\(address._id?.description); saved objectID=\(storedAddress.objectID.description)")
+            }
         }
     }
     

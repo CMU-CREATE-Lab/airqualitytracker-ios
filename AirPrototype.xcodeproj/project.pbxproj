@@ -111,6 +111,7 @@
 		A160A0EA1BD6826B0059833F /* ic_mode_edit_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_mode_edit_2x.png; path = Assets/ic_mode_edit_2x.png; sourceTree = "<group>"; };
 		A160A0EB1BD6826B0059833F /* ic_mode_edit_3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_mode_edit_3x.png; path = Assets/ic_mode_edit_3x.png; sourceTree = "<group>"; };
 		A160A0EC1BD6826B0059833F /* ic_mode_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_mode_edit.png; path = Assets/ic_mode_edit.png; sourceTree = "<group>"; };
+		A16133721BD7FE5A006F20BC /* AirPrototype 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "AirPrototype 2.xcdatamodel"; sourceTree = "<group>"; };
 		A1626DF81B555A79006D990C /* AddressSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressSearchController.swift; sourceTree = "<group>"; };
 		A16481FA1B5D553F0023DE09 /* AddressShowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressShowController.swift; sourceTree = "<group>"; };
 		A1660FF61B568B6700608C5D /* ResultsControllerAddressSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsControllerAddressSearch.swift; sourceTree = "<group>"; };
@@ -768,9 +769,10 @@
 		A1666F841B54125400A8E39F /* AirPrototype.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A16133721BD7FE5A006F20BC /* AirPrototype 2.xcdatamodel */,
 				A1666F851B54125400A8E39F /* AirPrototype.xcdatamodel */,
 			);
-			currentVersion = A1666F851B54125400A8E39F /* AirPrototype.xcdatamodel */;
+			currentVersion = A16133721BD7FE5A006F20BC /* AirPrototype 2.xcdatamodel */;
 			path = AirPrototype.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
