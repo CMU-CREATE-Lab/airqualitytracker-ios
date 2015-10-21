@@ -14,6 +14,7 @@ class ManageTrackersTableViewCell: UITableViewCell, UIAlertViewDelegate {
     @IBOutlet var editName: UIButton!
     @IBOutlet var labelReadingName: UILabel!
     var reading: Readable?
+    var tableView: UITableView?
     
     
     @IBAction func onClickEditName(sender: AnyObject) {
@@ -32,9 +33,10 @@ class ManageTrackersTableViewCell: UITableViewCell, UIAlertViewDelegate {
     }
     
     
-    func populate(reading: Readable) {
+    func populate(reading: Readable, tableView: UITableView) {
         // label
         self.reading = reading
+        self.tableView = tableView
         labelReadingName.text = reading.getName()
     }
     
@@ -42,7 +44,9 @@ class ManageTrackersTableViewCell: UITableViewCell, UIAlertViewDelegate {
     func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
         NSLog("Dismissed at index \(buttonIndex)")
         if buttonIndex == 1{
-            NSLog(alertView.textFieldAtIndex(0)!.text!)
+            let name = alertView.textFieldAtIndex(0)!.text!
+            GlobalHandler.sharedInstance.headerReadingsHashMap.renameReading(self.reading!, name: name)
+            self.tableView!.reloadData()
         }
     }
     

@@ -127,6 +127,33 @@ class HeaderReadingsHashMap {
     }
     
     
+    // TODO add for Specks as well
+    func renameReading(reading: Readable, name: String) {
+        if reading.getReadableType() == ReadableType.ADDRESS {
+            let address = reading as! SimpleAddress
+            DatabaseHelper.deleteAddressFromDb(address)
+            address.name = name
+            DatabaseHelper.addAddressToDb(address)
+        }
+    }
+    func reorderReading(reading: Readable, destination: Readable) {
+        if reading.getReadableType() == destination.getReadableType() {
+            if reading.getReadableType() == ReadableType.ADDRESS {
+                let from = findIndexFromAddress(reading as! SimpleAddress)
+                let to = findIndexFromAddress(destination as! SimpleAddress)
+                addresses.removeAtIndex(from!)
+                addresses.insert(reading as! SimpleAddress, atIndex: to!)
+            } else if reading.getReadableType() == ReadableType.SPECK {
+                let from = findIndexFromSpeck(reading as! Speck)
+                let to = findIndexFromSpeck(destination as! Speck)
+                specks.removeAtIndex(from!)
+                specks.insert(reading as! Speck, atIndex: to!)
+            }
+            refreshHash()
+        }
+    }
+    
+    
     func updateAddresses() {
         for address in addresses {
             address.requestUpdateFeeds()
@@ -200,10 +227,6 @@ class HeaderReadingsHashMap {
         
         // cities
         tempReadables = [Readable]()
-//        if SettingsHandler.sharedInstance.appUsesLocation {
-//            tempReadables.append(gpsAddress)
-//            gpsAddress.requestUpdateFeeds()
-//        }
         for address in addresses {
             tempReadables.append(address)
         }

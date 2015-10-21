@@ -115,6 +115,7 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
     
     
     // ASSERT: reading is not current location
+    // TODO deprecated; remove this later (now moved to the tracker management)
     func removeReading(reading: Readable) {
         GlobalHandler.sharedInstance.headerReadingsHashMap.removeReading(reading)
         if reading.getReadableType() == .ADDRESS {
