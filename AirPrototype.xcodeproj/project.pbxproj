@@ -62,6 +62,7 @@
 		A1740DBC1BC41B5B00617185 /* AboutSpeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1740DBB1BC41B5B00617185 /* AboutSpeckController.swift */; settings = {ASSET_TAGS = (); }; };
 		A17527C41BD556A7007526C0 /* ManageTrackersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17527C31BD556A7007526C0 /* ManageTrackersController.swift */; settings = {ASSET_TAGS = (); }; };
 		A17527C61BD55791007526C0 /* ManageTrackersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17527C51BD55791007526C0 /* ManageTrackersTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		A18479D71BDE6990009CB151 /* StoredSpeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18479D61BDE6990009CB151 /* StoredSpeck.swift */; settings = {ASSET_TAGS = (); }; };
 		A1E2A91D1B99ED47003A3B3A /* SettingsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E2A91C1B99ED47003A3B3A /* SettingsHandler.swift */; };
 		A1F58E591B97284800D04C91 /* Readable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F58E581B97284800D04C91 /* Readable.swift */; };
 		A1F58E5B1B972DD700D04C91 /* Speck.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F58E5A1B972DD700D04C91 /* Speck.swift */; };
@@ -141,6 +142,7 @@
 		A1740DBB1BC41B5B00617185 /* AboutSpeckController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutSpeckController.swift; sourceTree = "<group>"; };
 		A17527C31BD556A7007526C0 /* ManageTrackersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageTrackersController.swift; sourceTree = "<group>"; };
 		A17527C51BD55791007526C0 /* ManageTrackersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageTrackersTableViewCell.swift; sourceTree = "<group>"; };
+		A18479D61BDE6990009CB151 /* StoredSpeck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredSpeck.swift; sourceTree = "<group>"; };
 		A1E2A91C1B99ED47003A3B3A /* SettingsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHandler.swift; sourceTree = "<group>"; };
 		A1F58E581B97284800D04C91 /* Readable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Readable.swift; sourceTree = "<group>"; };
 		A1F58E5A1B972DD700D04C91 /* Speck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Speck.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			children = (
 				A1666F841B54125400A8E39F /* AirPrototype.xcdatamodeld */,
 				A1FEAB401B8CF19D00F9716B /* StoredAddress.swift */,
+				A18479D61BDE6990009CB151 /* StoredSpeck.swift */,
 				A158F6101B8E000F00FCE2E1 /* DatabaseHelper.swift */,
 			);
 			name = database;
@@ -535,6 +538,7 @@
 				A1666F861B54125400A8E39F /* AirPrototype.xcdatamodeld in Sources */,
 				A16F70911BAB3BD500F616F6 /* LoginView.swift in Sources */,
 				A16F70931BAB3D8100F616F6 /* LogoutView.swift in Sources */,
+				A18479D71BDE6990009CB151 /* StoredSpeck.swift in Sources */,
 				A158E13A1BCFF9440026944E /* AutocompleteTimer.swift in Sources */,
 				A17527C61BD55791007526C0 /* ManageTrackersTableViewCell.swift in Sources */,
 				A158E1381BCFE9B20026944E /* RefreshTimer.swift in Sources */,

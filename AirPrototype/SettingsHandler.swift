@@ -73,6 +73,22 @@ class SettingsHandler {
     }
     
     
+    func getSpeckLastPosition() -> Int? {
+        let position = userDefaults.valueForKey(Constants.SettingsKeys.speckLastPosition) as! Int
+        userDefaults.setInteger(position+1, forKey: Constants.SettingsKeys.speckLastPosition)
+        if userDefaults.synchronize() {
+            return position
+        }
+        return nil
+    }
+    
+    
+    func setSpeckLastPosition(position: Int) {
+        userDefaults.setInteger(position, forKey: Constants.SettingsKeys.speckLastPosition)
+        userDefaults.synchronize()
+    }
+    
+    
     func deviceIsBlacklisted(deviceId: Int) -> Bool {
         for id in blacklistedDevices! {
             if id == deviceId {

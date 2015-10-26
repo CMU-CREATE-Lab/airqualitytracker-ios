@@ -23,7 +23,8 @@ class Constants {
         SettingsKeys.accessToken: "",
         SettingsKeys.refreshToken: "",
         SettingsKeys.blacklistedDevices: [],
-        SettingsKeys.addressLastPosition: 1
+        SettingsKeys.addressLastPosition: 1,
+        SettingsKeys.speckLastPosition: 1
     ]
 
     // these are the channel names that we want our feeds to report
@@ -46,6 +47,7 @@ class Constants {
         static let refreshToken = "refresh_token"
         static let blacklistedDevices = "blacklisted_devices"
         static let addressLastPosition = "address_last_position"
+        static let speckLastPosition = "speck_last_position"
     }
 
     struct Location {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 class Speck: Feed {
     
@@ -35,7 +36,9 @@ class Speck: Feed {
         NSLog("Constructed a new Speck! name=\(name), location=\(location), feedValue=\(feedValue)")
     }
     
+    var _id: NSManagedObjectID?
     var deviceId: Int
+    var positionId: Int?
     
     func requestUpdate() {
         if self.channels.count > 0 {
