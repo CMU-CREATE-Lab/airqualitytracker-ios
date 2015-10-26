@@ -97,7 +97,7 @@ class LoginController: UIViewController {
         SettingsHandler.sharedInstance.setUserLoggedIn(false)
         loggedIn = false
         SettingsHandler.sharedInstance.setUserLoggedIn(false)
-        GlobalHandler.sharedInstance.headerReadingsHashMap.populateSpecks()
+        GlobalHandler.sharedInstance.headerReadingsHashMap.clearSpecks()
         display()
     }
     

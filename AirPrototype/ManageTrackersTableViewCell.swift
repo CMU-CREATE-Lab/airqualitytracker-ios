@@ -26,7 +26,9 @@ class ManageTrackersTableViewCell: UITableViewCell, UIAlertViewDelegate {
             dialog.alertViewStyle = UIAlertViewStyle.PlainTextInput
             dialog.show()
         case .SPECK:
-            NSLog("TODO name change on Speck")
+            let dialog = UIAlertView.init(title: "Change Address Name", message: reading.getName(), delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Save")
+            dialog.alertViewStyle = UIAlertViewStyle.PlainTextInput
+            dialog.show()
         default:
             NSLog("Error - could not find readable type")
         }
@@ -42,6 +44,21 @@ class ManageTrackersTableViewCell: UITableViewCell, UIAlertViewDelegate {
     
     
     func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
+//        if self.reading!.getReadableType() == ReadableType.ADDRESS {
+//            NSLog("Dismissed at index \(buttonIndex)")
+//            if buttonIndex == 1{
+//                let name = alertView.textFieldAtIndex(0)!.text!
+//                GlobalHandler.sharedInstance.headerReadingsHashMap.renameReading(self.reading!, name: name)
+//                self.tableView!.reloadData()
+//            }
+//        } else if self.reading!.getReadableType() == ReadableType.SPECK {
+//            NSLog("Dismissed at index \(buttonIndex)")
+//            if buttonIndex == 1{
+//                let name = alertView.textFieldAtIndex(0)!.text!
+//                GlobalHandler.sharedInstance.headerReadingsHashMap.renameReading(self.reading!, name: name)
+//                self.tableView!.reloadData()
+//            }
+//        }
         NSLog("Dismissed at index \(buttonIndex)")
         if buttonIndex == 1{
             let name = alertView.textFieldAtIndex(0)!.text!

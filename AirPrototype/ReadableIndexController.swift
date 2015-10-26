@@ -122,6 +122,7 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
             DatabaseHelper.deleteAddressFromDb(reading as! SimpleAddress)
         } else if reading.getReadableType() == .SPECK {
             let speck = reading as! Speck
+            DatabaseHelper.deleteSpeckFromDb(speck)
             SettingsHandler.sharedInstance.addToBlacklistedDevices(speck.deviceId)
         }
         

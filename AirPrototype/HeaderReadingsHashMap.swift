@@ -34,7 +34,7 @@ class HeaderReadingsHashMap {
         } else {
             hashMap[headers[1]] = addresses
         }
-        populateSpecks()
+//        populateSpecks()
     }
     // required helpers to get the index since find() does not properly
     // match objects that should be equivalent.
@@ -67,6 +67,26 @@ class HeaderReadingsHashMap {
             index += 1
         }
         SettingsHandler.sharedInstance.setAddressLastPosition(index)
+    }
+    private func reorderSpeckPositions() {
+        // TODO this is slow; it could be sped up if we group the jobs together (so we only have to save/synchronize once)
+        var index = 1
+        for speck in specks {
+            speck.positionId = index
+            DatabaseHelper.updateSpeckInDb(speck)
+            index += 1
+        }
+        SettingsHandler.sharedInstance.setSpeckLastPosition(index)
+    }
+    private func findIndexOfSpeckWithDeviceId(deviceId: Int) -> Int? {
+        var i=0
+        for speck in specks {
+            if speck.deviceId == deviceId {
+                return i
+            }
+            i+=1
+        }
+        return nil
     }
     
     
@@ -143,6 +163,10 @@ class HeaderReadingsHashMap {
             let address = reading as! SimpleAddress
             address.name = name
             DatabaseHelper.updateAddressInDb(address)
+        } else if reading.getReadableType() == ReadableType.SPECK {
+            let speck = reading as! Speck
+            speck.name = name
+            DatabaseHelper.updateSpeckInDb(speck)
         }
     }
     func reorderReading(reading: Readable, destination: Readable) {
@@ -159,6 +183,7 @@ class HeaderReadingsHashMap {
                 specks.insert(reading as! Speck, atIndex: to!)
             }
             reorderAddressPositions()
+            reorderSpeckPositions()
             refreshHash()
         }
     }
@@ -178,19 +203,31 @@ class HeaderReadingsHashMap {
     }
     
     
-    func populateSpecks() {
+    func clearSpecks() {
+        // TODO make this clear the table instead of iterating?
+        for speck in self.specks {
+            DatabaseHelper.deleteSpeckFromDb(speck)
+        }
         self.specks.removeAll(keepCapacity: true)
+        refreshHash()
+    }
+    
+    
+    func populateSpecks() {
         if SettingsHandler.sharedInstance.userLoggedIn {
             let authToken = SettingsHandler.sharedInstance.accessToken
             let userId = SettingsHandler.sharedInstance.userId
             
             func feedsCompletionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
-                var resultSpecks: Array<Speck>
                 let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
+                var resultSpecks: Array<Speck>
                 resultSpecks = JsonParser.populateSpecksFromJson(data!)
                 for speck in resultSpecks {
-                    self.specks.append(speck)
-                    speck.requestUpdate()
+                    // only add what isnt in the DB already
+                    if findIndexOfSpeckWithDeviceId(speck.deviceId) == nil {
+                        self.specks.append(speck)
+                        speck.requestUpdate()
+                    }
                 }
                 if resultSpecks.count > 0 {
                     HttpRequestHandler.sharedInstance.requestSpeckDevices(authToken!, userId: userId!, completionHandler: devicesCompletionHandler)
@@ -204,12 +241,17 @@ class HeaderReadingsHashMap {
                     for row in rows {
                         deviceId = row.valueForKey("id") as! Int
                         prettyName = row.valueForKey("name") as! String
-                        for speck in self.specks {
-                            if speck.deviceId == deviceId {
-                                speck.name = prettyName
-                                break;
+                        if let index = findIndexOfSpeckWithDeviceId(deviceId) {
+                            if specks[index]._id == nil {
+                                specks[index].name = prettyName
                             }
                         }
+                    }
+                }
+                // add all specks into the database which arent in there already
+                for speck in specks {
+                    if speck._id == nil {
+                        DatabaseHelper.addSpeckToDb(speck)
                     }
                 }
                 refreshHash()
