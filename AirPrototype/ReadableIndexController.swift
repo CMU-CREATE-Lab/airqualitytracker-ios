@@ -11,10 +11,31 @@ import UIKit
 import CoreData
 import CoreLocation
 
-class ReadableIndexController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class ReadableIndexController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIPopoverPresentationControllerDelegate {
     
+    @IBOutlet var menuButton: UIBarButtonItem!
     @IBOutlet var gridView: UICollectionView!
     var refreshController: UIRefreshControl?
+    
+
+    @IBAction func menuClicked(sender: UIBarButtonItem) {
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SettingsPopup") as! SettingsController
+        // NOTE: preferred content size is controlled on SettingsController's viewDidLoad() function
+        controller.parentNavigationController = self.navigationController
+        controller.modalPresentationStyle = UIModalPresentationStyle.Popover
+        if let popover = controller.popoverPresentationController {
+            popover.delegate = self
+            popover.barButtonItem = sender
+            popover.permittedArrowDirections = .Any
+            self.presentViewController(controller, animated: true, completion: nil)
+            controller.view.sizeToFit()
+        }
+    }
+    
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
+    }
     
     
     override func viewDidLoad() {
@@ -59,8 +80,6 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
             let reading = headerReadingsHashmap.adapterList[headerReadingsHashmap.headers[indexPath.section]]![indexPath.row]
             addressShowController.reading = reading
             gridView.deselectItemAtIndexPath(indexPaths[0], animated: true)
-        } else if segue.identifier == "settingsSegue" {
-            NSLog("running settings segue")
         } else {
             NSLog("ERROR - bad segue name")
         }

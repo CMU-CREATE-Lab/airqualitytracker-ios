@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A103E6081BE12A5E0065378D /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103E6071BE12A5E0065378D /* SettingsController.swift */; settings = {ASSET_TAGS = (); }; };
 		A11844AF1BA9E7A600435D11 /* ServicesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11844AE1BA9E7A600435D11 /* ServicesHandler.swift */; };
 		A11844B11BA9FECC00435D11 /* CLLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11844B01BA9FECC00435D11 /* CLLocationService.swift */; };
 		A11844B31BAA0A9D00435D11 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11844B21BAA0A9D00435D11 /* CoreLocation.framework */; };
@@ -82,6 +83,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A103E6071BE12A5E0065378D /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		A11844AE1BA9E7A600435D11 /* ServicesHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesHandler.swift; sourceTree = "<group>"; };
 		A11844B01BA9FECC00435D11 /* CLLocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationService.swift; sourceTree = "<group>"; };
 		A11844B21BAA0A9D00435D11 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -319,6 +321,7 @@
 				A160A0F01BD68EDB0059833F /* manage_trackers */,
 				A1740DB91BC41B3100617185 /* AboutAirQualityController.swift */,
 				A1740DBB1BC41B5B00617185 /* AboutSpeckController.swift */,
+				A103E6071BE12A5E0065378D /* SettingsController.swift */,
 			);
 			name = "activities (ios controllers)";
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				A1660FF71B568B6700608C5D /* ResultsControllerAddressSearch.swift in Sources */,
 				A14C456B1BA0B2B000D6C9CF /* ReadableIndexController.swift in Sources */,
 				A1740DBA1BC41B3100617185 /* AboutAirQualityController.swift in Sources */,
+				A103E6081BE12A5E0065378D /* SettingsController.swift in Sources */,
 				A11844B11BA9FECC00435D11 /* CLLocationService.swift in Sources */,
 				A158F6111B8E000F00FCE2E1 /* DatabaseHelper.swift in Sources */,
 				A158F6131B8E305A00FCE2E1 /* EsdrFeedsHandler.swift in Sources */,
