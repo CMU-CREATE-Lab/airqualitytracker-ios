@@ -644,6 +644,12 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Closest Feed from Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KF4-vV-dcL">
+                                            <rect key="frame" x="8" y="155" width="184" height="12"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -654,14 +660,18 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                     <constraint firstItem="AD0-Qn-ppI" firstAttribute="top" secondItem="AEr-9m-ncG" secondAttribute="bottom" id="6Lm-2e-oME"/>
                                     <constraint firstItem="AD0-Qn-ppI" firstAttribute="leading" secondItem="Xfp-UX-CzV" secondAttribute="leadingMargin" id="6zF-bE-UC0"/>
                                     <constraint firstItem="AEr-9m-ncG" firstAttribute="trailing" secondItem="Xfp-UX-CzV" secondAttribute="trailingMargin" id="9Ha-ge-AYh"/>
+                                    <constraint firstItem="7tv-xA-TlB" firstAttribute="top" secondItem="KF4-vV-dcL" secondAttribute="bottom" id="DCJ-HC-fks"/>
                                     <constraint firstItem="AEr-9m-ncG" firstAttribute="leading" secondItem="Xfp-UX-CzV" secondAttribute="leadingMargin" id="IH9-bz-nTb"/>
                                     <constraint firstItem="7tv-xA-TlB" firstAttribute="leading" secondItem="Xfp-UX-CzV" secondAttribute="leadingMargin" id="L7X-TG-NwA"/>
+                                    <constraint firstItem="KF4-vV-dcL" firstAttribute="trailing" secondItem="AEr-9m-ncG" secondAttribute="trailing" id="bSN-3l-wM1"/>
                                     <constraint firstItem="itt-T4-5jm" firstAttribute="trailing" secondItem="Xfp-UX-CzV" secondAttribute="trailingMargin" id="c16-WP-wHn"/>
                                     <constraint firstItem="itt-T4-5jm" firstAttribute="top" secondItem="AEr-9m-ncG" secondAttribute="bottom" id="fTe-K6-u1Q"/>
                                     <constraint firstItem="AEr-9m-ncG" firstAttribute="top" secondItem="Xfp-UX-CzV" secondAttribute="topMargin" id="mvD-wO-sS6"/>
                                     <constraint firstItem="7tv-xA-TlB" firstAttribute="bottom" secondItem="Xfp-UX-CzV" secondAttribute="bottomMargin" id="yEz-Ny-IZo"/>
+                                    <constraint firstItem="KF4-vV-dcL" firstAttribute="leading" secondItem="AEr-9m-ncG" secondAttribute="leading" id="zbg-qL-gwt"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="textCurrentLocation" destination="KF4-vV-dcL" id="jzX-1F-hbp"/>
                                     <outlet property="textItemLabel" destination="itt-T4-5jm" id="3Od-bQ-gKg"/>
                                     <outlet property="textItemName" destination="7tv-xA-TlB" id="KMH-45-dzQ"/>
                                     <outlet property="textItemValue" destination="AD0-Qn-ppI" id="B2S-0j-Pnv"/>

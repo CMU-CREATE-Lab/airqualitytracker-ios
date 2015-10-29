@@ -14,18 +14,21 @@ class ReadableIndexCell: UICollectionViewCell {
     @IBOutlet var textItemValue: UILabel!
     @IBOutlet var textItemLabel: UILabel!
     @IBOutlet var textItemName: UILabel!
-    
+    @IBOutlet var textCurrentLocation: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        textCurrentLocation.hidden = true
     }
     
     
     func populate(reading: Readable) {
+        textCurrentLocation.hidden = true
         if reading.hasReadableValue() {
             var value: String
             var index: Int
             let type = reading.getReadableType()
+            textItemName.text = reading.getName()
             
             switch type {
             case .ADDRESS:
@@ -36,6 +39,13 @@ class ReadableIndexCell: UICollectionViewCell {
                 if index >= 0 {
                     self.backgroundColor = Constants.AqiReading.aqiColors[index]
                 }
+                // current location
+                let address = reading as! SimpleAddress
+                if address.isCurrentLocation && address.closestFeed != nil {
+                    textItemName.text = address.closestFeed!.getName()
+                    textCurrentLocation.hidden = false
+                }
+//                textCurrentLocation.hidden = false
             case .SPECK:
                 textItemLabel.text = Constants.Units.MICROGRAMS_PER_CUBIC_METER
 //                let micrograms = Double(Int(reading.getReadableValue()*10))/10.0
@@ -50,7 +60,6 @@ class ReadableIndexCell: UICollectionViewCell {
                 value = reading.getReadableValue().description
             }
             
-            textItemName.text = reading.getName()
             textItemValue.text = value
             textItemLabel.hidden = false
         } else {
@@ -58,6 +67,12 @@ class ReadableIndexCell: UICollectionViewCell {
             textItemValue.text = Constants.DefaultReading.DEFAULT_LOCATION
             textItemLabel.hidden = true
             self.backgroundColor = Constants.DefaultReading.DEFAULT_COLOR_BACKGROUND
+            if let address = reading as? SimpleAddress {
+                if address.isCurrentLocation && address.closestFeed != nil {
+                    textItemName.text = address.closestFeed!.getName()
+                    textCurrentLocation.hidden = false
+                }
+            }
         }
     }
     
