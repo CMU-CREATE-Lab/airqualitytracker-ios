@@ -21,7 +21,7 @@ class SettingsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // calculates how large the popup window should be
-        let width = self.buttonLogin.bounds.width + 40
+        let width = self.buttonAboutAirQuality.bounds.width + 40
         let height = self.buttonAboutSpeck.frame.origin.y + self.buttonAboutSpeck.bounds.size.height
         self.preferredContentSize = CGSizeMake(width, height)
     }
