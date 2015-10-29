@@ -11,10 +11,10 @@ import UIKit
 
 class SettingsController: UIViewController {
     
+    @IBOutlet var buttonManageTrackers: UIButton!
     @IBOutlet var buttonLogin: UIButton!
     @IBOutlet var buttonAboutAirQuality: UIButton!
     @IBOutlet var buttonAboutSpeck: UIButton!
-    @IBOutlet var buttonManageTrackers: UIButton!
     var parentNavigationController: UINavigationController?
     
     
@@ -22,7 +22,7 @@ class SettingsController: UIViewController {
         super.viewDidLoad()
         // calculates how large the popup window should be
         let width = self.buttonLogin.bounds.width + 40
-        let height = self.buttonManageTrackers.frame.origin.y + self.buttonManageTrackers.bounds.size.height
+        let height = self.buttonAboutSpeck.frame.origin.y + self.buttonAboutSpeck.bounds.size.height
         self.preferredContentSize = CGSizeMake(width, height)
     }
     

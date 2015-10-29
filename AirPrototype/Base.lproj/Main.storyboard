@@ -522,7 +522,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAJ-gw-u1a">
-                                <rect key="frame" x="20" y="68" width="123" height="32"/>
+                                <rect key="frame" x="20" y="108" width="123" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="About Air Quality">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -532,7 +532,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eh2-Y3-IaQ">
-                                <rect key="frame" x="20" y="108" width="94" height="32"/>
+                                <rect key="frame" x="20" y="148" width="94" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="About Speck">
                                     <color key="titleShadowColor" red="0.49803921568627452" green="0.49803921568627452" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
@@ -542,9 +542,9 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lG1-0g-Ofh">
-                                <rect key="frame" x="20" y="148" width="125" height="32"/>
+                                <rect key="frame" x="20" y="28" width="95" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Manage Trackers">
+                                <state key="normal" title="Edit Trackers">
                                     <color key="titleShadowColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -552,7 +552,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="llM-s4-NBc">
-                                <rect key="frame" x="20" y="28" width="140" height="32"/>
+                                <rect key="frame" x="20" y="68" width="140" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="140" id="oDW-XN-jdv"/>
                                 </constraints>
@@ -567,14 +567,14 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="lG1-0g-Ofh" firstAttribute="top" secondItem="eh2-Y3-IaQ" secondAttribute="bottom" constant="8" id="1Cr-ky-iSX"/>
                             <constraint firstAttribute="leadingMargin" secondItem="lG1-0g-Ofh" secondAttribute="leading" id="2m4-d5-WAI"/>
                             <constraint firstItem="eh2-Y3-IaQ" firstAttribute="top" secondItem="uAJ-gw-u1a" secondAttribute="bottom" constant="8" id="3xo-1E-arY"/>
+                            <constraint firstItem="llM-s4-NBc" firstAttribute="top" secondItem="lG1-0g-Ofh" secondAttribute="bottom" constant="8" id="881-Se-axh"/>
                             <constraint firstItem="uAJ-gw-u1a" firstAttribute="top" secondItem="llM-s4-NBc" secondAttribute="bottom" constant="8" id="9Zp-pY-O3Y"/>
                             <constraint firstAttribute="leadingMargin" secondItem="eh2-Y3-IaQ" secondAttribute="leading" id="BNM-Oq-7xW"/>
-                            <constraint firstItem="llM-s4-NBc" firstAttribute="top" secondItem="9c6-uE-See" secondAttribute="bottom" constant="8" id="b2Z-qe-GVv"/>
                             <constraint firstAttribute="leadingMargin" secondItem="uAJ-gw-u1a" secondAttribute="leading" id="cJI-dp-kOg"/>
                             <constraint firstItem="llM-s4-NBc" firstAttribute="leading" secondItem="0WE-0D-1S6" secondAttribute="leadingMargin" id="dxw-WU-S2I"/>
+                            <constraint firstItem="lG1-0g-Ofh" firstAttribute="top" secondItem="9c6-uE-See" secondAttribute="bottom" constant="8" id="qt5-BG-uue"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="tG2-lo-tnh"/>
