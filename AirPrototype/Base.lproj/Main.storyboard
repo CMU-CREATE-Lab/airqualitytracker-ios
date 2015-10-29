@@ -509,6 +509,36 @@ Many people are already using the Speck Sensors to monitor trends when using a v
             </objects>
             <point key="canvasLocation" x="1464" y="-1074"/>
         </scene>
+        <!--Secret Menu Controller-->
+        <scene sceneID="sqZ-nc-tMU">
+            <objects>
+                <viewController storyboardIdentifier="SecretMenu" id="4Ao-Y8-pDL" customClass="SecretMenuController" customModule="SpeckSensor" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MSh-Ns-Nhl"/>
+                        <viewControllerLayoutGuide type="bottom" id="3Gb-SZ-T6k"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xjm-FX-mXO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Secret Menu!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaQ-eV-JWV">
+                                <rect key="frame" x="20" y="20" width="102" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="OaQ-eV-JWV" secondAttribute="leading" id="2Wl-3L-bEe"/>
+                            <constraint firstItem="OaQ-eV-JWV" firstAttribute="top" secondItem="MSh-Ns-Nhl" secondAttribute="bottom" id="IAk-uK-kqK"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BZc-aU-ld3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-19" y="-391"/>
+        </scene>
         <!--Settings-->
         <scene sceneID="ak4-dF-izp">
             <objects>
@@ -688,6 +718,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                 </label>
                             </subviews>
                             <color key="backgroundColor" red="0.31372549019607843" green="0.31372549019607843" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstItem="hqA-fH-DXY" firstAttribute="bottom" secondItem="FSf-Xy-hCo" secondAttribute="bottomMargin" id="7ff-i7-Ttb"/>
                                 <constraint firstItem="hqA-fH-DXY" firstAttribute="leading" secondItem="FSf-Xy-hCo" secondAttribute="leadingMargin" id="By5-4O-9nb"/>
@@ -695,6 +726,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                             </constraints>
                             <connections>
                                 <outlet property="textHeaderTitle" destination="hqA-fH-DXY" id="hxR-De-cQ4"/>
+                                <outletCollection property="gestureRecognizers" destination="knn-F7-seV" appends="YES" id="05e-P9-uG4"/>
                             </connections>
                         </collectionReusableView>
                         <connections>
@@ -721,6 +753,11 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QKn-e3-LMw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="2" numberOfTouchesRequired="2" id="knn-F7-seV">
+                    <connections>
+                        <action selector="longPressOccurred:" destination="gJr-qm-Dfq" id="ODe-Zy-3Hu"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="596" y="313"/>
         </scene>

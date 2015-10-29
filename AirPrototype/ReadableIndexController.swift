@@ -11,12 +11,31 @@ import UIKit
 import CoreData
 import CoreLocation
 
-class ReadableIndexController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIPopoverPresentationControllerDelegate {
+class ReadableIndexController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIPopoverPresentationControllerDelegate, UIAlertViewDelegate {
     
     @IBOutlet var menuButton: UIBarButtonItem!
     @IBOutlet var gridView: UICollectionView!
     var refreshController: UIRefreshControl?
+    var longPressActive = false
     
+    @IBAction func longPressOccurred(sender: UILongPressGestureRecognizer) {
+        NSLog("LONG PRESS happened")
+        if !longPressActive {
+            longPressActive = true
+            let dialog = UIAlertView.init(title: "DEBUG", message: "View Debug Screen?", delegate: self, cancelButtonTitle: "No", otherButtonTitles: "Yes")
+//            dialog.alertViewStyle = UIAlertViewStyle.PlainTextInput
+            dialog.show()
+        }
+    }
+    
+    func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
+        longPressActive = false
+        NSLog("Dismissed at index \(buttonIndex)")
+        if buttonIndex > 0 {
+            // TODO segue to debug screen
+            self.navigationController!.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SecretMenu"), animated: true)
+        }
+    }
 
     @IBAction func menuClicked(sender: UIBarButtonItem) {
         let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SettingsPopup") as! SettingsController
