@@ -11,4 +11,12 @@ import UIKit
 
 class AboutSpeckController:UIViewController {
     
+    @IBOutlet var labelTitleAppVersion: UILabel!
+    @IBOutlet var labelVersion: UILabel!
+    
+    
+    override func viewDidLoad() {
+        labelVersion.text = Constants.APP_VERSION_NUMBER
+    }
+    
 }

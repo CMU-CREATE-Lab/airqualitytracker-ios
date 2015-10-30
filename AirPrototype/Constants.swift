@@ -13,6 +13,8 @@ let MATH_PI = 3.14159265358979
 
 class Constants {
     
+    static let APP_VERSION_NUMBER = "1.1"
+    
     static let USES_BACKGROUND_SERVICES = true
     
     static let DEFAULT_SETTINGS: [String:AnyObject] = [

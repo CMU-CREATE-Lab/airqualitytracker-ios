@@ -17,13 +17,20 @@ class SettingsController: UIViewController {
     @IBOutlet var buttonAboutSpeck: UIButton!
     var parentNavigationController: UINavigationController?
     
+    // ASSERT: assumes we want the top-left corner included
+    private func getFramefromViews(views: [UIView!]) -> CGRect {
+        var result = CGRectMake(0, 0, 0, 0)
+        for view in views {
+            result = CGRectUnion(result, view.frame)
+        }
+        return result
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // calculates how large the popup window should be
-        let width = self.buttonAboutAirQuality.bounds.width + 40
-        let height = self.buttonAboutSpeck.frame.origin.y + self.buttonAboutSpeck.bounds.size.height
-        self.preferredContentSize = CGSizeMake(width, height)
+        let frame = getFramefromViews([buttonManageTrackers, buttonLogin, buttonAboutAirQuality, buttonAboutSpeck])
+        self.preferredContentSize = CGSizeMake(frame.width + 20, frame.height)
     }
     
     @IBAction func clickButtonLogin(sender: AnyObject) {
