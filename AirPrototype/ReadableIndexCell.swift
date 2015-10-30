@@ -41,14 +41,11 @@ class ReadableIndexCell: UICollectionViewCell {
                 }
                 // current location
                 let address = reading as! SimpleAddress
-                if address.isCurrentLocation && address.closestFeed != nil {
-                    textItemName.text = address.closestFeed!.getName()
+                if address.isCurrentLocation && address.hasReadableValue() {
                     textCurrentLocation.hidden = false
                 }
-//                textCurrentLocation.hidden = false
             case .SPECK:
                 textItemLabel.text = Constants.Units.MICROGRAMS_PER_CUBIC_METER
-//                let micrograms = Double(Int(reading.getReadableValue()*10))/10.0
                 let micrograms = reading.getReadableValue()
                 value = Int(micrograms).description
                 index = Constants.SpeckReading.getIndexFromReading(micrograms)
@@ -68,8 +65,7 @@ class ReadableIndexCell: UICollectionViewCell {
             textItemLabel.hidden = true
             self.backgroundColor = Constants.DefaultReading.DEFAULT_COLOR_BACKGROUND
             if let address = reading as? SimpleAddress {
-                if address.isCurrentLocation && address.closestFeed != nil {
-                    textItemName.text = address.closestFeed!.getName()
+                if address.isCurrentLocation && address.hasReadableValue() {
                     textCurrentLocation.hidden = false
                 }
             }

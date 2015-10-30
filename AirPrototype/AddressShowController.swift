@@ -17,8 +17,25 @@ class AddressShowController: UIViewController {
     @IBOutlet var labelMeasurementRange: UILabel!
     @IBOutlet var labelValueTitle: UILabel!
     @IBOutlet var labelValueDescription: UILabel!
+    @IBOutlet var labelReadingFromFeed: UILabel!
+    @IBOutlet var labelClosestFeedName: UILabel!
     @IBOutlet var mainView: UIView!
+    var closestFeed: Feed?
     var reading: Readable?
+    
+    @IBAction func onClickFeedName(sender: UITapGestureRecognizer) {
+        if let feed = closestFeed {
+            let dialog = UIAlertView.init(title: feed.getName(), message: "Latitude: \(feed.location.latitude.description)\nLongitude: \(feed.location.longitude.description)", delegate: nil, cancelButtonTitle: "OK")
+            dialog.show()
+        }
+    }
+    
+    private func clearAndHide(labels: [UILabel!]) {
+        for label in labels {
+            label.text = ""
+            label.hidden = true
+        }
+    }
     
     
     override func viewDidLoad() {
@@ -43,13 +60,10 @@ class AddressShowController: UIViewController {
     
     
     func defaultView() {
-        labelMeasurementRange.text = ""
         labelValueTitle.text = Constants.DefaultReading.DEFAULT_TITLE
         labelValueDescription.text = Constants.DefaultReading.DEFAULT_DESCRIPTION
         mainView.backgroundColor = Constants.DefaultReading.DEFAULT_COLOR_BACKGROUND
-        labelShowValue.text = ""
-        labelReadingMeasurement.text = ""
-        labelReadingMeasurement.hidden = true
+        clearAndHide([labelMeasurementRange, labelShowValue, labelReadingMeasurement, labelReadingFromFeed, labelClosestFeedName])
     }
     
     
@@ -64,7 +78,9 @@ class AddressShowController: UIViewController {
             if index < 0 {
                 defaultView()
             } else {
-                labelReadingMeasurement.hidden = false
+                // get feed name
+                closestFeed = address.closestFeed
+                labelClosestFeedName.text = closestFeed?.getName()
                 labelMeasurementRange.text = "\(Constants.AqiReading.getRangeFromIndex(index)) AQI"
                 labelValueTitle.text = Constants.AqiReading.titles[index]
                 labelValueDescription.text = Constants.AqiReading.descriptions[index]
@@ -86,6 +102,7 @@ class AddressShowController: UIViewController {
     
     
     func speckView(speck: Speck) {
+        clearAndHide([labelReadingFromFeed, labelClosestFeedName])
         // TODO speck view actions
 //        labelReadingMeasurement.hidden = false
         if speck.hasReadableValue() {
