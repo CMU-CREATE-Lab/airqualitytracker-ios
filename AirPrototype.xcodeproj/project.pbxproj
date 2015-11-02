@@ -65,6 +65,7 @@
 		A17527C41BD556A7007526C0 /* ManageTrackersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17527C31BD556A7007526C0 /* ManageTrackersController.swift */; settings = {ASSET_TAGS = (); }; };
 		A17527C61BD55791007526C0 /* ManageTrackersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17527C51BD55791007526C0 /* ManageTrackersTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		A18479D71BDE6990009CB151 /* StoredSpeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18479D61BDE6990009CB151 /* StoredSpeck.swift */; settings = {ASSET_TAGS = (); }; };
+		A1D4F8981BE7CD19002D5849 /* SecretMenuTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4F8971BE7CD19002D5849 /* SecretMenuTableCell.swift */; settings = {ASSET_TAGS = (); }; };
 		A1E092A71BE2B51400D652CA /* SecretMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E092A61BE2B51400D652CA /* SecretMenuController.swift */; settings = {ASSET_TAGS = (); }; };
 		A1E2A91D1B99ED47003A3B3A /* SettingsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E2A91C1B99ED47003A3B3A /* SettingsHandler.swift */; };
 		A1F58E591B97284800D04C91 /* Readable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F58E581B97284800D04C91 /* Readable.swift */; };
@@ -148,6 +149,7 @@
 		A17527C31BD556A7007526C0 /* ManageTrackersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageTrackersController.swift; sourceTree = "<group>"; };
 		A17527C51BD55791007526C0 /* ManageTrackersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageTrackersTableViewCell.swift; sourceTree = "<group>"; };
 		A18479D61BDE6990009CB151 /* StoredSpeck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredSpeck.swift; sourceTree = "<group>"; };
+		A1D4F8971BE7CD19002D5849 /* SecretMenuTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretMenuTableCell.swift; sourceTree = "<group>"; };
 		A1E092A61BE2B51400D652CA /* SecretMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretMenuController.swift; sourceTree = "<group>"; };
 		A1E2A91C1B99ED47003A3B3A /* SettingsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHandler.swift; sourceTree = "<group>"; };
 		A1F58E581B97284800D04C91 /* Readable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Readable.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 		A1666FA51B54142600A8E39F /* activities (ios controllers) */ = {
 			isa = PBXGroup;
 			children = (
+				A1D4F8961BE7B068002D5849 /* secret_menu */,
 				A16F70851BAB272E00F616F6 /* login */,
 				A14C45691BA0B28D00D6C9CF /* readable_index */,
 				A16481F91B5D552D0023DE09 /* address_show */,
@@ -327,7 +330,6 @@
 				A1740DB91BC41B3100617185 /* AboutAirQualityController.swift */,
 				A1740DBB1BC41B5B00617185 /* AboutSpeckController.swift */,
 				A103E6071BE12A5E0065378D /* SettingsController.swift */,
-				A1E092A61BE2B51400D652CA /* SecretMenuController.swift */,
 			);
 			name = "activities (ios controllers)";
 			sourceTree = "<group>";
@@ -385,6 +387,15 @@
 				A16F708E1BAB370600F616F6 /* LogoutView.xib */,
 			);
 			name = login;
+			sourceTree = "<group>";
+		};
+		A1D4F8961BE7B068002D5849 /* secret_menu */ = {
+			isa = PBXGroup;
+			children = (
+				A1E092A61BE2B51400D652CA /* SecretMenuController.swift */,
+				A1D4F8971BE7CD19002D5849 /* SecretMenuTableCell.swift */,
+			);
+			name = secret_menu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -549,6 +560,7 @@
 				A1666F861B54125400A8E39F /* AirPrototype.xcdatamodeld in Sources */,
 				A1E092A71BE2B51400D652CA /* SecretMenuController.swift in Sources */,
 				A16F70911BAB3BD500F616F6 /* LoginView.swift in Sources */,
+				A1D4F8981BE7CD19002D5849 /* SecretMenuTableCell.swift in Sources */,
 				A16F70931BAB3D8100F616F6 /* LogoutView.swift in Sources */,
 				A18479D71BDE6990009CB151 /* StoredSpeck.swift in Sources */,
 				A158E13A1BCFF9440026944E /* AutocompleteTimer.swift in Sources */,

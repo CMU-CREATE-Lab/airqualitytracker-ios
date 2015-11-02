@@ -26,6 +26,7 @@ class GlobalHandler {
     var headerReadingsHashMap: HeaderReadingsHashMap
     // keep track of ALL adapters for notify
     var readableIndexListView: UICollectionView?
+    var secretDebugMenuTable: UITableView?
     var appDelegate: AppDelegate
     var refreshTimer: RefreshTimer
     init() {
@@ -51,6 +52,11 @@ class GlobalHandler {
         if let readableIndexListView = self.readableIndexListView {
             dispatch_async(dispatch_get_main_queue()) {
                 readableIndexListView.reloadData()
+            }
+        }
+        if let secretMenu = self.secretDebugMenuTable {
+            dispatch_async(dispatch_get_main_queue()) {
+                secretMenu.reloadData()
             }
         }
     }

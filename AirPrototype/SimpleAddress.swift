@@ -71,7 +71,7 @@ class SimpleAddress: Readable, Hashable {
             } else {
                 let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
                 
-                let feeds = JsonParser.populateFeedsFromJson(data!, maxTime: maxTime)
+                self.feeds.appendContentsOf(JsonParser.populateFeedsFromJson(data!, maxTime: maxTime))
                 NSLog("populated \(feeds.count) feeds")
                 if feeds.count > 0 {
                     NSLog("Found non-zero feeds")

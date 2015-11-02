@@ -19,6 +19,15 @@ class Converter {
     }
     
     
+    static func decimalPrecision(number: Double, digits: Int) -> Double {
+        if digits < 0 {
+            return number
+        }
+        let coefficient = pow(10.0, Double(digits))
+        return Double(Int(number*coefficient))/coefficient
+    }
+    
+    
     static func microgramsToAqi(inputMicrograms: Double) -> Double {
         var aqi = 0.0
         // round to tenths
