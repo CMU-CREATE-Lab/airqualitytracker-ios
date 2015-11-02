@@ -84,6 +84,8 @@ class LoginController: UIViewController {
             if self.loggedIn == false {
                 dispatch_async(dispatch_get_main_queue()) {
                     self.display()
+                    let dialog = UIAlertView.init(title: "www.specksensor.com", message: "Failed to log in", delegate: nil, cancelButtonTitle: "OK")
+                    dialog.show()
                 }
             }
         })
