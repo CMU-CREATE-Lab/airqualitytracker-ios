@@ -90,6 +90,7 @@
 		A11844AE1BA9E7A600435D11 /* ServicesHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesHandler.swift; sourceTree = "<group>"; };
 		A11844B01BA9FECC00435D11 /* CLLocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationService.swift; sourceTree = "<group>"; };
 		A11844B21BAA0A9D00435D11 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A1435D9A1BEAF5DF00231835 /* AirPrototype 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "AirPrototype 3.xcdatamodel"; sourceTree = "<group>"; };
 		A14C456A1BA0B2B000D6C9CF /* ReadableIndexController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadableIndexController.swift; sourceTree = "<group>"; };
 		A14C456C1BA0B45D00D6C9CF /* ReadableIndexHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadableIndexHeader.swift; sourceTree = "<group>"; };
 		A14C456E1BA0B46700D6C9CF /* ReadableIndexCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadableIndexCell.swift; sourceTree = "<group>"; };
@@ -797,6 +798,7 @@
 		A1666F841B54125400A8E39F /* AirPrototype.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A1435D9A1BEAF5DF00231835 /* AirPrototype 3.xcdatamodel */,
 				A16133721BD7FE5A006F20BC /* AirPrototype 2.xcdatamodel */,
 				A1666F851B54125400A8E39F /* AirPrototype.xcdatamodel */,
 			);

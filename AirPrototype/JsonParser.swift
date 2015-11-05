@@ -58,7 +58,9 @@ class JsonParser {
                 // only consider non-null feeds with at least 1 channel
                 if feed.channels.count > 0 {
                     let deviceId = row.valueForKey("deviceId") as! Int
+                    let apiKeyReadOnly = row.valueForKey("apiKeyReadOnly") as! String
                     let speck = Speck(feed: feed, deviceId: deviceId)
+                    speck.apiKeyReadOnly = apiKeyReadOnly
                     specks.append(speck)
                 }
             }

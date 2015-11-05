@@ -29,6 +29,7 @@ class DatabaseHelper {
         static let feedIdKey = "feed_id"
         static let isMobileKey = "is_mobile"
         static let productIdKey = "product_id"
+        static let apiKeyReadOnlyKey = "api_key_read_only"
     }
     
     
@@ -122,7 +123,17 @@ class DatabaseHelper {
                     speck.positionId = position_id
                     speck._id = match.objectID
                     
-                    GlobalHandler.sharedInstance.headerReadingsHashMap.addReading(speck)
+                    if let apiKeyReadOnly = match.valueForKey(SpeckKeys.apiKeyReadOnlyKey) as? String {
+                        if apiKeyReadOnly == "" {
+                            deleteSpeckFromDb(speck)
+                        } else {
+                            speck.apiKeyReadOnly = apiKeyReadOnly
+                            GlobalHandler.sharedInstance.headerReadingsHashMap.addReading(speck)
+                            HttpRequestHandler.sharedInstance.requestChannelsForSpeck(speck)
+                        }
+                    } else {
+                        deleteSpeckFromDb(speck)
+                    }
                 }
             } else {
                 NSLog("loadFromDb() Found 0 results")
@@ -191,7 +202,8 @@ class DatabaseHelper {
             SpeckKeys.exposureKey: speck.exposure,
             SpeckKeys.feedIdKey: speck.feed_id,
             SpeckKeys.isMobileKey: speck.isMobile,
-            SpeckKeys.productIdKey: speck.productId
+            SpeckKeys.productIdKey: speck.productId,
+            SpeckKeys.apiKeyReadOnlyKey: speck.apiKeyReadOnly!
         ]
         storedSpeck.setValuesForKeysWithDictionary(insertValues)
         

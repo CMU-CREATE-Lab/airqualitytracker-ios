@@ -8,7 +8,6 @@
         <attribute name="zipcode" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="StoredSpeck" representedClassName="StoredSpeck" syncable="YES">
-        <attribute name="api_key_read_only" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="device_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="exposure" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="feed_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -21,6 +20,6 @@
     </entity>
     <elements>
         <element name="StoredAddress" positionX="-54" positionY="-9" width="128" height="120"/>
-        <element name="StoredSpeck" positionX="-54" positionY="27" width="128" height="195"/>
+        <element name="StoredSpeck" positionX="-54" positionY="27" width="128" height="180"/>
     </elements>
 </model>

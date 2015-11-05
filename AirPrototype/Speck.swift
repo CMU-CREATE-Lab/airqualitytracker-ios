@@ -39,6 +39,7 @@ class Speck: Feed {
     var _id: NSManagedObjectID?
     var deviceId: Int
     var positionId: Int?
+    var apiKeyReadOnly: String?
     
     func requestUpdate() {
         if self.channels.count > 0 {

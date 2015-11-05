@@ -20,5 +20,6 @@ class StoredSpeck: NSManagedObject {
     @NSManaged var feed_id: Int
     @NSManaged var is_mobile: Bool
     @NSManaged var product_id: Int
+    @NSManaged var api_key_read_only: String
     
 }
