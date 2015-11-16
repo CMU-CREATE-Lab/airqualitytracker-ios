@@ -34,7 +34,7 @@ class HeaderReadingsHashMap {
         } else {
             hashMap[headers[1]] = addresses
         }
-//        populateSpecks()
+        populateSpecks()
     }
     // required helpers to get the index since find() does not properly
     // match objects that should be equivalent.

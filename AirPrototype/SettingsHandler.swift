@@ -165,6 +165,7 @@ class SettingsHandler {
             self.username = nil
             self.accessToken = nil
             self.refreshToken = nil
+            setUserLoggedIn(false)
         }
     }
     
