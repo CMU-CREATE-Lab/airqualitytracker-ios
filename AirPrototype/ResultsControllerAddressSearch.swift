@@ -61,7 +61,7 @@ class ResultsControllerAddressSearch: UITableViewController, UISearchResultsUpda
         NSLog("adding clicked address to list and returning to AddressList")
         
         // add to database and data structure
-        DatabaseHelper.addAddressToDb(searchResultsList[indexPath.row])
+        AddressDbHelper.addAddressToDb(searchResultsList[indexPath.row])
         let globalHandler = GlobalHandler.sharedInstance
         globalHandler.headerReadingsHashMap.addReading(searchResultsList[indexPath.row])
         globalHandler.updateReadings()

@@ -36,10 +36,10 @@ class AddressShowController: UIViewController {
     private func removeReading(reading: Readable) {
         GlobalHandler.sharedInstance.headerReadingsHashMap.removeReading(reading)
         if reading.getReadableType() == .ADDRESS {
-            DatabaseHelper.deleteAddressFromDb(reading as! SimpleAddress)
+            AddressDbHelper.deleteAddressFromDb(reading as! SimpleAddress)
         } else if reading.getReadableType() == .SPECK {
             let speck = reading as! Speck
-            DatabaseHelper.deleteSpeckFromDb(speck)
+            SpeckDbHelper.deleteSpeckFromDb(speck)
             SettingsHandler.sharedInstance.addToBlacklistedDevices(speck.deviceId)
         }
     }

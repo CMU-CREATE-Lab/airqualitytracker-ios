@@ -71,7 +71,7 @@ class HeaderReadingsHashMap {
         var index = 1
         for address in addresses {
             address.positionId = index
-            DatabaseHelper.updateAddressInDb(address)
+            AddressDbHelper.updateAddressInDb(address)
             index += 1
         }
         SettingsHandler.sharedInstance.setAddressLastPosition(index)
@@ -83,7 +83,7 @@ class HeaderReadingsHashMap {
         var index = 1
         for speck in specks {
             speck.positionId = index
-            DatabaseHelper.updateSpeckInDb(speck)
+            SpeckDbHelper.updateSpeckInDb(speck)
             index += 1
         }
         SettingsHandler.sharedInstance.setSpeckLastPosition(index)
@@ -174,11 +174,11 @@ class HeaderReadingsHashMap {
         if reading.getReadableType() == ReadableType.ADDRESS {
             let address = reading as! SimpleAddress
             address.name = name
-            DatabaseHelper.updateAddressInDb(address)
+            AddressDbHelper.updateAddressInDb(address)
         } else if reading.getReadableType() == ReadableType.SPECK {
             let speck = reading as! Speck
             speck.name = name
-            DatabaseHelper.updateSpeckInDb(speck)
+            SpeckDbHelper.updateSpeckInDb(speck)
         }
     }
     
@@ -220,7 +220,7 @@ class HeaderReadingsHashMap {
     func clearSpecks() {
         // TODO make this clear the table instead of iterating?
         for speck in self.specks {
-            DatabaseHelper.deleteSpeckFromDb(speck)
+            SpeckDbHelper.deleteSpeckFromDb(speck)
         }
         self.specks.removeAll(keepCapacity: true)
         refreshHash()
@@ -265,7 +265,7 @@ class HeaderReadingsHashMap {
                 // add all specks into the database which arent in there already
                 for speck in specks {
                     if speck._id == nil {
-                        DatabaseHelper.addSpeckToDb(speck)
+                        SpeckDbHelper.addSpeckToDb(speck)
                     }
                 }
                 refreshHash()
