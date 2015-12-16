@@ -11,9 +11,10 @@ import UIKit
 import CoreLocation
 
 class ServicesHandler {
-//class ServicesHandler: CLLocationManagerDelegate {
     
-    // singleton pattern; this is the only time the class should be initialized
+    
+    // MARK: singleton pattern; this is the only time the class should be initialized
+    
     
     class var sharedInstance: ServicesHandler {
         struct Singleton {
@@ -22,7 +23,9 @@ class ServicesHandler {
         return Singleton.instance
     }
     
-    // class variables/constructor
+    
+    // MARK: Class Functions
+
     
     var locationService = CLLocationSService()
     

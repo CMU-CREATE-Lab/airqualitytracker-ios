@@ -40,11 +40,13 @@ import Foundation
 
 class MapGeometry {
     
+    
     // implementation of the haversine function using sine
     private static func haversine(theta: Double) -> Double {
         let temp = sin(theta / 2.0)
         return temp * temp
     }
+    
 
     // the inverse of the haversine function
     // ASSERT: value is in range [0,1]

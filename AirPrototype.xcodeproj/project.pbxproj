@@ -60,7 +60,6 @@
 		A16F708F1BAB370600F616F6 /* LogoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A16F708E1BAB370600F616F6 /* LogoutView.xib */; };
 		A16F70911BAB3BD500F616F6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16F70901BAB3BD500F616F6 /* LoginView.swift */; };
 		A16F70931BAB3D8100F616F6 /* LogoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16F70921BAB3D8100F616F6 /* LogoutView.swift */; };
-		A1740DBA1BC41B3100617185 /* AboutAirQualityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1740DB91BC41B3100617185 /* AboutAirQualityController.swift */; settings = {ASSET_TAGS = (); }; };
 		A1740DBC1BC41B5B00617185 /* AboutSpeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1740DBB1BC41B5B00617185 /* AboutSpeckController.swift */; settings = {ASSET_TAGS = (); }; };
 		A17527C41BD556A7007526C0 /* ManageTrackersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17527C31BD556A7007526C0 /* ManageTrackersController.swift */; settings = {ASSET_TAGS = (); }; };
 		A17527C61BD55791007526C0 /* ManageTrackersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17527C51BD55791007526C0 /* ManageTrackersTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -145,7 +144,6 @@
 		A16F708E1BAB370600F616F6 /* LogoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogoutView.xib; sourceTree = "<group>"; };
 		A16F70901BAB3BD500F616F6 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A16F70921BAB3D8100F616F6 /* LogoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutView.swift; sourceTree = "<group>"; };
-		A1740DB91BC41B3100617185 /* AboutAirQualityController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAirQualityController.swift; sourceTree = "<group>"; };
 		A1740DBB1BC41B5B00617185 /* AboutSpeckController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutSpeckController.swift; sourceTree = "<group>"; };
 		A17527C31BD556A7007526C0 /* ManageTrackersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageTrackersController.swift; sourceTree = "<group>"; };
 		A17527C51BD55791007526C0 /* ManageTrackersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageTrackersTableViewCell.swift; sourceTree = "<group>"; };
@@ -328,7 +326,6 @@
 				A16481F91B5D552D0023DE09 /* address_show */,
 				A1626DF71B555A5F006D990C /* address_search */,
 				A160A0F01BD68EDB0059833F /* manage_trackers */,
-				A1740DB91BC41B3100617185 /* AboutAirQualityController.swift */,
 				A1740DBB1BC41B5B00617185 /* AboutSpeckController.swift */,
 				A103E6071BE12A5E0065378D /* SettingsController.swift */,
 			);
@@ -552,7 +549,6 @@
 				A1FEAB411B8CF19D00F9716B /* StoredAddress.swift in Sources */,
 				A1660FF71B568B6700608C5D /* ResultsControllerAddressSearch.swift in Sources */,
 				A14C456B1BA0B2B000D6C9CF /* ReadableIndexController.swift in Sources */,
-				A1740DBA1BC41B3100617185 /* AboutAirQualityController.swift in Sources */,
 				A103E6081BE12A5E0065378D /* SettingsController.swift in Sources */,
 				A11844B11BA9FECC00435D11 /* CLLocationService.swift in Sources */,
 				A158F6111B8E000F00FCE2E1 /* DatabaseHelper.swift in Sources */,

@@ -17,6 +17,7 @@ class SettingsController: UIViewController {
     @IBOutlet var buttonAboutSpeck: UIButton!
     var parentNavigationController: UINavigationController?
     
+    
     // ASSERT: assumes we want the top-left corner included
     private func getFramefromViews(views: [UIView!]) -> CGRect {
         var result = CGRectMake(0, 0, 0, 0)
@@ -26,31 +27,42 @@ class SettingsController: UIViewController {
         return result
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // calculates how large the popup window should be
-        let frame = getFramefromViews([buttonManageTrackers, buttonLogin, buttonAboutAirQuality, buttonAboutSpeck])
-        self.preferredContentSize = CGSizeMake(frame.width + 20, frame.height)
-    }
+    
+    // MARK: Storyboard Events
+    
     
     @IBAction func clickButtonLogin(sender: AnyObject) {
         self.dismissViewControllerAnimated(false, completion: nil)
         parentNavigationController!.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login"), animated: true)
     }
     
+    
     @IBAction func clickButtonAboutAirQuality(sender: AnyObject) {
         self.dismissViewControllerAnimated(false, completion: nil)
         parentNavigationController!.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AboutAirQuality"), animated: true)
     }
+    
     
     @IBAction func clickButtonAboutSpeck(sender: AnyObject) {
         self.dismissViewControllerAnimated(false, completion: nil)
         parentNavigationController!.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AboutSpeck"), animated: true)
     }
     
+    
     @IBAction func clickButtonManageTrackers(sender: AnyObject) {
         self.dismissViewControllerAnimated(false, completion: nil)
         parentNavigationController!.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ManageTrackers"), animated: true)
+    }
+    
+    
+    // MARK: UIView Overrides
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // calculates how large the popup window should be
+        let frame = getFramefromViews([buttonManageTrackers, buttonLogin, buttonAboutAirQuality, buttonAboutSpeck])
+        self.preferredContentSize = CGSizeMake(frame.width + 20, frame.height)
     }
     
 }

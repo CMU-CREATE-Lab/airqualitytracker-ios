@@ -8,11 +8,13 @@
 
 import Foundation
 
+
 enum ReadableType {
     case ADDRESS, FEED, SPECK
 }
 
 private var hashId = 1
+
 func generateHashForReadable() -> Int {
     return hashId++
 }
@@ -26,11 +28,13 @@ func generateHashForReadable() -> Int {
 // tl;dr: when classes inherit Readable, inherit Hashable as well.
 //protocol Readable: Hashable {
 protocol Readable {
+    
+    // ASSERT: this should return generateHashForReadable()
+    var hashValue: Int { get }
+    
     func getReadableType() -> ReadableType
     func getName() -> String
     func hasReadableValue() -> Bool
     func getReadableValue() -> Double
     
-    // ASSERT this should return generateHashForReadable()
-    var hashValue: Int { get }
 }

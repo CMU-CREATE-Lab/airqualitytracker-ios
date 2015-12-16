@@ -60,7 +60,9 @@ class LoginController: UIViewController {
     func onClickLogin() {
         username = loginView!.textFieldUsername.text
         let password = loginView!.textFieldPassword.text
+        
         HttpRequestHandler.sharedInstance.requestEsdrToken(username!, password: password!, completionHandler: { (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void in
+            
             let httpResponse = response as! NSHTTPURLResponse
             if error != nil {
                 NSLog("error is not nil")
@@ -79,7 +81,6 @@ class LoginController: UIViewController {
                 let settingsHandler = SettingsHandler.sharedInstance
                 settingsHandler.updateEsdrAccount(self.username!, userId: userId, accessToken: accessToken, refreshToken: refreshToken)
                 settingsHandler.setUserLoggedIn(true)
-                // TODO esdr refresh service?
             }
             if self.loggedIn == false {
                 dispatch_async(dispatch_get_main_queue()) {
@@ -89,13 +90,13 @@ class LoginController: UIViewController {
                 }
             }
         })
+        
         loggedIn = true
         display()
     }
     
     
     func onClickLogout() {
-        // TODO stop esdr refresh service
         SettingsHandler.sharedInstance.setUserLoggedIn(false)
         loggedIn = false
         SettingsHandler.sharedInstance.setUserLoggedIn(false)

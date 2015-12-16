@@ -14,16 +14,6 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var tableView: UITableView!
     @IBOutlet var currentLocationSwitch: UISwitch!
     
-    @IBAction func onSwitchUserCurrentLocation(sender: AnyObject) {
-        SettingsHandler.sharedInstance.setAppUsesCurrentLocation(currentLocationSwitch.on)
-    }
-    
-    override func viewDidLoad() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.setEditing(true, animated: true)
-        currentLocationSwitch.on = SettingsHandler.sharedInstance.appUsesLocation
-    }
     
     func removeReading(reading: Readable) {
         GlobalHandler.sharedInstance.headerReadingsHashMap.removeReading(reading)
@@ -38,7 +28,28 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
         tableView.reloadData()
     }
     
+    
+    // MARK: Storyboard Events
+    
+    
+    @IBAction func onSwitchUserCurrentLocation(sender: AnyObject) {
+        SettingsHandler.sharedInstance.setAppUsesCurrentLocation(currentLocationSwitch.on)
+    }
+    
+    
+    // MARK: UIView Overrides
+    
+    
+    override func viewDidLoad() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.setEditing(true, animated: true)
+        currentLocationSwitch.on = SettingsHandler.sharedInstance.appUsesLocation
+    }
+    
+    
     // MARK table view
+    
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
@@ -48,9 +59,12 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return GlobalHandler.sharedInstance.headerReadingsHashMap.headers.count
     }
+    
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
         if let readings = headerReadingsHashmap.adapterListTracker[headerReadingsHashmap.headers[section]] {
@@ -58,9 +72,13 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
         }
         return 0
     }
+    
+    
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return Constants.HEADER_TITLES[section]
     }
+    
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let identifier = "TrackerReuse"
         let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
@@ -76,24 +94,28 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
         cell?.setEditing(true, animated: true)
         return cell!
     }
+    
+    
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
+    
+    
     func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
+    
+    
     func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-        // TODO things
         let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
         let from = headerReadingsHashmap.adapterListTracker[headerReadingsHashmap.headers[sourceIndexPath.section]]![sourceIndexPath.row]
         let to = headerReadingsHashmap.adapterListTracker[headerReadingsHashmap.headers[destinationIndexPath.section]]![destinationIndexPath.row]
-        
-//        NSLog("TODO swap out \(from.getName()) and \(to.getName())")
         GlobalHandler.sharedInstance.headerReadingsHashMap.reorderReading(from, destination: to)
         tableView.reloadData()
     }
+    
+    
     func tableView(tableView: UITableView, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {
-        // TODO idk
         // force moving in same sections ONLY
         if sourceIndexPath.section != proposedDestinationIndexPath.section {
             return sourceIndexPath

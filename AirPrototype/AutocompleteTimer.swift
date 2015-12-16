@@ -13,22 +13,10 @@ class AutocompleteTimer: NSObject, Timer {
     var timer:NSTimer?
     var timerInterval: NSTimeInterval
     var timerTolerance: NSTimeInterval?
-    
     var controller: ResultsControllerAddressSearch
     
-    init(controller: ResultsControllerAddressSearch, interval: NSTimeInterval, withTolerance: NSTimeInterval?) {
-        self.timerInterval = interval
-        self.timerTolerance = withTolerance
-        self.controller = controller
-    }
     
-    func timerExpires() {
-        NSLog("In timerExpires()")
-        let input = self.controller.searchText!
-        HttpRequestHandler.sharedInstance.requestGeocodingFromApi(input, completionHandler: self.completionHandler)
-    }
-    
-    func completionHandler (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
+    private func completionHandler (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
         NSLog("In completionHandler \(self.description)")
         let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
         let results = JsonParser.parseAddressesFromJson(data!)
@@ -43,6 +31,21 @@ class AutocompleteTimer: NSObject, Timer {
         }
     }
     
+    
+    init(controller: ResultsControllerAddressSearch, interval: NSTimeInterval, withTolerance: NSTimeInterval?) {
+        self.timerInterval = interval
+        self.timerTolerance = withTolerance
+        self.controller = controller
+    }
+    
+    
+    func timerExpires() {
+        NSLog("In timerExpires()")
+        let input = self.controller.searchText!
+        HttpRequestHandler.sharedInstance.requestGeocodingFromApi(input, completionHandler: self.completionHandler)
+    }
+    
+    
     func startTimer() {
         self.stopTimer()
         self.timer = NSTimer.scheduledTimerWithTimeInterval(self.timerInterval, target: self, selector: Selector("timerExpires"), userInfo: nil, repeats: false)
@@ -50,6 +53,7 @@ class AutocompleteTimer: NSObject, Timer {
             self.timer!.tolerance = tolerance
         }
     }
+    
     
     func stopTimer() {
         if let timer = self.timer {

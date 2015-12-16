@@ -12,7 +12,7 @@ import CoreData
 
 class GlobalHandler {
     
-    // singleton pattern; this is the only time the class should be initialized
+    // MARK: singleton pattern; this is the only time the class should be initialized
     static var singletonInstantiated: Bool = false
     class var sharedInstance: GlobalHandler {
         struct Singleton {
@@ -21,7 +21,9 @@ class GlobalHandler {
         return Singleton.instance
     }
     
-    // class variables/constructor
+    
+    // MARK: Class Functions
+
     
     var headerReadingsHashMap: HeaderReadingsHashMap
     // keep track of ALL adapters for notify
@@ -29,6 +31,8 @@ class GlobalHandler {
     var secretDebugMenuTable: UITableView?
     var appDelegate: AppDelegate
     var refreshTimer: RefreshTimer
+    
+    
     init() {
         appDelegate = (UIApplication.sharedApplication().delegate! as! AppDelegate)
         headerReadingsHashMap = HeaderReadingsHashMap()
@@ -54,8 +58,10 @@ class GlobalHandler {
                 readableIndexListView.reloadData()
             }
         }
+        // TODO this looks like it crashes from EXC_BAD_ACCESS (probably upon refreshing feeds)
         if let secretMenu = self.secretDebugMenuTable {
             dispatch_async(dispatch_get_main_queue()) {
+                // (crashes here)
                 secretMenu.reloadData()
             }
         }

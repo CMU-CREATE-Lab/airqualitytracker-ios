@@ -17,6 +17,8 @@ class HeaderReadingsHashMap {
     var hashMap = [String: [Readable]]()
     var adapterList = [String: [Readable]]()
     var adapterListTracker = [String: [Readable]]()
+    
+    
     init() {
         gpsAddress = SimpleAddress()
         gpsAddress.isCurrentLocation = true
@@ -36,6 +38,8 @@ class HeaderReadingsHashMap {
         }
         populateSpecks()
     }
+    
+    
     // required helpers to get the index since find() does not properly
     // match objects that should be equivalent.
     private func findIndexFromAddress(address: SimpleAddress) -> Int? {
@@ -48,6 +52,8 @@ class HeaderReadingsHashMap {
         NSLog("WARNING - Failed to find index from address")
         return nil
     }
+    
+    
     private func findIndexFromSpeck(speck: Speck) -> Int? {
         let max = specks.endIndex - 1
         for i in 0...max {
@@ -58,6 +64,8 @@ class HeaderReadingsHashMap {
         NSLog("WARNING - Failed to find index from speck")
         return nil
     }
+    
+    
     private func reorderAddressPositions() {
         // TODO this is slow; it could be sped up if we group the jobs together (so we only have to save/synchronize once)
         var index = 1
@@ -68,6 +76,8 @@ class HeaderReadingsHashMap {
         }
         SettingsHandler.sharedInstance.setAddressLastPosition(index)
     }
+    
+    
     private func reorderSpeckPositions() {
         // TODO this is slow; it could be sped up if we group the jobs together (so we only have to save/synchronize once)
         var index = 1
@@ -78,6 +88,8 @@ class HeaderReadingsHashMap {
         }
         SettingsHandler.sharedInstance.setSpeckLastPosition(index)
     }
+    
+    
     private func findIndexOfSpeckWithDeviceId(deviceId: Int) -> Int? {
         var i=0
         for speck in specks {
@@ -169,6 +181,8 @@ class HeaderReadingsHashMap {
             DatabaseHelper.updateSpeckInDb(speck)
         }
     }
+    
+    
     func reorderReading(reading: Readable, destination: Readable) {
         if reading.getReadableType() == destination.getReadableType() {
             if reading.getReadableType() == ReadableType.ADDRESS {

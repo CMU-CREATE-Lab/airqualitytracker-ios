@@ -14,15 +14,18 @@ class RefreshTimer: NSObject, Timer {
     var timerInterval: NSTimeInterval
     var timerTolerance: NSTimeInterval?
     
+    
     init(interval: NSTimeInterval, withTolerance: NSTimeInterval?) {
         self.timerInterval = interval
         self.timerTolerance = withTolerance
     }
     
+    
     func timerExpires() {
         NSLog("refreshTimer has expired.")
         GlobalHandler.sharedInstance.updateReadings()
     }
+    
     
     func startTimer() {
         self.stopTimer()
@@ -31,6 +34,7 @@ class RefreshTimer: NSObject, Timer {
             self.timer!.tolerance = tolerance
         }
     }
+    
     
     func stopTimer() {
         if let timer = self.timer {

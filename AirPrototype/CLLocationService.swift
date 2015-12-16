@@ -16,17 +16,6 @@ class CLLocationSService: NSObject, CLLocationManagerDelegate {
     var geocoder = CLGeocoder()
     // This is set to false if location services are not enabled on the device or if this app is denied service
     var serviceEnabled: Bool = false
-    override init() {
-        super.init()
-        locationManager.delegate = self
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.requestWhenInUseAuthorization()
-            let authStatus = CLLocationManager.authorizationStatus()
-            if authStatus != .Denied && authStatus != .Restricted && authStatus != .NotDetermined {
-                serviceEnabled = true
-            }
-        }
-    }
     
     
     private func updateCurrentLocation(location: Location, name: String) {
@@ -40,16 +29,28 @@ class CLLocationSService: NSObject, CLLocationManagerDelegate {
             locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
             locationManager.distanceFilter = 1000
             locationManager.startUpdatingLocation()
-            if locationManager.location != nil {
-                let latitude = locationManager.location!.coordinate.latitude
-                let longitude = locationManager.location!.coordinate.longitude
-            }
         }
     }
     
     
     func stopLocationService() {
         locationManager.stopUpdatingLocation()
+    }
+    
+    
+    // MARK: Location Manager
+    
+    
+    override init() {
+        super.init()
+        locationManager.delegate = self
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.requestWhenInUseAuthorization()
+            let authStatus = CLLocationManager.authorizationStatus()
+            if authStatus != .Denied && authStatus != .Restricted && authStatus != .NotDetermined {
+                serviceEnabled = true
+            }
+        }
     }
     
     
@@ -69,10 +70,12 @@ class CLLocationSService: NSObject, CLLocationManagerDelegate {
 //        locationManager.stopUpdatingLocation()
     }
     
+    
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         NSLog("FAIL at CLLocationSService")
         updateCurrentLocation(Location(latitude:0,longitude:0), name: "Unknown Location")
     }
+    
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         NSLog("didChangeAuthorizationStatus")

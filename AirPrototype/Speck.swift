@@ -11,15 +11,25 @@ import CoreData
 
 class Speck: Feed {
     
-    // Readable implementation
+    // MARK: Readable implementation
 
     private let readableType = ReadableType.SPECK
+    
+    
     override func getReadableType() -> ReadableType {
         return readableType
     }
     
-    // class-specific definitions
-
+    
+    // MARK: class-specific definitions
+    
+    
+    var _id: NSManagedObjectID?
+    var deviceId: Int
+    var positionId: Int?
+    var apiKeyReadOnly: String?
+    
+    
     init(feed: Feed, deviceId: Int) {
         self.deviceId = deviceId
         super.init()
@@ -36,10 +46,6 @@ class Speck: Feed {
         NSLog("Constructed a new Speck! name=\(name), location=\(location), feedValue=\(feedValue)")
     }
     
-    var _id: NSManagedObjectID?
-    var deviceId: Int
-    var positionId: Int?
-    var apiKeyReadOnly: String?
     
     func requestUpdate() {
         if self.channels.count > 0 {

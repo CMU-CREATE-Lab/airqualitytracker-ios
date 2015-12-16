@@ -18,6 +18,7 @@ class SecretMenuTableCell: UITableViewCell {
     @IBOutlet var labelFeedValue: UILabel!
     @IBOutlet var labelFeedId: UILabel!
     
+    
     func populate(feed: Feed, fromAddress address: SimpleAddress, tableView: UITableView) {
         labelFeedName.text = feed.getName()
         labelLatitude.text = feed.location.latitude.description

@@ -11,15 +11,24 @@ import CoreData
 
 class SimpleAddress: Readable, Hashable {
     
-    // Readable/Hashable implementation
+    
+    // MARK: Readable/Hashable implementation
+    
     
     private let readableType = ReadableType.ADDRESS
+    var hashValue: Int { return generateHashForReadable() }
+    
+    
     func getReadableType() -> ReadableType {
         return self.readableType
     }
+    
+    
     func hasReadableValue() -> Bool {
         return self.closestFeed != nil
     }
+    
+    
     func getReadableValue() -> Double {
         if self.hasReadableValue() {
             return self.closestFeed!.feedValue
@@ -27,12 +36,15 @@ class SimpleAddress: Readable, Hashable {
         NSLog("Failed to get Readable Value on SimpleAddress; returning 0.0")
         return 0.0
     }
+    
+    
     func getName() -> String {
         return self.name
     }
-    var hashValue: Int { return generateHashForReadable() }
     
-    // class-specific definitions
+    
+    // MARK: class-specific definitions
+    
     
     var _id: NSManagedObjectID?
     var positionId: Int?
@@ -44,6 +56,7 @@ class SimpleAddress: Readable, Hashable {
     var feeds: Array<Feed>
     let uid = 1
     
+    
     init() {
         name = ""
         zipcode = ""
@@ -52,6 +65,7 @@ class SimpleAddress: Readable, Hashable {
         feeds = []
         isCurrentLocation = false
     }
+    
     
     func requestUpdateFeeds() {
         NSLog("Called requestUpdateFeeds() on Address=\(self.name)")

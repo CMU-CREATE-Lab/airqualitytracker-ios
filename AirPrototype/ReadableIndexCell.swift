@@ -16,11 +16,6 @@ class ReadableIndexCell: UICollectionViewCell {
     @IBOutlet var textItemName: UILabel!
     @IBOutlet var textCurrentLocation: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        textCurrentLocation.hidden = true
-    }
-    
     
     func populate(reading: Readable) {
         textCurrentLocation.hidden = true
@@ -70,6 +65,12 @@ class ReadableIndexCell: UICollectionViewCell {
                 }
             }
         }
+    }
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        textCurrentLocation.hidden = true
     }
     
 }

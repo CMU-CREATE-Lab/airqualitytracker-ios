@@ -30,6 +30,7 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    
     override func viewDidLoad() {
         let username = SettingsHandler.sharedInstance.username
         let userId = SettingsHandler.sharedInstance.userId!.description
@@ -52,7 +53,9 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
         GlobalHandler.sharedInstance.secretDebugMenuTable = tableView
     }
     
+    
     // MARK table view
+    
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if let addresses = GlobalHandler.sharedInstance.headerReadingsHashMap.adapterList[Constants.HEADER_TITLES[1]] {
@@ -60,6 +63,7 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         return 0
     }
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
@@ -72,10 +76,12 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
         return 0
     }
     
+    
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let address = (GlobalHandler.sharedInstance.headerReadingsHashMap.adapterList[Constants.HEADER_TITLES[1]]!)[section] as! SimpleAddress
         return "\(section.description) (\(address.location.latitude.description),\(address.location.longitude.description))"
     }
+    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let identifier = "SecretMenuCell"

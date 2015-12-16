@@ -11,7 +11,9 @@ import UIKit
 
 class EsdrAuthHandler {
     
-    // singleton pattern; this is the only time the class should be initialized
+    
+    // MARK: singleton pattern; this is the only time the class should be initialized
+    
     
     class var sharedInstance: EsdrAuthHandler {
         struct Singleton {
@@ -20,9 +22,13 @@ class EsdrAuthHandler {
         return Singleton.instance
     }
     
-    // class variables/constructor
-
+    
+    // MARK: Class Functions
+    
+    
     var appDelegate: AppDelegate
+    
+    
     init() {
         appDelegate = (UIApplication.sharedApplication().delegate! as? AppDelegate)!
     }

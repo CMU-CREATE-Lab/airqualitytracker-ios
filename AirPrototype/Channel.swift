@@ -9,12 +9,14 @@
 import Foundation
 
 class Channel {
+    
     var name: String
     var feed: Feed
     var minTimeSecs: Double
     var maxTimeSecs: Double
     var minValue: Double
     var maxValue: Double
+    
     
     init() {
         name = ""
@@ -24,4 +26,5 @@ class Channel {
         minValue = 0
         maxValue = 0
     }
+    
 }

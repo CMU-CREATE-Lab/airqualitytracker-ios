@@ -23,12 +23,6 @@ class AddressShowController: UIViewController {
     var closestFeed: Feed?
     var reading: Readable?
     
-    @IBAction func onClickFeedName(sender: UITapGestureRecognizer) {
-        if let feed = closestFeed {
-            let dialog = UIAlertView.init(title: feed.getName(), message: "Latitude: \(feed.location.latitude.description)\nLongitude: \(feed.location.longitude.description)", delegate: nil, cancelButtonTitle: "OK")
-            dialog.show()
-        }
-    }
     
     private func clearAndHide(labels: [UILabel!]) {
         for label in labels {
@@ -38,23 +32,15 @@ class AddressShowController: UIViewController {
     }
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        NSLog("Loaded AddressShow with address " + reading!.getName())
-        populateView()
-    }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    @IBAction func onClickRemove(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
-        if let readableIndexController = self.navigationController?.visibleViewController as? ReadableIndexController {
-            readableIndexController.removeReading(reading!)
+    // TODO consolidate function; possibly move into GlobalHandler
+    private func removeReading(reading: Readable) {
+        GlobalHandler.sharedInstance.headerReadingsHashMap.removeReading(reading)
+        if reading.getReadableType() == .ADDRESS {
+            DatabaseHelper.deleteAddressFromDb(reading as! SimpleAddress)
+        } else if reading.getReadableType() == .SPECK {
+            let speck = reading as! Speck
+            DatabaseHelper.deleteSpeckFromDb(speck)
+            SettingsHandler.sharedInstance.addToBlacklistedDevices(speck.deviceId)
         }
     }
     
@@ -138,6 +124,39 @@ class AddressShowController: UIViewController {
         default:
             NSLog("WARNING - could not populate view; unknown readable type")
         }
+    }
+    
+    
+    // MARK: Storyboard Events
+
+    
+    @IBAction func onClickFeedName(sender: UITapGestureRecognizer) {
+        if let feed = closestFeed {
+            let dialog = UIAlertView.init(title: feed.getName(), message: "Latitude: \(feed.location.latitude.description)\nLongitude: \(feed.location.longitude.description)", delegate: nil, cancelButtonTitle: "OK")
+            dialog.show()
+        }
+    }
+    
+    
+    @IBAction func onClickRemove(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+        removeReading(reading!)
+    }
+    
+    
+    // MARK: UIView Overrides
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NSLog("Loaded AddressShow with address " + reading!.getName())
+        populateView()
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
 }

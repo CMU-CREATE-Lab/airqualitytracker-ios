@@ -15,13 +15,16 @@ import Foundation
 // because protocols can't extend from classes...)
 // OOPs!
 protocol Timer {
-    func timerExpires()
-    func startTimer()
-    func stopTimer()
     
+    // actual timer object (from lib)
     var timer:NSTimer? { get }
     // length of time for the timer
     var timerInterval: NSTimeInterval { get }
     // tolerance allows less precision and saves on battery
     var timerTolerance: NSTimeInterval? { get }
+    
+    func timerExpires()
+    func startTimer()
+    func stopTimer()
+    
 }

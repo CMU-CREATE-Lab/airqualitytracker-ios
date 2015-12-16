@@ -12,7 +12,6 @@ import CoreData
 
 class ResultsControllerAddressSearch: UITableViewController, UISearchResultsUpdating {
     
-    // keeps track of results from search
     var searchResultsList = Array<SimpleAddress>()
     var addressSearchController: AddressSearchController?
     var searchText: String?
@@ -35,7 +34,9 @@ class ResultsControllerAddressSearch: UITableViewController, UISearchResultsUpda
         }
     }
     
+    
     // MARK: UITableView delegate
+    
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1

@@ -18,15 +18,11 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
     var refreshController: UIRefreshControl?
     var longPressActive = false
     
-    @IBAction func longPressOccurred(sender: UILongPressGestureRecognizer) {
-        NSLog("LONG PRESS happened")
-        if !longPressActive {
-            longPressActive = true
-            let dialog = UIAlertView.init(title: "DEBUG", message: "View Debug Screen?", delegate: self, cancelButtonTitle: "No", otherButtonTitles: "Yes")
-//            dialog.alertViewStyle = UIAlertViewStyle.PlainTextInput
-            dialog.show()
-        }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
     }
+    
     
     func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
         longPressActive = false
@@ -36,7 +32,27 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
             self.navigationController!.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SecretMenu"), animated: true)
         }
     }
+    
+    
+    func refreshLayout() {
+        GlobalHandler.sharedInstance.updateReadings()
+        self.refreshController!.endRefreshing()
+    }
+    
+    
+    // MARK: Storyboard Events
+    
+    
+    @IBAction func longPressOccurred(sender: UILongPressGestureRecognizer) {
+        NSLog("LONG PRESS happened")
+        if !longPressActive {
+            longPressActive = true
+            let dialog = UIAlertView.init(title: "DEBUG", message: "View Debug Screen?", delegate: self, cancelButtonTitle: "No", otherButtonTitles: "Yes")
+            dialog.show()
+        }
+    }
 
+    
     @IBAction func menuClicked(sender: UIBarButtonItem) {
         let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SettingsPopup") as! SettingsController
         // NOTE: preferred content size is controlled on SettingsController's viewDidLoad() function
@@ -52,9 +68,7 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
     }
     
     
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return .None
-    }
+    // MARK: UIView Overrides
     
     
     override func viewDidLoad() {
@@ -76,8 +90,7 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
         // nav control
         let logo = UIImage(named: "logo_specksensor-black")
         let imageView = UIImageView(image: logo)
-//        imageView.frame.size.width = 165
-        imageView.frame.size.height = 33
+        imageView.frame.size.height = 33 // & width 165
         
         self.navigationItem.title = nil
         self.navigationItem.titleView = imageView
@@ -114,15 +127,10 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
     }
     
     
-    func refreshLayout() {
-        GlobalHandler.sharedInstance.updateReadings()
-        self.refreshController!.endRefreshing()
-    }
-    
     // MARK: Collection View Delegate
     
+    
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-//        return GlobalHandler.sharedInstance.headerReadingsHashMap.adapterList.keys.array.count
         return GlobalHandler.sharedInstance.headerReadingsHashMap.adapterList.keys.count
     }
     
@@ -158,22 +166,6 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(collectionView.bounds.size.width/2.0-0.5, collectionView.bounds.size.width/2.0-1.0)
-    }
-    
-    
-    // ASSERT: reading is not current location
-    // TODO deprecated; remove this later (now moved to the tracker management)
-    func removeReading(reading: Readable) {
-        GlobalHandler.sharedInstance.headerReadingsHashMap.removeReading(reading)
-        if reading.getReadableType() == .ADDRESS {
-            DatabaseHelper.deleteAddressFromDb(reading as! SimpleAddress)
-        } else if reading.getReadableType() == .SPECK {
-            let speck = reading as! Speck
-            DatabaseHelper.deleteSpeckFromDb(speck)
-            SettingsHandler.sharedInstance.addToBlacklistedDevices(speck.deviceId)
-        }
-        
-        gridView.reloadData()
     }
     
 }

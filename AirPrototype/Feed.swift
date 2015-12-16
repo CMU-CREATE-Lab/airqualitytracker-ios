@@ -10,28 +10,42 @@ import Foundation
 
 class Feed: Readable, Hashable {
     
-    // Readable/Hashable implementation
+    
+    // MARK: Readable/Hashable implementation
+    
 
     private let readableType = ReadableType.FEED
     private var feedHasReadableValue: Bool
+    var hashValue: Int { return generateHashForReadable() }
+    
+    
     func setHasReadableValue(hasReadableValue: Bool) {
         self.feedHasReadableValue = hasReadableValue
     }
+    
+    
     func getReadableType() -> ReadableType {
         return self.readableType
     }
+    
+    
     func hasReadableValue() -> Bool {
         return self.feedHasReadableValue
     }
+    
+    
     func getReadableValue() -> Double {
         return self.feedValue
     }
+    
+    
     func getName() -> String {
         return self.name
     }
-    var hashValue: Int { return generateHashForReadable() }
     
-    // class-specific definitions
+    
+    // MARK: class-specific definitions
+    
     
     var feed_id: Int
     var name: String
@@ -42,6 +56,7 @@ class Feed: Readable, Hashable {
     var channels: Array<Channel>
     var feedValue: Double
     var lastTime: Double
+    
     
     init() {
         feedHasReadableValue = false
@@ -55,6 +70,7 @@ class Feed: Readable, Hashable {
         lastTime = 0
         channels = Array()
     }
+    
 }
 
 // conforms to Equatable protocol

@@ -14,6 +14,16 @@ class ResultsTableViewCellAddressSearch: UITableViewCell {
     @IBOutlet var labelResultsTableViewCellAddressSearch: UILabel!
     
     
+    func populate(address: SimpleAddress) {
+        // TODO given input, populate the cell
+        labelResultsTableViewCellAddressSearch.text = address.name
+        self.viewForBaselineLayout()
+    }
+    
+    
+    // MARK: Table View Cell
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -21,13 +31,6 @@ class ResultsTableViewCellAddressSearch: UITableViewCell {
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-    }
-    
-    
-    func populate(address: SimpleAddress) {
-        // TODO given input, populate the cell
-        labelResultsTableViewCellAddressSearch.text = address.name
-        self.viewForBaselineLayout()
     }
     
 }

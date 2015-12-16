@@ -11,10 +11,12 @@ import UIKit
 
 class AddressSearchController: UIViewController, UISearchBarDelegate {
 
-    // interface
     @IBOutlet var navItemAddressSearch: UINavigationItem!
     var resultsController: ResultsControllerAddressSearch!
     var searchControllerAddressSearch: UISearchController?
+    
+    
+    // MARK: UIView Overrides
     
     
     override func viewDidLoad() {
@@ -39,7 +41,9 @@ class AddressSearchController: UIViewController, UISearchBarDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    
     // MARK: SearchBar delegate
+    
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar){
         NSLog("searchBarSearchButtonClicked")

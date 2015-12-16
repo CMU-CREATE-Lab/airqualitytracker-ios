@@ -11,7 +11,8 @@ import UIKit
 
 class SettingsHandler {
     
-    // singleton pattern; this is the only time the class should be initialized
+    
+    // MARK: singleton pattern; this is the only time the class should be initialized
     
     class var sharedInstance: SettingsHandler {
         struct Singleton {
@@ -20,7 +21,9 @@ class SettingsHandler {
         return Singleton.instance
     }
     
-    // class variables/constructor
+    
+    // MARK: Class Functions
+
     
     var userDefaults: NSUserDefaults
     var appUsesLocation: Bool
@@ -31,6 +34,8 @@ class SettingsHandler {
     var refreshToken: String?
     var blacklistedDevices: [Int]?
     var appDelegate: AppDelegate
+    
+    
     init() {
         appDelegate = (UIApplication.sharedApplication().delegate! as? AppDelegate)!
         userDefaults = NSUserDefaults.standardUserDefaults()

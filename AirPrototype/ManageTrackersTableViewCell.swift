@@ -17,6 +17,26 @@ class ManageTrackersTableViewCell: UITableViewCell, UIAlertViewDelegate {
     var tableView: UITableView?
     
     
+    func populate(reading: Readable, tableView: UITableView) {
+        self.reading = reading
+        self.tableView = tableView
+        labelReadingName.text = reading.getName()
+    }
+    
+    
+    func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
+        NSLog("Dismissed at index \(buttonIndex)")
+        if buttonIndex == 1{
+            let name = alertView.textFieldAtIndex(0)!.text!
+            GlobalHandler.sharedInstance.headerReadingsHashMap.renameReading(self.reading!, name: name)
+            self.tableView!.reloadData()
+        }
+    }
+    
+    
+    // MARK: Storyboard Events
+    
+    
     @IBAction func onClickEditName(sender: AnyObject) {
         NSLog("Clicked editName button")
         let reading = self.reading!
@@ -31,39 +51,6 @@ class ManageTrackersTableViewCell: UITableViewCell, UIAlertViewDelegate {
             dialog.show()
         default:
             NSLog("Error - could not find readable type")
-        }
-    }
-    
-    
-    func populate(reading: Readable, tableView: UITableView) {
-        // label
-        self.reading = reading
-        self.tableView = tableView
-        labelReadingName.text = reading.getName()
-    }
-    
-    
-    func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
-//        if self.reading!.getReadableType() == ReadableType.ADDRESS {
-//            NSLog("Dismissed at index \(buttonIndex)")
-//            if buttonIndex == 1{
-//                let name = alertView.textFieldAtIndex(0)!.text!
-//                GlobalHandler.sharedInstance.headerReadingsHashMap.renameReading(self.reading!, name: name)
-//                self.tableView!.reloadData()
-//            }
-//        } else if self.reading!.getReadableType() == ReadableType.SPECK {
-//            NSLog("Dismissed at index \(buttonIndex)")
-//            if buttonIndex == 1{
-//                let name = alertView.textFieldAtIndex(0)!.text!
-//                GlobalHandler.sharedInstance.headerReadingsHashMap.renameReading(self.reading!, name: name)
-//                self.tableView!.reloadData()
-//            }
-//        }
-        NSLog("Dismissed at index \(buttonIndex)")
-        if buttonIndex == 1{
-            let name = alertView.textFieldAtIndex(0)!.text!
-            GlobalHandler.sharedInstance.headerReadingsHashMap.renameReading(self.reading!, name: name)
-            self.tableView!.reloadData()
         }
     }
     
