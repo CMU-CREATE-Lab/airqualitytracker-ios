@@ -244,7 +244,7 @@ class HeaderReadingsHashMap {
                     }
                 }
                 if resultSpecks.count > 0 {
-                    HttpRequestHandler.sharedInstance.requestSpeckDevices(authToken!, userId: userId!, completionHandler: devicesCompletionHandler)
+                    EsdrSpecksHandler.sharedInstance.requestSpeckDevices(authToken!, userId: userId!, completionHandler: devicesCompletionHandler)
                 }
             }
             func devicesCompletionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
@@ -270,7 +270,7 @@ class HeaderReadingsHashMap {
                 }
                 refreshHash()
             }
-            HttpRequestHandler.sharedInstance.requestSpeckFeeds(authToken!, userId: userId!, completionHandler: feedsCompletionHandler)
+            EsdrSpecksHandler.sharedInstance.requestSpeckFeeds(authToken!, userId: userId!, completionHandler: feedsCompletionHandler)
         }
         refreshHash()
     }

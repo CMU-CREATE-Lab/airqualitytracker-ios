@@ -55,47 +55,6 @@ class HttpRequestHandler {
         let downloadTask = session.downloadTaskWithRequest(urlRequest, completionHandler: completionHandler)
         downloadTask.resume()
     }
-
-
-    func requestFeeds(location: Location, withinSeconds: Double, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void)) {
-        EsdrFeedsHandler.sharedInstance.requestFeeds(location, withinSeconds: withinSeconds, completionHandler: completionHandler)
-    }
-    
-    
-    func requestSpeckFeeds(authToken: String, userId: Int, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
-        EsdrSpecksHandler.sharedInstance.requestSpeckFeeds(authToken, userId: userId, completionHandler: completionHandler)
-    }
-    
-    
-    func requestSpeckDevices(authToken: String, userId: Int, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
-        EsdrSpecksHandler.sharedInstance.requestSpeckDevices(authToken, userId: userId, completionHandler: completionHandler)
-    }
-    
-    
-    func requestChannelsForSpeck(speck: Speck) {
-        EsdrSpecksHandler.sharedInstance.requestChannelsForSpeck(speck)
-    }
-
-
-    func requestChannelReading(feed: Feed, channel: Channel) {
-        EsdrFeedsHandler.sharedInstance.requestChannelReading(nil, feed: feed, channel: channel, maxTime: nil)
-    }
-
-
-    func requestAuthorizedChannelReading(authToken: String, feed: Feed, channel: Channel) {
-        let timeRange = NSDate().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
-        EsdrFeedsHandler.sharedInstance.requestChannelReading(authToken, feed: feed, channel: channel, maxTime: timeRange)
-    }
-
-
-    func requestEsdrToken(username: String, password: String, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
-        EsdrAuthHandler.sharedInstance.requestEsdrToken(username, password: password, completionHandler: completionHandler)
-    }
-
-
-    func requestEsdrRefresh(refreshToken: String, responseHandler: (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void) {
-        EsdrAuthHandler.sharedInstance.requestEsdrRefresh(refreshToken, responseHandler: responseHandler)
-    }
     
     
     // TODO consider CLGeocoder: func geocodeAddressString(String, CLGeocodeCompletionHandler)

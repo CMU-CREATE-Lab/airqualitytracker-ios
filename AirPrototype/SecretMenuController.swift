@@ -26,7 +26,7 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
         for feed in feeds {
-            HttpRequestHandler.sharedInstance.requestChannelReading(feed, channel: feed.channels[0])
+            EsdrFeedsHandler.sharedInstance.requestChannelReading(feed, channel: feed.channels[0])
         }
     }
     

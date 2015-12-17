@@ -61,7 +61,7 @@ class LoginController: UIViewController {
         username = loginView!.textFieldUsername.text
         let password = loginView!.textFieldPassword.text
         
-        HttpRequestHandler.sharedInstance.requestEsdrToken(username!, password: password!, completionHandler: { (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void in
+        EsdrAuthHandler.sharedInstance.requestEsdrToken(username!, password: password!, completionHandler: { (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void in
             
             let httpResponse = response as! NSHTTPURLResponse
             if error != nil {

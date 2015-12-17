@@ -83,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
             
-            HttpRequestHandler.sharedInstance.requestEsdrRefresh(refreshToken, responseHandler: responseHandler)
+            EsdrAuthHandler.sharedInstance.requestEsdrRefresh(refreshToken, responseHandler: responseHandler)
         } else {
             NSLog("Background fetch was successful! (not logged in)")
             completionHandler(UIBackgroundFetchResult.NewData)

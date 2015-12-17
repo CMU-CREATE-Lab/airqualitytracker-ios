@@ -50,7 +50,7 @@ class Speck: Feed {
     func requestUpdate() {
         if self.channels.count > 0 {
             if let accessToken = SettingsHandler.sharedInstance.accessToken {
-                HttpRequestHandler.sharedInstance.requestAuthorizedChannelReading(accessToken, feed: self, channel: self.channels[0])
+                EsdrFeedsHandler.sharedInstance.requestAuthorizedChannelReading(accessToken, feed: self, channel: self.channels[0])
             } else {
                 NSLog("WARNING - could not request channel reading for Speck=\(name); accessToken is nil.")
             }

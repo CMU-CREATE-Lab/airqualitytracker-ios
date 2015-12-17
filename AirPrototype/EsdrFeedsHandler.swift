@@ -34,29 +34,10 @@ class EsdrFeedsHandler {
     }
     
     
-    func requestFeeds(location: Location, withinSeconds: Double, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
-        let bottomLeftPoint = Location(latitude: location.latitude - Constants.MapGeometry.BOUNDBOX_LAT, longitude: location.longitude - Constants.MapGeometry.BOUNDBOX_LONG)
-        let topRightPoint = Location(latitude: location.latitude + Constants.MapGeometry.BOUNDBOX_LAT, longitude: location.longitude + Constants.MapGeometry.BOUNDBOX_LONG)
-        
-        // generate safe URL
-        let address = Constants.Esdr.API_URL + "/api/v1/feeds"
-        let params = "?whereJoin=AND&whereOr=productId=11,productId=1" +
-            "&whereAnd=latitude>=\(bottomLeftPoint.latitude),latitude<=\(topRightPoint.latitude),longitude>=\(bottomLeftPoint.longitude),longitude<=\(topRightPoint.longitude),maxTimeSecs>=\(withinSeconds),exposure=outdoor" +
-            "&fields=id,name,exposure,isMobile,latitude,latitude,longitude,productId,channelBounds"
-        let url = NSURL(string: (address+params).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-        
-        // create request
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "GET"
-        
-        // send request
-        HttpRequestHandler.sharedInstance.sendJsonRequest(request, completionHandler: completionHandler)
-    }
-
-    
-    func requestChannelReading(authToken: String?, feed: Feed, channel: Channel, maxTime: Double?) {
+    private func requestChannelReading(authToken: String?, feed: Feed, channel: Channel, maxTime: Double?) {
         let feedId = channel.feed.feed_id.description
         let channelName = channel.name
+        let timeRange = NSDate().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
         
         // handles http response
         func completionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
@@ -101,7 +82,7 @@ class EsdrFeedsHandler {
                     }
                     GlobalHandler.sharedInstance.notifyGlobalDataSetChanged()
                 }
-
+                
             }
         }
         
@@ -119,6 +100,37 @@ class EsdrFeedsHandler {
         } else {
             HttpRequestHandler.sharedInstance.sendAuthorizedJsonRequest(authToken!, urlRequest: request, completionHandler: completionHandler)
         }
+    }
+    
+    
+    func requestFeeds(location: Location, withinSeconds: Double, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
+        let bottomLeftPoint = Location(latitude: location.latitude - Constants.MapGeometry.BOUNDBOX_LAT, longitude: location.longitude - Constants.MapGeometry.BOUNDBOX_LONG)
+        let topRightPoint = Location(latitude: location.latitude + Constants.MapGeometry.BOUNDBOX_LAT, longitude: location.longitude + Constants.MapGeometry.BOUNDBOX_LONG)
+        
+        // generate safe URL
+        let address = Constants.Esdr.API_URL + "/api/v1/feeds"
+        let params = "?whereJoin=AND&whereOr=productId=11,productId=1" +
+            "&whereAnd=latitude>=\(bottomLeftPoint.latitude),latitude<=\(topRightPoint.latitude),longitude>=\(bottomLeftPoint.longitude),longitude<=\(topRightPoint.longitude),maxTimeSecs>=\(withinSeconds),exposure=outdoor" +
+            "&fields=id,name,exposure,isMobile,latitude,latitude,longitude,productId,channelBounds"
+        let url = NSURL(string: (address+params).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+        
+        // create request
+        let request = NSMutableURLRequest(URL: url!)
+        request.HTTPMethod = "GET"
+        
+        // send request
+        HttpRequestHandler.sharedInstance.sendJsonRequest(request, completionHandler: completionHandler)
+    }
+    
+    
+    func requestChannelReading(feed: Feed, channel: Channel) {
+        requestChannelReading(nil, feed: feed, channel: channel, maxTime: nil)
+    }
+    
+    
+    func requestAuthorizedChannelReading(authToken: String, feed: Feed, channel: Channel) {
+        let timeRange = NSDate().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
+        requestChannelReading(authToken, feed: feed, channel: channel, maxTime: timeRange)
     }
     
 }
