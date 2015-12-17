@@ -62,6 +62,7 @@
 		A16F708F1BAB370600F616F6 /* LogoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A16F708E1BAB370600F616F6 /* LogoutView.xib */; };
 		A16F70911BAB3BD500F616F6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16F70901BAB3BD500F616F6 /* LoginView.swift */; };
 		A16F70931BAB3D8100F616F6 /* LogoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16F70921BAB3D8100F616F6 /* LogoutView.swift */; };
+		A17361F71C231EA40012FC62 /* EsdrSpecksHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17361F61C231EA40012FC62 /* EsdrSpecksHandler.swift */; settings = {ASSET_TAGS = (); }; };
 		A1740DBC1BC41B5B00617185 /* AboutSpeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1740DBB1BC41B5B00617185 /* AboutSpeckController.swift */; settings = {ASSET_TAGS = (); }; };
 		A17527C41BD556A7007526C0 /* ManageTrackersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17527C31BD556A7007526C0 /* ManageTrackersController.swift */; settings = {ASSET_TAGS = (); }; };
 		A17527C61BD55791007526C0 /* ManageTrackersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17527C51BD55791007526C0 /* ManageTrackersTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -148,6 +149,7 @@
 		A16F708E1BAB370600F616F6 /* LogoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogoutView.xib; sourceTree = "<group>"; };
 		A16F70901BAB3BD500F616F6 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A16F70921BAB3D8100F616F6 /* LogoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutView.swift; sourceTree = "<group>"; };
+		A17361F61C231EA40012FC62 /* EsdrSpecksHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EsdrSpecksHandler.swift; sourceTree = "<group>"; };
 		A1740DBB1BC41B5B00617185 /* AboutSpeckController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutSpeckController.swift; sourceTree = "<group>"; };
 		A17527C31BD556A7007526C0 /* ManageTrackersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageTrackersController.swift; sourceTree = "<group>"; };
 		A17527C51BD55791007526C0 /* ManageTrackersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageTrackersTableViewCell.swift; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 				A1666FB01B541B1900A8E39F /* static_classes */,
 				A158F6141B8E502300FCE2E1 /* structs */,
 				A1F58E5C1B975BE700D04C91 /* EsdrAuthHandler.swift */,
+				A17361F61C231EA40012FC62 /* EsdrSpecksHandler.swift */,
 				A158F6121B8E305A00FCE2E1 /* EsdrFeedsHandler.swift */,
 				A1666FB11B541CF400A8E39F /* GlobalHandler.swift */,
 				A1F58E5E1B9786C500D04C91 /* HeaderReadingsHashMap.swift */,
@@ -553,6 +556,7 @@
 				A11844AF1BA9E7A600435D11 /* ServicesHandler.swift in Sources */,
 				A16481FB1B5D553F0023DE09 /* AddressShowController.swift in Sources */,
 				A1FEAB411B8CF19D00F9716B /* StoredAddress.swift in Sources */,
+				A17361F71C231EA40012FC62 /* EsdrSpecksHandler.swift in Sources */,
 				A1660FF71B568B6700608C5D /* ResultsControllerAddressSearch.swift in Sources */,
 				A14C456B1BA0B2B000D6C9CF /* ReadableIndexController.swift in Sources */,
 				A103E6081BE12A5E0065378D /* SettingsController.swift in Sources */,
