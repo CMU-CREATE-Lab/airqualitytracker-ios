@@ -57,6 +57,7 @@
 		A1666FB41B541D0500A8E39F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FB31B541D0500A8E39F /* Constants.swift */; };
 		A1666FB61B542E6A00A8E39F /* HttpRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FB51B542E6A00A8E39F /* HttpRequestHandler.swift */; };
 		A16764021C248128001A94D6 /* EsdrLoginHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16764011C248128001A94D6 /* EsdrLoginHandler.swift */; settings = {ASSET_TAGS = (); }; };
+		A16764041C248A5C001A94D6 /* PositionIdHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16764031C248A5C001A94D6 /* PositionIdHelper.swift */; settings = {ASSET_TAGS = (); }; };
 		A16A14711B5FD9070026E9C8 /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16A14701B5FD9070026E9C8 /* JsonParser.swift */; };
 		A16F70871BAB277A00F616F6 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16F70861BAB277A00F616F6 /* LoginController.swift */; };
 		A16F708D1BAB316500F616F6 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A16F708C1BAB316500F616F6 /* LoginView.xib */; };
@@ -145,6 +146,7 @@
 		A1666FB31B541D0500A8E39F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A1666FB51B542E6A00A8E39F /* HttpRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestHandler.swift; sourceTree = "<group>"; };
 		A16764011C248128001A94D6 /* EsdrLoginHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EsdrLoginHandler.swift; sourceTree = "<group>"; };
+		A16764031C248A5C001A94D6 /* PositionIdHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionIdHelper.swift; sourceTree = "<group>"; };
 		A16A14701B5FD9070026E9C8 /* JsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
 		A16F70861BAB277A00F616F6 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		A16F708C1BAB316500F616F6 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 				A11844AE1BA9E7A600435D11 /* ServicesHandler.swift */,
 				A1E2A91C1B99ED47003A3B3A /* SettingsHandler.swift */,
 				A16764011C248128001A94D6 /* EsdrLoginHandler.swift */,
+				A16764031C248A5C001A94D6 /* PositionIdHelper.swift */,
 			);
 			name = helpers;
 			sourceTree = "<group>";
@@ -574,6 +577,7 @@
 				A1E092A71BE2B51400D652CA /* SecretMenuController.swift in Sources */,
 				A16F70911BAB3BD500F616F6 /* LoginView.swift in Sources */,
 				A1D4F8981BE7CD19002D5849 /* SecretMenuTableCell.swift in Sources */,
+				A16764041C248A5C001A94D6 /* PositionIdHelper.swift in Sources */,
 				A16F70931BAB3D8100F616F6 /* LogoutView.swift in Sources */,
 				A18479D71BDE6990009CB151 /* StoredSpeck.swift in Sources */,
 				A158E13A1BCFF9440026944E /* AutocompleteTimer.swift in Sources */,

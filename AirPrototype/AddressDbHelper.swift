@@ -70,7 +70,7 @@ class AddressDbHelper {
         
         if let position = address.positionId {
             storedAddress.position_id = position
-        } else if let position = SettingsHandler.sharedInstance.getAdressLastPosition() {
+        } else if let position = PositionIdHelper.sharedInstance.getAdressLastPosition() {
             address.positionId = position
         } else {
             storedAddress.position_id = 0
@@ -105,7 +105,7 @@ class AddressDbHelper {
         
         if let storedAddress = managedObjectContext?.objectWithID(address._id!) {
             if address.positionId == nil {
-                if let position = SettingsHandler.sharedInstance.getAdressLastPosition() {
+                if let position = PositionIdHelper.sharedInstance.getAdressLastPosition() {
                     address.positionId = position
                 } else {
                     address.positionId = 0

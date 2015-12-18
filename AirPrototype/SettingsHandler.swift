@@ -62,42 +62,6 @@ class SettingsHandler {
         blacklistedDevices = userDefaults.valueForKey(Constants.SettingsKeys.blacklistedDevices) as? [Int]
     }
     
-    // PositionIdHandler
-    //
-    
-    func getAdressLastPosition() -> Int? {
-        let position = userDefaults.valueForKey(Constants.SettingsKeys.addressLastPosition) as! Int
-        userDefaults.setInteger(position+1, forKey: Constants.SettingsKeys.addressLastPosition)
-        if userDefaults.synchronize() {
-            return position
-        }
-        return nil
-    }
-    
-    
-    func setAddressLastPosition(position: Int) {
-        userDefaults.setInteger(position, forKey: Constants.SettingsKeys.addressLastPosition)
-        userDefaults.synchronize()
-    }
-    
-    
-    func getSpeckLastPosition() -> Int? {
-        let position = userDefaults.valueForKey(Constants.SettingsKeys.speckLastPosition) as! Int
-        userDefaults.setInteger(position+1, forKey: Constants.SettingsKeys.speckLastPosition)
-        if userDefaults.synchronize() {
-            return position
-        }
-        return nil
-    }
-    
-    
-    func setSpeckLastPosition(position: Int) {
-        userDefaults.setInteger(position, forKey: Constants.SettingsKeys.speckLastPosition)
-        userDefaults.synchronize()
-    }
-    
-    //
-    // --
     
     func deviceIsBlacklisted(deviceId: Int) -> Bool {
         for id in blacklistedDevices! {

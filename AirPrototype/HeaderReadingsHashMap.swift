@@ -66,30 +66,6 @@ class HeaderReadingsHashMap {
     }
     
     
-    private func reorderAddressPositions() {
-        // TODO this is slow; it could be sped up if we group the jobs together (so we only have to save/synchronize once)
-        var index = 1
-        for address in addresses {
-            address.positionId = index
-            AddressDbHelper.updateAddressInDb(address)
-            index += 1
-        }
-        SettingsHandler.sharedInstance.setAddressLastPosition(index)
-    }
-    
-    
-    private func reorderSpeckPositions() {
-        // TODO this is slow; it could be sped up if we group the jobs together (so we only have to save/synchronize once)
-        var index = 1
-        for speck in specks {
-            speck.positionId = index
-            SpeckDbHelper.updateSpeckInDb(speck)
-            index += 1
-        }
-        SettingsHandler.sharedInstance.setSpeckLastPosition(index)
-    }
-    
-    
     private func findIndexOfSpeckWithDeviceId(deviceId: Int) -> Int? {
         var i=0
         for speck in specks {
@@ -196,8 +172,9 @@ class HeaderReadingsHashMap {
                 specks.removeAtIndex(from!)
                 specks.insert(reading as! Speck, atIndex: to!)
             }
-            reorderAddressPositions()
-            reorderSpeckPositions()
+            let positionIdHelper = PositionIdHelper.sharedInstance
+            positionIdHelper.reorderAddressPositions(addresses)
+            positionIdHelper.reorderSpeckPositions(specks)
             refreshHash()
         }
     }

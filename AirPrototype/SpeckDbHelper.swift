@@ -94,7 +94,7 @@ class SpeckDbHelper {
         
         if let position = speck.positionId {
             storedSpeck.position_id = position
-        } else if let position = SettingsHandler.sharedInstance.getSpeckLastPosition() {
+        } else if let position = PositionIdHelper.sharedInstance.getSpeckLastPosition() {
             speck.positionId = position
         } else {
             storedSpeck.position_id = 0
@@ -134,7 +134,7 @@ class SpeckDbHelper {
         
         if let storedSpeck = managedObjectContext?.objectWithID(speck._id!) {
             if speck.positionId == nil {
-                if let position = SettingsHandler.sharedInstance.getSpeckLastPosition() {
+                if let position = PositionIdHelper.sharedInstance.getSpeckLastPosition() {
                     speck.positionId = position
                 } else {
                     speck.positionId = 0
