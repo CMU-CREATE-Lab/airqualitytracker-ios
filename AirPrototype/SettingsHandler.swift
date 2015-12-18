@@ -14,6 +14,7 @@ class SettingsHandler {
     
     // MARK: singleton pattern; this is the only time the class should be initialized
     
+    
     class var sharedInstance: SettingsHandler {
         struct Singleton {
             static let instance = SettingsHandler()
@@ -61,6 +62,8 @@ class SettingsHandler {
         blacklistedDevices = userDefaults.valueForKey(Constants.SettingsKeys.blacklistedDevices) as? [Int]
     }
     
+    // PositionIdHandler
+    //
     
     func getAdressLastPosition() -> Int? {
         let position = userDefaults.valueForKey(Constants.SettingsKeys.addressLastPosition) as! Int
@@ -93,6 +96,8 @@ class SettingsHandler {
         userDefaults.synchronize()
     }
     
+    //
+    // --
     
     func deviceIsBlacklisted(deviceId: Int) -> Bool {
         for id in blacklistedDevices! {
@@ -122,55 +127,6 @@ class SettingsHandler {
         if userDefaults.synchronize() {
             self.appUsesLocation = value
             GlobalHandler.sharedInstance.headerReadingsHashMap.refreshHash()
-        }
-    }
-    
-    
-    func setUserLoggedIn(userLoggedIn: Bool) {
-        userDefaults.setBool(userLoggedIn, forKey: Constants.SettingsKeys.userLoggedIn)
-        if userDefaults.synchronize() {
-            self.userLoggedIn = userLoggedIn
-            // repopulates specks on successful login/logout
-            GlobalHandler.sharedInstance.headerReadingsHashMap.populateSpecks()
-            // also clears the blacklisted devices
-            self.clearBlacklistedDevices()
-        }
-    }
-    
-    
-    func updateEsdrAccount(username: String, userId: Int, accessToken: String, refreshToken: String) {
-        userDefaults.setObject(username, forKey: Constants.SettingsKeys.username)
-        userDefaults.setObject(userId, forKey: Constants.SettingsKeys.userId)
-        userDefaults.setObject(accessToken, forKey: Constants.SettingsKeys.accessToken)
-        userDefaults.setObject(refreshToken, forKey: Constants.SettingsKeys.refreshToken)
-        if userDefaults.synchronize() {
-            self.username = username
-            self.userId = userId
-            self.accessToken = accessToken
-            self.refreshToken = refreshToken
-        }
-    }
-    
-    
-    func updateEsdrTokens(accessToken: String, refreshToken: String) {
-        userDefaults.setObject(accessToken, forKey: Constants.SettingsKeys.accessToken)
-        userDefaults.setObject(refreshToken, forKey: Constants.SettingsKeys.refreshToken)
-        if userDefaults.synchronize() {
-            self.accessToken = accessToken
-            self.refreshToken = refreshToken
-        }
-    }
-    
-    
-    func removeEsdrAccount() {
-        userDefaults.setObject(Constants.DEFAULT_SETTINGS[Constants.SettingsKeys.username], forKey: Constants.SettingsKeys.username)
-        userDefaults.setObject(Constants.DEFAULT_SETTINGS[Constants.SettingsKeys.accessToken], forKey: Constants.SettingsKeys.accessToken)
-        userDefaults.setObject(Constants.DEFAULT_SETTINGS[Constants.SettingsKeys.refreshToken], forKey: Constants.SettingsKeys.refreshToken)
-        if userDefaults.synchronize() {
-            self.username = nil
-            self.accessToken = nil
-            self.refreshToken = nil
-            setUserLoggedIn(false)
         }
     }
     

@@ -56,6 +56,7 @@
 		A1666FB21B541CF400A8E39F /* GlobalHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FB11B541CF400A8E39F /* GlobalHandler.swift */; };
 		A1666FB41B541D0500A8E39F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FB31B541D0500A8E39F /* Constants.swift */; };
 		A1666FB61B542E6A00A8E39F /* HttpRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FB51B542E6A00A8E39F /* HttpRequestHandler.swift */; };
+		A16764021C248128001A94D6 /* EsdrLoginHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16764011C248128001A94D6 /* EsdrLoginHandler.swift */; settings = {ASSET_TAGS = (); }; };
 		A16A14711B5FD9070026E9C8 /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16A14701B5FD9070026E9C8 /* JsonParser.swift */; };
 		A16F70871BAB277A00F616F6 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16F70861BAB277A00F616F6 /* LoginController.swift */; };
 		A16F708D1BAB316500F616F6 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A16F708C1BAB316500F616F6 /* LoginView.xib */; };
@@ -143,6 +144,7 @@
 		A1666FB11B541CF400A8E39F /* GlobalHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalHandler.swift; sourceTree = "<group>"; };
 		A1666FB31B541D0500A8E39F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A1666FB51B542E6A00A8E39F /* HttpRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestHandler.swift; sourceTree = "<group>"; };
+		A16764011C248128001A94D6 /* EsdrLoginHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EsdrLoginHandler.swift; sourceTree = "<group>"; };
 		A16A14701B5FD9070026E9C8 /* JsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
 		A16F70861BAB277A00F616F6 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		A16F708C1BAB316500F616F6 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 				A1666FB51B542E6A00A8E39F /* HttpRequestHandler.swift */,
 				A11844AE1BA9E7A600435D11 /* ServicesHandler.swift */,
 				A1E2A91C1B99ED47003A3B3A /* SettingsHandler.swift */,
+				A16764011C248128001A94D6 /* EsdrLoginHandler.swift */,
 			);
 			name = helpers;
 			sourceTree = "<group>";
@@ -533,6 +536,7 @@
 			files = (
 				A16F70871BAB277A00F616F6 /* LoginController.swift in Sources */,
 				A1666FAE1B5419D300A8E39F /* Channel.swift in Sources */,
+				A16764021C248128001A94D6 /* EsdrLoginHandler.swift in Sources */,
 				A156757D1B57D549006982A1 /* ResultsTableViewCellAddressSearch.swift in Sources */,
 				A1F58E591B97284800D04C91 /* Readable.swift in Sources */,
 				A15675811B583AAA006982A1 /* Converter.swift in Sources */,

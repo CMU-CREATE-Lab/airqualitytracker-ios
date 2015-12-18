@@ -78,9 +78,9 @@ class LoginController: UIViewController {
                 let refreshToken = data.valueForKey("refresh_token") as! String
                 let userId = data.valueForKey("userId") as! Int
                 
-                let settingsHandler = SettingsHandler.sharedInstance
-                settingsHandler.updateEsdrAccount(self.username!, userId: userId, accessToken: accessToken, refreshToken: refreshToken)
-                settingsHandler.setUserLoggedIn(true)
+                let esdrLoginHandler = EsdrLoginHandler.sharedInstance
+                esdrLoginHandler.updateEsdrAccount(self.username!, userId: userId, accessToken: accessToken, refreshToken: refreshToken)
+                esdrLoginHandler.setUserLoggedIn(true)
             }
             if self.loggedIn == false {
                 dispatch_async(dispatch_get_main_queue()) {
@@ -97,9 +97,9 @@ class LoginController: UIViewController {
     
     
     func onClickLogout() {
-        SettingsHandler.sharedInstance.setUserLoggedIn(false)
+        EsdrLoginHandler.sharedInstance.setUserLoggedIn(false)
         loggedIn = false
-        SettingsHandler.sharedInstance.setUserLoggedIn(false)
+        EsdrLoginHandler.sharedInstance.setUserLoggedIn(false)
         GlobalHandler.sharedInstance.headerReadingsHashMap.clearSpecks()
         display()
     }
