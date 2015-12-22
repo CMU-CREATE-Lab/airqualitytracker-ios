@@ -19,14 +19,14 @@ class HeaderReadingsHashMap {
     var adapterListTracker = [String: [Readable]]()
     
     
-    init() {
+    init(appUsesLocation: Bool) {
         gpsAddress = SimpleAddress()
         gpsAddress.isCurrentLocation = true
         gpsAddress.name = "Loading Current Location"
         gpsAddress.location = Location(latitude: 0, longitude: 0)
         
         hashMap[headers[0]] = specks
-        if SettingsHandler.sharedInstance.appUsesLocation {
+        if appUsesLocation {
             var tempAddresses = [Readable]()
             tempAddresses.append(gpsAddress)
             for address in addresses {
@@ -36,7 +36,9 @@ class HeaderReadingsHashMap {
         } else {
             hashMap[headers[1]] = addresses
         }
-        populateSpecks()
+        // NOTICE: calling this hangs (since it tries to grab GlobalHandler.sharedInstance before it finishes init)
+        // seems to work without it anyways, though
+//        populateSpecks()
     }
     
     
@@ -87,7 +89,7 @@ class HeaderReadingsHashMap {
         for header in Constants.HEADER_TITLES {
             items = hashMap[header]!
             
-            if header == Constants.HEADER_TITLES[1] && SettingsHandler.sharedInstance.appUsesLocation {
+            if header == Constants.HEADER_TITLES[1] && GlobalHandler.sharedInstance.settingsHandler.appUsesLocation {
                 items.insert(gpsAddress, atIndex: 0)
                 adapterList[header] = items
                 headers.append(header)
@@ -172,7 +174,7 @@ class HeaderReadingsHashMap {
                 specks.removeAtIndex(from!)
                 specks.insert(reading as! Speck, atIndex: to!)
             }
-            let positionIdHelper = PositionIdHelper.sharedInstance
+            let positionIdHelper = GlobalHandler.sharedInstance.positionIdHelper
             positionIdHelper.reorderAddressPositions(addresses)
             positionIdHelper.reorderSpeckPositions(specks)
             refreshHash()
@@ -205,9 +207,9 @@ class HeaderReadingsHashMap {
     
     
     func populateSpecks() {
-        if SettingsHandler.sharedInstance.userLoggedIn {
-            let authToken = SettingsHandler.sharedInstance.accessToken
-            let userId = SettingsHandler.sharedInstance.userId
+        if GlobalHandler.sharedInstance.settingsHandler.userLoggedIn {
+            let authToken = GlobalHandler.sharedInstance.settingsHandler.accessToken
+            let userId = GlobalHandler.sharedInstance.settingsHandler.userId
             
             func feedsCompletionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
                 let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
@@ -221,7 +223,7 @@ class HeaderReadingsHashMap {
                     }
                 }
                 if resultSpecks.count > 0 {
-                    EsdrSpecksHandler.sharedInstance.requestSpeckDevices(authToken!, userId: userId!, completionHandler: devicesCompletionHandler)
+                    GlobalHandler.sharedInstance.esdrSpecksHandler.requestSpeckDevices(authToken!, userId: userId!, completionHandler: devicesCompletionHandler)
                 }
             }
             func devicesCompletionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
@@ -247,7 +249,7 @@ class HeaderReadingsHashMap {
                 }
                 refreshHash()
             }
-            EsdrSpecksHandler.sharedInstance.requestSpeckFeeds(authToken!, userId: userId!, completionHandler: feedsCompletionHandler)
+            GlobalHandler.sharedInstance.esdrSpecksHandler.requestSpeckFeeds(authToken!, userId: userId!, completionHandler: feedsCompletionHandler)
         }
         refreshHash()
     }

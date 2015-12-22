@@ -11,21 +11,6 @@ import UIKit
 
 class EsdrFeedsHandler {
     
-    
-    // MARK: singleton pattern; this is the only time the class should be initialized
-    
-    
-    class var sharedInstance: EsdrFeedsHandler {
-        struct Singleton {
-            static let instance = EsdrFeedsHandler()
-        }
-        return Singleton.instance
-    }
-    
-    
-    // MARK: Class Functions
-
-    
     var appDelegate: AppDelegate
     
     
@@ -96,9 +81,9 @@ class EsdrFeedsHandler {
         
         // send request
         if authToken == nil {
-            HttpRequestHandler.sharedInstance.sendJsonRequest(request, completionHandler: completionHandler)
+            GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: completionHandler)
         } else {
-            HttpRequestHandler.sharedInstance.sendAuthorizedJsonRequest(authToken!, urlRequest: request, completionHandler: completionHandler)
+            GlobalHandler.sharedInstance.httpRequestHandler.sendAuthorizedJsonRequest(authToken!, urlRequest: request, completionHandler: completionHandler)
         }
     }
     
@@ -119,7 +104,7 @@ class EsdrFeedsHandler {
         request.HTTPMethod = "GET"
         
         // send request
-        HttpRequestHandler.sharedInstance.sendJsonRequest(request, completionHandler: completionHandler)
+        GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: completionHandler)
     }
     
     

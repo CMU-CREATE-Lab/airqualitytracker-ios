@@ -73,7 +73,7 @@ class SpeckDbHelper {
                         } else {
                             speck.apiKeyReadOnly = apiKeyReadOnly
                             GlobalHandler.sharedInstance.headerReadingsHashMap.addReading(speck)
-                            EsdrSpecksHandler.sharedInstance.requestChannelsForSpeck(speck)
+                            GlobalHandler.sharedInstance.esdrSpecksHandler.requestChannelsForSpeck(speck)
                         }
                     } else {
                         deleteSpeckFromDb(speck)
@@ -94,7 +94,7 @@ class SpeckDbHelper {
         
         if let position = speck.positionId {
             storedSpeck.position_id = position
-        } else if let position = PositionIdHelper.sharedInstance.getSpeckLastPosition() {
+        } else if let position = GlobalHandler.sharedInstance.positionIdHelper.getSpeckLastPosition() {
             speck.positionId = position
         } else {
             storedSpeck.position_id = 0
@@ -134,7 +134,7 @@ class SpeckDbHelper {
         
         if let storedSpeck = managedObjectContext?.objectWithID(speck._id!) {
             if speck.positionId == nil {
-                if let position = PositionIdHelper.sharedInstance.getSpeckLastPosition() {
+                if let position = GlobalHandler.sharedInstance.positionIdHelper.getSpeckLastPosition() {
                     speck.positionId = position
                 } else {
                     speck.positionId = 0

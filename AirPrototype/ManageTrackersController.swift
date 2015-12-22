@@ -22,7 +22,7 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
         } else if reading.getReadableType() == .SPECK {
             let speck = reading as! Speck
             SpeckDbHelper.deleteSpeckFromDb(speck)
-            SettingsHandler.sharedInstance.addToBlacklistedDevices(speck.deviceId)
+            GlobalHandler.sharedInstance.settingsHandler.addToBlacklistedDevices(speck.deviceId)
         }
         
         tableView.reloadData()
@@ -33,7 +33,7 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
     
     
     @IBAction func onSwitchUserCurrentLocation(sender: AnyObject) {
-        SettingsHandler.sharedInstance.setAppUsesCurrentLocation(currentLocationSwitch.on)
+        GlobalHandler.sharedInstance.settingsHandler.setAppUsesCurrentLocation(currentLocationSwitch.on)
     }
     
     
@@ -44,7 +44,7 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
         tableView.delegate = self
         tableView.dataSource = self
         tableView.setEditing(true, animated: true)
-        currentLocationSwitch.on = SettingsHandler.sharedInstance.appUsesLocation
+        currentLocationSwitch.on = GlobalHandler.sharedInstance.settingsHandler.appUsesLocation
     }
     
     

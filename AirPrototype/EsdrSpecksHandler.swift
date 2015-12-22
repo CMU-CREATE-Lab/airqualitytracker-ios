@@ -12,24 +12,10 @@ import UIKit
 class EsdrSpecksHandler {
     
     
-    // MARK: singleton pattern; this is the only time the class should be initialized
-    
-    
-    class var sharedInstance: EsdrSpecksHandler {
-        struct Singleton {
-            static let instance = EsdrSpecksHandler()
-        }
-        return Singleton.instance
-    }
-    
-    
-    // MARK: Class Functions
-    
-    
     func requestSpeckFeeds(authToken: String, userId: Int, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
         // generate safe URL
         var listDevices = ""
-        if let blacklistedDevices = SettingsHandler.sharedInstance.blacklistedDevices {
+        if let blacklistedDevices = GlobalHandler.sharedInstance.settingsHandler.blacklistedDevices {
             for id in blacklistedDevices {
                 listDevices += ",deviceId<>\(id)"
             }
@@ -43,14 +29,14 @@ class EsdrSpecksHandler {
         request.HTTPMethod = "GET"
         
         // send request
-        HttpRequestHandler.sharedInstance.sendAuthorizedJsonRequest(authToken, urlRequest: request, completionHandler: completionHandler)
+        GlobalHandler.sharedInstance.httpRequestHandler.sendAuthorizedJsonRequest(authToken, urlRequest: request, completionHandler: completionHandler)
     }
     
     
     func requestSpeckDevices(authToken: String, userId: Int, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
         // generate safe URL
         var listDevices = ""
-        if let blacklistedDevices = SettingsHandler.sharedInstance.blacklistedDevices {
+        if let blacklistedDevices = GlobalHandler.sharedInstance.settingsHandler.blacklistedDevices {
             for id in blacklistedDevices {
                 listDevices += ",id<>\(id)"
             }
@@ -64,7 +50,7 @@ class EsdrSpecksHandler {
         request.HTTPMethod = "GET"
         
         // send request
-        HttpRequestHandler.sharedInstance.sendAuthorizedJsonRequest(authToken, urlRequest: request, completionHandler: completionHandler)
+        GlobalHandler.sharedInstance.httpRequestHandler.sendAuthorizedJsonRequest(authToken, urlRequest: request, completionHandler: completionHandler)
     }
     
     
@@ -103,7 +89,7 @@ class EsdrSpecksHandler {
         request.HTTPMethod = "GET"
         
         // send request
-        HttpRequestHandler.sharedInstance.sendJsonRequest(request, completionHandler: completionHandler)
+        GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: completionHandler)
     }
 
 }

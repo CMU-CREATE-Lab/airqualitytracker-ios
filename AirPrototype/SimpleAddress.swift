@@ -92,7 +92,7 @@ class SimpleAddress: Readable, Hashable {
                     if let closestFeed = MapGeometry.getClosestFeedToAddress(self, feeds: feeds) {
                         NSLog("closestFeed EXISTS!")
                         self.closestFeed = closestFeed
-                        EsdrFeedsHandler.sharedInstance.requestChannelReading(closestFeed, channel: closestFeed.channels[0])
+                        GlobalHandler.sharedInstance.esdrFeedsHandler.requestChannelReading(closestFeed, channel: closestFeed.channels[0])
                     } else {
                         NSLog("But... closestFeed DNE?")
                     }
@@ -100,7 +100,7 @@ class SimpleAddress: Readable, Hashable {
             }
             NSLog("Finished completionHandler in requestUpdateFeeds()")
         }
-        EsdrFeedsHandler.sharedInstance.requestFeeds(self.location, withinSeconds: maxTime, completionHandler: completionHandler)
+        GlobalHandler.sharedInstance.esdrFeedsHandler.requestFeeds(self.location, withinSeconds: maxTime, completionHandler: completionHandler)
     }
     
 }

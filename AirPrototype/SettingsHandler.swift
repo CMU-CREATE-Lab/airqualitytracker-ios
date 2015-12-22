@@ -11,21 +11,6 @@ import UIKit
 
 class SettingsHandler {
     
-    
-    // MARK: singleton pattern; this is the only time the class should be initialized
-    
-    
-    class var sharedInstance: SettingsHandler {
-        struct Singleton {
-            static let instance = SettingsHandler()
-        }
-        return Singleton.instance
-    }
-    
-    
-    // MARK: Class Functions
-
-    
     var userDefaults: NSUserDefaults
     var appUsesLocation: Bool
     var userLoggedIn: Bool

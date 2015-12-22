@@ -26,18 +26,18 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
         for feed in feeds {
-            EsdrFeedsHandler.sharedInstance.requestChannelReading(feed, channel: feed.channels[0])
+            GlobalHandler.sharedInstance.esdrFeedsHandler.requestChannelReading(feed, channel: feed.channels[0])
         }
     }
     
     
     override func viewDidLoad() {
-        let username = SettingsHandler.sharedInstance.username
-        let userId = SettingsHandler.sharedInstance.userId!.description
-        let accessToken = SettingsHandler.sharedInstance.accessToken
-        let refreshToken = SettingsHandler.sharedInstance.refreshToken
+        let username = GlobalHandler.sharedInstance.settingsHandler.username
+        let userId = GlobalHandler.sharedInstance.settingsHandler.userId!.description
+        let accessToken = GlobalHandler.sharedInstance.settingsHandler.accessToken
+        let refreshToken = GlobalHandler.sharedInstance.settingsHandler.refreshToken
         var deviceList = ""
-        if let list = SettingsHandler.sharedInstance.blacklistedDevices {
+        if let list = GlobalHandler.sharedInstance.settingsHandler.blacklistedDevices {
             deviceList = list.description
         }
         

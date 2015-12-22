@@ -58,8 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        if SettingsHandler.sharedInstance.userLoggedIn {
-            let refreshToken = SettingsHandler.sharedInstance.refreshToken!
+        if GlobalHandler.sharedInstance.settingsHandler.userLoggedIn {
+            let refreshToken = GlobalHandler.sharedInstance.settingsHandler.refreshToken!
             
             // response handler
             func responseHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let refresh_token = data!.valueForKey("refresh_token") as? String
                     if access_token != nil && refresh_token != nil {
                         NSLog("found access_token=\(access_token), refresh_token=\(refresh_token)")
-                        EsdrLoginHandler.sharedInstance.updateEsdrTokens(access_token!, refreshToken: refresh_token!)
+                        GlobalHandler.sharedInstance.esdrLoginHandler.updateEsdrTokens(access_token!, refreshToken: refresh_token!)
                         NSLog("Background fetch was successful!")
                         completionHandler(UIBackgroundFetchResult.NewData)
                     } else {
@@ -83,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
             
-            EsdrAuthHandler.sharedInstance.requestEsdrRefresh(refreshToken, responseHandler: responseHandler)
+            GlobalHandler.sharedInstance.esdrAuthHandler.requestEsdrRefresh(refreshToken, responseHandler: responseHandler)
         } else {
             NSLog("Background fetch was successful! (not logged in)")
             completionHandler(UIBackgroundFetchResult.NewData)

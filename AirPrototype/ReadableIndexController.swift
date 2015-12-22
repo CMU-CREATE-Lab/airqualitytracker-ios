@@ -79,7 +79,7 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
         globalHandler.readableIndexListView = self.gridView
         globalHandler.updateReadings()
         
-        ServicesHandler.sharedInstance.startLocationService()
+        GlobalHandler.sharedInstance.servicesHandler.startLocationService()
         
         self.refreshController = UIRefreshControl()
         self.gridView.addSubview(self.refreshController!)

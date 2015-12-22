@@ -40,7 +40,7 @@ class AddressShowController: UIViewController {
         } else if reading.getReadableType() == .SPECK {
             let speck = reading as! Speck
             SpeckDbHelper.deleteSpeckFromDb(speck)
-            SettingsHandler.sharedInstance.addToBlacklistedDevices(speck.deviceId)
+            GlobalHandler.sharedInstance.settingsHandler.addToBlacklistedDevices(speck.deviceId)
         }
     }
     

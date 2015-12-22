@@ -89,7 +89,7 @@ class CLLocationSService: NSObject, CLLocationManagerDelegate {
         }
         NSLog("Location Authorization Status changed to \(authStatus.rawValue); setting serviceEnabled=\(serviceEnabled)")
         if authStatus == .Denied || authStatus == .Restricted {
-            SettingsHandler.sharedInstance.setAppUsesCurrentLocation(false)
+            GlobalHandler.sharedInstance.settingsHandler.setAppUsesCurrentLocation(false)
         }
     }
     

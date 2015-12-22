@@ -23,8 +23,18 @@ class GlobalHandler {
     
     
     // MARK: Class Functions
-
     
+
+    // managed global instances
+    var esdrAuthHandler: EsdrAuthHandler
+    var esdrSpecksHandler: EsdrSpecksHandler
+    var esdrFeedsHandler: EsdrFeedsHandler
+    var httpRequestHandler: HttpRequestHandler
+    var servicesHandler: ServicesHandler
+    var settingsHandler: SettingsHandler
+    var esdrLoginHandler: EsdrLoginHandler
+    var positionIdHelper: PositionIdHelper
+    // data structure
     var headerReadingsHashMap: HeaderReadingsHashMap
     // keep track of ALL adapters for notify
     var readableIndexListView: UICollectionView?
@@ -33,9 +43,20 @@ class GlobalHandler {
     var refreshTimer: RefreshTimer
     
     
-    init() {
+    private init() {
         appDelegate = (UIApplication.sharedApplication().delegate! as! AppDelegate)
-        headerReadingsHashMap = HeaderReadingsHashMap()
+        // global instances
+        esdrAuthHandler = EsdrAuthHandler()
+        esdrSpecksHandler = EsdrSpecksHandler()
+        esdrFeedsHandler = EsdrFeedsHandler()
+        httpRequestHandler = HttpRequestHandler()
+        servicesHandler = ServicesHandler()
+        settingsHandler = SettingsHandler()
+        esdrLoginHandler = EsdrLoginHandler()
+        positionIdHelper = PositionIdHelper()
+        // data structures
+        // NOTICE: in Swift, we cannot pass the object before it inits. Instead, we pass the value we actually care about in HRHM's constructor
+        headerReadingsHashMap = HeaderReadingsHashMap(appUsesLocation: settingsHandler.appUsesLocation)
         GlobalHandler.singletonInstantiated = true
         // expires in 5 minutes, with tolerance up to 30 seconds
         self.refreshTimer = RefreshTimer(interval: 300.0, withTolerance: 30.0)
@@ -45,7 +66,7 @@ class GlobalHandler {
     func updateReadings() {
         headerReadingsHashMap.updateAddresses()
         headerReadingsHashMap.updateSpecks()
-        if SettingsHandler.sharedInstance.appUsesLocation {
+        if GlobalHandler.sharedInstance.settingsHandler.appUsesLocation {
             headerReadingsHashMap.gpsAddress.requestUpdateFeeds()
         }
         self.refreshTimer.startTimer()

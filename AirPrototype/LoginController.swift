@@ -21,9 +21,9 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NSLog("LoginController did load!")
-        if SettingsHandler.sharedInstance.userLoggedIn {
+        if GlobalHandler.sharedInstance.settingsHandler.userLoggedIn {
             loggedIn = true
-            username = SettingsHandler.sharedInstance.username
+            username = GlobalHandler.sharedInstance.settingsHandler.username
         }
         display()
     }
@@ -61,7 +61,7 @@ class LoginController: UIViewController {
         username = loginView!.textFieldUsername.text
         let password = loginView!.textFieldPassword.text
         
-        EsdrAuthHandler.sharedInstance.requestEsdrToken(username!, password: password!, completionHandler: { (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void in
+        GlobalHandler.sharedInstance.esdrAuthHandler.requestEsdrToken(username!, password: password!, completionHandler: { (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void in
             
             let httpResponse = response as! NSHTTPURLResponse
             if error != nil {
@@ -78,7 +78,7 @@ class LoginController: UIViewController {
                 let refreshToken = data.valueForKey("refresh_token") as! String
                 let userId = data.valueForKey("userId") as! Int
                 
-                let esdrLoginHandler = EsdrLoginHandler.sharedInstance
+                let esdrLoginHandler = GlobalHandler.sharedInstance.esdrLoginHandler
                 esdrLoginHandler.updateEsdrAccount(self.username!, userId: userId, accessToken: accessToken, refreshToken: refreshToken)
                 esdrLoginHandler.setUserLoggedIn(true)
             }
@@ -97,9 +97,9 @@ class LoginController: UIViewController {
     
     
     func onClickLogout() {
-        EsdrLoginHandler.sharedInstance.setUserLoggedIn(false)
+        GlobalHandler.sharedInstance.esdrLoginHandler.setUserLoggedIn(false)
         loggedIn = false
-        EsdrLoginHandler.sharedInstance.setUserLoggedIn(false)
+        GlobalHandler.sharedInstance.esdrLoginHandler.setUserLoggedIn(false)
         GlobalHandler.sharedInstance.headerReadingsHashMap.clearSpecks()
         display()
     }

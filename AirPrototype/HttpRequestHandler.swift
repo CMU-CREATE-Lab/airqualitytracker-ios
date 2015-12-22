@@ -11,21 +11,6 @@ import UIKit
 
 class HttpRequestHandler {
     
-    
-    // MARK: singleton pattern; this is the only time the class should be initialized
-    
-    
-    class var sharedInstance: HttpRequestHandler {
-        struct Singleton {
-            static let instance = HttpRequestHandler()
-        }
-        return Singleton.instance
-    }
-    
-    
-    // MARK: Class Functions
-
-    
     var appDelegate: AppDelegate
     
     
@@ -62,7 +47,7 @@ class HttpRequestHandler {
         let url = NSURL(string: "http://autocomplete.wunderground.com/aq?query=\(input)&c=US".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "GET"
-        HttpRequestHandler.sharedInstance.sendJsonRequest(request, completionHandler: completionHandler)
+        GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: completionHandler)
     }
     
 }

@@ -11,36 +11,22 @@ import Foundation
 class PositionIdHelper {
     
     
-    // MARK: singleton pattern; this is the only time the class should be initialized
-    
-    
-    class var sharedInstance: PositionIdHelper {
-        struct Singleton {
-            static let instance = PositionIdHelper()
-        }
-        return Singleton.instance
-    }
-    
-    
-    // MARK: Class Functions
-    
-    
     private func setAddressLastPosition(position: Int) {
-        let userDefaults = SettingsHandler.sharedInstance.userDefaults
+        let userDefaults = GlobalHandler.sharedInstance.settingsHandler.userDefaults
         userDefaults.setInteger(position, forKey: Constants.SettingsKeys.addressLastPosition)
         userDefaults.synchronize()
     }
     
     
     private func setSpeckLastPosition(position: Int) {
-        let userDefaults = SettingsHandler.sharedInstance.userDefaults
+        let userDefaults = GlobalHandler.sharedInstance.settingsHandler.userDefaults
         userDefaults.setInteger(position, forKey: Constants.SettingsKeys.speckLastPosition)
         userDefaults.synchronize()
     }
     
     
     func getAdressLastPosition() -> Int? {
-        let userDefaults = SettingsHandler.sharedInstance.userDefaults
+        let userDefaults = GlobalHandler.sharedInstance.settingsHandler.userDefaults
         let position = userDefaults.valueForKey(Constants.SettingsKeys.addressLastPosition) as! Int
         userDefaults.setInteger(position+1, forKey: Constants.SettingsKeys.addressLastPosition)
         if userDefaults.synchronize() {
@@ -51,7 +37,7 @@ class PositionIdHelper {
     
     
     func getSpeckLastPosition() -> Int? {
-        let userDefaults = SettingsHandler.sharedInstance.userDefaults
+        let userDefaults = GlobalHandler.sharedInstance.settingsHandler.userDefaults
         let position = userDefaults.valueForKey(Constants.SettingsKeys.speckLastPosition) as! Int
         userDefaults.setInteger(position+1, forKey: Constants.SettingsKeys.speckLastPosition)
         if userDefaults.synchronize() {

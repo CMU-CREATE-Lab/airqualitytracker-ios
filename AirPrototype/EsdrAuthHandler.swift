@@ -11,21 +11,6 @@ import UIKit
 
 class EsdrAuthHandler {
     
-    
-    // MARK: singleton pattern; this is the only time the class should be initialized
-    
-    
-    class var sharedInstance: EsdrAuthHandler {
-        struct Singleton {
-            static let instance = EsdrAuthHandler()
-        }
-        return Singleton.instance
-    }
-    
-    
-    // MARK: Class Functions
-    
-    
     var appDelegate: AppDelegate
     
     
@@ -53,7 +38,7 @@ class EsdrAuthHandler {
         request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions())
         
         // send request
-        HttpRequestHandler.sharedInstance.sendJsonRequest(request, completionHandler: completionHandler)
+        GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: completionHandler)
     }
     
     
@@ -74,7 +59,7 @@ class EsdrAuthHandler {
         request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions())
         
         // send request
-        HttpRequestHandler.sharedInstance.sendJsonRequest(request, completionHandler: responseHandler)
+        GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: responseHandler)
     }
     
 }

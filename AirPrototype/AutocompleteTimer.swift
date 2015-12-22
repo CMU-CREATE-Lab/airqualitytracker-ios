@@ -42,7 +42,7 @@ class AutocompleteTimer: NSObject, Timer {
     func timerExpires() {
         NSLog("In timerExpires()")
         let input = self.controller.searchText!
-        HttpRequestHandler.sharedInstance.requestGeocodingFromApi(input, completionHandler: self.completionHandler)
+        GlobalHandler.sharedInstance.httpRequestHandler.requestGeocodingFromApi(input, completionHandler: self.completionHandler)
     }
     
     
