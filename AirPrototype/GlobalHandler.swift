@@ -63,6 +63,18 @@ class GlobalHandler {
     }
     
     
+    func removeReading(reading: Readable) {
+        readingsHandler.removeReading(reading)
+        if reading.getReadableType() == .ADDRESS {
+            AddressDbHelper.deleteAddressFromDb(reading as! SimpleAddress)
+        } else if reading.getReadableType() == .SPECK {
+            let speck = reading as! Speck
+            SpeckDbHelper.deleteSpeckFromDb(speck)
+            settingsHandler.addToBlacklistedDevices(speck.deviceId)
+        }
+    }
+    
+    
     func updateReadings() {
         readingsHandler.updateAddresses()
         readingsHandler.updateSpecks()

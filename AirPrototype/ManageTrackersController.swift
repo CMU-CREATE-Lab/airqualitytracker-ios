@@ -15,20 +15,6 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var currentLocationSwitch: UISwitch!
     
     
-    func removeReading(reading: Readable) {
-        GlobalHandler.sharedInstance.readingsHandler.removeReading(reading)
-        if reading.getReadableType() == .ADDRESS {
-            AddressDbHelper.deleteAddressFromDb(reading as! SimpleAddress)
-        } else if reading.getReadableType() == .SPECK {
-            let speck = reading as! Speck
-            SpeckDbHelper.deleteSpeckFromDb(speck)
-            GlobalHandler.sharedInstance.settingsHandler.addToBlacklistedDevices(speck.deviceId)
-        }
-        
-        tableView.reloadData()
-    }
-    
-    
     // MARK: Storyboard Events
     
     
@@ -55,7 +41,8 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
         if editingStyle == UITableViewCellEditingStyle.Delete {
             let headerReadingsHashmap = GlobalHandler.sharedInstance.readingsHandler
             let reading = headerReadingsHashmap.adapterListTracker[headerReadingsHashmap.headers[indexPath.section]]![indexPath.row]
-            self.removeReading(reading)
+            GlobalHandler.sharedInstance.removeReading(reading)
+            tableView.reloadData()
         }
     }
     

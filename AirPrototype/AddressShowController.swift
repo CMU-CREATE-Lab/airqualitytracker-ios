@@ -32,19 +32,6 @@ class AddressShowController: UIViewController {
     }
     
     
-    // TODO consolidate function; possibly move into GlobalHandler
-    private func removeReading(reading: Readable) {
-        GlobalHandler.sharedInstance.readingsHandler.removeReading(reading)
-        if reading.getReadableType() == .ADDRESS {
-            AddressDbHelper.deleteAddressFromDb(reading as! SimpleAddress)
-        } else if reading.getReadableType() == .SPECK {
-            let speck = reading as! Speck
-            SpeckDbHelper.deleteSpeckFromDb(speck)
-            GlobalHandler.sharedInstance.settingsHandler.addToBlacklistedDevices(speck.deviceId)
-        }
-    }
-    
-    
     func defaultView() {
         labelValueTitle.text = Constants.DefaultReading.DEFAULT_TITLE
         labelValueDescription.text = Constants.DefaultReading.DEFAULT_DESCRIPTION
@@ -140,7 +127,7 @@ class AddressShowController: UIViewController {
     
     @IBAction func onClickRemove(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
-        removeReading(reading!)
+        GlobalHandler.sharedInstance.removeReading(reading!)
     }
     
     
