@@ -67,7 +67,7 @@ class GlobalHandler {
         headerReadingsHashMap.updateAddresses()
         headerReadingsHashMap.updateSpecks()
         if GlobalHandler.sharedInstance.settingsHandler.appUsesLocation {
-            headerReadingsHashMap.gpsAddress.requestUpdateFeeds()
+            GlobalHandler.sharedInstance.esdrFeedsHandler.requestUpdateFeeds(headerReadingsHashMap.gpsAddress)
         }
         self.refreshTimer.startTimer()
     }

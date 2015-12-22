@@ -111,7 +111,7 @@ class HeaderReadingsHashMap {
     
     func setGpsAddressLocation(location: Location) {
         gpsAddress.location = location
-        gpsAddress.requestUpdateFeeds()
+        GlobalHandler.sharedInstance.esdrFeedsHandler.requestUpdateFeeds(gpsAddress)
     }
     
     
@@ -147,7 +147,6 @@ class HeaderReadingsHashMap {
     }
     
     
-    // TODO add for Specks as well
     func renameReading(reading: Readable, name: String) {
         if reading.getReadableType() == ReadableType.ADDRESS {
             let address = reading as! SimpleAddress
@@ -184,14 +183,14 @@ class HeaderReadingsHashMap {
     
     func updateAddresses() {
         for address in addresses {
-            address.requestUpdateFeeds()
+            GlobalHandler.sharedInstance.esdrFeedsHandler.requestUpdateFeeds(address)
         }
     }
     
     
     func updateSpecks() {
         for speck in specks {
-            speck.requestUpdate()
+            GlobalHandler.sharedInstance.esdrFeedsHandler.requestUpdate(speck)
         }
     }
     
@@ -219,7 +218,7 @@ class HeaderReadingsHashMap {
                     // only add what isnt in the DB already
                     if findIndexOfSpeckWithDeviceId(speck.deviceId) == nil {
                         self.specks.append(speck)
-                        speck.requestUpdate()
+                        GlobalHandler.sharedInstance.esdrFeedsHandler.requestUpdate(speck)
                     }
                 }
                 if resultSpecks.count > 0 {

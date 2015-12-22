@@ -11,7 +11,9 @@ import CoreData
 
 class Speck: Feed {
     
+    
     // MARK: Readable implementation
+    
 
     private let readableType = ReadableType.SPECK
     
@@ -44,19 +46,6 @@ class Speck: Feed {
         self.feedValue = feed.feedValue
         self.lastTime = feed.lastTime
         NSLog("Constructed a new Speck! name=\(name), location=\(location), feedValue=\(feedValue)")
-    }
-    
-    
-    func requestUpdate() {
-        if self.channels.count > 0 {
-            if let accessToken = GlobalHandler.sharedInstance.settingsHandler.accessToken {
-                GlobalHandler.sharedInstance.esdrFeedsHandler.requestAuthorizedChannelReading(accessToken, feed: self, channel: self.channels[0])
-            } else {
-                NSLog("WARNING - could not request channel reading for Speck=\(name); accessToken is nil.")
-            }
-        } else {
-            NSLog("No channels found from speck id=\(self.feed_id)")
-        }
     }
     
 }

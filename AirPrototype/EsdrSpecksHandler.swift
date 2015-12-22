@@ -75,7 +75,7 @@ class EsdrSpecksHandler {
                     }
                 }
                 speck.channels = feedChannels
-                speck.requestUpdate()
+                GlobalHandler.sharedInstance.esdrFeedsHandler.requestUpdate(speck)
             }
         }
         

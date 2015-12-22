@@ -118,4 +118,54 @@ class EsdrFeedsHandler {
         requestChannelReading(authToken, feed: feed, channel: channel, maxTime: timeRange)
     }
     
+    
+    func requestUpdateFeeds(address: SimpleAddress) {
+        NSLog("Called requestUpdateFeeds() on Address=\(address.name)")
+        address.feeds.removeAll(keepCapacity: false)
+        address.closestFeed = nil
+        // the past 24 hours
+        let maxTime = NSDate().timeIntervalSince1970 - Constants.READINGS_MAX_TIME_RANGE
+        
+        func completionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
+            let httpResponse = response as! NSHTTPURLResponse
+            if error != nil {
+                NSLog("error is not nil")
+            } else if httpResponse.statusCode != 200 {
+                // not sure if necessary... error usually is not nil but crashed
+                // on me one time when starting up simulator & running
+                NSLog("Got status code \(httpResponse.statusCode) != 200")
+            } else {
+                let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
+                
+                address.feeds.appendContentsOf(JsonParser.populateFeedsFromJson(data!, maxTime: maxTime))
+                NSLog("populated \(address.feeds.count) feeds")
+                if address.feeds.count > 0 {
+                    NSLog("Found non-zero feeds")
+                    if let closestFeed = MapGeometry.getClosestFeedToAddress(address, feeds: address.feeds) {
+                        NSLog("closestFeed EXISTS!")
+                        address.closestFeed = closestFeed
+                        requestChannelReading(closestFeed, channel: closestFeed.channels[0])
+                    } else {
+                        NSLog("But... closestFeed DNE?")
+                    }
+                }
+            }
+            NSLog("Finished completionHandler in requestUpdateFeeds()")
+        }
+        requestFeeds(address.location, withinSeconds: maxTime, completionHandler: completionHandler)
+    }
+    
+    
+    func requestUpdate(speck: Speck) {
+        if speck.channels.count > 0 {
+            if let accessToken = GlobalHandler.sharedInstance.settingsHandler.accessToken {
+                requestAuthorizedChannelReading(accessToken, feed: speck, channel: speck.channels[0])
+            } else {
+                NSLog("WARNING - could not request channel reading for Speck=\(speck.name); accessToken is nil.")
+            }
+        } else {
+            NSLog("No channels found from speck id=\(speck.feed_id)")
+        }
+    }
+    
 }
