@@ -75,7 +75,7 @@ class SettingsHandler {
         userDefaults.setBool(value, forKey: Constants.SettingsKeys.appUsesLocation)
         if userDefaults.synchronize() {
             self.appUsesLocation = value
-            GlobalHandler.sharedInstance.headerReadingsHashMap.refreshHash()
+            GlobalHandler.sharedInstance.readingsHandler.refreshHash()
         }
     }
     

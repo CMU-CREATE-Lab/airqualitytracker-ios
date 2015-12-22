@@ -63,7 +63,7 @@ class ResultsControllerAddressSearch: UITableViewController, UISearchResultsUpda
         // add to database and data structure
         AddressDbHelper.addAddressToDb(searchResultsList[indexPath.row])
         let globalHandler = GlobalHandler.sharedInstance
-        globalHandler.headerReadingsHashMap.addReading(searchResultsList[indexPath.row])
+        globalHandler.readingsHandler.addReading(searchResultsList[indexPath.row])
         globalHandler.updateReadings()
         
         // finish

@@ -72,7 +72,7 @@ class SpeckDbHelper {
                             deleteSpeckFromDb(speck)
                         } else {
                             speck.apiKeyReadOnly = apiKeyReadOnly
-                            GlobalHandler.sharedInstance.headerReadingsHashMap.addReading(speck)
+                            GlobalHandler.sharedInstance.readingsHandler.addReading(speck)
                             GlobalHandler.sharedInstance.esdrSpecksHandler.requestChannelsForSpeck(speck)
                         }
                     } else {

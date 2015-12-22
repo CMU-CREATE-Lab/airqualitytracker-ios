@@ -18,7 +18,7 @@ class EsdrLoginHandler {
         if userDefaults.synchronize() {
             GlobalHandler.sharedInstance.settingsHandler.userLoggedIn = userLoggedIn
             // repopulates specks on successful login/logout
-            GlobalHandler.sharedInstance.headerReadingsHashMap.populateSpecks()
+            GlobalHandler.sharedInstance.readingsHandler.populateSpecks()
             // also clears the blacklisted devices
             GlobalHandler.sharedInstance.settingsHandler.clearBlacklistedDevices()
         }

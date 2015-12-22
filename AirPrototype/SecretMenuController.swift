@@ -20,7 +20,7 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var tableView: UITableView!
     @IBAction func clickRequestFeeds(sender: AnyObject) {
         var feeds = [Feed]()
-        if let addresses = GlobalHandler.sharedInstance.headerReadingsHashMap.adapterList[Constants.HEADER_TITLES[1]] {
+        if let addresses = GlobalHandler.sharedInstance.readingsHandler.adapterList[Constants.HEADER_TITLES[1]] {
             for reading in addresses {
                 feeds.appendContentsOf( (reading as! SimpleAddress).feeds )
             }
@@ -58,7 +58,7 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if let addresses = GlobalHandler.sharedInstance.headerReadingsHashMap.adapterList[Constants.HEADER_TITLES[1]] {
+        if let addresses = GlobalHandler.sharedInstance.readingsHandler.adapterList[Constants.HEADER_TITLES[1]] {
             return addresses.count
         }
         return 0
@@ -66,8 +66,8 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
-        if let addresses = headerReadingsHashmap.adapterList[Constants.HEADER_TITLES[1]] {
+        let readingsHandler = GlobalHandler.sharedInstance.readingsHandler
+        if let addresses = readingsHandler.adapterList[Constants.HEADER_TITLES[1]] {
             if addresses[section].getReadableType() == ReadableType.ADDRESS {
                 let address = addresses[section] as! SimpleAddress
                 return address.feeds.count
@@ -78,15 +78,15 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let address = (GlobalHandler.sharedInstance.headerReadingsHashMap.adapterList[Constants.HEADER_TITLES[1]]!)[section] as! SimpleAddress
+        let address = (GlobalHandler.sharedInstance.readingsHandler.adapterList[Constants.HEADER_TITLES[1]]!)[section] as! SimpleAddress
         return "\(section.description) (\(address.location.latitude.description),\(address.location.longitude.description))"
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let identifier = "SecretMenuCell"
-        let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
-        let address = (headerReadingsHashmap.adapterList[Constants.HEADER_TITLES[1]]!)[indexPath.section] as! SimpleAddress
+        let readingsHandler = GlobalHandler.sharedInstance.readingsHandler
+        let address = (readingsHandler.adapterList[Constants.HEADER_TITLES[1]]!)[indexPath.section] as! SimpleAddress
         let feed = address.feeds[indexPath.row]
         
         var cell: SecretMenuTableCell?

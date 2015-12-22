@@ -28,7 +28,7 @@ class ManageTrackersTableViewCell: UITableViewCell, UIAlertViewDelegate {
         NSLog("Dismissed at index \(buttonIndex)")
         if buttonIndex == 1{
             let name = alertView.textFieldAtIndex(0)!.text!
-            GlobalHandler.sharedInstance.headerReadingsHashMap.renameReading(self.reading!, name: name)
+            GlobalHandler.sharedInstance.readingsHandler.renameReading(self.reading!, name: name)
             self.tableView!.reloadData()
         }
     }

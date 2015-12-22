@@ -34,7 +34,7 @@ class AddressShowController: UIViewController {
     
     // TODO consolidate function; possibly move into GlobalHandler
     private func removeReading(reading: Readable) {
-        GlobalHandler.sharedInstance.headerReadingsHashMap.removeReading(reading)
+        GlobalHandler.sharedInstance.readingsHandler.removeReading(reading)
         if reading.getReadableType() == .ADDRESS {
             AddressDbHelper.deleteAddressFromDb(reading as! SimpleAddress)
         } else if reading.getReadableType() == .SPECK {

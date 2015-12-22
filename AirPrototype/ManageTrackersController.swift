@@ -16,7 +16,7 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
     
     
     func removeReading(reading: Readable) {
-        GlobalHandler.sharedInstance.headerReadingsHashMap.removeReading(reading)
+        GlobalHandler.sharedInstance.readingsHandler.removeReading(reading)
         if reading.getReadableType() == .ADDRESS {
             AddressDbHelper.deleteAddressFromDb(reading as! SimpleAddress)
         } else if reading.getReadableType() == .SPECK {
@@ -53,7 +53,7 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
-            let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
+            let headerReadingsHashmap = GlobalHandler.sharedInstance.readingsHandler
             let reading = headerReadingsHashmap.adapterListTracker[headerReadingsHashmap.headers[indexPath.section]]![indexPath.row]
             self.removeReading(reading)
         }
@@ -61,13 +61,13 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
     
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return GlobalHandler.sharedInstance.headerReadingsHashMap.headers.count
+        return GlobalHandler.sharedInstance.readingsHandler.headers.count
     }
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
-        if let readings = headerReadingsHashmap.adapterListTracker[headerReadingsHashmap.headers[section]] {
+        let readingsHandler = GlobalHandler.sharedInstance.readingsHandler
+        if let readings = readingsHandler.adapterListTracker[readingsHandler.headers[section]] {
             return readings.count
         }
         return 0
@@ -81,8 +81,8 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let identifier = "TrackerReuse"
-        let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
-        let readings = headerReadingsHashmap.adapterListTracker[headerReadingsHashmap.headers[indexPath.section]]!
+        let readingsHandler = GlobalHandler.sharedInstance.readingsHandler
+        let readings = readingsHandler.adapterListTracker[readingsHandler.headers[indexPath.section]]!
         
         var cell: ManageTrackersTableViewCell?
         
@@ -107,10 +107,10 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
     
     
     func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-        let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
-        let from = headerReadingsHashmap.adapterListTracker[headerReadingsHashmap.headers[sourceIndexPath.section]]![sourceIndexPath.row]
-        let to = headerReadingsHashmap.adapterListTracker[headerReadingsHashmap.headers[destinationIndexPath.section]]![destinationIndexPath.row]
-        GlobalHandler.sharedInstance.headerReadingsHashMap.reorderReading(from, destination: to)
+        let readingsHandler = GlobalHandler.sharedInstance.readingsHandler
+        let from = readingsHandler.adapterListTracker[readingsHandler.headers[sourceIndexPath.section]]![sourceIndexPath.row]
+        let to = readingsHandler.adapterListTracker[readingsHandler.headers[destinationIndexPath.section]]![destinationIndexPath.row]
+        GlobalHandler.sharedInstance.readingsHandler.reorderReading(from, destination: to)
         tableView.reloadData()
     }
     

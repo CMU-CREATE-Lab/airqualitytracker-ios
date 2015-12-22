@@ -53,7 +53,7 @@ class AddressDbHelper {
                     address.location.latitude = latitude
                     address.location.longitude = longitude
                     address.positionId = positionId
-                    GlobalHandler.sharedInstance.headerReadingsHashMap.addReading(address)
+                    GlobalHandler.sharedInstance.readingsHandler.addReading(address)
                 }
             } else {
                 NSLog("loadFromDb() Found 0 results")

@@ -19,8 +19,8 @@ class CLLocationSService: NSObject, CLLocationManagerDelegate {
     
     
     private func updateCurrentLocation(location: Location, name: String) {
-        GlobalHandler.sharedInstance.headerReadingsHashMap.gpsAddress.name = name
-        GlobalHandler.sharedInstance.headerReadingsHashMap.refreshHash()
+        GlobalHandler.sharedInstance.readingsHandler.gpsReadingHandler.gpsAddress.name = name
+        GlobalHandler.sharedInstance.readingsHandler.refreshHash()
     }
     
     
@@ -56,7 +56,7 @@ class CLLocationSService: NSObject, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = manager.location
-        GlobalHandler.sharedInstance.headerReadingsHashMap.setGpsAddressLocation(Location(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude))
+        GlobalHandler.sharedInstance.readingsHandler.gpsReadingHandler.setGpsAddressLocation(Location(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude))
         NSLog("CLLocationSService -- Received new locations: Coordinates are lat=\(location!.coordinate.latitude),long=\(location!.coordinate.longitude)")
         
         geocoder.reverseGeocodeLocation(location!, completionHandler: { (results: [CLPlacemark]?, error: NSError?) -> Void in

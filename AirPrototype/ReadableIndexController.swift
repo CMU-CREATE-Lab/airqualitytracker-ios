@@ -116,9 +116,9 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
             NSLog("running show segue")
             let addressShowController = segue.destinationViewController as! AddressShowController
             var indexPaths = gridView.indexPathsForSelectedItems()!
-            let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
+            let readingsHandler = GlobalHandler.sharedInstance.readingsHandler
             let indexPath = indexPaths[0]
-            let reading = headerReadingsHashmap.adapterList[headerReadingsHashmap.headers[indexPath.section]]![indexPath.row]
+            let reading = readingsHandler.adapterList[readingsHandler.headers[indexPath.section]]![indexPath.row]
             addressShowController.reading = reading
             gridView.deselectItemAtIndexPath(indexPaths[0], animated: true)
         } else {
@@ -131,20 +131,20 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
     
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return GlobalHandler.sharedInstance.headerReadingsHashMap.adapterList.keys.count
+        return GlobalHandler.sharedInstance.readingsHandler.adapterList.keys.count
     }
     
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
-        return headerReadingsHashmap.adapterList[headerReadingsHashmap.headers[section]]!.count
+        let readingsHandler = GlobalHandler.sharedInstance.readingsHandler
+        return readingsHandler.adapterList[readingsHandler.headers[section]]!.count
     }
     
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MyCell", forIndexPath: indexPath) as! ReadableIndexCell
-        let headerReadingsHashmap = GlobalHandler.sharedInstance.headerReadingsHashMap
-        let readings = headerReadingsHashmap.adapterList[headerReadingsHashmap.headers[indexPath.section]]!
+        let readingsHandler = GlobalHandler.sharedInstance.readingsHandler
+        let readings = readingsHandler.adapterList[readingsHandler.headers[indexPath.section]]!
         // TODO sometimes we get out of index here?
         cell.populate(readings[indexPath.row])
         return cell
@@ -156,7 +156,7 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
         
         if kind == UICollectionElementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "MyViewHeader", forIndexPath: indexPath) as! ReadableIndexHeader
-            header.populate(GlobalHandler.sharedInstance.headerReadingsHashMap.headers[indexPath.section])
+            header.populate(GlobalHandler.sharedInstance.readingsHandler.headers[indexPath.section])
             reusableView = header
         }
         

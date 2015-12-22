@@ -35,7 +35,7 @@ class GlobalHandler {
     var esdrLoginHandler: EsdrLoginHandler
     var positionIdHelper: PositionIdHelper
     // data structure
-    var headerReadingsHashMap: HeaderReadingsHashMap
+    var readingsHandler: ReadingsHandler
     // keep track of ALL adapters for notify
     var readableIndexListView: UICollectionView?
     var secretDebugMenuTable: UITableView?
@@ -56,7 +56,7 @@ class GlobalHandler {
         positionIdHelper = PositionIdHelper()
         // data structures
         // NOTICE: in Swift, we cannot pass the object before it inits. Instead, we pass the value we actually care about in HRHM's constructor
-        headerReadingsHashMap = HeaderReadingsHashMap(appUsesLocation: settingsHandler.appUsesLocation)
+        readingsHandler = ReadingsHandler(appUsesLocation: settingsHandler.appUsesLocation)
         GlobalHandler.singletonInstantiated = true
         // expires in 5 minutes, with tolerance up to 30 seconds
         self.refreshTimer = RefreshTimer(interval: 300.0, withTolerance: 30.0)
@@ -64,10 +64,10 @@ class GlobalHandler {
     
     
     func updateReadings() {
-        headerReadingsHashMap.updateAddresses()
-        headerReadingsHashMap.updateSpecks()
+        readingsHandler.updateAddresses()
+        readingsHandler.updateSpecks()
         if GlobalHandler.sharedInstance.settingsHandler.appUsesLocation {
-            GlobalHandler.sharedInstance.esdrFeedsHandler.requestUpdateFeeds(headerReadingsHashMap.gpsAddress)
+            GlobalHandler.sharedInstance.esdrFeedsHandler.requestUpdateFeeds(readingsHandler.gpsReadingHandler.gpsAddress)
         }
         self.refreshTimer.startTimer()
     }
