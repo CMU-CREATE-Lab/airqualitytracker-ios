@@ -15,24 +15,12 @@ class ReadingsHandler: ReadingsHandlerEditable {
     var adapterListTracker = [String: [Readable]]()
     
     
-    init(appUsesLocation: Bool) {
+    override init() {
         gpsReadingHandler = GpsReadingHandler()
         super.init()
         
         hashMap[headers[0]] = specks
-        if appUsesLocation {
-            var tempAddresses = [Readable]()
-            tempAddresses.append(gpsReadingHandler.gpsAddress)
-            for address in addresses {
-                tempAddresses.append(address)
-            }
-            hashMap[headers[1]] = tempAddresses
-        } else {
-            hashMap[headers[1]] = addresses
-        }
-        // NOTICE: calling this hangs (since it tries to grab GlobalHandler.sharedInstance before it finishes init)
-        // seems to work without it anyways, though
-//        populateSpecks()
+        hashMap[headers[1]] = addresses
     }
     
     

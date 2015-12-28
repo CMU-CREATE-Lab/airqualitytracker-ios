@@ -56,7 +56,7 @@ class GlobalHandler {
         positionIdHelper = PositionIdHelper()
         // data structures
         // NOTICE: in Swift, we cannot pass the object before it inits. Instead, we pass the value we actually care about in HRHM's constructor
-        readingsHandler = ReadingsHandler(appUsesLocation: settingsHandler.appUsesLocation)
+        readingsHandler = ReadingsHandler()
         GlobalHandler.singletonInstantiated = true
         // expires in 5 minutes, with tolerance up to 30 seconds
         self.refreshTimer = RefreshTimer(interval: 300.0, withTolerance: 30.0)

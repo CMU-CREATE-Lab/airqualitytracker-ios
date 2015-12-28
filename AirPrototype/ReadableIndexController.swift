@@ -73,8 +73,11 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        DatabaseHelper.loadFromDb()
+        // NOTICE: in Swiftland, we cannot call these functions
+        // within GlobalHandler (since we cannot pass the reference 
+        // until after init). Instead, we load from the DB here.
+        AddressDbHelper.loadAddressesFromDb()
+        SpeckDbHelper.loadSpecksFromDb()
         let globalHandler = GlobalHandler.sharedInstance
         globalHandler.readableIndexListView = self.gridView
         globalHandler.updateReadings()
