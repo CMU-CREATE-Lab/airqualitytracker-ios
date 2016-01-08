@@ -27,13 +27,13 @@ class GlobalHandler {
 
     // managed global instances
     var esdrAuthHandler: EsdrAuthHandler
-    var esdrSpecksHandler: EsdrSpecksHandler
     var esdrFeedsHandler: EsdrFeedsHandler
+    var esdrLoginHandler: EsdrLoginHandler
+    var esdrSpecksHandler: EsdrSpecksHandler
     var httpRequestHandler: HttpRequestHandler
+    var positionIdHelper: PositionIdHelper
     var servicesHandler: ServicesHandler
     var settingsHandler: SettingsHandler
-    var esdrLoginHandler: EsdrLoginHandler
-    var positionIdHelper: PositionIdHelper
     // data structure
     var readingsHandler: ReadingsHandler
     // keep track of ALL adapters for notify

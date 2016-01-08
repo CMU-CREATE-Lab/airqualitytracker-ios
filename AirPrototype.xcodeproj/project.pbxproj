@@ -389,16 +389,16 @@
 				A1666FB01B541B1900A8E39F /* static_classes */,
 				A158F6141B8E502300FCE2E1 /* structs */,
 				A1F58E5C1B975BE700D04C91 /* EsdrAuthHandler.swift */,
-				A17361F61C231EA40012FC62 /* EsdrSpecksHandler.swift */,
 				A158F6121B8E305A00FCE2E1 /* EsdrFeedsHandler.swift */,
+				A16764011C248128001A94D6 /* EsdrLoginHandler.swift */,
+				A17361F61C231EA40012FC62 /* EsdrSpecksHandler.swift */,
 				A1666FB11B541CF400A8E39F /* GlobalHandler.swift */,
-				A1551C621C29BB5F005ED28B /* ReadingsHandler.swift */,
 				A1551C6F1C29D35B005ED28B /* GpsReadingHandler.swift */,
 				A1666FB51B542E6A00A8E39F /* HttpRequestHandler.swift */,
+				A16764031C248A5C001A94D6 /* PositionIdHelper.swift */,
+				A1551C621C29BB5F005ED28B /* ReadingsHandler.swift */,
 				A11844AE1BA9E7A600435D11 /* ServicesHandler.swift */,
 				A1E2A91C1B99ED47003A3B3A /* SettingsHandler.swift */,
-				A16764011C248128001A94D6 /* EsdrLoginHandler.swift */,
-				A16764031C248A5C001A94D6 /* PositionIdHelper.swift */,
 			);
 			name = helpers;
 			sourceTree = "<group>";
