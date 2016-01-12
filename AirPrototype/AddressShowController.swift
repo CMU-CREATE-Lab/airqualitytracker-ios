@@ -111,6 +111,8 @@ class AddressShowController: UIViewController {
         default:
             NSLog("WARNING - could not populate view; unknown readable type")
         }
+        // TESTING NOWCAST
+        closestFeed!.channels[0].requestNowCast()
     }
     
     

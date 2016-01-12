@@ -141,6 +141,11 @@ class JsonParser {
         results = [Int: [Double]]()
         
         // TODO grab all tiles within timestamp range (fromTime..toTime)
+        // Error: "Could not cast value of type '__NSCFDictionary' (0x104637a60) to 'NSArray' "
+        let data = dataEntry.valueForKey("data") as! NSArray
+        for point in data {
+            NSLog("Found data point \(point[0])")
+        }
         
         return results
     }

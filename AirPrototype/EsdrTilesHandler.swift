@@ -12,11 +12,23 @@ import UIKit
 class EsdrTilesHandler {
     
     
+    // ASSERT: a and b will never share keys (timestamps)
     private func union(a: [Int: [Double]], and b: [Int: [Double]]) -> [Int: [Double]] {
         var results: [Int: [Double]]
         results = [Int: [Double]]()
         
-        // TODO union two hashmaps a,b together
+        // Checking assertion for sanity
+        if Set(a.keys).intersect(Set(b.keys)).count > 0 {
+            NSLog("WARNING: non-empty intersection of keys in union (this shouldn't be happening); information will be lost")
+        }
+        
+        // lazily set results (overwrites in the case of intersection, which shouldn't happen)
+        for key in a.keys {
+            results[key] = a[key]
+        }
+        for key in b.keys {
+            results[key] = b[key]
+        }
         
         return results
     }
@@ -49,7 +61,8 @@ class EsdrTilesHandler {
             }
             
             // response handling
-            let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
+            // NOTE: this crashes due to scientific notation (-1e+308) out of range of what the parser will handle
+            let data = (try! NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: nil)) as? NSDictionary
             firstResponse = JsonParser.parseTiles(data!, fromTime: minTime, toTime: maxTime)
             
             // generate 2nd URL
@@ -89,6 +102,7 @@ class EsdrTilesHandler {
         // generate 1st URL
         let address = Constants.Esdr.API_URL + "/api/v1/feeds/\(channel.feed.feed_id)/channels/\(channel.name)/tiles/\(level).\(offset)"
         let url = NSURL(string: address.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+        NSLog("REQUEST was \(url)")
         
         // create 1st request
         let request = NSMutableURLRequest(URL: url!)
