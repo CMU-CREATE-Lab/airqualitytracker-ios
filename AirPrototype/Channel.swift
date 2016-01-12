@@ -16,6 +16,7 @@ class Channel {
     var maxTimeSecs: Double
     var minValue: Double
     var maxValue: Double
+    var nowcastValue: Double?
     
     
     init() {
@@ -25,6 +26,23 @@ class Channel {
         maxTimeSecs = 0
         minValue = 0
         maxValue = 0
+    }
+    
+    
+    func requestNowCast() {
+        
+        func response(data: [Int: [Double]]) {
+            // construct array of values
+            let array = NowCastCalculator.constructArrayFromHash(data)
+            NSLog("Channel \(self.name) received array \(array)")
+            
+            // find NowCast
+            let nowcast = NowCastCalculator.calculate(array)
+            self.nowcastValue = nowcast
+            NSLog("Channel \(self.name) nowcast value set to =\(nowcast)")
+        }
+        
+        GlobalHandler.sharedInstance.esdrTilesHandler.requestTilesFromChannel(self, completionHandler: response)
     }
     
 }

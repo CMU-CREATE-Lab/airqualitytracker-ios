@@ -30,6 +30,7 @@ class GlobalHandler {
     var esdrFeedsHandler: EsdrFeedsHandler
     var esdrLoginHandler: EsdrLoginHandler
     var esdrSpecksHandler: EsdrSpecksHandler
+    var esdrTilesHandler: EsdrTilesHandler
     var httpRequestHandler: HttpRequestHandler
     var positionIdHelper: PositionIdHelper
     var servicesHandler: ServicesHandler
@@ -50,6 +51,7 @@ class GlobalHandler {
         esdrAuthHandler = EsdrAuthHandler()
         esdrSpecksHandler = EsdrSpecksHandler()
         esdrFeedsHandler = EsdrFeedsHandler()
+        esdrTilesHandler = EsdrTilesHandler()
         httpRequestHandler = HttpRequestHandler()
         servicesHandler = ServicesHandler()
         settingsHandler = SettingsHandler()

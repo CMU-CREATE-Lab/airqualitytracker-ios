@@ -135,4 +135,14 @@ class JsonParser {
         return channel
     }
     
+    
+    static func parseTiles(dataEntry: NSDictionary, fromTime: Int, toTime: Int) -> [Int: [Double]] {
+        var results: [Int: [Double]]
+        results = [Int: [Double]]()
+        
+        // TODO grab all tiles within timestamp range (fromTime..toTime)
+        
+        return results
+    }
+    
 }
