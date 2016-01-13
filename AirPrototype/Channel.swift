@@ -30,10 +30,11 @@ class Channel {
     
     
     func requestNowCast() {
+        let timestamp = Int(NSDate().timeIntervalSince1970)
         
         func response(data: [Int: [Double]]) {
             // construct array of values
-            let array = NowCastCalculator.constructArrayFromHash(data)
+            let array = NowCastCalculator.constructArrayFromHash(data, currentTime: timestamp)
             NSLog("Channel \(self.name) received array \(array)")
             
             // find NowCast
@@ -42,7 +43,7 @@ class Channel {
             NSLog("Channel \(self.name) nowcast value set to =\(nowcast)")
         }
         
-        GlobalHandler.sharedInstance.esdrTilesHandler.requestTilesFromChannel(self, completionHandler: response)
+        GlobalHandler.sharedInstance.esdrTilesHandler.requestTilesFromChannel(self, timestamp: timestamp, completionHandler: response)
     }
     
 }

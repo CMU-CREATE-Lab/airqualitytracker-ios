@@ -30,14 +30,24 @@ class EsdrTilesHandler {
             results[key] = b[key]
         }
         
+        NSLog("Returning union size \(a.count)+\(b.count)=\(results.count)")
         return results
     }
     
     
-    func requestTilesFromChannel(channel: Channel, completionHandler: (([Int: [Double]]) -> Void) ) {
-        let timestamp = NSDate().timeIntervalSince1970
-        let maxTime = Int(timestamp)
-        let minTime = Int(timestamp - 3600*12)
+    private func formatSafeJson(json: NSString) -> NSString {
+        var result = json
+        
+        // TODO remove occurences of strings that break json parser (ex: -1e+308=>0)
+        result = result.stringByReplacingOccurrencesOfString("-1e+308", withString: "0")
+        
+        return result
+    }
+    
+    
+    func requestTilesFromChannel(channel: Channel, timestamp: Int, completionHandler: (([Int: [Double]]) -> Void) ) {
+        let maxTime = timestamp
+        let minTime = timestamp - 3600*12
         
         // Level is 2**11 => 2048 seconds
         let level = 11
@@ -61,8 +71,14 @@ class EsdrTilesHandler {
             }
             
             // response handling
-            // NOTE: this crashes due to scientific notation (-1e+308) out of range of what the parser will handle
-            let data = (try! NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: nil)) as? NSDictionary
+//            // NOTE: this crashes due to scientific notation (-1e+308) out of range of what the parser will handle
+//            let tempData = NSData(contentsOfURL: url!)
+            let jsonString = try! NSString.init(contentsOfURL: url!, encoding: NSUTF8StringEncoding)
+            NSLog("Got response \(jsonString)")
+            let formattedString = formatSafeJson(jsonString)
+            NSLog("Formatted response \(formattedString)")
+            let tempData = formattedString.dataUsingEncoding(NSUTF8StringEncoding)
+            let data = (try! NSJSONSerialization.JSONObjectWithData(tempData!, options: [])) as? NSDictionary
             firstResponse = JsonParser.parseTiles(data!, fromTime: minTime, toTime: maxTime)
             
             // generate 2nd URL
@@ -91,7 +107,14 @@ class EsdrTilesHandler {
             }
             
             // response handling
-            let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
+            let jsonString = try! NSString.init(contentsOfURL: url!, encoding: NSUTF8StringEncoding)
+            NSLog("Got response \(jsonString)")
+            let formattedString = formatSafeJson(jsonString)
+            NSLog("Formatted response \(formattedString)")
+            let tempData = formattedString.dataUsingEncoding(NSUTF8StringEncoding)
+            let data = (try! NSJSONSerialization.JSONObjectWithData(tempData!, options: [])) as? NSDictionary
+            
+//            let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
             secondResponse = JsonParser.parseTiles(data!, fromTime: minTime, toTime: maxTime)
             
             // completion handler
