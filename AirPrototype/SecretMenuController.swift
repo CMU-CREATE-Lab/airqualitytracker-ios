@@ -53,6 +53,10 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
         GlobalHandler.sharedInstance.secretDebugMenuTable = tableView
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        GlobalHandler.sharedInstance.secretDebugMenuTable = nil
+    }
+    
     
     // MARK table view
     
