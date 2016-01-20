@@ -111,27 +111,39 @@ class ReadingsHandlerCore {
                 }
             }
             func devicesCompletionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
-                let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as! NSDictionary
-                if let rows = (data.valueForKey("data") as! NSDictionary).valueForKey("rows") as? Array<NSDictionary> {
-                    var deviceId: Int
-                    var prettyName: String
-                    for row in rows {
-                        deviceId = row.valueForKey("id") as! Int
-                        prettyName = row.valueForKey("name") as! String
-                        if let index = findIndexOfSpeckWithDeviceId(deviceId) {
-                            if specks[index]._id == nil {
-                                specks[index].name = prettyName
+                let httpResponse = response as! NSHTTPURLResponse
+                if error != nil {
+                    // If this runs, it is likely that we are "Unauthorized"
+                    // So, our token expired and we should clear everything
+//                    GlobalHandler.sharedInstance.esdrLoginHandler.setUserLoggedIn(false)
+//                    GlobalHandler.sharedInstance.readingsHandler.clearSpecks()
+                } else if httpResponse.statusCode != 200 {
+                    // not sure if necessary... error usually is not nil but crashed
+                    // on me one time when starting up simulator & running
+                    NSLog("Got status code \(httpResponse.statusCode) != 200")
+                } else {
+                    let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as! NSDictionary
+                    if let rows = (data.valueForKey("data") as! NSDictionary).valueForKey("rows") as? Array<NSDictionary> {
+                        var deviceId: Int
+                        var prettyName: String
+                        for row in rows {
+                            deviceId = row.valueForKey("id") as! Int
+                            prettyName = row.valueForKey("name") as! String
+                            if let index = findIndexOfSpeckWithDeviceId(deviceId) {
+                                if specks[index]._id == nil {
+                                    specks[index].name = prettyName
+                                }
                             }
                         }
                     }
-                }
-                // add all specks into the database which arent in there already
-                for speck in specks {
-                    if speck._id == nil {
-                        SpeckDbHelper.addSpeckToDb(speck)
+                    // add all specks into the database which arent in there already
+                    for speck in specks {
+                        if speck._id == nil {
+                            SpeckDbHelper.addSpeckToDb(speck)
+                        }
                     }
+                    refreshHash()
                 }
-                refreshHash()
             }
             GlobalHandler.sharedInstance.esdrSpecksHandler.requestSpeckFeeds(authToken!, userId: userId!, completionHandler: feedsCompletionHandler)
         }
