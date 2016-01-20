@@ -39,6 +39,7 @@ class GlobalHandler {
     // keep track of ALL adapters for notify
     var readableIndexListView: UICollectionView?
     var secretDebugMenuTable: UITableView?
+    var loginController: LoginController?
     var appDelegate: AppDelegate
     var refreshTimer: RefreshTimer
     
