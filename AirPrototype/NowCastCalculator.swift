@@ -25,7 +25,7 @@ class NowCastCalculator {
         var result: Double
         result = 0
         for (index,element) in values.enumerate() {
-            result += Double(index) * pow(element, Double(index))
+            result += element * pow(weightFactor, Double(index))
         }
         return result
     }
@@ -81,6 +81,7 @@ class NowCastCalculator {
         if firstNonempty == nil {
             return []
         }
+        NSLog("firstNonempty=\(firstNonempty!)")
         var lastValue = firstValue!
         for (index,element) in tempResult.enumerate() {
             if index <= firstNonempty! {
@@ -93,10 +94,10 @@ class NowCastCalculator {
                 lastValue = currentValue
             } else {
                 // when data is missing a value, use the same value as the last value that was used
+                NSLog("Value missing at index=\(index)")
                 result[index] = lastValue
             }
         }
-        // TODO convert each averaged value into AQI
         
         return result
     }

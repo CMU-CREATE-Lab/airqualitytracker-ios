@@ -33,12 +33,13 @@ class Channel {
         let timestamp = Int(NSDate().timeIntervalSince1970)
         
         func response(data: [Int: [Double]]) {
+            NSLog("Timestamp=\(timestamp)")
             // construct array of values
             let array = NowCastCalculator.constructArrayFromHash(data, currentTime: timestamp)
             NSLog("Channel \(self.name) received array \(array)")
             
             // find NowCast
-            let nowcast = NowCastCalculator.calculate(array)
+            let nowcast = Converter.microgramsToAqi( NowCastCalculator.calculate(array) )
             self.nowcastValue = nowcast
             NSLog("Channel \(self.name) nowcast value set to =\(nowcast)")
         }

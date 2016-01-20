@@ -38,7 +38,7 @@ class EsdrTilesHandler {
     private func formatSafeJson(json: NSString) -> NSString {
         var result = json
         
-        // TODO remove occurences of strings that break json parser (ex: -1e+308=>0)
+        // remove occurences of strings that break json parser (ex: -1e+308=>0)
         result = result.stringByReplacingOccurrencesOfString("-1e+308", withString: "0")
         
         return result
@@ -76,7 +76,7 @@ class EsdrTilesHandler {
             let jsonString = try! NSString.init(contentsOfURL: url!, encoding: NSUTF8StringEncoding)
             NSLog("Got response \(jsonString)")
             let formattedString = formatSafeJson(jsonString)
-            NSLog("Formatted response \(formattedString)")
+//            NSLog("Formatted response \(formattedString)")
             let tempData = formattedString.dataUsingEncoding(NSUTF8StringEncoding)
             let data = (try! NSJSONSerialization.JSONObjectWithData(tempData!, options: [])) as? NSDictionary
             firstResponse = JsonParser.parseTiles(data!, fromTime: minTime, toTime: maxTime)
@@ -110,11 +110,9 @@ class EsdrTilesHandler {
             let jsonString = try! NSString.init(contentsOfURL: url!, encoding: NSUTF8StringEncoding)
             NSLog("Got response \(jsonString)")
             let formattedString = formatSafeJson(jsonString)
-            NSLog("Formatted response \(formattedString)")
+//            NSLog("Formatted response \(formattedString)")
             let tempData = formattedString.dataUsingEncoding(NSUTF8StringEncoding)
             let data = (try! NSJSONSerialization.JSONObjectWithData(tempData!, options: [])) as? NSDictionary
-            
-//            let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
             secondResponse = JsonParser.parseTiles(data!, fromTime: minTime, toTime: maxTime)
             
             // completion handler

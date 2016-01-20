@@ -106,13 +106,13 @@ class AddressShowController: UIViewController {
         switch type {
         case .ADDRESS:
             addressView(reading as! SimpleAddress)
+            // TESTING NOWCAST
+            closestFeed!.channels[0].requestNowCast()
         case .SPECK:
             speckView(reading as! Speck)
         default:
             NSLog("WARNING - could not populate view; unknown readable type")
         }
-        // TESTING NOWCAST
-        closestFeed!.channels[0].requestNowCast()
     }
     
     

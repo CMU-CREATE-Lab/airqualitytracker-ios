@@ -127,6 +127,7 @@ class EsdrFeedsHandler {
         let maxTime = NSDate().timeIntervalSince1970 - Constants.READINGS_MAX_TIME_RANGE
         
         func completionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
+            // TODO got an error here (forced type? Should handle if nil)
             let httpResponse = response as! NSHTTPURLResponse
             if error != nil {
                 NSLog("error is not nil")
