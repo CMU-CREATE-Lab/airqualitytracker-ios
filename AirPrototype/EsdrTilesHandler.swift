@@ -14,8 +14,7 @@ class EsdrTilesHandler {
     
     // ASSERT: a and b will never share keys (timestamps)
     private func union(a: [Int: [Double]], and b: [Int: [Double]]) -> [Int: [Double]] {
-        var results: [Int: [Double]]
-        results = [Int: [Double]]()
+        var results = [Int: [Double]]()
         
         // Checking assertion for sanity
         if Set(a.keys).intersect(Set(b.keys)).count > 0 {
@@ -46,6 +45,9 @@ class EsdrTilesHandler {
     
     
     func requestTilesFromChannel(channel: Channel, timestamp: Int, completionHandler: (([Int: [Double]]) -> Void) ) {
+        var firstResponse: [Int: [Double]]?
+        var secondResponse: [Int: [Double]]?
+        
         let maxTime = timestamp
         // TODO we use 13 hours since ESDR won't always report the previous hour to us
         //let minTime = timestamp - 3600*12
@@ -53,14 +55,12 @@ class EsdrTilesHandler {
         
         // Level is 2**11 => 2048 seconds
         let level = 11
-        // our tile offset
+        // our tile offset (calculates most recent tile at the current level)
         let offset = Int( Double(maxTime) / (512.0*pow(2.0,Double(level))) )
-        
-        var firstResponse: [Int: [Double]]?
-        var secondResponse: [Int: [Double]]?
         
         // 1st handler, which then makes 2nd request; performs sequentially
         func firstHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
+            // handles if an invalid response
             let httpResponse = response as! NSHTTPURLResponse
             if error != nil {
                 NSLog("error is not nil")
@@ -94,6 +94,7 @@ class EsdrTilesHandler {
         
         // 2nd handler
         func secondHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
+            // handles if an invalid response
             let httpResponse = response as! NSHTTPURLResponse
             if error != nil {
                 NSLog("error is not nil")
@@ -113,7 +114,7 @@ class EsdrTilesHandler {
             let data = (try! NSJSONSerialization.JSONObjectWithData(tempData!, options: [])) as? NSDictionary
             secondResponse = JsonParser.parseTiles(data!, fromTime: minTime, toTime: maxTime)
             
-            // completion handler
+            // union both responses then call completion handler
             let result = union(firstResponse!, and: secondResponse!)
             completionHandler(result)
         }

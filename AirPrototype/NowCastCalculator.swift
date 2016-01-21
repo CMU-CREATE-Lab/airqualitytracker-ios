@@ -31,8 +31,8 @@ class NowCastCalculator {
     }
     
     
-    // ASSERT: NowCast is calculated from the last 12 hours, so hourlyValues should have size 12
-    // ASSERT: hourlyValues does not contain nil values (note type [NSNumber!])
+    // ASSERT: NowCast is calculated from a 12 hour range, so hourlyValues should have size 12
+    // ASSERT: hourlyValues does not contain nil values
     // ASSERT: Ordered by hour (index 0 is most recent, index 11 is oldest)
     static func calculate(hourlyValues: [Double]) -> Double {
         // find min/max of list
@@ -72,6 +72,7 @@ class NowCastCalculator {
             }
         }
         
+        // Handle finding first non-empty value; return if entire array is empty
         var firstNonempty: Int?
         var firstValue: Double?
         for (index,element) in tempResult.enumerate() {
@@ -84,8 +85,12 @@ class NowCastCalculator {
         if firstNonempty == nil {
             return []
         }
-        NSLog("firstNonempty=\(firstNonempty!)")
-        var lastValue = firstValue!
+        // The last value we saw in the array we are constructing
+        var lastValue: Double
+        // Initially, we want this to be the first non-nil value in the array
+        lastValue = firstValue!
+        
+        // Now, construct our final resulting array (from buckets)
         for (index,element) in tempResult.enumerate() {
             if index <= firstNonempty! {
                 // set all values to be the same as the first nonempty value

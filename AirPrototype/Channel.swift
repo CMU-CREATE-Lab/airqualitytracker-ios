@@ -44,6 +44,7 @@ class Channel {
             NSLog("Channel \(self.name) nowcast value set to =\(nowcast)")
         }
         
+        // request tiles from ESDR
         GlobalHandler.sharedInstance.esdrTilesHandler.requestTilesFromChannel(self, timestamp: timestamp, completionHandler: response)
     }
     
