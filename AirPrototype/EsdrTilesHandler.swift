@@ -47,7 +47,9 @@ class EsdrTilesHandler {
     
     func requestTilesFromChannel(channel: Channel, timestamp: Int, completionHandler: (([Int: [Double]]) -> Void) ) {
         let maxTime = timestamp
-        let minTime = timestamp - 3600*12
+        // TODO we use 13 hours since ESDR won't always report the previous hour to us
+        //let minTime = timestamp - 3600*12
+        let minTime = timestamp - 3600*13
         
         // Level is 2**11 => 2048 seconds
         let level = 11
@@ -71,12 +73,9 @@ class EsdrTilesHandler {
             }
             
             // response handling
-//            // NOTE: this crashes due to scientific notation (-1e+308) out of range of what the parser will handle
-//            let tempData = NSData(contentsOfURL: url!)
             let jsonString = try! NSString.init(contentsOfURL: url!, encoding: NSUTF8StringEncoding)
             NSLog("Got response \(jsonString)")
             let formattedString = formatSafeJson(jsonString)
-//            NSLog("Formatted response \(formattedString)")
             let tempData = formattedString.dataUsingEncoding(NSUTF8StringEncoding)
             let data = (try! NSJSONSerialization.JSONObjectWithData(tempData!, options: [])) as? NSDictionary
             firstResponse = JsonParser.parseTiles(data!, fromTime: minTime, toTime: maxTime)
@@ -110,7 +109,6 @@ class EsdrTilesHandler {
             let jsonString = try! NSString.init(contentsOfURL: url!, encoding: NSUTF8StringEncoding)
             NSLog("Got response \(jsonString)")
             let formattedString = formatSafeJson(jsonString)
-//            NSLog("Formatted response \(formattedString)")
             let tempData = formattedString.dataUsingEncoding(NSUTF8StringEncoding)
             let data = (try! NSJSONSerialization.JSONObjectWithData(tempData!, options: [])) as? NSDictionary
             secondResponse = JsonParser.parseTiles(data!, fromTime: minTime, toTime: maxTime)

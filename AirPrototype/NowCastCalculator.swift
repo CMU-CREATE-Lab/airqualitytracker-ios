@@ -53,8 +53,11 @@ class NowCastCalculator {
     
     
     static func constructArrayFromHash(data: [Int: [Double]], currentTime: Int) -> [Double] {
-        var result = [Double](arrayLiteral: 0,0,0,0,0,0,0,0,0,0,0,0)
-        var tempResult = [[Double]](arrayLiteral: [],[],[],[],[],[],[],[],[],[],[],[])
+        // TODO we use 13 hours since ESDR won't always report the previous hour to us
+//        var result = [Double](arrayLiteral: 0,0,0,0,0,0,0,0,0,0,0,0)
+//        var tempResult = [[Double]](arrayLiteral: [],[],[],[],[],[],[],[],[],[],[],[])
+        var result = [Double](arrayLiteral: 0,0,0,0,0,0,0,0,0,0,0,0,0)
+        var tempResult = [[Double]](arrayLiteral: [],[],[],[],[],[],[],[],[],[],[],[],[])
 
         // bucket data into averaged 12-hour array
         for keyTime in data.keys {
@@ -99,7 +102,12 @@ class NowCastCalculator {
             }
         }
         
-        return result
+//        return result
+        
+        // TODO we convert array of size 13 to an array of size 12 (see above comment about esdr)
+        let modResult = Array( result.dropFirst() )
+        
+        return modResult
     }
     
 }
