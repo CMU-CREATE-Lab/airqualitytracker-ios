@@ -101,9 +101,12 @@ class NowCastCalculator {
                 result[index] = currentValue
                 lastValue = currentValue
             } else {
-                // when data is missing a value, use the same value as the last value that was used
-                NSLog("Value missing at index=\(index)")
-                result[index] = lastValue
+//                // when data is missing a value, use the same value as the last value that was used
+//                NSLog("Value missing at index=\(index)")
+//                result[index] = lastValue
+                // when data missing, assume 0
+                // TODO if either the first two hours are missing then NowCast should not be reported
+                result[index] = 0
             }
         }
         
