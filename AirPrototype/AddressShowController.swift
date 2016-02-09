@@ -107,8 +107,11 @@ class AddressShowController: UIViewController {
         case .ADDRESS:
             addressView(reading as! SimpleAddress)
             // TESTING NOWCAST
-            if closestFeed?.channels.count > 0 {
-                closestFeed!.channels[0].requestNowCast()
+            let address = reading as! SimpleAddress
+            for feed in address.feeds {
+                if feed.channels.count > 0 {
+                    feed.channels[0].requestNowCast()
+                }
             }
         case .SPECK:
             speckView(reading as! Speck)

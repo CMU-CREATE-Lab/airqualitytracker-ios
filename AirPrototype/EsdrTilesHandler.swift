@@ -29,7 +29,6 @@ class EsdrTilesHandler {
             results[key] = b[key]
         }
         
-        NSLog("Returning union size \(a.count)+\(b.count)=\(results.count)")
         return results
     }
     
@@ -74,7 +73,6 @@ class EsdrTilesHandler {
             
             // response handling
             let jsonString = try! NSString.init(contentsOfURL: url!, encoding: NSUTF8StringEncoding)
-            NSLog("Got response \(jsonString)")
             let formattedString = formatSafeJson(jsonString)
             let tempData = formattedString.dataUsingEncoding(NSUTF8StringEncoding)
             let data = (try! NSJSONSerialization.JSONObjectWithData(tempData!, options: [])) as? NSDictionary
@@ -108,7 +106,6 @@ class EsdrTilesHandler {
             
             // response handling
             let jsonString = try! NSString.init(contentsOfURL: url!, encoding: NSUTF8StringEncoding)
-            NSLog("Got response \(jsonString)")
             let formattedString = formatSafeJson(jsonString)
             let tempData = formattedString.dataUsingEncoding(NSUTF8StringEncoding)
             let data = (try! NSJSONSerialization.JSONObjectWithData(tempData!, options: [])) as? NSDictionary
@@ -122,7 +119,6 @@ class EsdrTilesHandler {
         // generate 1st URL
         let address = Constants.Esdr.API_URL + "/api/v1/feeds/\(channel.feed.feed_id)/channels/\(channel.name)/tiles/\(level).\(offset)"
         let url = NSURL(string: address.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-        NSLog("REQUEST was \(url)")
         
         // create 1st request
         let request = NSMutableURLRequest(URL: url!)

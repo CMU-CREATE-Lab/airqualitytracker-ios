@@ -151,7 +151,6 @@ class JsonParser {
                 results[time] = [Double(mean),Double(count)]
             }
         }
-        NSLog("Returning from parseTiles with results=\(results)")
         return results
     }
     
