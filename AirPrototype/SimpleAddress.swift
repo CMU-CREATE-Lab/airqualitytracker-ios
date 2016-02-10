@@ -9,14 +9,16 @@
 import Foundation
 import CoreData
 
-class SimpleAddress: Readable, Hashable {
+class SimpleAddress: AirNowReadable, Hashable {
     
     
-    // MARK: Readable/Hashable implementation
+    // MARK: AirNowReadable/Hashable implementation
     
     
     private let readableType = ReadableType.ADDRESS
     var hashValue: Int { return generateHashForReadable() }
+    var location: Location
+    var airNowObservations: [AirNowObservation]
     
     
     func getReadableType() -> ReadableType {
@@ -50,7 +52,6 @@ class SimpleAddress: Readable, Hashable {
     var positionId: Int?
     var name: String
     var zipcode: String
-    var location: Location
     var isCurrentLocation: Bool
     var closestFeed: Feed?
     var feeds: Array<Feed>
@@ -64,6 +65,7 @@ class SimpleAddress: Readable, Hashable {
         closestFeed = nil
         feeds = []
         isCurrentLocation = false
+        airNowObservations = []
     }
     
 }

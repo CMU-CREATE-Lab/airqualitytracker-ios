@@ -74,6 +74,8 @@
 		A17527C61BD55791007526C0 /* ManageTrackersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17527C51BD55791007526C0 /* ManageTrackersTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		A17DFA7A1C4418D200B2A7B4 /* NowCastCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17DFA791C4418D200B2A7B4 /* NowCastCalculator.swift */; settings = {ASSET_TAGS = (); }; };
 		A17DFA7C1C4438DA00B2A7B4 /* EsdrTilesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17DFA7B1C4438DA00B2A7B4 /* EsdrTilesHandler.swift */; settings = {ASSET_TAGS = (); }; };
+		A182D2361C6BB4A600DBA4F0 /* AirNowReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A182D2351C6BB4A600DBA4F0 /* AirNowReadable.swift */; settings = {ASSET_TAGS = (); }; };
+		A182D2381C6BBF2300DBA4F0 /* AirNowObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A182D2371C6BBF2300DBA4F0 /* AirNowObservation.swift */; settings = {ASSET_TAGS = (); }; };
 		A18479D71BDE6990009CB151 /* StoredSpeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18479D61BDE6990009CB151 /* StoredSpeck.swift */; settings = {ASSET_TAGS = (); }; };
 		A1D4F8981BE7CD19002D5849 /* SecretMenuTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4F8971BE7CD19002D5849 /* SecretMenuTableCell.swift */; settings = {ASSET_TAGS = (); }; };
 		A1E092A71BE2B51400D652CA /* SecretMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E092A61BE2B51400D652CA /* SecretMenuController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -168,6 +170,8 @@
 		A17527C51BD55791007526C0 /* ManageTrackersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageTrackersTableViewCell.swift; sourceTree = "<group>"; };
 		A17DFA791C4418D200B2A7B4 /* NowCastCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowCastCalculator.swift; sourceTree = "<group>"; };
 		A17DFA7B1C4438DA00B2A7B4 /* EsdrTilesHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EsdrTilesHandler.swift; sourceTree = "<group>"; };
+		A182D2351C6BB4A600DBA4F0 /* AirNowReadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirNowReadable.swift; sourceTree = "<group>"; };
+		A182D2371C6BBF2300DBA4F0 /* AirNowObservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirNowObservation.swift; sourceTree = "<group>"; };
 		A18479D61BDE6990009CB151 /* StoredSpeck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredSpeck.swift; sourceTree = "<group>"; };
 		A1D4F8971BE7CD19002D5849 /* SecretMenuTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretMenuTableCell.swift; sourceTree = "<group>"; };
 		A1E092A61BE2B51400D652CA /* SecretMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretMenuController.swift; sourceTree = "<group>"; };
@@ -382,6 +386,8 @@
 				A158E1351BCFE6370026944E /* Timer.swift */,
 				A158E1371BCFE9B20026944E /* RefreshTimer.swift */,
 				A158E1391BCFF9440026944E /* AutocompleteTimer.swift */,
+				A182D2351C6BB4A600DBA4F0 /* AirNowReadable.swift */,
+				A182D2371C6BBF2300DBA4F0 /* AirNowObservation.swift */,
 			);
 			name = classes;
 			sourceTree = "<group>";
@@ -596,9 +602,11 @@
 				A14C456F1BA0B46700D6C9CF /* ReadableIndexCell.swift in Sources */,
 				A1551C701C29D35B005ED28B /* GpsReadingHandler.swift in Sources */,
 				A11844AF1BA9E7A600435D11 /* ServicesHandler.swift in Sources */,
+				A182D2381C6BBF2300DBA4F0 /* AirNowObservation.swift in Sources */,
 				A16481FB1B5D553F0023DE09 /* AddressShowController.swift in Sources */,
 				A1FEAB411B8CF19D00F9716B /* StoredAddress.swift in Sources */,
 				A17361F71C231EA40012FC62 /* EsdrSpecksHandler.swift in Sources */,
+				A182D2361C6BB4A600DBA4F0 /* AirNowReadable.swift in Sources */,
 				A1660FF71B568B6700608C5D /* ResultsControllerAddressSearch.swift in Sources */,
 				A14C456B1BA0B2B000D6C9CF /* ReadableIndexController.swift in Sources */,
 				A103E6081BE12A5E0065378D /* SettingsController.swift in Sources */,
