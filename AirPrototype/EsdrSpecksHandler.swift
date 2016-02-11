@@ -70,7 +70,7 @@ class EsdrSpecksHandler {
                         // in the past 24 hours ("maxTime").
                         let channel = channels.valueForKey(channelName) as! NSDictionary
                         let channelTime = channel.valueForKey("maxTimeSecs") as! Double
-                        feedChannels.append(JsonParser.parseChannelFromJson(channelName, feed: speck, dataEntry: channel))
+                        feedChannels.append(EsdrJsonParser.parseChannelFromJson(channelName, feed: speck, dataEntry: channel))
                         break
                     }
                 }

@@ -1,5 +1,5 @@
 //
-//  JsonParser.swift
+//  EsdrJsonParser.swift
 //  AirPrototype
 //
 //  Created by mtasota on 7/22/15.
@@ -8,38 +8,14 @@
 
 import Foundation
 
-class JsonParser {
-    
-    
-    static func parseAddressesFromJson(data: NSDictionary) -> Array<SimpleAddress> {
-        var result = Array<SimpleAddress>()
-        let addresses = data.valueForKey("RESULTS") as! Array<NSDictionary>
-        for address in addresses {
-            let resultAddress = SimpleAddress()
-            if let latitude = address.valueForKey("lat") as? String {
-                resultAddress.location.latitude = NSString(string: latitude).doubleValue
-            }
-            if let longitude = address.valueForKey("lon") as? String {
-                resultAddress.location.longitude = NSString(string: longitude).doubleValue
-            }
-            if let name = address.valueForKey("name") as? String {
-                resultAddress.name = name
-            }
-            // TODO string needs formatted
-            if let zip = address.valueForKey("zmw") as? String {
-                resultAddress.zipcode = zip
-            }
-            result.append(resultAddress)
-        }
-        return result
-    }
+class EsdrJsonParser {
     
     
     static func populateFeedsFromJson(data: NSDictionary, maxTime: Double) -> [Feed] {
         var feeds = Array<Feed>()
         if let rows = (data.valueForKey("data") as! NSDictionary).valueForKey("rows") as? Array<NSDictionary> {
             for row in rows {
-                let feed = JsonParser.parseFeedFromJson(row, maxTime: maxTime)
+                let feed = parseFeedFromJson(row, maxTime: maxTime)
                 // only consider non-null feeds with at least 1 channel
                 if feed.channels.count > 0 {
                     feeds.append(feed)
@@ -54,7 +30,7 @@ class JsonParser {
         var specks = Array<Speck>()
         if let rows = (data.valueForKey("data") as! NSDictionary).valueForKey("rows") as? Array<NSDictionary> {
             for row in rows {
-                let feed = JsonParser.parseFeedFromJson(row, maxTime: 0)
+                let feed = parseFeedFromJson(row, maxTime: 0)
                 // only consider non-null feeds with at least 1 channel
                 if feed.channels.count > 0 {
                     let deviceId = row.valueForKey("deviceId") as! Int
@@ -105,7 +81,7 @@ class JsonParser {
                     let channel = channels.valueForKey(channelName) as! NSDictionary
                     let channelTime = channel.valueForKey("maxTimeSecs") as! Double
                     if channelTime >= maxTime {
-                        feedChannels.append(JsonParser.parseChannelFromJson(channelName, feed: result, dataEntry: channel))
+                        feedChannels.append(parseChannelFromJson(channelName, feed: result, dataEntry: channel))
                         break
                     }
                 }

@@ -76,7 +76,7 @@ class EsdrTilesHandler {
             let formattedString = formatSafeJson(jsonString)
             let tempData = formattedString.dataUsingEncoding(NSUTF8StringEncoding)
             let data = (try! NSJSONSerialization.JSONObjectWithData(tempData!, options: [])) as? NSDictionary
-            firstResponse = JsonParser.parseTiles(data!, fromTime: minTime, toTime: maxTime)
+            firstResponse = EsdrJsonParser.parseTiles(data!, fromTime: minTime, toTime: maxTime)
             
             // generate 2nd URL
             let address = Constants.Esdr.API_URL + "/api/v1/feeds/\(channel.feed.feed_id)/channels/\(channel.name)/tiles/\(level).\(offset-1)"
@@ -109,7 +109,7 @@ class EsdrTilesHandler {
             let formattedString = formatSafeJson(jsonString)
             let tempData = formattedString.dataUsingEncoding(NSUTF8StringEncoding)
             let data = (try! NSJSONSerialization.JSONObjectWithData(tempData!, options: [])) as? NSDictionary
-            secondResponse = JsonParser.parseTiles(data!, fromTime: minTime, toTime: maxTime)
+            secondResponse = EsdrJsonParser.parseTiles(data!, fromTime: minTime, toTime: maxTime)
             
             // union both responses then call completion handler
             let result = union(firstResponse!, and: secondResponse!)

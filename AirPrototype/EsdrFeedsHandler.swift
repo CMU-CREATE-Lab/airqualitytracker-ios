@@ -138,7 +138,7 @@ class EsdrFeedsHandler {
             } else {
                 let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
                 
-                address.feeds.appendContentsOf(JsonParser.populateFeedsFromJson(data!, maxTime: maxTime))
+                address.feeds.appendContentsOf(EsdrJsonParser.populateFeedsFromJson(data!, maxTime: maxTime))
                 NSLog("populated \(address.feeds.count) feeds")
                 if address.feeds.count > 0 {
                     NSLog("Found non-zero feeds")

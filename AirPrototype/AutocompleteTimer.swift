@@ -19,7 +19,7 @@ class AutocompleteTimer: NSObject, Timer {
     private func completionHandler (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
         NSLog("In completionHandler \(self.description)")
         let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
-        let results = JsonParser.parseAddressesFromJson(data!)
+        let results = WuJsonParser.parseAddressesFromJson(data!)
         
         self.controller.searchResultsList.removeAll()
         for value in results {

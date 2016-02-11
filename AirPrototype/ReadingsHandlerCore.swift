@@ -108,7 +108,7 @@ class ReadingsHandlerCore {
                 } else {
                     let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
                     var resultSpecks: Array<Speck>
-                    resultSpecks = JsonParser.populateSpecksFromJson(data!)
+                    resultSpecks = EsdrJsonParser.populateSpecksFromJson(data!)
                     for speck in resultSpecks {
                         // only add what isnt in the DB already
                         if findIndexOfSpeckWithDeviceId(speck.deviceId) == nil {

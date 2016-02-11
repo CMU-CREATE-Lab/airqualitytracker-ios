@@ -40,6 +40,13 @@ class Constants {
     
     static let SPECKS_MAX_TIME_RANGE: Double = 1800  // 30 minutes
     
+    struct AppSecrets {
+        // TODO placeholder for actual Client information (don't push to git)
+        static let ESDR_CLIENT_ID = "client_id"
+        static let ESDR_CLIENT_SECRET = "this should never work"
+        static let AIR_NOW_API_KEY = "this-is-your-airnow-key-dont-push"
+    }
+    
     struct SettingsKeys {
         static let appUsesLocation = "app_uses_location"
         static let userLoggedIn = "user_logged_in"
@@ -68,9 +75,10 @@ class Constants {
         static let API_URL = "https://esdr.cmucreatelab.org";
         static let GRANT_TYPE_TOKEN = "password";
         static let GRANT_TYPE_REFRESH = "refresh_token";
-        // TODO placeholder for actual Client information (don't push to git)
-        static let CLIENT_ID = "client_id";
-        static let CLIENT_SECRET = "this should never work";
+    }
+    
+    struct AirNow {
+        static let API_URL = "http://www.airnowapi.org"
     }
     
     struct MapGeometry {

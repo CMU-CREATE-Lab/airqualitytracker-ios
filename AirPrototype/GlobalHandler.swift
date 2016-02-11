@@ -26,6 +26,7 @@ class GlobalHandler {
     
 
     // managed global instances
+    var airNowRequestHandler: AirNowRequestHandler
     var esdrAuthHandler: EsdrAuthHandler
     var esdrFeedsHandler: EsdrFeedsHandler
     var esdrLoginHandler: EsdrLoginHandler
@@ -48,6 +49,7 @@ class GlobalHandler {
     private init() {
         appDelegate = (UIApplication.sharedApplication().delegate! as! AppDelegate)
         // global instances
+        airNowRequestHandler = AirNowRequestHandler()
         esdrAuthHandler = EsdrAuthHandler()
         esdrSpecksHandler = EsdrSpecksHandler()
         esdrFeedsHandler = EsdrFeedsHandler()

@@ -30,8 +30,8 @@ class EsdrAuthHandler {
         
         let params:[String: String] = [
             "grant_type": Constants.Esdr.GRANT_TYPE_TOKEN,
-            "client_id": Constants.Esdr.CLIENT_ID,
-            "client_secret": Constants.Esdr.CLIENT_SECRET,
+            "client_id": Constants.AppSecrets.ESDR_CLIENT_ID,
+            "client_secret": Constants.AppSecrets.ESDR_CLIENT_SECRET,
             "username": username,
             "password": password
         ]
@@ -52,8 +52,8 @@ class EsdrAuthHandler {
         request.HTTPMethod = "POST"
         let params:[String: String] = [
             "grant_type": Constants.Esdr.GRANT_TYPE_REFRESH,
-            "client_id": Constants.Esdr.CLIENT_ID,
-            "client_secret": Constants.Esdr.CLIENT_SECRET,
+            "client_id": Constants.AppSecrets.ESDR_CLIENT_ID,
+            "client_secret": Constants.AppSecrets.ESDR_CLIENT_SECRET,
             "refresh_token": refreshToken
         ]
         request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions())
