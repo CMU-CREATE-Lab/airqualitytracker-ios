@@ -46,7 +46,6 @@ class AddressSearchController: UIViewController, UISearchBarDelegate {
     
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar){
-        NSLog("searchBarSearchButtonClicked")
         resultsController.tableView.reloadData()
     }
     

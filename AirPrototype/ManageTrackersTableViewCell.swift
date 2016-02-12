@@ -25,7 +25,6 @@ class ManageTrackersTableViewCell: UITableViewCell, UIAlertViewDelegate {
     
     
     func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
-        NSLog("Dismissed at index \(buttonIndex)")
         if buttonIndex == 1{
             let name = alertView.textFieldAtIndex(0)!.text!
             GlobalHandler.sharedInstance.readingsHandler.renameReading(self.reading!, name: name)
@@ -38,7 +37,6 @@ class ManageTrackersTableViewCell: UITableViewCell, UIAlertViewDelegate {
     
     
     @IBAction func onClickEditName(sender: AnyObject) {
-        NSLog("Clicked editName button")
         let reading = self.reading!
         switch(reading.getReadableType()) {
         case .ADDRESS:

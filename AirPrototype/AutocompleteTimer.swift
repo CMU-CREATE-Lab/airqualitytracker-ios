@@ -17,7 +17,6 @@ class AutocompleteTimer: NSObject, Timer {
     
     
     private func completionHandler (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
-        NSLog("In completionHandler \(self.description)")
         let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
         let results = WuJsonParser.parseAddressesFromJson(data!)
         
@@ -40,7 +39,6 @@ class AutocompleteTimer: NSObject, Timer {
     
     
     func timerExpires() {
-        NSLog("In timerExpires()")
         let input = self.controller.searchText!
         GlobalHandler.sharedInstance.httpRequestHandler.requestGeocodingFromApi(input, completionHandler: self.completionHandler)
     }

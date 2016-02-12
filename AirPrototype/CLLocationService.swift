@@ -57,12 +57,10 @@ class CLLocationSService: NSObject, CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = manager.location
         GlobalHandler.sharedInstance.readingsHandler.gpsReadingHandler.setGpsAddressLocation(Location(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude))
-        NSLog("CLLocationSService -- Received new locations: Coordinates are lat=\(location!.coordinate.latitude),long=\(location!.coordinate.longitude)")
         
         geocoder.reverseGeocodeLocation(location!, completionHandler: { (results: [CLPlacemark]?, error: NSError?) -> Void in
             if error == nil && results!.count > 0 {
                 let placemark = results![results!.endIndex-1]
-                NSLog("Reverse Geocode discovered locality=\(placemark.locality), zip=\(placemark.postalCode), country=\(placemark.country)")
                 self.updateCurrentLocation(Location(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude), name: placemark.locality!)
             }
         })
@@ -78,8 +76,6 @@ class CLLocationSService: NSObject, CLLocationManagerDelegate {
     
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        NSLog("didChangeAuthorizationStatus")
-        
         let authStatus = CLLocationManager.authorizationStatus()
         if authStatus != .Denied && authStatus != .Restricted && authStatus != .NotDetermined {
             serviceEnabled = true
@@ -87,7 +83,6 @@ class CLLocationSService: NSObject, CLLocationManagerDelegate {
         } else {
             serviceEnabled = false
         }
-        NSLog("Location Authorization Status changed to \(authStatus.rawValue); setting serviceEnabled=\(serviceEnabled)")
         if authStatus == .Denied || authStatus == .Restricted {
             GlobalHandler.sharedInstance.settingsHandler.setAppUsesCurrentLocation(false)
         }

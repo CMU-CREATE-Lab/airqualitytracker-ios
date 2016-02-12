@@ -143,7 +143,6 @@ class AddressShowController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSLog("Loaded AddressShow with address " + reading!.getName())
         populateView()
     }
     

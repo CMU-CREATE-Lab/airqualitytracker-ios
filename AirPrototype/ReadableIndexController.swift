@@ -26,9 +26,7 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
     
     func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
         longPressActive = false
-        NSLog("Dismissed at index \(buttonIndex)")
         if buttonIndex > 0 {
-            // TODO segue to debug screen
             self.navigationController!.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SecretMenu"), animated: true)
         }
     }
@@ -44,7 +42,6 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
     
     
     @IBAction func longPressOccurred(sender: UILongPressGestureRecognizer) {
-        NSLog("LONG PRESS happened")
         if !longPressActive {
             longPressActive = true
             let dialog = UIAlertView.init(title: "DEBUG", message: "View Debug Screen?", delegate: self, cancelButtonTitle: "No", otherButtonTitles: "Yes")
@@ -107,16 +104,14 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
     
     
     override func viewWillAppear(animated: Bool) {
-        NSLog("AddressListController: viewWillAppear")
         gridView.reloadData()
     }
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "searchSegue" {
-            NSLog("running search segue")
+            // prepare for search segue
         } else if segue.identifier == "showSegue" {
-            NSLog("running show segue")
             let addressShowController = segue.destinationViewController as! AddressShowController
             var indexPaths = gridView.indexPathsForSelectedItems()!
             let readingsHandler = GlobalHandler.sharedInstance.readingsHandler

@@ -20,7 +20,6 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSLog("LoginController did load!")
         if GlobalHandler.sharedInstance.settingsHandler.userLoggedIn {
             loggedIn = true
             username = GlobalHandler.sharedInstance.settingsHandler.username

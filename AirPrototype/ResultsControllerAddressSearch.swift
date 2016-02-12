@@ -58,8 +58,6 @@ class ResultsControllerAddressSearch: UITableViewController, UISearchResultsUpda
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        NSLog("adding clicked address to list and returning to AddressList")
-        
         // add to database and data structure
         AddressDbHelper.addAddressToDb(searchResultsList[indexPath.row])
         let globalHandler = GlobalHandler.sharedInstance

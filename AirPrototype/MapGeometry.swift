@@ -98,9 +98,6 @@ class MapGeometry {
         if (closestFeed == nil) {
             NSLog("getClosestFeedToAddress returning null.")
         }
-        else {
-            NSLog("FEED=\(closestFeed?.feed_id) has closest distance=\(distance)")
-        }
         return closestFeed
     }
     

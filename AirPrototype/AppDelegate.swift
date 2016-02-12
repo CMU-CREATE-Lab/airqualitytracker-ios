@@ -17,6 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        // TODO perform esdr token checks
+        NSLog(" ---- Application Launches ----")
+        NSLog(" ==============================")
+        NSLog("\n")
         return true
     }
 
@@ -52,7 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Background App Refresh
     
     func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-        // TODO code it here
         UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         return true
     }
@@ -67,7 +70,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     NSLog("requestEsdrRefresh received error from refreshToken=\(refreshToken)")
                     completionHandler(UIBackgroundFetchResult.Failed)
                 } else {
-                    NSLog("Responded with \(response!.description)")
                     let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
                     let access_token = data!.valueForKey("access_token") as? String
                     let refresh_token = data!.valueForKey("refresh_token") as? String

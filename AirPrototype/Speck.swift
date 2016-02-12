@@ -45,7 +45,6 @@ class Speck: Feed {
         self.channels = feed.channels
         self.feedValue = feed.feedValue
         self.lastTime = feed.lastTime
-        NSLog("Constructed a new Speck! name=\(name), location=\(location), feedValue=\(feedValue)")
     }
     
 }

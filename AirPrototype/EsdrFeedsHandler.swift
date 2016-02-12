@@ -50,13 +50,11 @@ class EsdrFeedsHandler {
                 if resultValue != nil && resultTime != nil {
                     if maxTime == nil {
                         feed.feedValue = resultValue!.doubleValue
-                        NSLog("forced FEED VALUE of \(feed.feedValue)")
                         feed.lastTime = resultTime!.doubleValue
                     } else {
                         if maxTime <= resultTime!.doubleValue {
                             feed.setHasReadableValue(true)
                             feed.feedValue = resultValue!.doubleValue
-                            NSLog("found FEED VALUE of \(feed.feedValue)")
                             feed.lastTime = resultTime!.doubleValue
                         } else {
                             feed.setHasReadableValue(false)
@@ -120,7 +118,6 @@ class EsdrFeedsHandler {
     
     
     func requestUpdateFeeds(address: SimpleAddress) {
-        NSLog("Called requestUpdateFeeds() on Address=\(address.name)")
         address.feeds.removeAll(keepCapacity: false)
         address.closestFeed = nil
         // the past 24 hours
@@ -139,19 +136,15 @@ class EsdrFeedsHandler {
                 let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
                 
                 address.feeds.appendContentsOf(EsdrJsonParser.populateFeedsFromJson(data!, maxTime: maxTime))
-                NSLog("populated \(address.feeds.count) feeds")
                 if address.feeds.count > 0 {
-                    NSLog("Found non-zero feeds")
                     if let closestFeed = MapGeometry.getClosestFeedToAddress(address, feeds: address.feeds) {
-                        NSLog("closestFeed EXISTS!")
                         address.closestFeed = closestFeed
                         requestChannelReading(closestFeed, channel: closestFeed.channels[0])
                     } else {
-                        NSLog("But... closestFeed DNE?")
+                        NSLog("Found non-zero feeds but closestFeed DNE?")
                     }
                 }
             }
-            NSLog("Finished completionHandler in requestUpdateFeeds()")
         }
         requestFeeds(address.location, withinSeconds: maxTime, completionHandler: completionHandler)
     }

@@ -41,7 +41,7 @@ class Constants {
     static let SPECKS_MAX_TIME_RANGE: Double = 1800  // 30 minutes
     
     struct AppSecrets {
-        // TODO placeholder for actual Client information (don't push to git)
+        // placeholder for actual Client information (don't push to git)
         static let ESDR_CLIENT_ID = "client_id"
         static let ESDR_CLIENT_SECRET = "this should never work"
         static let AIR_NOW_API_KEY = "this-is-your-airnow-key-dont-push"
@@ -109,7 +109,6 @@ class Constants {
     
     struct DefaultReading {
         static let DEFAULT_LOCATION = "N/A";
-//        static let DEFAULT_COLOR_BACKGROUND = "#404041";
         static let DEFAULT_COLOR_BACKGROUND = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 65.0/255.0, alpha: 1.0)
         static let DEFAULT_TITLE = "Unavailable";
         static let DEFAULT_DESCRIPTION = "The current AQI for this region is unavailable.";
@@ -126,10 +125,6 @@ class Constants {
                 "Air quality is considered High.",
                 "Air quality is considered Very High."
         ]
-//        static let normalColors = [
-//                "#1a9850", "#91cf60", "#d9ef8b",
-//                "#FEE08B", "#FC8D59", "#D73027"
-//        ]
         static let normalColors = [
             UIColor(red: 26.0/255.0, green: 152.0/255.0, blue: 80.0/255.0, alpha: 1.0),
             UIColor(red: 145.0/255.0, green: 207.0/255.0, blue: 96.0/255.0, alpha: 1.0),
@@ -193,10 +188,6 @@ class Constants {
                 "Good", "Moderate", "Unhealthy for Sensitive Groups",
                 "Unhealthy", "Very Unhealthy", "Hazardous"
         ]
-//        static let aqiColors = [
-//                "#a3ba5c", "#e9b642", "#e98c37",
-//                "#e24f36", "#b54382", "#b22651"
-//        ]
         static let aqiColors = [
             UIColor(red: 163.0/255.0, green: 186.0/255.0, blue: 92.0/255.0, alpha: 1.0),
             UIColor(red: 233.0/255.0, green: 182.0/255.0, blue: 66.0/255.0, alpha: 1.0),
@@ -205,10 +196,6 @@ class Constants {
             UIColor(red: 181.0/255.0, green: 67.0/255.0, blue: 130.0/255.0, alpha: 1.0),
             UIColor(red: 178.0/255.0, green: 38.0/255.0, blue: 81.0/255.0, alpha: 1.0)
         ]
-//        static let aqiFontColors = [
-//                "#192015", "#2a1e11", "#261705",
-//                "#330004", "#2d0d18", "#28060b"
-//        ]
         static let aqiFontColors = [
             UIColor(red: 25.0/255.0, green: 32.0/255.0, blue: 21.0/255.0, alpha: 1.0),
             UIColor(red: 42.0/255.0, green: 30.0/255.0, blue: 17.0/255.0, alpha: 1.0),
@@ -217,10 +204,6 @@ class Constants {
             UIColor(red: 45.0/255.0, green: 13.0/255.0, blue: 24.0/255.0, alpha: 1.0),
             UIColor(red: 40.0/255.0, green: 6.0/255.0, blue: 11.0/255.0, alpha: 1.0)
         ]
-//        static let aqiGradientColorStart = [
-//                "#a3ba5c", "#e9b642", "#e98c37",
-//                "#e24f36", "#b54382", "#b22651"
-//        ]
         static let aqiGradientColorStart = [
             UIColor(red: 163.0/255.0, green: 186.0/255.0, blue: 92.0/255.0, alpha: 1.0).CGColor,
             UIColor(red: 233.0/255.0, green: 182.0/255.0, blue: 66.0/255.0, alpha: 1.0).CGColor,
@@ -229,10 +212,6 @@ class Constants {
             UIColor(red: 181.0/255.0, green: 67.0/255.0, blue: 130.0/255.0, alpha: 1.0).CGColor,
             UIColor(red: 178.0/255.0, green: 38.0/255.0, blue: 81.0/255.0, alpha: 1.0).CGColor
         ]
-//        static let aqiGradientColorEnd = [
-//                "#7a9055", "#c18f35", "#b44c26",
-//                "#ad2227", "#992a68", "#8c1739"
-//        ]
         static let aqiGradientColorEnd = [
             UIColor(red: 122.0/255.0, green: 144.0/255.0, blue: 85.0/255.0, alpha: 1.0).CGColor,
             UIColor(red: 193.0/255.0, green: 143.0/255.0, blue: 53.0/255.0, alpha: 1.0).CGColor,

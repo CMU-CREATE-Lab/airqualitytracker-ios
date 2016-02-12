@@ -22,7 +22,6 @@ class RefreshTimer: NSObject, Timer {
     
     
     func timerExpires() {
-        NSLog("refreshTimer has expired.")
         GlobalHandler.sharedInstance.updateReadings()
     }
     
