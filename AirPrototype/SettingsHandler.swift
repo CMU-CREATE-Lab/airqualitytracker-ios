@@ -16,6 +16,7 @@ class SettingsHandler {
     var userLoggedIn: Bool
     var username: String?
     var userId: Int?
+    var expiresAt: Int?
     var accessToken: String?
     var refreshToken: String?
     var blacklistedDevices: [Int]?
@@ -31,6 +32,7 @@ class SettingsHandler {
         userLoggedIn = userDefaults.valueForKey(Constants.SettingsKeys.userLoggedIn) as! Bool
         username = userDefaults.valueForKey(Constants.SettingsKeys.username) as? String
         userId = userDefaults.valueForKey(Constants.SettingsKeys.userId) as? Int
+        expiresAt = userDefaults.valueForKey(Constants.SettingsKeys.expiresAt) as? Int
         accessToken = userDefaults.valueForKey(Constants.SettingsKeys.accessToken) as? String
         refreshToken = userDefaults.valueForKey(Constants.SettingsKeys.refreshToken) as? String
         blacklistedDevices = userDefaults.valueForKey(Constants.SettingsKeys.blacklistedDevices) as? [Int]
@@ -42,6 +44,7 @@ class SettingsHandler {
         userLoggedIn = userDefaults.valueForKey(Constants.SettingsKeys.userLoggedIn) as! Bool
         username = userDefaults.valueForKey(Constants.SettingsKeys.username) as? String
         userId = userDefaults.valueForKey(Constants.SettingsKeys.userId) as? Int
+        expiresAt = userDefaults.valueForKey(Constants.SettingsKeys.expiresAt) as? Int
         accessToken = userDefaults.valueForKey(Constants.SettingsKeys.accessToken) as? String
         refreshToken = userDefaults.valueForKey(Constants.SettingsKeys.refreshToken) as? String
         blacklistedDevices = userDefaults.valueForKey(Constants.SettingsKeys.blacklistedDevices) as? [Int]

@@ -25,28 +25,32 @@ class EsdrLoginHandler {
     }
     
     
-    func updateEsdrAccount(username: String, userId: Int, accessToken: String, refreshToken: String) {
+    func updateEsdrAccount(username: String, userId: Int, accessToken: String, refreshToken: String, expiresAt: Int) {
         let userDefaults = GlobalHandler.sharedInstance.settingsHandler.userDefaults
         userDefaults.setObject(username, forKey: Constants.SettingsKeys.username)
         userDefaults.setObject(userId, forKey: Constants.SettingsKeys.userId)
         userDefaults.setObject(accessToken, forKey: Constants.SettingsKeys.accessToken)
         userDefaults.setObject(refreshToken, forKey: Constants.SettingsKeys.refreshToken)
+        userDefaults.setObject(expiresAt, forKey: Constants.SettingsKeys.expiresAt)
         if userDefaults.synchronize() {
             GlobalHandler.sharedInstance.settingsHandler.username = username
             GlobalHandler.sharedInstance.settingsHandler.userId = userId
+            GlobalHandler.sharedInstance.settingsHandler.expiresAt = expiresAt
             GlobalHandler.sharedInstance.settingsHandler.accessToken = accessToken
             GlobalHandler.sharedInstance.settingsHandler.refreshToken = refreshToken
         }
     }
     
     
-    func updateEsdrTokens(accessToken: String, refreshToken: String) {
+    func updateEsdrTokens(accessToken: String, refreshToken: String, expiresAt: Int) {
         let userDefaults = GlobalHandler.sharedInstance.settingsHandler.userDefaults
         userDefaults.setObject(accessToken, forKey: Constants.SettingsKeys.accessToken)
         userDefaults.setObject(refreshToken, forKey: Constants.SettingsKeys.refreshToken)
+        userDefaults.setObject(expiresAt, forKey: Constants.SettingsKeys.expiresAt)
         if userDefaults.synchronize() {
             GlobalHandler.sharedInstance.settingsHandler.accessToken = accessToken
             GlobalHandler.sharedInstance.settingsHandler.refreshToken = refreshToken
+            GlobalHandler.sharedInstance.settingsHandler.expiresAt = expiresAt
         }
     }
     
@@ -56,6 +60,7 @@ class EsdrLoginHandler {
         userDefaults.setObject(Constants.DEFAULT_SETTINGS[Constants.SettingsKeys.username], forKey: Constants.SettingsKeys.username)
         userDefaults.setObject(Constants.DEFAULT_SETTINGS[Constants.SettingsKeys.accessToken], forKey: Constants.SettingsKeys.accessToken)
         userDefaults.setObject(Constants.DEFAULT_SETTINGS[Constants.SettingsKeys.refreshToken], forKey: Constants.SettingsKeys.refreshToken)
+        userDefaults.setObject(Constants.DEFAULT_SETTINGS[Constants.SettingsKeys.expiresAt], forKey: Constants.SettingsKeys.expiresAt)
         if userDefaults.synchronize() {
             GlobalHandler.sharedInstance.settingsHandler.username = nil
             GlobalHandler.sharedInstance.settingsHandler.accessToken = nil

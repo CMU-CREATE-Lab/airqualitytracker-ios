@@ -62,6 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         if GlobalHandler.sharedInstance.settingsHandler.userLoggedIn {
+            let timestamp = Int(NSDate().timeIntervalSince1970)
             let refreshToken = GlobalHandler.sharedInstance.settingsHandler.refreshToken!
             
             // response handler
@@ -73,9 +74,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
                     let access_token = data!.valueForKey("access_token") as? String
                     let refresh_token = data!.valueForKey("refresh_token") as? String
-                    if access_token != nil && refresh_token != nil {
+                    let expires_in = data!.valueForKey("expires_in") as? Int
+                    if access_token != nil && refresh_token != nil && expires_in != nil {
                         NSLog("found access_token=\(access_token), refresh_token=\(refresh_token)")
-                        GlobalHandler.sharedInstance.esdrLoginHandler.updateEsdrTokens(access_token!, refreshToken: refresh_token!)
+                        GlobalHandler.sharedInstance.esdrLoginHandler.updateEsdrTokens(access_token!, refreshToken: refresh_token!, expiresAt: timestamp+expires_in!)
                         NSLog("Background fetch was successful!")
                         completionHandler(UIBackgroundFetchResult.NewData)
                     } else {

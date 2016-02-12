@@ -57,6 +57,7 @@ class LoginController: UIViewController {
     
     
     func onClickLogin() {
+        let timestamp = Int(NSDate().timeIntervalSince1970)
         username = loginView!.textFieldUsername.text
         let password = loginView!.textFieldPassword.text
         
@@ -75,10 +76,11 @@ class LoginController: UIViewController {
                 let data = (try! NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as! NSDictionary
                 let accessToken = data.valueForKey("access_token") as! String
                 let refreshToken = data.valueForKey("refresh_token") as! String
+                let expires_in = data.valueForKey("expires_in") as! Int
                 let userId = data.valueForKey("userId") as! Int
                 
                 let esdrLoginHandler = GlobalHandler.sharedInstance.esdrLoginHandler
-                esdrLoginHandler.updateEsdrAccount(self.username!, userId: userId, accessToken: accessToken, refreshToken: refreshToken)
+                esdrLoginHandler.updateEsdrAccount(self.username!, userId: userId, accessToken: accessToken, refreshToken: refreshToken, expiresAt: timestamp+expires_in)
                 esdrLoginHandler.setUserLoggedIn(true)
             }
             if self.loggedIn == false {
