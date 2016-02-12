@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qsw-IM-QUZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qsw-IM-QUZ">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -611,8 +611,14 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="expires_at:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQ5-SG-yVr">
+                                <rect key="frame" x="20" y="128" width="69" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="device_id ignore list: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMP-rx-tL6">
-                                <rect key="frame" x="20" y="128" width="135" height="17"/>
+                                <rect key="frame" x="20" y="153" width="135" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="135" id="pqH-Qf-Mqa"/>
                                 </constraints>
@@ -630,7 +636,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="app version: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BbB-As-B4n">
-                                <rect key="frame" x="20" y="153" width="83" height="17"/>
+                                <rect key="frame" x="20" y="178" width="83" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="83" id="lfD-pd-FZ8"/>
                                 </constraints>
@@ -663,19 +669,19 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="###" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQR-id-6vM">
-                                <rect key="frame" x="103" y="153" width="477" height="17"/>
+                                <rect key="frame" x="103" y="178" width="477" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1,2,3,45" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8SD-D0-Qsd">
-                                <rect key="frame" x="155" y="128" width="425" height="17"/>
+                                <rect key="frame" x="155" y="153" width="425" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jdQ-YD-PAv">
-                                <rect key="frame" x="20" y="216" width="560" height="376"/>
+                                <rect key="frame" x="20" y="241" width="560" height="351"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SecretMenuCell" id="yhV-Pg-5d7" customClass="SecretMenuTableCell" customModule="SpeckSensor" customModuleProvider="target">
@@ -760,12 +766,18 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qQ0-2P-iL6">
-                                <rect key="frame" x="20" y="178" width="225" height="30"/>
+                                <rect key="frame" x="20" y="203" width="225" height="30"/>
                                 <state key="normal" title="Request most recent feed values"/>
                                 <connections>
                                     <action selector="clickRequestFeeds:" destination="4Ao-Y8-pDL" eventType="touchDown" id="cAO-7f-Byc"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60400" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XvF-7H-Sg3">
+                                <rect key="frame" x="97" y="128" width="44" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.37647058820000001" green="0.37647058820000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -780,6 +792,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                             <constraint firstItem="RXW-cP-3MR" firstAttribute="top" secondItem="OaQ-eV-JWV" secondAttribute="top" id="DPg-xZ-aTL"/>
                             <constraint firstAttribute="leadingMargin" secondItem="BbB-As-B4n" secondAttribute="leading" id="E94-qD-7B7"/>
                             <constraint firstItem="aag-5O-YRT" firstAttribute="top" secondItem="Xn9-e6-SxL" secondAttribute="top" id="F5D-vD-1Km"/>
+                            <constraint firstItem="XvF-7H-Sg3" firstAttribute="top" secondItem="pQ5-SG-yVr" secondAttribute="top" id="Gd3-LL-f76"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Xn9-e6-SxL" secondAttribute="leading" id="I2q-5a-BhZ"/>
                             <constraint firstItem="Xn9-e6-SxL" firstAttribute="top" secondItem="MSh-Ns-Nhl" secondAttribute="bottom" constant="8" id="Jhn-OC-siJ"/>
                             <constraint firstItem="wQR-id-6vM" firstAttribute="leading" secondItem="BbB-As-B4n" secondAttribute="trailing" id="MAM-X4-t5M"/>
@@ -787,6 +800,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                             <constraint firstItem="RXW-cP-3MR" firstAttribute="leading" secondItem="OaQ-eV-JWV" secondAttribute="trailing" id="O0x-d7-rjp"/>
                             <constraint firstItem="BbB-As-B4n" firstAttribute="top" secondItem="8SD-D0-Qsd" secondAttribute="bottom" constant="8" id="TTd-Vl-iYu"/>
                             <constraint firstItem="3Gb-SZ-T6k" firstAttribute="top" secondItem="jdQ-YD-PAv" secondAttribute="bottom" constant="8" id="Vqw-qH-Gb3"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="pQ5-SG-yVr" secondAttribute="leading" id="XJf-fp-PaX"/>
                             <constraint firstAttribute="leadingMargin" secondItem="jdQ-YD-PAv" secondAttribute="leading" id="Zh3-Ov-IcU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jdQ-YD-PAv" secondAttribute="trailing" id="aiO-uJ-cce"/>
                             <constraint firstItem="xKO-ym-hRz" firstAttribute="top" secondItem="RXW-cP-3MR" secondAttribute="bottom" constant="8" id="bo5-Fa-e5B"/>
@@ -794,8 +808,8 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                             <constraint firstAttribute="leadingMargin" secondItem="xZd-R3-t28" secondAttribute="leading" id="dYF-eU-lMy"/>
                             <constraint firstItem="mXq-Sb-pGf" firstAttribute="top" secondItem="xKO-ym-hRz" secondAttribute="top" id="elK-TD-0SF"/>
                             <constraint firstItem="mXq-Sb-pGf" firstAttribute="leading" secondItem="xKO-ym-hRz" secondAttribute="trailing" id="ewl-0u-MAp"/>
+                            <constraint firstItem="pQ5-SG-yVr" firstAttribute="top" secondItem="mXq-Sb-pGf" secondAttribute="bottom" constant="8" id="gAW-pO-1Y3"/>
                             <constraint firstItem="8SD-D0-Qsd" firstAttribute="leading" secondItem="aMP-rx-tL6" secondAttribute="trailing" id="hMc-9M-I0Q"/>
-                            <constraint firstItem="aMP-rx-tL6" firstAttribute="top" secondItem="mXq-Sb-pGf" secondAttribute="bottom" constant="8" id="ha4-BU-SdK"/>
                             <constraint firstAttribute="leadingMargin" secondItem="xKO-ym-hRz" secondAttribute="leading" id="iGI-aZ-7Pb"/>
                             <constraint firstItem="jdQ-YD-PAv" firstAttribute="top" secondItem="qQ0-2P-iL6" secondAttribute="bottom" constant="8" id="l2P-zy-CeC"/>
                             <constraint firstAttribute="leadingMargin" secondItem="qQ0-2P-iL6" secondAttribute="leading" id="lNi-nW-kmv"/>
@@ -804,6 +818,8 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                             <constraint firstAttribute="trailingMargin" secondItem="aag-5O-YRT" secondAttribute="trailing" id="sTT-EO-JTH"/>
                             <constraint firstItem="aag-5O-YRT" firstAttribute="leading" secondItem="Xn9-e6-SxL" secondAttribute="trailing" id="tmb-rj-aYL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="wQR-id-6vM" secondAttribute="trailing" id="ttk-2Y-4Q0"/>
+                            <constraint firstItem="aMP-rx-tL6" firstAttribute="top" secondItem="XvF-7H-Sg3" secondAttribute="bottom" constant="8" id="uC9-M2-pO6"/>
+                            <constraint firstItem="XvF-7H-Sg3" firstAttribute="leading" secondItem="pQ5-SG-yVr" secondAttribute="trailing" constant="8" id="uM7-Us-Okt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eAg-Zb-Bde" secondAttribute="trailing" constant="-5" id="xYm-IX-iGd"/>
                         </constraints>
                     </view>
@@ -811,6 +827,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                         <outlet property="labelAccessToken" destination="RXW-cP-3MR" id="KIy-0N-9aj"/>
                         <outlet property="labelAppVersion" destination="wQR-id-6vM" id="y2F-f2-fYZ"/>
                         <outlet property="labelDeviceIdIgnoreList" destination="8SD-D0-Qsd" id="M4s-cA-3oz"/>
+                        <outlet property="labelExpiresAt" destination="XvF-7H-Sg3" id="jHR-no-G6f"/>
                         <outlet property="labelRefreshToken" destination="mXq-Sb-pGf" id="gQp-40-3ut"/>
                         <outlet property="labelUserId" destination="eAg-Zb-Bde" id="dL9-NK-2we"/>
                         <outlet property="labelUsername" destination="aag-5O-YRT" id="SyX-5e-7Lw"/>

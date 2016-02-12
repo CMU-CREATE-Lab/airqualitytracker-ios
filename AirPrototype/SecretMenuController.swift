@@ -17,6 +17,7 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var labelRefreshToken: UILabel!
     @IBOutlet var labelDeviceIdIgnoreList: UILabel!
     @IBOutlet var labelAppVersion: UILabel!
+    @IBOutlet var labelExpiresAt: UILabel!
     @IBOutlet var tableView: UITableView!
     @IBAction func clickRequestFeeds(sender: AnyObject) {
         var feeds = [Feed]()
@@ -36,6 +37,7 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
         let userId = GlobalHandler.sharedInstance.settingsHandler.userId!.description
         let accessToken = GlobalHandler.sharedInstance.settingsHandler.accessToken
         let refreshToken = GlobalHandler.sharedInstance.settingsHandler.refreshToken
+        let expiresAt = GlobalHandler.sharedInstance.settingsHandler.expiresAt!.description
         var deviceList = ""
         if let list = GlobalHandler.sharedInstance.settingsHandler.blacklistedDevices {
             deviceList = list.description
@@ -43,6 +45,7 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
         
         labelUsername.text = username
         labelUserId.text = userId
+        labelExpiresAt.text = expiresAt
         labelAccessToken.text = accessToken
         labelRefreshToken.text = refreshToken
         labelDeviceIdIgnoreList.text = deviceList
