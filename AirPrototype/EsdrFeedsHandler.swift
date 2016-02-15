@@ -86,6 +86,70 @@ class EsdrFeedsHandler {
     }
     
     
+    // TODO clean up/refactor duplicates
+    func requestChannelReadingFromApiKey(feed: Speck, channel: Channel, maxTime: Double?) {
+        let apiKeyReadOnly = feed.apiKeyReadOnly!
+        let channelName = channel.name
+        let timeRange = NSDate().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
+        
+        // handles http response
+        func completionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
+            let httpResponse = response as! NSHTTPURLResponse
+            if error != nil {
+                NSLog("requestChannelReading: error is not nil")
+            } else if httpResponse.statusCode != 200 {
+                // not sure if necessary... error usually is not nil but crashed
+                // on me one time when starting up simulator & running
+                NSLog("requestChannelReading: Got status code \(httpResponse.statusCode) != 200")
+            } else {
+                let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
+                var temp:NSDictionary
+                
+                // NOTE (from Chris)
+                // "don't expect mostRecentDataSample to always exist in the response for every channel,
+                // and don't expect channelBounds.maxTimeSecs to always equal mostRecentDataSample.timeSecs"
+                temp = data?.valueForKey("data") as! NSDictionary
+                temp = temp.valueForKey("channels") as! NSDictionary
+                temp = temp.valueForKey(channelName) as! NSDictionary
+                temp = temp.valueForKey("mostRecentDataSample") as! NSDictionary
+                
+                let resultValue = temp.valueForKey("value") as? NSNumber
+                let resultTime = temp.valueForKey("timeSecs") as? NSNumber
+                if resultValue != nil && resultTime != nil {
+                    if maxTime == nil {
+                        feed.feedValue = resultValue!.doubleValue
+                        feed.lastTime = resultTime!.doubleValue
+                    } else {
+                        if maxTime <= resultTime!.doubleValue {
+                            feed.setHasReadableValue(true)
+                            feed.feedValue = resultValue!.doubleValue
+                            feed.lastTime = resultTime!.doubleValue
+                        } else {
+                            feed.setHasReadableValue(false)
+                            feed.feedValue = 0
+                            NSLog("found FEED VALUE out of bounds")
+                            feed.lastTime = resultTime!.doubleValue
+                        }
+                    }
+                    GlobalHandler.sharedInstance.notifyGlobalDataSetChanged()
+                }
+                
+            }
+        }
+        
+        // generate safe URL
+        let address = Constants.Esdr.API_URL + "/api/v1/feeds/" + apiKeyReadOnly + "/channels/" + channelName + "/most-recent"
+        let url = NSURL(string: address.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+        
+        // create request
+        let request = NSMutableURLRequest(URL: url!)
+        request.HTTPMethod = "GET"
+        
+        // send request
+        GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: completionHandler)
+    }
+    
+    
     func requestFeeds(location: Location, withinSeconds: Double, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
         let bottomLeftPoint = Location(latitude: location.latitude - Constants.MapGeometry.BOUNDBOX_LAT, longitude: location.longitude - Constants.MapGeometry.BOUNDBOX_LONG)
         let topRightPoint = Location(latitude: location.latitude + Constants.MapGeometry.BOUNDBOX_LAT, longitude: location.longitude + Constants.MapGeometry.BOUNDBOX_LONG)
@@ -152,11 +216,8 @@ class EsdrFeedsHandler {
     
     func requestUpdate(speck: Speck) {
         if speck.channels.count > 0 {
-            if let accessToken = GlobalHandler.sharedInstance.settingsHandler.accessToken {
-                requestAuthorizedChannelReading(accessToken, feed: speck, channel: speck.channels[0])
-            } else {
-                NSLog("WARNING - could not request channel reading for Speck=\(speck.name); accessToken is nil.")
-            }
+            let timeRange = NSDate().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
+            requestChannelReadingFromApiKey(speck, channel: speck.channels[0], maxTime: timeRange)
         } else {
             NSLog("No channels found from speck id=\(speck.feed_id)")
         }

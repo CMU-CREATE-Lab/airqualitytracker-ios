@@ -65,6 +65,7 @@ class EsdrLoginHandler {
             GlobalHandler.sharedInstance.settingsHandler.username = nil
             GlobalHandler.sharedInstance.settingsHandler.accessToken = nil
             GlobalHandler.sharedInstance.settingsHandler.refreshToken = nil
+            GlobalHandler.sharedInstance.settingsHandler.expiresAt = nil
             setUserLoggedIn(false)
         }
     }

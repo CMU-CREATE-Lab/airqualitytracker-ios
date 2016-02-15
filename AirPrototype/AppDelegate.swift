@@ -81,6 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         NSLog("Background fetch was successful!")
                         completionHandler(UIBackgroundFetchResult.NewData)
                     } else {
+                        GlobalHandler.sharedInstance.esdrLoginHandler.removeEsdrAccount()
                         NSLog("Failed to grab access/refresh token(s)")
                         completionHandler(UIBackgroundFetchResult.Failed)
                     }
