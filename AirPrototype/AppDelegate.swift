@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         if GlobalHandler.sharedInstance.settingsHandler.userLoggedIn {
             let timestamp = Int(NSDate().timeIntervalSince1970)
-            let refreshToken = GlobalHandler.sharedInstance.settingsHandler.refreshToken!
+            let refreshToken = GlobalHandler.sharedInstance.esdrAccount.accessToken!
             
             // response handler
             func responseHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {

@@ -94,8 +94,8 @@ class ReadingsHandlerCore {
     
     func populateSpecks() {
         if GlobalHandler.sharedInstance.settingsHandler.userLoggedIn {
-            let authToken = GlobalHandler.sharedInstance.settingsHandler.accessToken
-            let userId = GlobalHandler.sharedInstance.settingsHandler.userId
+            let authToken = GlobalHandler.sharedInstance.esdrAccount.accessToken
+            let userId = GlobalHandler.sharedInstance.esdrAccount.userId
             
             func feedsCompletionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
                 let httpResponse = response as! NSHTTPURLResponse

@@ -22,7 +22,7 @@ class LoginController: UIViewController {
         super.viewDidLoad()
         if GlobalHandler.sharedInstance.settingsHandler.userLoggedIn {
             loggedIn = true
-            username = GlobalHandler.sharedInstance.settingsHandler.username
+            username = GlobalHandler.sharedInstance.esdrAccount.username
         }
         display()
     }

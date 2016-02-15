@@ -33,11 +33,11 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     override func viewDidLoad() {
-        let username = GlobalHandler.sharedInstance.settingsHandler.username
-        let userId = GlobalHandler.sharedInstance.settingsHandler.userId!.description
-        let accessToken = GlobalHandler.sharedInstance.settingsHandler.accessToken
-        let refreshToken = GlobalHandler.sharedInstance.settingsHandler.refreshToken
-        let expiresAt = GlobalHandler.sharedInstance.settingsHandler.expiresAt!.description
+        let username = GlobalHandler.sharedInstance.esdrAccount.username
+        let userId = GlobalHandler.sharedInstance.esdrAccount.userId!.description
+        let accessToken = GlobalHandler.sharedInstance.esdrAccount.accessToken
+        let refreshToken = GlobalHandler.sharedInstance.esdrAccount.refreshToken
+        let expiresAt = GlobalHandler.sharedInstance.esdrAccount.expiresAt!.description
         var deviceList = ""
         if let list = GlobalHandler.sharedInstance.settingsHandler.blacklistedDevices {
             deviceList = list.description

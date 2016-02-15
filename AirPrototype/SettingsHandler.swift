@@ -14,11 +14,6 @@ class SettingsHandler {
     var userDefaults: NSUserDefaults
     var appUsesLocation: Bool
     var userLoggedIn: Bool
-    var username: String?
-    var userId: Int?
-    var expiresAt: Int?
-    var accessToken: String?
-    var refreshToken: String?
     var blacklistedDevices: [Int]?
     var appDelegate: AppDelegate
     
@@ -30,11 +25,6 @@ class SettingsHandler {
         // must declare in constructor since Swift is trash
         appUsesLocation = userDefaults.valueForKey(Constants.SettingsKeys.appUsesLocation) as! Bool
         userLoggedIn = userDefaults.valueForKey(Constants.SettingsKeys.userLoggedIn) as! Bool
-        username = userDefaults.valueForKey(Constants.SettingsKeys.username) as? String
-        userId = userDefaults.valueForKey(Constants.SettingsKeys.userId) as? Int
-        expiresAt = userDefaults.valueForKey(Constants.SettingsKeys.expiresAt) as? Int
-        accessToken = userDefaults.valueForKey(Constants.SettingsKeys.accessToken) as? String
-        refreshToken = userDefaults.valueForKey(Constants.SettingsKeys.refreshToken) as? String
         blacklistedDevices = userDefaults.valueForKey(Constants.SettingsKeys.blacklistedDevices) as? [Int]
     }
     
@@ -42,11 +32,7 @@ class SettingsHandler {
     func updateSettings() {
         appUsesLocation = userDefaults.valueForKey(Constants.SettingsKeys.appUsesLocation) as! Bool
         userLoggedIn = userDefaults.valueForKey(Constants.SettingsKeys.userLoggedIn) as! Bool
-        username = userDefaults.valueForKey(Constants.SettingsKeys.username) as? String
-        userId = userDefaults.valueForKey(Constants.SettingsKeys.userId) as? Int
-        expiresAt = userDefaults.valueForKey(Constants.SettingsKeys.expiresAt) as? Int
-        accessToken = userDefaults.valueForKey(Constants.SettingsKeys.accessToken) as? String
-        refreshToken = userDefaults.valueForKey(Constants.SettingsKeys.refreshToken) as? String
+        GlobalHandler.sharedInstance.esdrAccount.loadFromUserDefaults(userDefaults)
         blacklistedDevices = userDefaults.valueForKey(Constants.SettingsKeys.blacklistedDevices) as? [Int]
     }
     

@@ -38,6 +38,7 @@ class GlobalHandler {
     var settingsHandler: SettingsHandler
     // data structure
     var readingsHandler: ReadingsHandler
+    var esdrAccount: EsdrAccount
     // keep track of ALL adapters for notify
     var readableIndexListView: UICollectionView?
     var secretDebugMenuTable: UITableView?
@@ -60,6 +61,7 @@ class GlobalHandler {
         esdrLoginHandler = EsdrLoginHandler()
         positionIdHelper = PositionIdHelper()
         // data structures
+        esdrAccount = EsdrAccount(userDefaults: settingsHandler.userDefaults)
         // NOTICE: in Swift, we cannot pass the object before it inits. Instead, we pass the value we actually care about in HRHM's constructor
         readingsHandler = ReadingsHandler()
         GlobalHandler.singletonInstantiated = true

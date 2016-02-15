@@ -33,11 +33,8 @@ class EsdrLoginHandler {
         userDefaults.setObject(refreshToken, forKey: Constants.SettingsKeys.refreshToken)
         userDefaults.setObject(expiresAt, forKey: Constants.SettingsKeys.expiresAt)
         if userDefaults.synchronize() {
-            GlobalHandler.sharedInstance.settingsHandler.username = username
-            GlobalHandler.sharedInstance.settingsHandler.userId = userId
-            GlobalHandler.sharedInstance.settingsHandler.expiresAt = expiresAt
-            GlobalHandler.sharedInstance.settingsHandler.accessToken = accessToken
-            GlobalHandler.sharedInstance.settingsHandler.refreshToken = refreshToken
+//            GlobalHandler.sharedInstance.esdrAccount.update(username, userId: userId, accessToken: accessToken, refreshToken: refreshToken, expiresAt: expiresAt)
+            GlobalHandler.sharedInstance.esdrAccount.loadFromUserDefaults(userDefaults)
         }
     }
     
@@ -48,9 +45,8 @@ class EsdrLoginHandler {
         userDefaults.setObject(refreshToken, forKey: Constants.SettingsKeys.refreshToken)
         userDefaults.setObject(expiresAt, forKey: Constants.SettingsKeys.expiresAt)
         if userDefaults.synchronize() {
-            GlobalHandler.sharedInstance.settingsHandler.accessToken = accessToken
-            GlobalHandler.sharedInstance.settingsHandler.refreshToken = refreshToken
-            GlobalHandler.sharedInstance.settingsHandler.expiresAt = expiresAt
+//            GlobalHandler.sharedInstance.esdrAccount.updateEsdrTokens(accessToken, refreshToken: refreshToken, expiresAt: expiresAt)
+            GlobalHandler.sharedInstance.esdrAccount.loadFromUserDefaults(userDefaults)
         }
     }
     
@@ -62,10 +58,7 @@ class EsdrLoginHandler {
         userDefaults.setObject(Constants.DEFAULT_SETTINGS[Constants.SettingsKeys.refreshToken], forKey: Constants.SettingsKeys.refreshToken)
         userDefaults.setObject(Constants.DEFAULT_SETTINGS[Constants.SettingsKeys.expiresAt], forKey: Constants.SettingsKeys.expiresAt)
         if userDefaults.synchronize() {
-            GlobalHandler.sharedInstance.settingsHandler.username = nil
-            GlobalHandler.sharedInstance.settingsHandler.accessToken = nil
-            GlobalHandler.sharedInstance.settingsHandler.refreshToken = nil
-            GlobalHandler.sharedInstance.settingsHandler.expiresAt = nil
+            GlobalHandler.sharedInstance.esdrAccount.clear()
             setUserLoggedIn(false)
         }
     }

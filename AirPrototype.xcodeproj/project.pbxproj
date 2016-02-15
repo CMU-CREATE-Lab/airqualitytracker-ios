@@ -80,6 +80,7 @@
 		A182D2361C6BB4A600DBA4F0 /* AirNowReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A182D2351C6BB4A600DBA4F0 /* AirNowReadable.swift */; };
 		A182D2381C6BBF2300DBA4F0 /* AirNowObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A182D2371C6BBF2300DBA4F0 /* AirNowObservation.swift */; };
 		A18479D71BDE6990009CB151 /* StoredSpeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18479D61BDE6990009CB151 /* StoredSpeck.swift */; };
+		A187D3631C7269EC000BB107 /* EsdrAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = A187D3621C7269EC000BB107 /* EsdrAccount.swift */; };
 		A1D4F8981BE7CD19002D5849 /* SecretMenuTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4F8971BE7CD19002D5849 /* SecretMenuTableCell.swift */; };
 		A1E092A71BE2B51400D652CA /* SecretMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E092A61BE2B51400D652CA /* SecretMenuController.swift */; };
 		A1E2A91D1B99ED47003A3B3A /* SettingsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E2A91C1B99ED47003A3B3A /* SettingsHandler.swift */; };
@@ -179,6 +180,7 @@
 		A182D2351C6BB4A600DBA4F0 /* AirNowReadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirNowReadable.swift; sourceTree = "<group>"; };
 		A182D2371C6BBF2300DBA4F0 /* AirNowObservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirNowObservation.swift; sourceTree = "<group>"; };
 		A18479D61BDE6990009CB151 /* StoredSpeck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredSpeck.swift; sourceTree = "<group>"; };
+		A187D3621C7269EC000BB107 /* EsdrAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EsdrAccount.swift; sourceTree = "<group>"; };
 		A1D4F8971BE7CD19002D5849 /* SecretMenuTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretMenuTableCell.swift; sourceTree = "<group>"; };
 		A1E092A61BE2B51400D652CA /* SecretMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretMenuController.swift; sourceTree = "<group>"; };
 		A1E2A91C1B99ED47003A3B3A /* SettingsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHandler.swift; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 				A158E1391BCFF9440026944E /* AutocompleteTimer.swift */,
 				A182D2351C6BB4A600DBA4F0 /* AirNowReadable.swift */,
 				A182D2371C6BBF2300DBA4F0 /* AirNowObservation.swift */,
+				A187D3621C7269EC000BB107 /* EsdrAccount.swift */,
 			);
 			name = classes;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				A14C456F1BA0B46700D6C9CF /* ReadableIndexCell.swift in Sources */,
 				A1551C701C29D35B005ED28B /* GpsReadingHandler.swift in Sources */,
 				A11844AF1BA9E7A600435D11 /* ServicesHandler.swift in Sources */,
+				A187D3631C7269EC000BB107 /* EsdrAccount.swift in Sources */,
 				A182D2381C6BBF2300DBA4F0 /* AirNowObservation.swift in Sources */,
 				A16481FB1B5D553F0023DE09 /* AddressShowController.swift in Sources */,
 				A1FEAB411B8CF19D00F9716B /* StoredAddress.swift in Sources */,
