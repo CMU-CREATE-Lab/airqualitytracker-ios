@@ -13,7 +13,7 @@ let MATH_PI = 3.14159265358979
 
 class Constants {
     
-    static let APP_VERSION_NUMBER = "1.4"
+    static let APP_VERSION_NUMBER = "1.5"
     
     static let USES_BACKGROUND_SERVICES = true
     
@@ -40,6 +40,8 @@ class Constants {
     static let READINGS_MAX_TIME_RANGE: Double = 86400 // 24 hours
     
     static let SPECKS_MAX_TIME_RANGE: Double = 1800  // 30 minutes
+    
+    static let ESDR_TOKEN_TIME_TO_UPDATE_ON_REFRESH: Int = 86400 // 24 hours
     
     struct AppSecrets {
         // placeholder for actual Client information (don't push to git)
