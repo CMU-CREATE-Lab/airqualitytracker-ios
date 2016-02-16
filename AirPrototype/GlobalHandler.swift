@@ -83,6 +83,42 @@ class GlobalHandler {
     
     
     func updateReadings() {
+        // check expiresAt timer and determine if we should update tokens (within threshold)
+        if GlobalHandler.sharedInstance.settingsHandler.userLoggedIn {
+            let timestamp = Int(NSDate().timeIntervalSince1970)
+            let expiredAt = GlobalHandler.sharedInstance.esdrAccount.expiresAt!
+            let timeRemaining = expiredAt - timestamp
+            if timeRemaining <= 0 {
+                esdrLoginHandler.setUserLoggedIn(false)
+                esdrAccount.clear()
+                UIAlertView.init(title: "www.specksensor.com", message: "Your session has timed out. Please log in.", delegate: nil, cancelButtonTitle: "OK").show()
+            } else if timeRemaining <= 86400 { // TODO use Constant instead of hardcoded value
+                let refreshToken = GlobalHandler.sharedInstance.esdrAccount.refreshToken!
+                
+                func responseHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
+                    if error != nil {
+                        NSLog("requestEsdrRefresh received error from refreshToken=\(refreshToken)")
+                    } else {
+                        let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
+                        let access_token = data!.valueForKey("access_token") as? String
+                        let refresh_token = data!.valueForKey("refresh_token") as? String
+                        let expires_in = data!.valueForKey("expires_in") as? Int
+                        if access_token != nil && refresh_token != nil && expires_in != nil {
+                            NSLog("found access_token=\(access_token), refresh_token=\(refresh_token)")
+                            GlobalHandler.sharedInstance.esdrLoginHandler.updateEsdrTokens(access_token!, refreshToken: refresh_token!, expiresAt: timestamp+expires_in!)
+                            NSLog("Updated ESDR Tokens!")
+                        } else {
+                            GlobalHandler.sharedInstance.esdrLoginHandler.removeEsdrAccount()
+                            NSLog("Failed to grab access/refresh token(s)")
+                        }
+                    }
+                }
+                
+                GlobalHandler.sharedInstance.esdrAuthHandler.requestEsdrRefresh(refreshToken, responseHandler: responseHandler)
+            }
+        }
+        
+        // Now, perform readings update
         readingsHandler.updateAddresses()
         readingsHandler.updateSpecks()
         if GlobalHandler.sharedInstance.settingsHandler.appUsesLocation {
