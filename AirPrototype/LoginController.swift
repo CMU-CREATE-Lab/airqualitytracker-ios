@@ -27,6 +27,41 @@ class LoginController: UIViewController {
         display()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        if GlobalHandler.sharedInstance.settingsHandler.userLoggedIn {
+            let timestamp = Int(NSDate().timeIntervalSince1970)
+            let refreshToken = GlobalHandler.sharedInstance.esdrAccount.accessToken!
+            let expiresAt = GlobalHandler.sharedInstance.esdrAccount.expiresAt!
+            
+            // response handler
+            func responseHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
+                if error != nil {
+                    NSLog("requestEsdrRefresh received error from refreshToken=\(refreshToken)")
+                } else {
+                    let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
+                    let access_token = data!.valueForKey("access_token") as? String
+                    let refresh_token = data!.valueForKey("refresh_token") as? String
+                    let expires_in = data!.valueForKey("expires_in") as? Int
+                    if access_token != nil && refresh_token != nil && expires_in != nil {
+                        NSLog("found access_token=\(access_token), refresh_token=\(refresh_token)")
+                        GlobalHandler.sharedInstance.esdrLoginHandler.updateEsdrTokens(access_token!, refreshToken: refresh_token!, expiresAt: timestamp+expires_in!)
+                        NSLog("Updated ESDR Tokens!")
+                    } else {
+                        GlobalHandler.sharedInstance.esdrLoginHandler.removeEsdrAccount()
+                        NSLog("Failed to grab access/refresh token(s)")
+                    }
+                }
+            }
+            
+            let updatingTokens = GlobalHandler.sharedInstance.esdrAuthHandler.checkAndRefreshEsdrTokens(expiresAt, currentTime: timestamp, refreshToken: refreshToken, responseHandler: responseHandler)
+            if !updatingTokens {
+                UIAlertView.init(title: "www.specksensor.com", message: "Your session has timed out. Please log in.", delegate: nil, cancelButtonTitle: "OK").show()
+                loggedIn = false
+                self.display()
+            }
+        }
+    }
+    
     
     func display() {
         if loggedIn {

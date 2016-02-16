@@ -42,6 +42,19 @@ class EsdrAuthHandler {
     }
     
     
+    // returns true when request is sent to ESDR; returns false when tokens are expired (and clears values)
+    func checkAndRefreshEsdrTokens(expiresAt: Int, currentTime: Int, refreshToken: String, responseHandler: (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void ) -> Bool {
+        if (currentTime >= expiresAt) {
+            GlobalHandler.sharedInstance.esdrAccount.clear()
+            GlobalHandler.sharedInstance.esdrLoginHandler.setUserLoggedIn(false)
+            return false
+        } else {
+            requestEsdrRefresh(refreshToken, responseHandler: responseHandler)
+            return true
+        }
+    }
+    
+    
     func requestEsdrRefresh(refreshToken: String, responseHandler: (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void ) {
         // generate safe URL
         let address = Constants.Esdr.API_URL + "/oauth/token"
