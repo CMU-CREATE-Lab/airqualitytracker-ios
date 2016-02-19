@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSLog("\n")
         if GlobalHandler.sharedInstance.settingsHandler.userLoggedIn {
             let timestamp = Int(NSDate().timeIntervalSince1970)
-            let refreshToken = GlobalHandler.sharedInstance.esdrAccount.accessToken!
+            let refreshToken = GlobalHandler.sharedInstance.esdrAccount.refreshToken!
             let expiresAt = GlobalHandler.sharedInstance.esdrAccount.expiresAt!
             
             // response handler
@@ -93,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         if GlobalHandler.sharedInstance.settingsHandler.userLoggedIn {
             let timestamp = Int(NSDate().timeIntervalSince1970)
-            let refreshToken = GlobalHandler.sharedInstance.esdrAccount.accessToken!
+            let refreshToken = GlobalHandler.sharedInstance.esdrAccount.refreshToken!
             let expiresAt = GlobalHandler.sharedInstance.esdrAccount.expiresAt!
             
             // response handler
