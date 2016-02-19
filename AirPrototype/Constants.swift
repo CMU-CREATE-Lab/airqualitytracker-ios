@@ -87,9 +87,9 @@ class Constants {
     
     struct MapGeometry {
         // Distance from central point, in kilometers (box dimension will be 2x larger)
-        static let BOUNDBOX_HEIGHT = 20.0;
+        static let BOUNDBOX_HEIGHT = 40.0;
         // Distance from central point, in kilometers (box dimension will be 2x larger)
-        static let BOUNDBOX_LENGTH = 20.0;
+        static let BOUNDBOX_LENGTH = 40.0;
         // radius of Earth (in kilometers)
         static let RADIUS_EARTH = 6371.0;
         // ASSERT these values will be less than 90.0
