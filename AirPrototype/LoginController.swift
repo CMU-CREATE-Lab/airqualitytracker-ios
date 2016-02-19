@@ -30,7 +30,7 @@ class LoginController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         if GlobalHandler.sharedInstance.settingsHandler.userLoggedIn {
             let timestamp = Int(NSDate().timeIntervalSince1970)
-            let refreshToken = GlobalHandler.sharedInstance.esdrAccount.accessToken!
+            let refreshToken = GlobalHandler.sharedInstance.esdrAccount.refreshToken!
             let expiresAt = GlobalHandler.sharedInstance.esdrAccount.expiresAt!
             
             // response handler
