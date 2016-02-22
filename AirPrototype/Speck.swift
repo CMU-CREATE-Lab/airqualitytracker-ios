@@ -43,7 +43,6 @@ class Speck: Feed {
         self.location = feed.location
         self.productId = feed.productId
         self.channels = feed.channels
-        self.feedValue = feed.feedValue
         self.lastTime = feed.lastTime
     }
     

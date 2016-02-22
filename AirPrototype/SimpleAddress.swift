@@ -27,13 +27,17 @@ class SimpleAddress: AirNowReadable, Hashable {
     
     
     func hasReadableValue() -> Bool {
-        return self.closestFeed != nil
+        if let feed = self.closestFeed {
+            return feed.hasReadableValue()
+        }
+        return false
     }
     
     
     func getReadableValue() -> Double {
         if self.hasReadableValue() {
-            return self.closestFeed!.feedValue
+            // TODO nowcast testing?
+            return self.closestFeed!.getReadableValue()
         }
         NSLog("Failed to get Readable Value on SimpleAddress; returning 0.0")
         return 0.0

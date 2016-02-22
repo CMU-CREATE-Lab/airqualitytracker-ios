@@ -49,16 +49,16 @@ class EsdrFeedsHandler {
                 let resultTime = temp.valueForKey("timeSecs") as? NSNumber
                 if resultValue != nil && resultTime != nil {
                     if maxTime == nil {
-                        feed.feedValue = resultValue!.doubleValue
+                        channel.instantcastValue = resultValue!.doubleValue
                         feed.lastTime = resultTime!.doubleValue
                     } else {
                         if maxTime <= resultTime!.doubleValue {
-                            feed.setHasReadableValue(true)
-                            feed.feedValue = resultValue!.doubleValue
+                            feed.setReadableValueType(Feed.ReadableValueType.INSTANTCAST)
+                            channel.instantcastValue = resultValue!.doubleValue
                             feed.lastTime = resultTime!.doubleValue
                         } else {
-                            feed.setHasReadableValue(false)
-                            feed.feedValue = 0
+                            feed.setReadableValueType(Feed.ReadableValueType.NONE)
+                            channel.instantcastValue = 0
                             NSLog("found FEED VALUE out of bounds")
                             feed.lastTime = resultTime!.doubleValue
                         }
@@ -117,16 +117,17 @@ class EsdrFeedsHandler {
                 let resultTime = temp.valueForKey("timeSecs") as? NSNumber
                 if resultValue != nil && resultTime != nil {
                     if maxTime == nil {
-                        feed.feedValue = resultValue!.doubleValue
+                        feed.setReadableValueType(Feed.ReadableValueType.INSTANTCAST)
+                        channel.instantcastValue = resultValue!.doubleValue
                         feed.lastTime = resultTime!.doubleValue
                     } else {
                         if maxTime <= resultTime!.doubleValue {
-                            feed.setHasReadableValue(true)
-                            feed.feedValue = resultValue!.doubleValue
+                            channel.instantcastValue = resultValue!.doubleValue
+                            feed.setReadableValueType(Feed.ReadableValueType.INSTANTCAST)
                             feed.lastTime = resultTime!.doubleValue
                         } else {
-                            feed.setHasReadableValue(false)
-                            feed.feedValue = 0
+                            channel.instantcastValue = 0
+                            feed.setReadableValueType(Feed.ReadableValueType.NONE)
                             NSLog("found FEED VALUE out of bounds")
                             feed.lastTime = resultTime!.doubleValue
                         }
@@ -203,7 +204,9 @@ class EsdrFeedsHandler {
                 if address.feeds.count > 0 {
                     if let closestFeed = MapGeometry.getClosestFeedToAddress(address, feeds: address.feeds) {
                         address.closestFeed = closestFeed
-                        requestChannelReading(closestFeed, channel: closestFeed.channels[0])
+                        // TODO nowcast testing?
+                        closestFeed.channels[0].requestNowCast()
+//                        requestChannelReading(closestFeed, channel: closestFeed.channels[0])
                     } else {
                         NSLog("Found non-zero feeds but closestFeed DNE?")
                     }

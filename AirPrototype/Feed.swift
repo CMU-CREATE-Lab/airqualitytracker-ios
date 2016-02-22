@@ -13,14 +13,18 @@ class Feed: Readable, Hashable {
     
     // MARK: Readable/Hashable implementation
     
-
+    
+    enum ReadableValueType {
+        case INSTANTCAST, NOWCAST, NONE
+    }
+    
     private let readableType = ReadableType.FEED
-    private var feedHasReadableValue: Bool
+    var readableValueType: ReadableValueType
     var hashValue: Int { return generateHashForReadable() }
     
     
-    func setHasReadableValue(hasReadableValue: Bool) {
-        self.feedHasReadableValue = hasReadableValue
+    func setReadableValueType(type: ReadableValueType) {
+        self.readableValueType = type
     }
     
     
@@ -30,12 +34,26 @@ class Feed: Readable, Hashable {
     
     
     func hasReadableValue() -> Bool {
-        return self.feedHasReadableValue
+        return self.readableValueType != ReadableValueType.NONE
     }
     
     
     func getReadableValue() -> Double {
-        return self.feedValue
+        if hasReadableValue() {
+            switch self.readableValueType {
+            case ReadableValueType.INSTANTCAST:
+                if let value = self.channels[0].instantcastValue {
+                    return value
+                }
+            case ReadableValueType.NOWCAST:
+                if let value = self.channels[0].nowcastValue {
+                    return value
+                }
+            default:
+                NSLog("ERROR - Could not detect ReadableValueType")
+            }
+        }
+        return 0
     }
     
     
@@ -54,19 +72,17 @@ class Feed: Readable, Hashable {
     var location: Location
     var productId: Int
     var channels: Array<Channel>
-    var feedValue: Double
     var lastTime: Double
     
     
     init() {
-        feedHasReadableValue = false
+        readableValueType = ReadableValueType.NONE
         feed_id = 0
         name = ""
         exposure = ""
         isMobile = false
         location = Location(latitude: 0, longitude: 0)
         productId = 0
-        feedValue = 0
         lastTime = 0
         channels = Array()
     }

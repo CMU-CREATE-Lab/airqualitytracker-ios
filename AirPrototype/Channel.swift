@@ -16,6 +16,7 @@ class Channel {
     var maxTimeSecs: Double
     var minValue: Double
     var maxValue: Double
+    var instantcastValue: Double?
     var nowcastValue: Double?
     
     
@@ -33,19 +34,15 @@ class Channel {
         let timestamp = Int(NSDate().timeIntervalSince1970)
         
         func response(data: [Int: [Double]]) {
-            NSLog("--------")
-            NSLog("Channel \(self.name) from Feed id=\(self.feed.feed_id)")
-            NSLog("Data=\(data)")
             // construct array of values
             let array = NowCastCalculator.constructArrayFromHash(data, currentTime: timestamp)
             
             // find NowCast
-            let nowcastUg = NowCastCalculator.calculate(array)
-            let nowcast = Converter.microgramsToAqi( nowcastUg )
-            self.nowcastValue = nowcast
-            NSLog("Channel \(self.name) nowcast value set to =\(nowcast) from micrograms=\(nowcastUg)")
+            self.nowcastValue = NowCastCalculator.calculate(array)
+            self.feed.setReadableValueType(Feed.ReadableValueType.NOWCAST)
             
-            NSLog("========")
+            // update adapters
+            GlobalHandler.sharedInstance.notifyGlobalDataSetChanged()
         }
         
         // request tiles from ESDR

@@ -106,13 +106,6 @@ class AddressShowController: UIViewController {
         switch type {
         case .ADDRESS:
             addressView(reading as! SimpleAddress)
-//            // TESTING NOWCAST
-//            let address = reading as! SimpleAddress
-//            for feed in address.feeds {
-//                if feed.channels.count > 0 {
-//                    feed.channels[0].requestNowCast()
-//                }
-//            }
         case .SPECK:
             speckView(reading as! Speck)
         default:
