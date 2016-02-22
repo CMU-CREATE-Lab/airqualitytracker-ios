@@ -204,9 +204,13 @@ class EsdrFeedsHandler {
                 if address.feeds.count > 0 {
                     if let closestFeed = MapGeometry.getClosestFeedToAddress(address, feeds: address.feeds) {
                         address.closestFeed = closestFeed
-                        // TODO nowcast testing?
-                        closestFeed.channels[0].requestNowCast()
-//                        requestChannelReading(closestFeed, channel: closestFeed.channels[0])
+                        
+                        // Responsible for calculating the value to be displayed
+                        if Constants.DEFAULT_ADDRESS_READABLE_VALUE_TYPE == Feed.ReadableValueType.NOWCAST {
+                            closestFeed.channels[0].requestNowCast()
+                        } else if Constants.DEFAULT_ADDRESS_READABLE_VALUE_TYPE == Feed.ReadableValueType.INSTANTCAST {
+                            requestChannelReading(closestFeed, channel: closestFeed.channels[0])
+                        }
                     } else {
                         NSLog("Found non-zero feeds but closestFeed DNE?")
                     }

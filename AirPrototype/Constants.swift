@@ -36,6 +36,9 @@ class Constants {
             "pm2_5_24hr", "PM25B_UG_M3", "PM25_UG_M3",
             "particle_concentration"
     ]
+    
+    // This should be either INSTANTCAST or NOWCAST
+    static let DEFAULT_ADDRESS_READABLE_VALUE_TYPE: Feed.ReadableValueType = Feed.ReadableValueType.NOWCAST
 
     static let READINGS_MAX_TIME_RANGE: Double = 86400 // 24 hours
     
