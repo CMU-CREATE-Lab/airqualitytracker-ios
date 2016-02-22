@@ -49,6 +49,7 @@ class EsdrFeedsHandler {
                 let resultTime = temp.valueForKey("timeSecs") as? NSNumber
                 if resultValue != nil && resultTime != nil {
                     if maxTime == nil {
+                        feed.setReadableValueType(Feed.ReadableValueType.INSTANTCAST)
                         channel.instantcastValue = resultValue!.doubleValue
                         feed.lastTime = resultTime!.doubleValue
                     } else {
@@ -172,7 +173,11 @@ class EsdrFeedsHandler {
     
     
     func requestChannelReading(feed: Feed, channel: Channel) {
-        requestChannelReading(nil, feed: feed, channel: channel, maxTime: nil)
+        if Constants.DEFAULT_ADDRESS_READABLE_VALUE_TYPE == Feed.ReadableValueType.INSTANTCAST {
+            requestChannelReading(nil, feed: feed, channel: channel, maxTime: nil)
+        } else if Constants.DEFAULT_ADDRESS_READABLE_VALUE_TYPE == Feed.ReadableValueType.NOWCAST {
+            channel.requestNowCast()
+        }
     }
     
     
@@ -209,7 +214,7 @@ class EsdrFeedsHandler {
                         if Constants.DEFAULT_ADDRESS_READABLE_VALUE_TYPE == Feed.ReadableValueType.NOWCAST {
                             closestFeed.channels[0].requestNowCast()
                         } else if Constants.DEFAULT_ADDRESS_READABLE_VALUE_TYPE == Feed.ReadableValueType.INSTANTCAST {
-                            requestChannelReading(closestFeed, channel: closestFeed.channels[0])
+                            requestChannelReading(nil, feed: closestFeed, channel: closestFeed.channels[0], maxTime: maxTime)
                         }
                     } else {
                         NSLog("Found non-zero feeds but closestFeed DNE?")

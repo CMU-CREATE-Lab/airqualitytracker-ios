@@ -36,7 +36,6 @@ class SimpleAddress: AirNowReadable, Hashable {
     
     func getReadableValue() -> Double {
         if self.hasReadableValue() {
-            // TODO nowcast testing?
             return self.closestFeed!.getReadableValue()
         }
         NSLog("Failed to get Readable Value on SimpleAddress; returning 0.0")
