@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        // TODO perform esdr token checks
         NSLog(" ---- Application Launches ----")
         NSLog(" ==============================")
         NSLog("\n")

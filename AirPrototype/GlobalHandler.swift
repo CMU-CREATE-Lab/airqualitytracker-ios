@@ -134,7 +134,6 @@ class GlobalHandler {
                 readableIndexListView.reloadData()
             }
         }
-        // TODO this looks like it crashes from EXC_BAD_ACCESS (probably upon refreshing feeds)
         if let secretMenu = self.secretDebugMenuTable {
             dispatch_async(dispatch_get_main_queue()) {
                 // (crashes here)

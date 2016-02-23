@@ -76,8 +76,6 @@ class AddressShowController: UIViewController {
     
     func speckView(speck: Speck) {
         clearAndHide([labelReadingFromFeed, labelClosestFeedName])
-        // TODO speck view actions
-//        labelReadingMeasurement.hidden = false
         if speck.hasReadableValue() {
             let micrograms = speck.getReadableValue()
             labelShowValue.text = Int(micrograms).description
