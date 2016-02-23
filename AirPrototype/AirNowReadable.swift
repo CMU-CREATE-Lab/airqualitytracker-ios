@@ -13,21 +13,28 @@ protocol AirNowReadable: Readable {
     var location: Location {get set}
     var airNowObservations: [AirNowObservation] {get set}
     
-    func getMostRecentAirNowObservation() -> AirNowObservation
-    func sortAirNowObservations()
+    func getMostRecentAirNowObservation() -> AirNowObservation?
+    mutating func appendAndSort(values: [AirNowObservation])
+    
 }
 
 
 extension AirNowReadable {
     
     
-    func getMostRecentAirNowObservation() -> AirNowObservation {
-        return airNowObservations[0]
+    func getMostRecentAirNowObservation() -> AirNowObservation? {
+        if airNowObservations.count > 0 {
+            return airNowObservations[0]
+        }
+        return nil
     }
     
     
-    func sortAirNowObservations() {
-        // TODO sort list from newest to oldest; should call when adding new objects to list
+    mutating func appendAndSort(values: [AirNowObservation]) {
+        airNowObservations.appendContentsOf(values)
+        airNowObservations.sortInPlace {
+            $0.observedDateTime.compare($1.observedDateTime) == NSComparisonResult.OrderedDescending
+        }
     }
     
 }
