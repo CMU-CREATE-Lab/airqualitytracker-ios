@@ -125,7 +125,7 @@ class AddressShowController: UIViewController {
     
     @IBAction func onClickRemove(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
-        GlobalHandler.sharedInstance.removeReading(reading!)
+        GlobalHandler.sharedInstance.readingsHandler.removeReading(reading!)
     }
     
     

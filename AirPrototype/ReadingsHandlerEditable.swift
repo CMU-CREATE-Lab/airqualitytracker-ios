@@ -65,10 +65,14 @@ class ReadingsHandlerEditable: ReadingsHandlerCore {
             if let index = findIndexFromAddress(readable as! SimpleAddress) {
                 addresses.removeAtIndex(index)
             }
+            AddressDbHelper.deleteAddressFromDb(readable as! SimpleAddress)
         case ReadableType.SPECK:
             if let speckIndex = findIndexFromSpeck(readable as! Speck) {
                 specks.removeAtIndex(speckIndex)
             }
+            let speck = readable as! Speck
+            SpeckDbHelper.deleteSpeckFromDb(speck)
+            GlobalHandler.sharedInstance.settingsHandler.addToBlacklistedDevices(speck.deviceId)
         default:
             NSLog("Tried to remove Readable of unknown Type in HeaderReadingsHashMap")
         }

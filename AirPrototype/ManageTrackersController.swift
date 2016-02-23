@@ -41,7 +41,7 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
         if editingStyle == UITableViewCellEditingStyle.Delete {
             let headerReadingsHashmap = GlobalHandler.sharedInstance.readingsHandler
             let reading = headerReadingsHashmap.adapterListTracker[headerReadingsHashmap.headers[indexPath.section]]![indexPath.row]
-            GlobalHandler.sharedInstance.removeReading(reading)
+            GlobalHandler.sharedInstance.readingsHandler.removeReading(reading)
             tableView.reloadData()
         }
     }
