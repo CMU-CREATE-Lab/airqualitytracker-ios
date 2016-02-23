@@ -10,6 +10,7 @@ import Foundation
 
 class HttpHelper {
     
+    
     static func generateRequest(url: String, httpMethod: String?) -> NSMutableURLRequest {
         let string = NSURL(string: url.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
         let request = NSMutableURLRequest(URL: string!)

@@ -71,15 +71,8 @@ class EsdrTilesHandler {
             let data = (try! NSJSONSerialization.JSONObjectWithData(tempData!, options: [])) as? NSDictionary
             firstResponse = EsdrJsonParser.parseTiles(data!, fromTime: minTime, toTime: maxTime)
             
-            // generate 2nd URL
-            let address = Constants.Esdr.API_URL + "/api/v1/feeds/\(channel.feed.feed_id)/channels/\(channel.name)/tiles/\(level).\(offset-1)"
-            let url = NSURL(string: address.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-            
-            // create 2nd request
-            let request = NSMutableURLRequest(URL: url!)
-            request.HTTPMethod = "GET"
-            
             // send 2nd request
+            let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/api/v1/feeds/\(channel.feed.feed_id)/channels/\(channel.name)/tiles/\(level).\(offset-1)", httpMethod: "GET")
             GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: secondHandler)
         }
         
@@ -102,15 +95,8 @@ class EsdrTilesHandler {
             completionHandler(result)
         }
         
-        // generate 1st URL
-        let address = Constants.Esdr.API_URL + "/api/v1/feeds/\(channel.feed.feed_id)/channels/\(channel.name)/tiles/\(level).\(offset)"
-        let url = NSURL(string: address.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-        
-        // create 1st request
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "GET"
-        
         // send 1st request
+        let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/api/v1/feeds/\(channel.feed.feed_id)/channels/\(channel.name)/tiles/\(level).\(offset)", httpMethod: "GET")
         GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: firstHandler)
     }
     

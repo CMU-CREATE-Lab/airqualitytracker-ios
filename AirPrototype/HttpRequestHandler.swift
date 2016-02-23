@@ -52,9 +52,7 @@ class HttpRequestHandler {
     
     // TODO consider CLGeocoder: func geocodeAddressString(String, CLGeocodeCompletionHandler)
     func requestGeocodingFromApi(input: String, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void)) {
-        let url = NSURL(string: "http://autocomplete.wunderground.com/aq?query=\(input)&c=US".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "GET"
+        let request = HttpHelper.generateRequest("http://autocomplete.wunderground.com/aq?query=\(input)&c=US", httpMethod: "GET")
         GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: completionHandler)
     }
     

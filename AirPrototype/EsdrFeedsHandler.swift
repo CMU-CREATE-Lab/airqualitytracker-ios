@@ -63,15 +63,8 @@ class EsdrFeedsHandler {
             }
         }
         
-        // generate safe URL
-        let address = Constants.Esdr.API_URL + "/api/v1/feeds/" + feedId + "/channels/" + channelName + "/most-recent"
-        let url = NSURL(string: address.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-        
-        // create request
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "GET"
-        
-        // send request
+        // make & send request
+        let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/api/v1/feeds/" + feedId + "/channels/" + channelName + "/most-recent", httpMethod: "GET")
         if authToken == nil {
             GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: completionHandler)
         } else {
@@ -125,15 +118,8 @@ class EsdrFeedsHandler {
             }
         }
         
-        // generate safe URL
-        let address = Constants.Esdr.API_URL + "/api/v1/feeds/" + apiKeyReadOnly + "/channels/" + channelName + "/most-recent"
-        let url = NSURL(string: address.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-        
-        // create request
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "GET"
-        
-        // send request
+        // make & send request
+        let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/api/v1/feeds/" + apiKeyReadOnly + "/channels/" + channelName + "/most-recent", httpMethod: "GET")
         GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: completionHandler)
     }
     
@@ -142,18 +128,14 @@ class EsdrFeedsHandler {
         let bottomLeftPoint = Location(latitude: location.latitude - Constants.MapGeometry.BOUNDBOX_LAT, longitude: location.longitude - Constants.MapGeometry.BOUNDBOX_LONG)
         let topRightPoint = Location(latitude: location.latitude + Constants.MapGeometry.BOUNDBOX_LAT, longitude: location.longitude + Constants.MapGeometry.BOUNDBOX_LONG)
         
-        // generate safe URL
-        let address = Constants.Esdr.API_URL + "/api/v1/feeds"
-        let params = "?whereJoin=AND&whereOr=productId=11,productId=1" +
-            "&whereAnd=latitude>=\(bottomLeftPoint.latitude),latitude<=\(topRightPoint.latitude),longitude>=\(bottomLeftPoint.longitude),longitude<=\(topRightPoint.longitude),maxTimeSecs>=\(withinSeconds),exposure=outdoor" +
-            "&fields=id,name,exposure,isMobile,latitude,latitude,longitude,productId,channelBounds"
-        let url = NSURL(string: (address+params).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-        
-        // create request
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "GET"
-        
-        // send request
+        // make & send request
+        let request = HttpHelper.generateRequest(
+            Constants.Esdr.API_URL +
+                "/api/v1/feeds" +
+                "?whereJoin=AND&whereOr=productId=11,productId=1" +
+                "&whereAnd=latitude>=\(bottomLeftPoint.latitude),latitude<=\(topRightPoint.latitude),longitude>=\(bottomLeftPoint.longitude),longitude<=\(topRightPoint.longitude),maxTimeSecs>=\(withinSeconds),exposure=outdoor" +
+                "&fields=id,name,exposure,isMobile,latitude,latitude,longitude,productId,channelBounds",
+            httpMethod: "GET")
         GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: completionHandler)
     }
     

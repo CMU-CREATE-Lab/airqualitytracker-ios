@@ -20,14 +20,7 @@ class EsdrAuthHandler {
     
     
     func requestEsdrToken(username: String, password: String, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
-        // generate safe URL
-        let address = Constants.Esdr.API_URL + "/oauth/token"
-        let url = NSURL(string: address.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-        
-        // create request
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "POST"
-        
+        let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/oauth/token", httpMethod: "POST")
         let params:[String: String] = [
             "grant_type": Constants.Esdr.GRANT_TYPE_TOKEN,
             "client_id": Constants.AppSecrets.ESDR_CLIENT_ID,
@@ -56,13 +49,8 @@ class EsdrAuthHandler {
     
     
     func requestEsdrRefresh(refreshToken: String, responseHandler: (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void ) {
-        // generate safe URL
-        let address = Constants.Esdr.API_URL + "/oauth/token"
-        var url = NSURL(string: address.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-        
         // create request
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "POST"
+        let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/oauth/token", httpMethod: "POST")
         let params:[String: String] = [
             "grant_type": Constants.Esdr.GRANT_TYPE_REFRESH,
             "client_id": Constants.AppSecrets.ESDR_CLIENT_ID,

@@ -13,43 +13,29 @@ class EsdrSpecksHandler {
     
     
     func requestSpeckFeeds(authToken: String, userId: Int, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
-        // generate safe URL
         var listDevices = ""
         if let blacklistedDevices = GlobalHandler.sharedInstance.settingsHandler.blacklistedDevices {
             for id in blacklistedDevices {
                 listDevices += ",deviceId<>\(id)"
             }
         }
-        let address = Constants.Esdr.API_URL + "/api/v1/feeds"
-        let params = "?whereAnd=userId=\(userId),productId=9\(listDevices)"
-        let url = NSURL(string: (address+params).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-        
-        // create request
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "GET"
         
         // send request
+        let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/api/v1/feeds?whereAnd=userId=\(userId),productId=9\(listDevices)", httpMethod: "GET")
         GlobalHandler.sharedInstance.httpRequestHandler.sendAuthorizedJsonRequest(authToken, urlRequest: request, completionHandler: completionHandler)
     }
     
     
     func requestSpeckDevices(authToken: String, userId: Int, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
-        // generate safe URL
         var listDevices = ""
         if let blacklistedDevices = GlobalHandler.sharedInstance.settingsHandler.blacklistedDevices {
             for id in blacklistedDevices {
                 listDevices += ",id<>\(id)"
             }
         }
-        let address = Constants.Esdr.API_URL + "/api/v1/devices"
-        let params = "?whereAnd=userId=\(userId),productId=9\(listDevices)"
-        let url = NSURL(string: (address+params).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-        
-        // create request
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "GET"
         
         // send request
+        let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/api/v1/devices?whereAnd=userId=\(userId),productId=9\(listDevices)", httpMethod: "GET")
         GlobalHandler.sharedInstance.httpRequestHandler.sendAuthorizedJsonRequest(authToken, urlRequest: request, completionHandler: completionHandler)
     }
     
@@ -79,16 +65,8 @@ class EsdrSpecksHandler {
             }
         }
         
-        // generate safe URL
-        let address = Constants.Esdr.API_URL + "/api/v1/feeds/\(speck.apiKeyReadOnly!)"
-        let params = "?fields=channelBounds"
-        let url = NSURL(string: (address+params).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-        
-        // create request
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "GET"
-        
         // send request
+        let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/api/v1/feeds/\(speck.apiKeyReadOnly!)?fields=channelBounds", httpMethod: "GET")
         GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: completionHandler)
     }
 

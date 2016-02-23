@@ -20,10 +20,6 @@ class AirNowRequestHandler {
     
     
     func requestAirNowObservation(var readable: AirNowReadable) {
-        // generate safe URL
-        let address = Constants.AirNow.API_URL + "/aq/observation/latLong/current/?format=application/json&distance=25&latitude=\(readable.location.latitude)&longitude=\(readable.location.longitude)&API_KEY=\(Constants.AppSecrets.AIR_NOW_API_KEY)"
-        let url = NSURL(string: address.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-        
         // response handler
         func onAirNowObservationCompletionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
             if HttpHelper.successfulResponse(response, error: error) {
@@ -33,11 +29,8 @@ class AirNowRequestHandler {
             }
         }
         
-        // create request
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "GET"
-        
-        // send request
+        // make & send request
+        let request = HttpHelper.generateRequest(Constants.AirNow.API_URL + "/aq/observation/latLong/current/?format=application/json&distance=25&latitude=\(readable.location.latitude)&longitude=\(readable.location.longitude)&API_KEY=\(Constants.AppSecrets.AIR_NOW_API_KEY)", httpMethod: "GET")
         GlobalHandler.sharedInstance.httpRequestHandler.sendRequest(request, completionHandler: onAirNowObservationCompletionHandler)
     }
     
