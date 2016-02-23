@@ -45,7 +45,7 @@ class AirNowRequestHandler {
         request.HTTPMethod = "GET"
         
         // send request
-        GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: onAirNowObservationCompletionHandler)
+        GlobalHandler.sharedInstance.httpRequestHandler.sendRequest(request, completionHandler: onAirNowObservationCompletionHandler)
     }
     
 }
