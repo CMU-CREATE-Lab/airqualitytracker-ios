@@ -26,14 +26,7 @@ class AirNowRequestHandler {
         
         // response handler
         func onAirNowObservationCompletionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
-            let httpResponse = response as! NSHTTPURLResponse
-            if error != nil {
-                NSLog("requestAirNowObservation: error is not nil")
-            } else if httpResponse.statusCode != 200 {
-                // not sure if necessary... error usually is not nil but crashed
-                // on me one time when starting up simulator & running
-                NSLog("requestAirNowObservation: Got status code \(httpResponse.statusCode) != 200")
-            } else {
+            if HttpHelper.successfulResponse(response, error: error) {
                 let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSArray
                 let result = AirNowJsonParser.parseObservationsFromJson(data)
                 readable.appendAndSort(result)

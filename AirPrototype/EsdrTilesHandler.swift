@@ -60,14 +60,7 @@ class EsdrTilesHandler {
         // 1st handler, which then makes 2nd request; performs sequentially
         func firstHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
             // handles if an invalid response
-            let httpResponse = response as! NSHTTPURLResponse
-            if error != nil {
-                NSLog("error is not nil")
-                return
-            } else if httpResponse.statusCode != 200 {
-                // not sure if necessary... error usually is not nil but crashed
-                // on me one time when starting up simulator & running
-                NSLog("Got status code \(httpResponse.statusCode) != 200")
+            if !(HttpHelper.successfulResponse(response, error: error)) {
                 return
             }
             
@@ -93,14 +86,7 @@ class EsdrTilesHandler {
         // 2nd handler
         func secondHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
             // handles if an invalid response
-            let httpResponse = response as! NSHTTPURLResponse
-            if error != nil {
-                NSLog("error is not nil")
-                return
-            } else if httpResponse.statusCode != 200 {
-                // not sure if necessary... error usually is not nil but crashed
-                // on me one time when starting up simulator & running
-                NSLog("Got status code \(httpResponse.statusCode) != 200")
+            if !(HttpHelper.successfulResponse(response, error: error)) {
                 return
             }
             

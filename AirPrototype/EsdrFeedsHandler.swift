@@ -26,14 +26,7 @@ class EsdrFeedsHandler {
         
         // handles http response
         func completionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
-            let httpResponse = response as! NSHTTPURLResponse
-            if error != nil {
-                NSLog("requestChannelReading: error is not nil")
-            } else if httpResponse.statusCode != 200 {
-                // not sure if necessary... error usually is not nil but crashed
-                // on me one time when starting up simulator & running
-                NSLog("requestChannelReading: Got status code \(httpResponse.statusCode) != 200")
-            } else {
+            if HttpHelper.successfulResponse(response, error: error) {
                 let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
                 var temp:NSDictionary
                 
@@ -95,14 +88,7 @@ class EsdrFeedsHandler {
         
         // handles http response
         func completionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
-            let httpResponse = response as! NSHTTPURLResponse
-            if error != nil {
-                NSLog("requestChannelReading: error is not nil")
-            } else if httpResponse.statusCode != 200 {
-                // not sure if necessary... error usually is not nil but crashed
-                // on me one time when starting up simulator & running
-                NSLog("requestChannelReading: Got status code \(httpResponse.statusCode) != 200")
-            } else {
+            if HttpHelper.successfulResponse(response, error: error) {
                 let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
                 var temp:NSDictionary
                 
@@ -194,15 +180,7 @@ class EsdrFeedsHandler {
         let maxTime = NSDate().timeIntervalSince1970 - Constants.READINGS_MAX_TIME_RANGE
         
         func completionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
-            // TODO got an error here (forced type? Should handle if nil)
-            let httpResponse = response as! NSHTTPURLResponse
-            if error != nil {
-                NSLog("error is not nil")
-            } else if httpResponse.statusCode != 200 {
-                // not sure if necessary... error usually is not nil but crashed
-                // on me one time when starting up simulator & running
-                NSLog("Got status code \(httpResponse.statusCode) != 200")
-            } else {
+            if HttpHelper.successfulResponse(response, error: error) {
                 let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
                 
                 address.feeds.appendContentsOf(EsdrJsonParser.populateFeedsFromJson(data!, maxTime: maxTime))

@@ -98,16 +98,7 @@ class LoginController: UIViewController {
         
         GlobalHandler.sharedInstance.esdrAuthHandler.requestEsdrToken(username!, password: password!, completionHandler: { (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void in
             
-            let httpResponse = response as! NSHTTPURLResponse
-            if error != nil {
-                NSLog("error is not nil")
-                self.loggedIn = false
-            } else if httpResponse.statusCode != 200 {
-                // not sure if necessary... error usually is not nil but crashed
-                // on me one time when starting up simulator & running
-                NSLog("Got status code \(httpResponse.statusCode) != 200")
-                self.loggedIn = false
-            } else {
+            if HttpHelper.successfulResponse(response, error: error) {
                 let data = (try! NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as! NSDictionary
                 let accessToken = data.valueForKey("access_token") as! String
                 let refreshToken = data.valueForKey("refresh_token") as! String
