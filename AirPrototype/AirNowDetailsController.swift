@@ -12,8 +12,8 @@ import UIKit
 class AirNowDetailsController: UIViewController {
     
     var reading: AirNowReadable?
-    var feed: Feed?
     
+    // TODO table implementation
     
     override func viewDidLoad() {
         super.viewDidLoad()

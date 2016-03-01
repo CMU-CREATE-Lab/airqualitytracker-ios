@@ -226,9 +226,74 @@
                     <view key="view" contentMode="scaleToFill" id="j4P-3a-D7v">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where does the reported number come from?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2mi-UF-tts">
+                                <rect key="frame" x="20" y="72" width="560" height="22"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0MB-FG-hBt">
+                                <rect key="frame" x="20" y="122" width="560" height="51"/>
+                                <string key="text">This number comes from a federal air monitoring station. The SpeckSensor app pulls its data from the Allegheny County Health Department (ACHD) and federal AirNow sensors. We choose the feed that is closest in distance for the given city or address.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKl-yc-BwP">
+                                <rect key="frame" x="20" y="201" width="560" height="67"/>
+                                <string key="text">To calculate AQI, we pull the sensor's PM2.5 readings from the past 12 hours and apply the EPA NowCast formula. This is a weighted average that gives more recent readings higher weight than older ones. Finally, we convert to AQI from a piecewise linear function (defined by the EPA).</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitude: #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQA-fC-tV0">
+                                <rect key="frame" x="20" y="514" width="560" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Longitude: #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xSH-ch-6fO">
+                                <rect key="frame" x="20" y="535" width="560" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed name: #" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YV9-Rn-q3i">
+                                <rect key="frame" x="20" y="493" width="560" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0MB-FG-hBt" firstAttribute="top" secondItem="2mi-UF-tts" secondAttribute="bottom" constant="28" id="2Ez-LL-n5q"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="0MB-FG-hBt" secondAttribute="leading" id="5Js-cn-fgs"/>
+                            <constraint firstItem="rKl-yc-BwP" firstAttribute="top" secondItem="0MB-FG-hBt" secondAttribute="bottom" constant="28" id="6Cl-gp-px2"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="xSH-ch-6fO" secondAttribute="leading" id="DPt-L5-ZhB"/>
+                            <constraint firstItem="FQA-fC-tV0" firstAttribute="top" secondItem="YV9-Rn-q3i" secondAttribute="bottom" constant="4" id="Ens-AU-3ed"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xSH-ch-6fO" secondAttribute="trailing" id="M9v-93-Gvq"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="rKl-yc-BwP" secondAttribute="leading" id="PUW-SJ-h9B"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2mi-UF-tts" secondAttribute="trailing" id="S9I-Oz-qpI"/>
+                            <constraint firstItem="xSH-ch-6fO" firstAttribute="top" secondItem="FQA-fC-tV0" secondAttribute="bottom" constant="4" id="UEm-ld-ZSq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FQA-fC-tV0" secondAttribute="trailing" id="UXr-lH-9tZ"/>
+                            <constraint firstItem="oRg-Oj-ZXH" firstAttribute="top" secondItem="xSH-ch-6fO" secondAttribute="bottom" constant="4" id="b0z-hK-44p"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="FQA-fC-tV0" secondAttribute="leading" id="cK9-59-Yob"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="2mi-UF-tts" secondAttribute="leading" id="dJ2-gu-bnH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0MB-FG-hBt" secondAttribute="trailing" id="f11-IX-p3u"/>
+                            <constraint firstItem="2mi-UF-tts" firstAttribute="top" secondItem="WDx-4K-IEM" secondAttribute="bottom" constant="8" id="k3g-Fr-a4o"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YV9-Rn-q3i" secondAttribute="trailing" id="lFT-dX-7C1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rKl-yc-BwP" secondAttribute="trailing" id="sA6-QY-cbH"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="YV9-Rn-q3i" secondAttribute="leading" id="w24-gf-oap"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="AQI Explanation" id="NDC-xH-CPC"/>
+                    <connections>
+                        <outlet property="labelFeedName" destination="YV9-Rn-q3i" id="Hbs-bz-nl3"/>
+                        <outlet property="labelLatitude" destination="FQA-fC-tV0" id="6iI-ig-Eee"/>
+                        <outlet property="labelLongitude" destination="xSH-ch-6fO" id="OIT-fy-wZ3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sOr-29-aWr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -245,7 +310,59 @@
                     <view key="view" contentMode="scaleToFill" id="7w0-iD-zpe">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AirNow Readings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3A-XA-8ai">
+                                <rect key="frame" x="20" y="72" width="560" height="22"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rdf-2o-PZb">
+                                <rect key="frame" x="20" y="112" width="560" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="9Fu-fQ-2Ky"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Vf2-o9-cII">
+                                        <rect key="frame" x="0.0" y="28" width="560" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vf2-o9-cII" id="UeS-rS-fEf">
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why does the app not report this?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OTh-s5-eBY">
+                                <rect key="frame" x="20" y="230" width="560" height="20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJL-na-XKq">
+                                <rect key="frame" x="20" y="278" width="560" height="84"/>
+                                <string key="text">AirNow reports air quality by finding the AirNow sensor with the highest NowCast reading for a given region. By contrast, we report the NowCast of the closest sensor from a specific location. We report our values this way because it provides the user with a better estimate of the air quality levels for a specific location instead of a general region.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="OTh-s5-eBY" secondAttribute="trailing" id="5yd-Cb-lmU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TJL-na-XKq" secondAttribute="trailing" id="A0h-ND-nuh"/>
+                            <constraint firstItem="Rdf-2o-PZb" firstAttribute="top" secondItem="O3A-XA-8ai" secondAttribute="bottom" constant="18" id="Jgh-90-dwd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="O3A-XA-8ai" secondAttribute="trailing" id="Q3j-TT-ors"/>
+                            <constraint firstItem="OTh-s5-eBY" firstAttribute="top" secondItem="Rdf-2o-PZb" secondAttribute="bottom" constant="18" id="QVE-x3-B0R"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="OTh-s5-eBY" secondAttribute="leading" id="Stc-0Z-jAT"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Rdf-2o-PZb" secondAttribute="leading" id="Zxd-JW-CMS"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="O3A-XA-8ai" secondAttribute="leading" id="g58-ve-6Ka"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="TJL-na-XKq" secondAttribute="leading" id="g99-xk-3wI"/>
+                            <constraint firstItem="TJL-na-XKq" firstAttribute="top" secondItem="OTh-s5-eBY" secondAttribute="bottom" constant="28" id="h3K-bx-NXl"/>
+                            <constraint firstItem="O3A-XA-8ai" firstAttribute="top" secondItem="IA7-DE-pds" secondAttribute="bottom" constant="8" id="ib8-am-ejD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Rdf-2o-PZb" secondAttribute="trailing" id="nxv-ya-Gzr"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="AirNow" id="kpo-WW-qxn"/>
                 </viewController>

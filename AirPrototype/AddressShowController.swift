@@ -143,13 +143,13 @@ class AddressShowController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let airNowReading = self.reading as? AirNowReadable {
             if segue.identifier == "showAirNowSegue" {
-                let address = airNowReading as! SimpleAddress
                 let controller = segue.destinationViewController as! AirNowDetailsController
+                controller.reading = airNowReading
+            } else if segue.identifier == "showAqiExplainSegue" {
+                let address = airNowReading as! SimpleAddress
+                let controller = segue.destinationViewController as! AqiExplanationDetailsController
                 controller.reading = address
                 controller.feed = address.closestFeed
-            } else if segue.identifier == "showAqiExplainSegue" {
-                let controller = segue.destinationViewController as! AqiExplanationDetailsController
-                controller.reading = airNowReading
             } else {
                 NSLog("ERROR - bad segue name")
             }
