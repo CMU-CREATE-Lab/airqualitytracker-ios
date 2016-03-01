@@ -11,14 +11,14 @@ import UIKit
 
 class AddressShowController: UIViewController {
     
-    @IBOutlet var labelName: UILabel!
+//    @IBOutlet var labelName: UILabel!
     @IBOutlet var labelShowValue: UILabel!
     @IBOutlet var labelReadingMeasurement: UILabel!
     @IBOutlet var labelMeasurementRange: UILabel!
     @IBOutlet var labelValueTitle: UILabel!
     @IBOutlet var labelValueDescription: UILabel!
-    @IBOutlet var labelReadingFromFeed: UILabel!
-    @IBOutlet var labelClosestFeedName: UILabel!
+//    @IBOutlet var labelReadingFromFeed: UILabel!
+//    @IBOutlet var labelClosestFeedName: UILabel!
     @IBOutlet var mainView: UIView!
     var closestFeed: Feed?
     var reading: Readable?
@@ -36,7 +36,8 @@ class AddressShowController: UIViewController {
         labelValueTitle.text = Constants.DefaultReading.DEFAULT_TITLE
         labelValueDescription.text = Constants.DefaultReading.DEFAULT_DESCRIPTION
         mainView.backgroundColor = Constants.DefaultReading.DEFAULT_COLOR_BACKGROUND
-        clearAndHide([labelMeasurementRange, labelShowValue, labelReadingMeasurement, labelReadingFromFeed, labelClosestFeedName])
+//        clearAndHide([labelMeasurementRange, labelShowValue, labelReadingMeasurement, labelReadingFromFeed, labelClosestFeedName])
+        clearAndHide([labelMeasurementRange, labelShowValue, labelReadingMeasurement])
     }
     
     
@@ -53,7 +54,7 @@ class AddressShowController: UIViewController {
             } else {
                 // get feed name
                 closestFeed = address.closestFeed
-                labelClosestFeedName.text = closestFeed?.getName()
+//                labelClosestFeedName.text = closestFeed?.getName()
                 labelMeasurementRange.text = "\(Constants.AqiReading.getRangeFromIndex(index)) AQI"
                 labelValueTitle.text = Constants.AqiReading.titles[index]
                 labelValueDescription.text = Constants.AqiReading.descriptions[index]
@@ -75,7 +76,7 @@ class AddressShowController: UIViewController {
     
     
     func speckView(speck: Speck) {
-        clearAndHide([labelReadingFromFeed, labelClosestFeedName])
+//        clearAndHide([labelReadingFromFeed, labelClosestFeedName])
         if speck.hasReadableValue() {
             let micrograms = speck.getReadableValue()
             labelShowValue.text = Int(micrograms).description
@@ -99,7 +100,8 @@ class AddressShowController: UIViewController {
     
     
     func populateView() {
-        labelName.text = reading!.getName()
+//        labelName.text = reading!.getName()
+        navigationItem.title = reading!.getName()
         let type = reading!.getReadableType()
         switch type {
         case .ADDRESS:
