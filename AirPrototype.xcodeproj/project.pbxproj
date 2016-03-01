@@ -43,6 +43,8 @@
 		A158F6161B8E504500FCE2E1 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158F6151B8E504500FCE2E1 /* Location.swift */; };
 		A15C18601BA757330070D52D /* twitterlogo_small_white.png in Resources */ = {isa = PBXBuildFile; fileRef = A15C185F1BA757330070D52D /* twitterlogo_small_white.png */; };
 		A15C18621BA757F30070D52D /* Dosis-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A15C18611BA757F30070D52D /* Dosis-Light.ttf */; };
+		A15CDB3E1C861673002D5C0F /* AqiExplanationDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15CDB3D1C861673002D5C0F /* AqiExplanationDetailsController.swift */; };
+		A15CDB401C861689002D5C0F /* AirNowDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15CDB3F1C861688002D5C0F /* AirNowDetailsController.swift */; };
 		A160A0ED1BD6826B0059833F /* ic_mode_edit_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A160A0EA1BD6826B0059833F /* ic_mode_edit_2x.png */; };
 		A160A0EE1BD6826B0059833F /* ic_mode_edit_3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A160A0EB1BD6826B0059833F /* ic_mode_edit_3x.png */; };
 		A160A0EF1BD6826B0059833F /* ic_mode_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = A160A0EC1BD6826B0059833F /* ic_mode_edit.png */; };
@@ -140,6 +142,8 @@
 		A158F6151B8E504500FCE2E1 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		A15C185F1BA757330070D52D /* twitterlogo_small_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = twitterlogo_small_white.png; path = Assets/twitterlogo_small_white.png; sourceTree = "<group>"; };
 		A15C18611BA757F30070D52D /* Dosis-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Dosis-Light.ttf"; path = "Assets/Dosis-Light.ttf"; sourceTree = "<group>"; };
+		A15CDB3D1C861673002D5C0F /* AqiExplanationDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AqiExplanationDetailsController.swift; sourceTree = "<group>"; };
+		A15CDB3F1C861688002D5C0F /* AirNowDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirNowDetailsController.swift; sourceTree = "<group>"; };
 		A160A0EA1BD6826B0059833F /* ic_mode_edit_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_mode_edit_2x.png; path = Assets/ic_mode_edit_2x.png; sourceTree = "<group>"; };
 		A160A0EB1BD6826B0059833F /* ic_mode_edit_3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_mode_edit_3x.png; path = Assets/ic_mode_edit_3x.png; sourceTree = "<group>"; };
 		A160A0EC1BD6826B0059833F /* ic_mode_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_mode_edit.png; path = Assets/ic_mode_edit.png; sourceTree = "<group>"; };
@@ -387,6 +391,8 @@
 			isa = PBXGroup;
 			children = (
 				A16481FA1B5D553F0023DE09 /* AddressShowController.swift */,
+				A15CDB3D1C861673002D5C0F /* AqiExplanationDetailsController.swift */,
+				A15CDB3F1C861688002D5C0F /* AirNowDetailsController.swift */,
 			);
 			name = address_show;
 			sourceTree = "<group>";
@@ -681,6 +687,7 @@
 				A1740DBC1BC41B5B00617185 /* AboutSpeckController.swift in Sources */,
 				A16A14711B5FD9070026E9C8 /* EsdrJsonParser.swift in Sources */,
 				A1551C6A1C29CD72005ED28B /* ReadingsHandlerEditable.swift in Sources */,
+				A15CDB401C861689002D5C0F /* AirNowDetailsController.swift in Sources */,
 				A167F08B1C6D02C80006E1F6 /* AirNowJsonParser.swift in Sources */,
 				A1E2A91D1B99ED47003A3B3A /* SettingsHandler.swift in Sources */,
 				A1666F831B54125400A8E39F /* AppDelegate.swift in Sources */,
@@ -690,6 +697,7 @@
 				A1F58E5B1B972DD700D04C91 /* Speck.swift in Sources */,
 				A1666FAA1B54176D00A8E39F /* SimpleAddress.swift in Sources */,
 				A158F6161B8E504500FCE2E1 /* Location.swift in Sources */,
+				A15CDB3E1C861673002D5C0F /* AqiExplanationDetailsController.swift in Sources */,
 				A1626DF91B555A79006D990C /* AddressSearchController.swift in Sources */,
 				A14C456F1BA0B46700D6C9CF /* ReadableIndexCell.swift in Sources */,
 				A1551C701C29D35B005ED28B /* GpsReadingHandler.swift in Sources */,

@@ -80,7 +80,7 @@
                                         <rect key="frame" x="0.0" y="206" width="560" height="30"/>
                                         <state key="normal" title="Where does this number come from?"/>
                                         <connections>
-                                            <segue destination="44P-hm-Tdp" kind="show" id="3oD-wm-Ln0"/>
+                                            <segue destination="44P-hm-Tdp" kind="show" identifier="showAqiExplainSegue" id="3oD-wm-Ln0"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AQI 0-50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpZ-Zs-5F7">
@@ -105,7 +105,7 @@
                                         <rect key="frame" x="0.0" y="374" width="560" height="30"/>
                                         <state key="normal" title="check with AirNow"/>
                                         <connections>
-                                            <segue destination="NBd-lW-9dU" kind="show" id="k1u-Cq-YdF"/>
+                                            <segue destination="NBd-lW-9dU" kind="show" identifier="showAirNowSegue" id="k1u-Cq-YdF"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kvf-Oo-SnU">
@@ -218,7 +218,7 @@
         <!--AQI Explanation-->
         <scene sceneID="EqQ-ts-hyV">
             <objects>
-                <viewController id="44P-hm-Tdp" sceneMemberID="viewController">
+                <viewController id="44P-hm-Tdp" customClass="AqiExplanationDetailsController" customModule="SpeckSensor" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WDx-4K-IEM"/>
                         <viewControllerLayoutGuide type="bottom" id="oRg-Oj-ZXH"/>
@@ -237,7 +237,7 @@
         <!--AirNow-->
         <scene sceneID="uxk-p6-kiR">
             <objects>
-                <viewController id="NBd-lW-9dU" sceneMemberID="viewController">
+                <viewController id="NBd-lW-9dU" customClass="AirNowDetailsController" customModule="SpeckSensor" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IA7-DE-pds"/>
                         <viewControllerLayoutGuide type="bottom" id="gDY-MC-ww5"/>

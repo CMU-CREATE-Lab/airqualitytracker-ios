@@ -140,6 +140,25 @@ class AddressShowController: UIViewController {
     // MARK: UIView Overrides
     
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let airNowReading = self.reading as? AirNowReadable {
+            if segue.identifier == "showAirNowSegue" {
+                let address = airNowReading as! SimpleAddress
+                let controller = segue.destinationViewController as! AirNowDetailsController
+                controller.reading = address
+                controller.feed = address.closestFeed
+            } else if segue.identifier == "showAqiExplainSegue" {
+                let controller = segue.destinationViewController as! AqiExplanationDetailsController
+                controller.reading = airNowReading
+            } else {
+                NSLog("ERROR - bad segue name")
+            }
+        } else {
+            NSLog("WARNING - Prepared for a segue but reading was not AirNowReadable")
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         populateView()
