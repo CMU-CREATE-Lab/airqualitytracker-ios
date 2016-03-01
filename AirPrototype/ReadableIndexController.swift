@@ -77,6 +77,7 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
         SpeckDbHelper.loadSpecksFromDb()
         let globalHandler = GlobalHandler.sharedInstance
         globalHandler.readableIndexListView = self.gridView
+        globalHandler.updateReadings()
         
         GlobalHandler.sharedInstance.servicesHandler.startLocationService()
         

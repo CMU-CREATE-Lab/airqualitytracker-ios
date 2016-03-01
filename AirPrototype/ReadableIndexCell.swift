@@ -28,7 +28,7 @@ class ReadableIndexCell: UICollectionViewCell {
             switch type {
             case .ADDRESS:
                 textItemLabel.text = Constants.Units.AQI
-                let aqi = Converter.microgramsToAqi(reading.getReadableValue())
+                let aqi = AqiConverter.microgramsToAqi(reading.getReadableValue())
                 value = Int(aqi).description
                 index = Constants.AqiReading.getIndexFromReading(aqi)
                 if index >= 0 {

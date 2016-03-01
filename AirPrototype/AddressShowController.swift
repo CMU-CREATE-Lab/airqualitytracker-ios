@@ -45,7 +45,7 @@ class AddressShowController: UIViewController {
             self.navigationItem.rightBarButtonItems = []
         }
         if address.hasReadableValue() {
-            let aqi = Converter.microgramsToAqi(address.getReadableValue())
+            let aqi = AqiConverter.microgramsToAqi(address.getReadableValue())
             labelShowValue.text = Int(aqi).description
             let index = Constants.AqiReading.getIndexFromReading(aqi)
             if index < 0 {
