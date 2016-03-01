@@ -23,6 +23,8 @@ class AddressShowController: UIViewController {
     var closestFeed: Feed?
     var reading: Readable?
     
+    @IBOutlet var buttonAqiExplanation: UIButton!
+    @IBOutlet var buttonAirNow: UIButton!
     
     private func clearAndHide(labels: [UILabel!]) {
         for label in labels {
@@ -38,6 +40,8 @@ class AddressShowController: UIViewController {
         mainView.backgroundColor = Constants.DefaultReading.DEFAULT_COLOR_BACKGROUND
 //        clearAndHide([labelMeasurementRange, labelShowValue, labelReadingMeasurement, labelReadingFromFeed, labelClosestFeedName])
         clearAndHide([labelMeasurementRange, labelShowValue, labelReadingMeasurement])
+        buttonAqiExplanation.hidden = true
+        buttonAirNow.hidden = true
     }
     
     
@@ -77,6 +81,8 @@ class AddressShowController: UIViewController {
     
     func speckView(speck: Speck) {
 //        clearAndHide([labelReadingFromFeed, labelClosestFeedName])
+        buttonAqiExplanation.hidden = true
+        buttonAirNow.hidden = true
         if speck.hasReadableValue() {
             let micrograms = speck.getReadableValue()
             labelShowValue.text = Int(micrograms).description
