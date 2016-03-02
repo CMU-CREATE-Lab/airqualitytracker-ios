@@ -13,7 +13,8 @@ protocol AirNowReadable: Readable {
     var location: Location {get set}
     var airNowObservations: [AirNowObservation] {get set}
     
-    func getMostRecentAirNowObservation() -> AirNowObservation?
+    func getMostRecentAirNowObservations() -> [AirNowObservation]
+    func requestAirNow()
     mutating func appendAndSort(values: [AirNowObservation])
     
 }
@@ -22,11 +23,22 @@ protocol AirNowReadable: Readable {
 extension AirNowReadable {
     
     
-    func getMostRecentAirNowObservation() -> AirNowObservation? {
+    func getMostRecentAirNowObservations() -> [AirNowObservation] {
+        var values = [AirNowObservation]()
         if airNowObservations.count > 0 {
-            return airNowObservations[0]
+            let date = airNowObservations[0].observedDateTime
+            for observation in airNowObservations {
+                if observation.observedDateTime.compare(date) == NSComparisonResult.OrderedSame {
+                    values.append(observation)
+                }
+            }
         }
-        return nil
+        return values
+    }
+    
+    
+    func requestAirNow() {
+        GlobalHandler.sharedInstance.airNowRequestHandler.requestAirNowObservation(self)
     }
     
     

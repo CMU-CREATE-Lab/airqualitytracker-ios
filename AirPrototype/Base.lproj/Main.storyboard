@@ -317,20 +317,56 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rdf-2o-PZb">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="38" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rdf-2o-PZb">
                                 <rect key="frame" x="20" y="112" width="560" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="9Fu-fQ-2Ky"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Vf2-o9-cII">
-                                        <rect key="frame" x="0.0" y="28" width="560" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AirNowDetailsCell" id="Vf2-o9-cII" customClass="AirNowDetailsTableCell" customModule="SpeckSensor" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="560" height="38"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vf2-o9-cII" id="UeS-rS-fEf">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="37"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="ParamName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnF-hP-iLQ">
+                                                    <rect key="frame" x="8" y="8" width="471" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZCe-5a-ysq">
+                                                    <rect key="frame" x="487" y="0.0" width="29" height="29"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="0.31833584337349397" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="ZCe-5a-ysq" secondAttribute="height" multiplier="1:1" id="aJX-Ci-Kj4"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XxB-3k-VmA">
+                                                    <rect key="frame" x="524" y="8" width="28" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="XxB-3k-VmA" secondAttribute="trailing" id="5wJ-8E-RnO"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="dnF-hP-iLQ" secondAttribute="leading" id="Cg9-xB-Ivh"/>
+                                                <constraint firstItem="ZCe-5a-ysq" firstAttribute="top" secondItem="UeS-rS-fEf" secondAttribute="topMargin" constant="-8" id="Ogn-dh-aQQ"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ZCe-5a-ysq" secondAttribute="bottom" id="S5V-VZ-k40"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="XxB-3k-VmA" secondAttribute="bottom" id="TBT-IX-OCM"/>
+                                                <constraint firstItem="XxB-3k-VmA" firstAttribute="leading" secondItem="ZCe-5a-ysq" secondAttribute="trailing" constant="8" id="fYG-Mt-sZ9"/>
+                                                <constraint firstItem="ZCe-5a-ysq" firstAttribute="leading" secondItem="dnF-hP-iLQ" secondAttribute="trailing" constant="8" id="iyo-Y0-vtE"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="dnF-hP-iLQ" secondAttribute="bottom" id="xbU-jI-aF7"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="labelAqi" destination="XxB-3k-VmA" id="LOV-hO-TOR"/>
+                                            <outlet property="labelParamName" destination="dnF-hP-iLQ" id="fWj-cf-nis"/>
+                                            <outlet property="viewColored" destination="ZCe-5a-ysq" id="ELk-ze-ewH"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -365,6 +401,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="AirNow" id="kpo-WW-qxn"/>
+                    <connections>
+                        <outlet property="tableAirNowObservations" destination="Rdf-2o-PZb" id="pUy-GF-803"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ADN-uN-jBX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
