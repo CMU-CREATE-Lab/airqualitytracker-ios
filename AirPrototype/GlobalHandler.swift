@@ -42,6 +42,7 @@ class GlobalHandler {
     // keep track of ALL adapters for notify
     var readableIndexListView: UICollectionView?
     var secretDebugMenuTable: UITableView?
+    var airNowTable: UITableView?
     var loginController: LoginController?
     var appDelegate: AppDelegate
     var refreshTimer: RefreshTimer
@@ -126,6 +127,11 @@ class GlobalHandler {
             dispatch_async(dispatch_get_main_queue()) {
                 // (crashes here)
                 secretMenu.reloadData()
+            }
+        }
+        if let airNowMenu = self.airNowTable {
+            dispatch_async(dispatch_get_main_queue()) {
+                airNowMenu.reloadData()
             }
         }
     }

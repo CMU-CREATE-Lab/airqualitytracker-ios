@@ -26,6 +26,7 @@ class AirNowRequestHandler {
                 let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSArray
                 let result = AirNowJsonParser.parseObservationsFromJson(data)
                 readable.appendAndSort(result)
+                GlobalHandler.sharedInstance.notifyGlobalDataSetChanged()
             }
         }
         

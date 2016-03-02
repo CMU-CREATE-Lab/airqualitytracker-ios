@@ -317,36 +317,39 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="38" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rdf-2o-PZb">
-                                <rect key="frame" x="20" y="112" width="560" height="100"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rdf-2o-PZb">
+                                <rect key="frame" x="20" y="112" width="560" height="120"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="9Fu-fQ-2Ky"/>
+                                    <constraint firstAttribute="height" constant="120" id="9Fu-fQ-2Ky"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AirNowDetailsCell" id="Vf2-o9-cII" customClass="AirNowDetailsTableCell" customModule="SpeckSensor" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="560" height="38"/>
+                                        <rect key="frame" x="0.0" y="28" width="560" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vf2-o9-cII" id="UeS-rS-fEf">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="37"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="ParamName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnF-hP-iLQ">
-                                                    <rect key="frame" x="8" y="8" width="471" height="21"/>
+                                                    <rect key="frame" x="8" y="14" width="421" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZCe-5a-ysq">
-                                                    <rect key="frame" x="487" y="0.0" width="29" height="29"/>
+                                                    <rect key="frame" x="437" y="8" width="27" height="27"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="0.31833584337349397" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="ZCe-5a-ysq" secondAttribute="height" multiplier="1:1" id="aJX-Ci-Kj4"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XxB-3k-VmA">
-                                                    <rect key="frame" x="524" y="8" width="28" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123 AQI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XxB-3k-VmA">
+                                                    <rect key="frame" x="472" y="18" width="80" height="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="rk4-xc-EA5"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -354,7 +357,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="XxB-3k-VmA" secondAttribute="trailing" id="5wJ-8E-RnO"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="dnF-hP-iLQ" secondAttribute="leading" id="Cg9-xB-Ivh"/>
-                                                <constraint firstItem="ZCe-5a-ysq" firstAttribute="top" secondItem="UeS-rS-fEf" secondAttribute="topMargin" constant="-8" id="Ogn-dh-aQQ"/>
+                                                <constraint firstItem="ZCe-5a-ysq" firstAttribute="top" secondItem="UeS-rS-fEf" secondAttribute="topMargin" id="Ogn-dh-aQQ"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="ZCe-5a-ysq" secondAttribute="bottom" id="S5V-VZ-k40"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="XxB-3k-VmA" secondAttribute="bottom" id="TBT-IX-OCM"/>
                                                 <constraint firstItem="XxB-3k-VmA" firstAttribute="leading" secondItem="ZCe-5a-ysq" secondAttribute="trailing" constant="8" id="fYG-Mt-sZ9"/>
@@ -371,13 +374,13 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why does the app not report this?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OTh-s5-eBY">
-                                <rect key="frame" x="20" y="230" width="560" height="20"/>
+                                <rect key="frame" x="20" y="250" width="560" height="20"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJL-na-XKq">
-                                <rect key="frame" x="20" y="278" width="560" height="84"/>
+                                <rect key="frame" x="20" y="298" width="560" height="84"/>
                                 <string key="text">AirNow reports air quality by finding the AirNow sensor with the highest NowCast reading for a given region. By contrast, we report the NowCast of the closest sensor from a specific location. We report our values this way because it provides the user with a better estimate of the air quality levels for a specific location instead of a general region.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>

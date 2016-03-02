@@ -19,7 +19,7 @@ class AirNowDetailsTableCell: UITableViewCell {
     func populate(observation: AirNowObservation) {
         // TODO populate actions
         let aqi = observation.aqi
-        labelAqi.text = aqi.description
+        labelAqi.text = "\(aqi.description) AQI"
         labelParamName.text = observation.parameterName
         let index = Constants.AqiReading.getIndexFromReading(aqi)
         viewColored.backgroundColor = Constants.AqiReading.aqiColors[index]
