@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class AirNowJsonParser {
     
@@ -42,10 +43,17 @@ class AirNowJsonParser {
     static func parseObservationsFromJson(data: NSArray?) -> [AirNowObservation] {
         var result = [AirNowObservation]()
         
-        // TODO "catch" API error
-        for item in data! {
-            let row = item as! NSDictionary
-            result.append(parseObservationFromJson(row))
+        if data != nil {
+            for item in data! {
+                let row = item as! NSDictionary
+                result.append(parseObservationFromJson(row))
+            }
+        } else {
+            // "catch" parsing error (likely from API limit)
+            NSLog("CAUGHT - Bad format for parseObservationsFromJson")
+            dispatch_async(dispatch_get_main_queue()) {
+                UIAlertView.init(title: "AirNow Error", message: "Could not get latest reading from AirNow", delegate: nil, cancelButtonTitle: "OK").show()
+            }
         }
         
         return result
