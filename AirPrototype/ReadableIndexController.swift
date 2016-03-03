@@ -87,13 +87,14 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
         self.gridView.alwaysBounceVertical = true
         self.refreshController!.addTarget(self, action:"refreshLayout", forControlEvents: UIControlEvents.ValueChanged)
         
-        // nav control
-        let logo = UIImage(named: "logo_specksensor-black")
-        let imageView = UIImageView(image: logo)
-        imageView.frame.size.height = 33 // & width 165
-        
-        self.navigationItem.title = nil
-        self.navigationItem.titleView = imageView
+//        // nav control
+//        let logo = UIImage(named: "logo_specksensor-black")
+//        let imageView = UIImageView(image: logo)
+//        imageView.frame.size.height = 33 // & width 165
+//        
+//        self.navigationItem.title = nil
+//        self.navigationItem.titleView = imageView
+        self.navigationItem.title = "Speck Sensor"
     }
     
     
