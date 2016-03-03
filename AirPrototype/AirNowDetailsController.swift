@@ -13,22 +13,15 @@ class AirNowDetailsController: UIViewController, UITableViewDelegate, UITableVie
     
     var reading: AirNowReadable?
     
-    // TODO table implementation
     @IBOutlet var tableAirNowObservations: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSLog("AirNowDetailsController did load with reading=\(reading!.getName())")
         let observations = reading!.getMostRecentAirNowObservations()
-        NSLog("observations count=\(observations.count)")
         if observations.count == 0 {
-            NSLog("Requesting observations from airnow")
+            NSLog("Requesting observations from airnow for reading=\(reading!.getName())")
             reading!.requestAirNow()
-        } else {
-            for item in observations {
-                NSLog("aqi=\(item.aqi), time=\(item.observedDateTime), location=\(item.location), paramName=\(item.parameterName)")
-            }
         }
         
         tableAirNowObservations.delegate = self
@@ -54,8 +47,9 @@ class AirNowDetailsController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let observations = reading!.getMostRecentAirNowObservations()
         if observations.count > 0 {
-            // TODO make pretty
-            return observations[0].observedDateTime.description
+            let title = "observed at \(observations[0].readableDate)"
+            return title
+//            return observations[0].observedDateTime.description
         }
         return "No AirNow observations"
     }

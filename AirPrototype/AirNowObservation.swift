@@ -16,15 +16,18 @@ class AirNowObservation {
 //    let date = dateFormat.dateFromString(input)
     // dateObserved,hourObserved,localTimeZone
     var observedDateTime: NSDate
+    var readableDate: String
     var reportingArea: String
     var stateCode: String
+    // TODO not sure what this location even represents... seems inconsistent with which feed values are reported
     var location: Location
     var parameterName: String
     var aqi: Double
     
     
-    init(observedDateTime: NSDate, reportingArea: String, stateCode: String, location: Location, parameterName: String, aqi: Double) {
+    init(observedDateTime: NSDate, readableDate: String, reportingArea: String, stateCode: String, location: Location, parameterName: String, aqi: Double) {
         self.observedDateTime = observedDateTime
+        self.readableDate = readableDate
         self.reportingArea = reportingArea
         self.stateCode = stateCode
         self.location = location

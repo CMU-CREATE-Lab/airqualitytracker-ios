@@ -57,7 +57,6 @@
 		A1666F8B1B54125400A8E39F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1666F891B54125400A8E39F /* Main.storyboard */; };
 		A1666F8D1B54125400A8E39F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1666F8C1B54125400A8E39F /* Images.xcassets */; };
 		A1666F901B54125400A8E39F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1666F8E1B54125400A8E39F /* LaunchScreen.xib */; };
-		A1666F9C1B54125400A8E39F /* AirPrototypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666F9B1B54125400A8E39F /* AirPrototypeTests.swift */; };
 		A1666FAA1B54176D00A8E39F /* SimpleAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FA91B54176D00A8E39F /* SimpleAddress.swift */; };
 		A1666FAC1B54190A00A8E39F /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FAB1B54190A00A8E39F /* Feed.swift */; };
 		A1666FAE1B5419D300A8E39F /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1666FAD1B5419D300A8E39F /* Channel.swift */; };
@@ -94,16 +93,6 @@
 		A1F58E5D1B975BE700D04C91 /* EsdrAuthHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F58E5C1B975BE700D04C91 /* EsdrAuthHandler.swift */; };
 		A1FEAB411B8CF19D00F9716B /* StoredAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FEAB401B8CF19D00F9716B /* StoredAddress.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A1666F961B54125400A8E39F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A1666F751B54125400A8E39F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1666F7C1B54125400A8E39F;
-			remoteInfo = AirPrototype;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		A103E6071BE12A5E0065378D /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -160,7 +149,6 @@
 		A1666F8A1B54125400A8E39F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A1666F8C1B54125400A8E39F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A1666F8F1B54125400A8E39F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		A1666F951B54125400A8E39F /* AirPrototypeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirPrototypeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1666F9A1B54125400A8E39F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1666F9B1B54125400A8E39F /* AirPrototypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPrototypeTests.swift; sourceTree = "<group>"; };
 		A1666FA91B54176D00A8E39F /* SimpleAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleAddress.swift; sourceTree = "<group>"; };
@@ -206,13 +194,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A11844B31BAA0A9D00435D11 /* CoreLocation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A1666F921B54125400A8E39F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,7 +395,6 @@
 			isa = PBXGroup;
 			children = (
 				A1666F7D1B54125400A8E39F /* SpeckSensor.app */,
-				A1666F951B54125400A8E39F /* AirPrototypeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -567,24 +547,6 @@
 			productReference = A1666F7D1B54125400A8E39F /* SpeckSensor.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A1666F941B54125400A8E39F /* AirPrototypeTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A1666FA21B54125400A8E39F /* Build configuration list for PBXNativeTarget "AirPrototypeTests" */;
-			buildPhases = (
-				A1666F911B54125400A8E39F /* Sources */,
-				A1666F921B54125400A8E39F /* Frameworks */,
-				A1666F931B54125400A8E39F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A1666F971B54125400A8E39F /* PBXTargetDependency */,
-			);
-			name = AirPrototypeTests;
-			productName = AirPrototypeTests;
-			productReference = A1666F951B54125400A8E39F /* AirPrototypeTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -605,10 +567,6 @@
 							};
 						};
 					};
-					A1666F941B54125400A8E39F = {
-						CreatedOnToolsVersion = 6.4;
-						TestTargetID = A1666F7C1B54125400A8E39F;
-					};
 				};
 			};
 			buildConfigurationList = A1666F781B54125400A8E39F /* Build configuration list for PBXProject "AirPrototype" */;
@@ -625,7 +583,6 @@
 			projectRoot = "";
 			targets = (
 				A1666F7C1B54125400A8E39F /* SpeckSensor */,
-				A1666F941B54125400A8E39F /* AirPrototypeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -657,13 +614,6 @@
 				A15132461BB57D7B0036577D /* Icon-80.png in Resources */,
 				A15132361BB57CCD0036577D /* Icon-87.png in Resources */,
 				A15132401BB57D0C0036577D /* Icon-40.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A1666F931B54125400A8E39F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -739,23 +689,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A1666F911B54125400A8E39F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A1666F9C1B54125400A8E39F /* AirPrototypeTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A1666F971B54125400A8E39F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1666F7C1B54125400A8E39F /* SpeckSensor */;
-			targetProxy = A1666F961B54125400A8E39F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A1666F891B54125400A8E39F /* Main.storyboard */ = {
@@ -894,42 +828,6 @@
 			};
 			name = Release;
 		};
-		A1666FA31B54125400A8E39F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = AirPrototypeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cmucreatelab.tasota.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AirPrototype.app/AirPrototype";
-			};
-			name = Debug;
-		};
-		A1666FA41B54125400A8E39F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = AirPrototypeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cmucreatelab.tasota.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AirPrototype.app/AirPrototype";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -947,15 +845,6 @@
 			buildConfigurations = (
 				A1666FA01B54125400A8E39F /* Debug */,
 				A1666FA11B54125400A8E39F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A1666FA21B54125400A8E39F /* Build configuration list for PBXNativeTarget "AirPrototypeTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A1666FA31B54125400A8E39F /* Debug */,
-				A1666FA41B54125400A8E39F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

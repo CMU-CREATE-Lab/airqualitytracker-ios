@@ -30,10 +30,11 @@ class AirNowJsonParser {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd H z"
         let time = dateFormatter.dateFromString(formattedString)
+        let timeString = "\(hourObserved):00 \(localTimeZone)"
         let location = Location(latitude: Double(lat), longitude: Double(long))
         
         // return instance
-        observation = AirNowObservation(observedDateTime: time!, reportingArea: reportingArea, stateCode: stateCode, location: location, parameterName: parameterName, aqi: Double(aqi))
+        observation = AirNowObservation(observedDateTime: time!, readableDate: timeString, reportingArea: reportingArea, stateCode: stateCode, location: location, parameterName: parameterName, aqi: Double(aqi))
         return observation
     }
     
