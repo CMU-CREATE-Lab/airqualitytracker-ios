@@ -29,6 +29,10 @@ class AirNowDetailsController: UIViewController, UITableViewDelegate, UITableVie
         GlobalHandler.sharedInstance.airNowTable = tableAirNowObservations
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        GlobalHandler.sharedInstance.airNowTable = nil
+    }
+    
     
     // MARK table view
     
