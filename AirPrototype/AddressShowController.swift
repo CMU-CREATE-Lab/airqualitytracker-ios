@@ -25,6 +25,7 @@ class AddressShowController: UIViewController {
     
     @IBOutlet var buttonAqiExplanation: UIButton!
     @IBOutlet var buttonAirNow: UIButton!
+    @IBOutlet var viewAqiButton: UIView!
     
     private func clearAndHide(labels: [UILabel!]) {
         for label in labels {
@@ -42,6 +43,7 @@ class AddressShowController: UIViewController {
         clearAndHide([labelMeasurementRange, labelShowValue, labelReadingMeasurement])
         buttonAqiExplanation.hidden = true
         buttonAirNow.hidden = true
+        viewAqiButton.hidden = true
     }
     
     
@@ -83,6 +85,7 @@ class AddressShowController: UIViewController {
 //        clearAndHide([labelReadingFromFeed, labelClosestFeedName])
         buttonAqiExplanation.hidden = true
         buttonAirNow.hidden = true
+        viewAqiButton.hidden = true
         if speck.hasReadableValue() {
             let micrograms = speck.getReadableValue()
             labelShowValue.text = Int(micrograms).description
