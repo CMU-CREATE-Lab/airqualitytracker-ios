@@ -11,20 +11,14 @@ import UIKit
 
 class AddressShowController: UIViewController {
     
-//    @IBOutlet var labelName: UILabel!
     @IBOutlet var labelShowValue: UILabel!
     @IBOutlet var labelReadingMeasurement: UILabel!
     @IBOutlet var labelMeasurementRange: UILabel!
     @IBOutlet var labelValueTitle: UILabel!
     @IBOutlet var labelValueDescription: UILabel!
-//    @IBOutlet var labelReadingFromFeed: UILabel!
-//    @IBOutlet var labelClosestFeedName: UILabel!
     @IBOutlet var mainView: UIView!
     var closestFeed: Feed?
     var reading: Readable?
-    
-    @IBOutlet var buttonAqiExplanation: UIButton!
-    @IBOutlet var buttonAirNow: UIButton!
     @IBOutlet var viewAqiButton: UIView!
     
     private func clearAndHide(labels: [UILabel!]) {
@@ -39,10 +33,7 @@ class AddressShowController: UIViewController {
         labelValueTitle.text = Constants.DefaultReading.DEFAULT_TITLE
         labelValueDescription.text = Constants.DefaultReading.DEFAULT_DESCRIPTION
         mainView.backgroundColor = Constants.DefaultReading.DEFAULT_COLOR_BACKGROUND
-//        clearAndHide([labelMeasurementRange, labelShowValue, labelReadingMeasurement, labelReadingFromFeed, labelClosestFeedName])
         clearAndHide([labelMeasurementRange, labelShowValue, labelReadingMeasurement])
-        buttonAqiExplanation.hidden = true
-        buttonAirNow.hidden = true
         viewAqiButton.hidden = true
     }
     
@@ -82,9 +73,6 @@ class AddressShowController: UIViewController {
     
     
     func speckView(speck: Speck) {
-//        clearAndHide([labelReadingFromFeed, labelClosestFeedName])
-        buttonAqiExplanation.hidden = true
-        buttonAirNow.hidden = true
         viewAqiButton.hidden = true
         if speck.hasReadableValue() {
             let micrograms = speck.getReadableValue()
@@ -109,7 +97,6 @@ class AddressShowController: UIViewController {
     
     
     func populateView() {
-//        labelName.text = reading!.getName()
         navigationItem.title = reading!.getName()
         let type = reading!.getReadableType()
         switch type {
@@ -124,14 +111,6 @@ class AddressShowController: UIViewController {
     
     
     // MARK: Storyboard Events
-
-    
-    @IBAction func onClickFeedName(sender: UITapGestureRecognizer) {
-        if let feed = closestFeed {
-            let dialog = UIAlertView.init(title: feed.getName(), message: "Latitude: \(feed.location.latitude.description)\nLongitude: \(feed.location.longitude.description)", delegate: nil, cancelButtonTitle: "OK")
-            dialog.show()
-        }
-    }
     
     
     @IBAction func onClickRemove(sender: AnyObject) {

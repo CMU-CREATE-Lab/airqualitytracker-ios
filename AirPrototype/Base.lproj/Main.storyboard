@@ -105,30 +105,9 @@
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kwG-VL-kDS">
                                         <rect key="frame" x="0.0" y="374" width="600" height="66"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wyD-dn-Slw">
-                                                <rect key="frame" x="236" y="36" width="128" height="30"/>
-                                                <state key="normal" title="check with AirNow"/>
-                                                <connections>
-                                                    <segue destination="NBd-lW-9dU" kind="show" identifier="showAirNowSegue" id="k1u-Cq-YdF"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0JO-Ev-a1r">
-                                                <rect key="frame" x="173" y="0.0" width="254" height="30"/>
-                                                <state key="normal" title="Where does this number come from?"/>
-                                                <connections>
-                                                    <segue destination="44P-hm-Tdp" kind="show" identifier="showAqiExplainSegue" id="3oD-wm-Ln0"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="wyD-dn-Slw" firstAttribute="top" secondItem="kwG-VL-kDS" secondAttribute="top" constant="36" id="Iag-sC-6VA"/>
                                             <constraint firstAttribute="height" constant="66" id="Jos-Je-Hlw"/>
-                                            <constraint firstItem="wyD-dn-Slw" firstAttribute="top" secondItem="0JO-Ev-a1r" secondAttribute="bottom" constant="6" id="abK-WT-dEl"/>
-                                            <constraint firstAttribute="bottom" secondItem="0JO-Ev-a1r" secondAttribute="bottom" constant="36" id="kSV-f5-Or1"/>
-                                            <constraint firstItem="wyD-dn-Slw" firstAttribute="centerX" secondItem="kwG-VL-kDS" secondAttribute="centerX" id="maS-ei-Zzu"/>
-                                            <constraint firstItem="0JO-Ev-a1r" firstAttribute="centerX" secondItem="kwG-VL-kDS" secondAttribute="centerX" id="qcT-wE-jgt"/>
                                         </constraints>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="EVo-MC-6ck" appends="YES" id="g8Y-8z-thS"/>
@@ -214,8 +193,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="buttonAirNow" destination="wyD-dn-Slw" id="eBm-xv-QOJ"/>
-                        <outlet property="buttonAqiExplanation" destination="0JO-Ev-a1r" id="acA-wI-tny"/>
                         <outlet property="labelMeasurementRange" destination="wpZ-Zs-5F7" id="qri-qg-GsL"/>
                         <outlet property="labelReadingMeasurement" destination="6PX-Qm-Jcq" id="FTN-YW-XQk"/>
                         <outlet property="labelShowValue" destination="fpF-6f-Hm5" id="Duj-On-NYN"/>
@@ -228,7 +205,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4FJ-Wj-5cG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="EVo-MC-6ck">
                     <connections>
-                        <action selector="onClickFeedName:" destination="Ckw-z9-HQ4" id="yWr-Em-3iz"/>
+                        <segue destination="44P-hm-Tdp" kind="show" identifier="showAqiExplainSegue" id="4cR-ec-VsG"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -237,7 +214,7 @@
         <!--AQI Explanation-->
         <scene sceneID="EqQ-ts-hyV">
             <objects>
-                <viewController id="44P-hm-Tdp" customClass="AqiExplanationDetailsController" customModule="SpeckSensor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AqiExplanation" id="44P-hm-Tdp" customClass="AqiExplanationDetailsController" customModule="SpeckSensor" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WDx-4K-IEM"/>
                         <viewControllerLayoutGuide type="bottom" id="oRg-Oj-ZXH"/>
@@ -247,76 +224,54 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where does the reported number come from?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2mi-UF-tts">
-                                <rect key="frame" x="20" y="72" width="560" height="22"/>
+                                <rect key="frame" x="20" y="28" width="560" height="22"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0MB-FG-hBt">
-                                <rect key="frame" x="20" y="122" width="560" height="51"/>
+                                <rect key="frame" x="20" y="78" width="560" height="51"/>
                                 <string key="text">This number comes from a federal air monitoring station. The SpeckSensor app pulls its data from the Allegheny County Health Department (ACHD) and federal AirNow sensors. We choose the feed that is closest in distance for the given city or address.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKl-yc-BwP">
-                                <rect key="frame" x="20" y="201" width="560" height="67"/>
+                                <rect key="frame" x="20" y="157" width="560" height="67"/>
                                 <string key="text">To calculate AQI, we pull the sensor's PM2.5 readings from the past 12 hours and apply the EPA NowCast formula. This is a weighted average that gives more recent readings higher weight than older ones. Finally, we convert to AQI from a piecewise linear function (defined by the EPA).</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitude: #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQA-fC-tV0">
-                                <rect key="frame" x="20" y="514" width="560" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Longitude: #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xSH-ch-6fO">
-                                <rect key="frame" x="20" y="535" width="560" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed name: #" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YV9-Rn-q3i">
-                                <rect key="frame" x="20" y="493" width="560" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i5d-iq-GaZ">
+                                <rect key="frame" x="20" y="550" width="560" height="30"/>
+                                <state key="normal" title="check AirNow"/>
+                                <connections>
+                                    <segue destination="NBd-lW-9dU" kind="show" identifier="showAirNowSegue" id="GZv-bn-naK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="0MB-FG-hBt" firstAttribute="top" secondItem="2mi-UF-tts" secondAttribute="bottom" constant="28" id="2Ez-LL-n5q"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="i5d-iq-GaZ" secondAttribute="leading" id="4j0-6t-Ia1"/>
                             <constraint firstAttribute="leadingMargin" secondItem="0MB-FG-hBt" secondAttribute="leading" id="5Js-cn-fgs"/>
                             <constraint firstItem="rKl-yc-BwP" firstAttribute="top" secondItem="0MB-FG-hBt" secondAttribute="bottom" constant="28" id="6Cl-gp-px2"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="xSH-ch-6fO" secondAttribute="leading" id="DPt-L5-ZhB"/>
-                            <constraint firstItem="FQA-fC-tV0" firstAttribute="top" secondItem="YV9-Rn-q3i" secondAttribute="bottom" constant="4" id="Ens-AU-3ed"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="xSH-ch-6fO" secondAttribute="trailing" id="M9v-93-Gvq"/>
                             <constraint firstAttribute="leadingMargin" secondItem="rKl-yc-BwP" secondAttribute="leading" id="PUW-SJ-h9B"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2mi-UF-tts" secondAttribute="trailing" id="S9I-Oz-qpI"/>
-                            <constraint firstItem="xSH-ch-6fO" firstAttribute="top" secondItem="FQA-fC-tV0" secondAttribute="bottom" constant="4" id="UEm-ld-ZSq"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="FQA-fC-tV0" secondAttribute="trailing" id="UXr-lH-9tZ"/>
-                            <constraint firstItem="oRg-Oj-ZXH" firstAttribute="top" secondItem="xSH-ch-6fO" secondAttribute="bottom" constant="4" id="b0z-hK-44p"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="FQA-fC-tV0" secondAttribute="leading" id="cK9-59-Yob"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="i5d-iq-GaZ" secondAttribute="trailing" id="VhF-Th-LfX"/>
                             <constraint firstAttribute="leadingMargin" secondItem="2mi-UF-tts" secondAttribute="leading" id="dJ2-gu-bnH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0MB-FG-hBt" secondAttribute="trailing" id="f11-IX-p3u"/>
                             <constraint firstItem="2mi-UF-tts" firstAttribute="top" secondItem="WDx-4K-IEM" secondAttribute="bottom" constant="8" id="k3g-Fr-a4o"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="YV9-Rn-q3i" secondAttribute="trailing" id="lFT-dX-7C1"/>
+                            <constraint firstItem="oRg-Oj-ZXH" firstAttribute="top" secondItem="i5d-iq-GaZ" secondAttribute="bottom" constant="20" id="mU2-be-uef"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rKl-yc-BwP" secondAttribute="trailing" id="sA6-QY-cbH"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="YV9-Rn-q3i" secondAttribute="leading" id="w24-gf-oap"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="AQI Explanation" id="NDC-xH-CPC"/>
-                    <connections>
-                        <outlet property="labelFeedName" destination="YV9-Rn-q3i" id="Hbs-bz-nl3"/>
-                        <outlet property="labelLatitude" destination="FQA-fC-tV0" id="6iI-ig-Eee"/>
-                        <outlet property="labelLongitude" destination="xSH-ch-6fO" id="OIT-fy-wZ3"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sOr-29-aWr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2388" y="19"/>
+            <point key="canvasLocation" x="2081" y="320"/>
         </scene>
         <!--AirNow-->
         <scene sceneID="uxk-p6-kiR">
@@ -331,13 +286,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AirNow Readings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3A-XA-8ai">
-                                <rect key="frame" x="20" y="72" width="560" height="22"/>
+                                <rect key="frame" x="20" y="28" width="560" height="22"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rdf-2o-PZb">
-                                <rect key="frame" x="20" y="112" width="560" height="120"/>
+                                <rect key="frame" x="20" y="68" width="560" height="120"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="9Fu-fQ-2Ky"/>
@@ -393,13 +348,13 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why does the app not report this?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OTh-s5-eBY">
-                                <rect key="frame" x="20" y="250" width="560" height="20"/>
+                                <rect key="frame" x="20" y="206" width="560" height="20"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJL-na-XKq">
-                                <rect key="frame" x="20" y="298" width="560" height="84"/>
+                                <rect key="frame" x="20" y="254" width="560" height="84"/>
                                 <string key="text">AirNow reports air quality by finding the AirNow sensor with the highest NowCast reading for a given region. By contrast, we report the NowCast of the closest sensor from a specific location. We report our values this way because it provides the user with a better estimate of the air quality levels for a specific location instead of a general region.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
@@ -429,7 +384,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ADN-uN-jBX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2389" y="685"/>
+            <point key="canvasLocation" x="2785" y="320"/>
         </scene>
         <!--Address Search-->
         <scene sceneID="RDq-GZ-7sE">
