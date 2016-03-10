@@ -254,9 +254,6 @@
                             <constraint firstItem="cbR-Gh-XfB" firstAttribute="top" secondItem="hqu-a7-7Od" secondAttribute="bottom" id="lPO-mm-U8v"/>
                             <constraint firstAttribute="leadingMargin" secondItem="6PX-Qm-Jcq" secondAttribute="leading" id="wEv-xq-sMO"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="EVo-MC-6ck" appends="YES" id="rN4-MH-3y1"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Speck Sensor" id="wdX-hE-7BW">
                         <barButtonItem key="rightBarButtonItem" title="Remove" id="6nY-E2-g0j">
