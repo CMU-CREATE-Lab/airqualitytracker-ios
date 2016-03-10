@@ -20,6 +20,7 @@ class AddressShowController: UIViewController {
     var closestFeed: Feed?
     var reading: Readable?
     @IBOutlet var viewAqiButton: UIView!
+    @IBOutlet var labelClosestFeedName: UILabel!
     
     private func clearAndHide(labels: [UILabel!]) {
         for label in labels {
@@ -51,7 +52,7 @@ class AddressShowController: UIViewController {
             } else {
                 // get feed name
                 closestFeed = address.closestFeed
-//                labelClosestFeedName.text = closestFeed?.getName()
+                labelClosestFeedName.text = closestFeed?.getName()
                 labelMeasurementRange.text = "\(Constants.AqiReading.getRangeFromIndex(index)) AQI"
                 labelValueTitle.text = Constants.AqiReading.titles[index]
                 labelValueDescription.text = Constants.AqiReading.descriptions[index]

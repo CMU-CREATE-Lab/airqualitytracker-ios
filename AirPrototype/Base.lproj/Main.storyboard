@@ -163,13 +163,13 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="12" id="yIU-Ge-RvR"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reading Name at Street AirNow" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JzA-qp-4FJ">
-                                                        <rect key="frame" x="0.0" y="28" width="504" height="17"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                        <rect key="frame" x="0.0" y="28" width="504" height="15"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -266,6 +266,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="labelClosestFeedName" destination="JzA-qp-4FJ" id="hID-TV-bRF"/>
                         <outlet property="labelMeasurementRange" destination="wpZ-Zs-5F7" id="qri-qg-GsL"/>
                         <outlet property="labelReadingMeasurement" destination="6PX-Qm-Jcq" id="FTN-YW-XQk"/>
                         <outlet property="labelShowValue" destination="fpF-6f-Hm5" id="Duj-On-NYN"/>
