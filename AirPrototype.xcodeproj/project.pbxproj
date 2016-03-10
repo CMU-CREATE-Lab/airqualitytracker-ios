@@ -78,6 +78,12 @@
 		A1740DBC1BC41B5B00617185 /* AboutSpeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1740DBB1BC41B5B00617185 /* AboutSpeckController.swift */; };
 		A17527C41BD556A7007526C0 /* ManageTrackersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17527C31BD556A7007526C0 /* ManageTrackersController.swift */; };
 		A17527C61BD55791007526C0 /* ManageTrackersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17527C51BD55791007526C0 /* ManageTrackersTableViewCell.swift */; };
+		A17A84941C92051B00FDACA7 /* ic_near_me_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A17A84911C92051B00FDACA7 /* ic_near_me_2x.png */; };
+		A17A84951C92051B00FDACA7 /* ic_near_me_3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A17A84921C92051B00FDACA7 /* ic_near_me_3x.png */; };
+		A17A84961C92051B00FDACA7 /* ic_near_me.png in Resources */ = {isa = PBXBuildFile; fileRef = A17A84931C92051B00FDACA7 /* ic_near_me.png */; };
+		A17A849A1C92052400FDACA7 /* ic_keyboard_arrow_right_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A17A84971C92052400FDACA7 /* ic_keyboard_arrow_right_2x.png */; };
+		A17A849B1C92052400FDACA7 /* ic_keyboard_arrow_right_3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A17A84981C92052400FDACA7 /* ic_keyboard_arrow_right_3x.png */; };
+		A17A849C1C92052400FDACA7 /* ic_keyboard_arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = A17A84991C92052400FDACA7 /* ic_keyboard_arrow_right.png */; };
 		A17DFA7A1C4418D200B2A7B4 /* NowCastCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17DFA791C4418D200B2A7B4 /* NowCastCalculator.swift */; };
 		A17DFA7C1C4438DA00B2A7B4 /* EsdrTilesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17DFA7B1C4438DA00B2A7B4 /* EsdrTilesHandler.swift */; };
 		A182D2361C6BB4A600DBA4F0 /* AirNowReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A182D2351C6BB4A600DBA4F0 /* AirNowReadable.swift */; };
@@ -172,6 +178,12 @@
 		A1740DBB1BC41B5B00617185 /* AboutSpeckController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutSpeckController.swift; sourceTree = "<group>"; };
 		A17527C31BD556A7007526C0 /* ManageTrackersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageTrackersController.swift; sourceTree = "<group>"; };
 		A17527C51BD55791007526C0 /* ManageTrackersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageTrackersTableViewCell.swift; sourceTree = "<group>"; };
+		A17A84911C92051B00FDACA7 /* ic_near_me_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_near_me_2x.png; path = Assets/ic_near_me.imageset/ic_near_me_2x.png; sourceTree = "<group>"; };
+		A17A84921C92051B00FDACA7 /* ic_near_me_3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_near_me_3x.png; path = Assets/ic_near_me.imageset/ic_near_me_3x.png; sourceTree = "<group>"; };
+		A17A84931C92051B00FDACA7 /* ic_near_me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_near_me.png; path = Assets/ic_near_me.imageset/ic_near_me.png; sourceTree = "<group>"; };
+		A17A84971C92052400FDACA7 /* ic_keyboard_arrow_right_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_keyboard_arrow_right_2x.png; path = Assets/ic_keyboard_arrow_right.imageset/ic_keyboard_arrow_right_2x.png; sourceTree = "<group>"; };
+		A17A84981C92052400FDACA7 /* ic_keyboard_arrow_right_3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_keyboard_arrow_right_3x.png; path = Assets/ic_keyboard_arrow_right.imageset/ic_keyboard_arrow_right_3x.png; sourceTree = "<group>"; };
+		A17A84991C92052400FDACA7 /* ic_keyboard_arrow_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_keyboard_arrow_right.png; path = Assets/ic_keyboard_arrow_right.imageset/ic_keyboard_arrow_right.png; sourceTree = "<group>"; };
 		A17DFA791C4418D200B2A7B4 /* NowCastCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowCastCalculator.swift; sourceTree = "<group>"; };
 		A17DFA7B1C4438DA00B2A7B4 /* EsdrTilesHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EsdrTilesHandler.swift; sourceTree = "<group>"; };
 		A182D2351C6BB4A600DBA4F0 /* AirNowReadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirNowReadable.swift; sourceTree = "<group>"; };
@@ -420,6 +432,12 @@
 				A160A0EA1BD6826B0059833F /* ic_mode_edit_2x.png */,
 				A160A0EB1BD6826B0059833F /* ic_mode_edit_3x.png */,
 				A160A0EC1BD6826B0059833F /* ic_mode_edit.png */,
+				A17A84911C92051B00FDACA7 /* ic_near_me_2x.png */,
+				A17A84921C92051B00FDACA7 /* ic_near_me_3x.png */,
+				A17A84931C92051B00FDACA7 /* ic_near_me.png */,
+				A17A84971C92052400FDACA7 /* ic_keyboard_arrow_right_2x.png */,
+				A17A84981C92052400FDACA7 /* ic_keyboard_arrow_right_3x.png */,
+				A17A84991C92052400FDACA7 /* ic_keyboard_arrow_right.png */,
 				A151323D1BB57CFC0036577D /* Icon-29.png */,
 				A151323F1BB57D0C0036577D /* Icon-40.png */,
 				A15132331BB57CCD0036577D /* Icon-58.png */,
@@ -593,6 +611,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1666F8B1B54125400A8E39F /* Main.storyboard in Resources */,
+				A17A849B1C92052400FDACA7 /* ic_keyboard_arrow_right_3x.png in Resources */,
 				A15132431BB57D1D0036577D /* Icon-76.png in Resources */,
 				A15C18601BA757330070D52D /* twitterlogo_small_white.png in Resources */,
 				A15132441BB57D1D0036577D /* Icon-152.png in Resources */,
@@ -600,8 +619,13 @@
 				A1567DD61BE3F39F00578095 /* logo_specksensor-black.png in Resources */,
 				A151323C1BB57CEE0036577D /* Icon-180.png in Resources */,
 				A1A4EA061C74E34300C10D3B /* Icon-167.png in Resources */,
+				A17A849C1C92052400FDACA7 /* ic_keyboard_arrow_right.png in Resources */,
+				A17A84951C92051B00FDACA7 /* ic_near_me_3x.png in Resources */,
+				A17A849A1C92052400FDACA7 /* ic_keyboard_arrow_right_2x.png in Resources */,
 				A160A0EE1BD6826B0059833F /* ic_mode_edit_3x.png in Resources */,
+				A17A84941C92051B00FDACA7 /* ic_near_me_2x.png in Resources */,
 				A16F708D1BAB316500F616F6 /* LoginView.xib in Resources */,
+				A17A84961C92051B00FDACA7 /* ic_near_me.png in Resources */,
 				A160A0EF1BD6826B0059833F /* ic_mode_edit.png in Resources */,
 				A151323A1BB57CDF0036577D /* Icon-120.png in Resources */,
 				A16F708F1BAB370600F616F6 /* LogoutView.xib in Resources */,
