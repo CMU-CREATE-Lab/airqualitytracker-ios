@@ -230,12 +230,40 @@
 			name = readable_index;
 			sourceTree = "<group>";
 		};
-		A1551C5B1C299F63005ED28B /* about */ = {
+		A15429B41CA1D22A0023AC0C /* options_menu */ = {
+			isa = PBXGroup;
+			children = (
+				A103E6071BE12A5E0065378D /* SettingsController.swift */,
+				A1551C5B1C299F63005ED28B /* about_speck */,
+				A16F70851BAB272E00F616F6 /* login */,
+				A160A0F01BD68EDB0059833F /* manage_trackers */,
+			);
+			name = options_menu;
+			sourceTree = "<group>";
+		};
+		A15429B51CA1D5470023AC0C /* air_now */ = {
+			isa = PBXGroup;
+			children = (
+				A15CDB3F1C861688002D5C0F /* AirNowDetailsController.swift */,
+				A14CA69D1C87309700E61894 /* AirNowDetailsTableCell.swift */,
+			);
+			name = air_now;
+			sourceTree = "<group>";
+		};
+		A15429B61CA1D5510023AC0C /* aqi_explanation */ = {
+			isa = PBXGroup;
+			children = (
+				A15CDB3D1C861673002D5C0F /* AqiExplanationDetailsController.swift */,
+			);
+			name = aqi_explanation;
+			sourceTree = "<group>";
+		};
+		A1551C5B1C299F63005ED28B /* about_speck */ = {
 			isa = PBXGroup;
 			children = (
 				A1740DBB1BC41B5B00617185 /* AboutSpeckController.swift */,
 			);
-			name = about;
+			name = about_speck;
 			sourceTree = "<group>";
 		};
 		A158F60F1B8DFF6A00FCE2E1 /* database */ = {
@@ -262,10 +290,10 @@
 		A15CDB331C85D844002D5C0F /* readables */ = {
 			isa = PBXGroup;
 			children = (
-				A1F58E581B97284800D04C91 /* Readable.swift */,
 				A182D2351C6BB4A600DBA4F0 /* AirNowReadable.swift */,
 				A1666FAD1B5419D300A8E39F /* Channel.swift */,
 				A1666FAB1B54190A00A8E39F /* Feed.swift */,
+				A1F58E581B97284800D04C91 /* Readable.swift */,
 				A1666FA91B54176D00A8E39F /* SimpleAddress.swift */,
 				A1F58E5A1B972DD700D04C91 /* Speck.swift */,
 			);
@@ -275,9 +303,9 @@
 		A15CDB341C85D849002D5C0F /* timers */ = {
 			isa = PBXGroup;
 			children = (
-				A158E1351BCFE6370026944E /* Timer.swift */,
 				A158E1391BCFF9440026944E /* AutocompleteTimer.swift */,
 				A158E1371BCFE9B20026944E /* RefreshTimer.swift */,
+				A158E1351BCFE6370026944E /* Timer.swift */,
 			);
 			name = timers;
 			sourceTree = "<group>";
@@ -320,8 +348,8 @@
 			children = (
 				A1F58E5C1B975BE700D04C91 /* EsdrAuthHandler.swift */,
 				A158F6121B8E305A00FCE2E1 /* EsdrFeedsHandler.swift */,
-				A17DFA7B1C4438DA00B2A7B4 /* EsdrTilesHandler.swift */,
 				A17361F61C231EA40012FC62 /* EsdrSpecksHandler.swift */,
+				A17DFA7B1C4438DA00B2A7B4 /* EsdrTilesHandler.swift */,
 			);
 			name = esdr;
 			sourceTree = "<group>";
@@ -385,10 +413,9 @@
 		A16481F91B5D552D0023DE09 /* address_show */ = {
 			isa = PBXGroup;
 			children = (
+				A15429B51CA1D5470023AC0C /* air_now */,
+				A15429B61CA1D5510023AC0C /* aqi_explanation */,
 				A16481FA1B5D553F0023DE09 /* AddressShowController.swift */,
-				A15CDB3D1C861673002D5C0F /* AqiExplanationDetailsController.swift */,
-				A15CDB3F1C861688002D5C0F /* AirNowDetailsController.swift */,
-				A14CA69D1C87309700E61894 /* AirNowDetailsTableCell.swift */,
 			);
 			name = address_show;
 			sourceTree = "<group>";
@@ -476,14 +503,11 @@
 		A1666FA51B54142600A8E39F /* activities (ios controllers) */ = {
 			isa = PBXGroup;
 			children = (
-				A1551C5B1C299F63005ED28B /* about */,
-				A1D4F8961BE7B068002D5849 /* secret_menu */,
-				A16F70851BAB272E00F616F6 /* login */,
+				A1626DF71B555A5F006D990C /* address_search */,
+				A15429B41CA1D22A0023AC0C /* options_menu */,
 				A14C45691BA0B28D00D6C9CF /* readable_index */,
 				A16481F91B5D552D0023DE09 /* address_show */,
-				A1626DF71B555A5F006D990C /* address_search */,
-				A160A0F01BD68EDB0059833F /* manage_trackers */,
-				A103E6071BE12A5E0065378D /* SettingsController.swift */,
+				A1D4F8961BE7B068002D5849 /* secret_menu */,
 			);
 			name = "activities (ios controllers)";
 			sourceTree = "<group>";
