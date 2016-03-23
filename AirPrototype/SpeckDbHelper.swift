@@ -183,13 +183,39 @@ class SpeckDbHelper {
                     error = error1
                 }
                 if error != nil {
-                    NSLog("received error in deleteAddressFromDb")
+                    NSLog("received error in deleteSpeckFromDb")
                 } else {
                     NSLog("Deleted address._id=\(speck._id?.description)")
                 }
             }
         } else {
             NSLog("Ignoring delete speck without an ID")
+        }
+    }
+    
+    
+    static func clearSpecksFromDb(specks: [Speck]) {
+        let managedObjectContext = GlobalHandler.sharedInstance.appDelegate.managedObjectContext
+        
+        for speck in specks {
+            if let id = speck._id {
+                if let storedSpeck = managedObjectContext?.objectWithID(id) {
+                    managedObjectContext?.deleteObject(storedSpeck)
+                    
+                }
+            } else {
+                NSLog("Ignoring delete speck without an ID")
+            }
+        }
+        
+        var error: NSError?
+        do {
+            try managedObjectContext?.save()
+        } catch let error1 as NSError {
+            error = error1
+        }
+        if error != nil {
+            NSLog("received error in clearSpecksFromDb")
         }
     }
     

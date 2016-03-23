@@ -47,10 +47,7 @@ class ReadingsHandlerCore {
     
     
     func clearSpecks() {
-        // TODO make this clear the table instead of iterating?
-        for speck in self.specks {
-            SpeckDbHelper.deleteSpeckFromDb(speck)
-        }
+        SpeckDbHelper.clearSpecksFromDb(self.specks)
         self.specks.removeAll(keepCapacity: true)
         refreshHash()
     }

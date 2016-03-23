@@ -17,7 +17,6 @@ class AirNowDetailsTableCell: UITableViewCell {
     @IBOutlet var labelAqi: UILabel!
     
     func populate(observation: AirNowObservation) {
-        // TODO populate actions
         let aqi = observation.aqi
         labelAqi.text = "\(aqi.description) AQI"
         labelParamName.text = observation.parameterName

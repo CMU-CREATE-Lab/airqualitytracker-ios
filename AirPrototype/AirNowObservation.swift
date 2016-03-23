@@ -10,11 +10,6 @@ import Foundation
 
 class AirNowObservation {
     
-//    let dateFormat = NSDateFormatter()
-//    dateFormat.dateFormat = "yyyy-dd-MM kk Z"
-//    let input = ""
-//    let date = dateFormat.dateFromString(input)
-    // dateObserved,hourObserved,localTimeZone
     var observedDateTime: NSDate
     var readableDate: String
     var reportingArea: String

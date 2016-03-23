@@ -48,7 +48,6 @@ class PositionIdHelper {
     
     
     func reorderAddressPositions(addresses: [SimpleAddress]) {
-        // TODO this is slow; it could be sped up if we group the jobs together (so we only have to save/synchronize once)
         var index = 1
         for address in addresses {
             address.positionId = index
@@ -60,7 +59,6 @@ class PositionIdHelper {
     
     
     func reorderSpeckPositions(specks: [Speck]) {
-        // TODO this is slow; it could be sped up if we group the jobs together (so we only have to save/synchronize once)
         var index = 1
         for speck in specks {
             speck.positionId = index

@@ -49,7 +49,6 @@ class EsdrJsonParser {
         let result = Feed()
         var feedChannels = Array<Channel>()
         
-        // TODO is it possible for any other ones to be null?
         let feed_id = dataEntry.valueForKey("id") as! Int
         let name = dataEntry.valueForKey("name") as! String
         let exposure = dataEntry.valueForKey("exposure") as! String

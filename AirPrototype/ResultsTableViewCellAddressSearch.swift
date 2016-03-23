@@ -15,7 +15,6 @@ class ResultsTableViewCellAddressSearch: UITableViewCell {
     
     
     func populate(address: SimpleAddress) {
-        // TODO given input, populate the cell
         labelResultsTableViewCellAddressSearch.text = address.name
         self.viewForBaselineLayout()
     }
