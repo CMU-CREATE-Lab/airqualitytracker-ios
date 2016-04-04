@@ -21,7 +21,8 @@ class EsdrSpecksHandler {
         }
         
         // send request
-        let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/api/v1/feeds?whereAnd=userId=\(userId),productId=9\(listDevices)", httpMethod: "GET")
+        // NOTE: we order by "modified" date so most recently active speck feeds (with device) are added first (thanks, chris!)
+        let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/api/v1/feeds?whereAnd=userId=\(userId),productId=9\(listDevices)&orderBy=-modified", httpMethod: "GET")
         GlobalHandler.sharedInstance.httpRequestHandler.sendAuthorizedJsonRequest(authToken, urlRequest: request, completionHandler: completionHandler)
     }
     
