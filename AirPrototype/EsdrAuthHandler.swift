@@ -49,6 +49,11 @@ class EsdrAuthHandler {
     
     
     func requestEsdrRefresh(refreshToken: String, responseHandler: (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void ) {
+        if !Constants.REFRESHES_ESDR_TOKEN {
+            NSLog("WARNING: requested ESDR refresh but REFRESHES_ESDR_TOKEN is not set.")
+            return
+        }
+        
         // create request
         let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/oauth/token", httpMethod: "POST")
         let params:[String: String] = [

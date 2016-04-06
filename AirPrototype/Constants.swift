@@ -46,6 +46,18 @@ class Constants {
     
     static let ESDR_TOKEN_TIME_TO_UPDATE_ON_REFRESH: Int = 86400 // 24 hours
     
+    // controls whether or not the code will perform esdr token refresh requests
+    static let REFRESHES_ESDR_TOKEN = true
+    
+    struct ManualOverrides {
+        // strongly encouraged to also set REFRESHES_ESDR_TOKEN = false when using this option
+        static let MANUAL_ESDR_LOGIN = false;
+        static let username = "";
+        static let accessToken = "";
+        static let refreshToken = "";
+        static let userId = 0;
+    }
+    
     struct AppSecrets {
         // placeholder for actual Client information (don't push to git)
         static let ESDR_CLIENT_ID = "client_id"

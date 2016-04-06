@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27C32FB81CB594490063BF23 /* ManualOverrides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C32FB71CB594490063BF23 /* ManualOverrides.swift */; };
 		A103E6081BE12A5E0065378D /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103E6071BE12A5E0065378D /* SettingsController.swift */; };
 		A11844AF1BA9E7A600435D11 /* ServicesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11844AE1BA9E7A600435D11 /* ServicesHandler.swift */; };
 		A11844B11BA9FECC00435D11 /* CLLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11844B01BA9FECC00435D11 /* CLLocationService.swift */; };
@@ -101,6 +102,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27C32FB71CB594490063BF23 /* ManualOverrides.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualOverrides.swift; sourceTree = "<group>"; };
 		A103E6071BE12A5E0065378D /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		A11844AE1BA9E7A600435D11 /* ServicesHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesHandler.swift; sourceTree = "<group>"; };
 		A11844B01BA9FECC00435D11 /* CLLocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationService.swift; sourceTree = "<group>"; };
@@ -541,6 +543,7 @@
 				A15CDB3B1C85E033002D5C0F /* parsers */,
 				A15675801B583AAA006982A1 /* AqiConverter.swift */,
 				A1666FB31B541D0500A8E39F /* Constants.swift */,
+				27C32FB71CB594490063BF23 /* ManualOverrides.swift */,
 				A15675821B5844C9006982A1 /* MapGeometry.swift */,
 				A17DFA791C4418D200B2A7B4 /* NowCastCalculator.swift */,
 				A14E5C731C7CDA2800D08A34 /* HttpHelper.swift */,
@@ -707,6 +710,7 @@
 				A182D2381C6BBF2300DBA4F0 /* AirNowObservation.swift in Sources */,
 				A16481FB1B5D553F0023DE09 /* AddressShowController.swift in Sources */,
 				A1FEAB411B8CF19D00F9716B /* StoredAddress.swift in Sources */,
+				27C32FB81CB594490063BF23 /* ManualOverrides.swift in Sources */,
 				A17361F71C231EA40012FC62 /* EsdrSpecksHandler.swift in Sources */,
 				A182D2361C6BB4A600DBA4F0 /* AirNowReadable.swift in Sources */,
 				A1660FF71B568B6700608C5D /* ResultsControllerAddressSearch.swift in Sources */,

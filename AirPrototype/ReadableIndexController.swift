@@ -76,6 +76,12 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
         SpeckDbHelper.loadSpecksFromDb()
         let globalHandler = GlobalHandler.sharedInstance
         globalHandler.readableIndexListView = self.gridView
+        
+        // manually sets login info for ESDR
+        if Constants.ManualOverrides.MANUAL_ESDR_LOGIN {
+            ManualOverrides.loginEsdr()
+        }
+        
         globalHandler.updateReadings()
         
         GlobalHandler.sharedInstance.servicesHandler.startLocationService()
