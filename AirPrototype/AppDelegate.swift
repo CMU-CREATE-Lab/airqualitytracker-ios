@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // response handler
             func responseHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
                 if error != nil {
+                    GlobalHandler.sharedInstance.esdrLoginHandler.updateEsdrTokens("", refreshToken: "", expiresAt: 0)
                     NSLog("requestEsdrRefresh received error from refreshToken=\(refreshToken)")
                 } else {
                     let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
@@ -45,10 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
             
-            let updatingTokens = GlobalHandler.sharedInstance.esdrAuthHandler.checkAndRefreshEsdrTokens(expiresAt, currentTime: timestamp, refreshToken: refreshToken, responseHandler: responseHandler)
-            if !updatingTokens {
-                UIAlertView.init(title: "www.specksensor.com", message: "Your session has timed out. Please log in.", delegate: nil, cancelButtonTitle: "OK").show()
-            }
+            GlobalHandler.sharedInstance.esdrAuthHandler.requestEsdrRefresh(refreshToken, responseHandler: responseHandler)
         }
         return true
     }
@@ -118,10 +116,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
             
-            let updatingTokens = GlobalHandler.sharedInstance.esdrAuthHandler.checkAndRefreshEsdrTokens(expiresAt, currentTime: timestamp, refreshToken: refreshToken, responseHandler: responseHandler)
-            if !updatingTokens {
-                NSLog("Background fetch was successful (esdr tokens expired)")
+            if !Constants.REFRESHES_ESDR_TOKEN {
+                NSLog("Background fetch was successful (REFRESHES_ESDR_TOKEN not set)")
                 completionHandler(UIBackgroundFetchResult.NewData)
+            } else {
+                GlobalHandler.sharedInstance.esdrAuthHandler.requestEsdrRefresh(refreshToken, responseHandler: responseHandler)
             }
         } else {
             NSLog("Background fetch was successful! (not logged in)")

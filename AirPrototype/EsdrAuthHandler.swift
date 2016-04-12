@@ -35,19 +35,6 @@ class EsdrAuthHandler {
     }
     
     
-    // returns true when request is sent to ESDR; returns false when tokens are expired (and clears values)
-    func checkAndRefreshEsdrTokens(expiresAt: Int, currentTime: Int, refreshToken: String, responseHandler: (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void ) -> Bool {
-        if (currentTime >= expiresAt) {
-            GlobalHandler.sharedInstance.esdrAccount.clear()
-            GlobalHandler.sharedInstance.esdrLoginHandler.setUserLoggedIn(false)
-            return false
-        } else {
-            requestEsdrRefresh(refreshToken, responseHandler: responseHandler)
-            return true
-        }
-    }
-    
-    
     func requestEsdrRefresh(refreshToken: String, responseHandler: (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void ) {
         if !Constants.REFRESHES_ESDR_TOKEN {
             NSLog("WARNING: requested ESDR refresh but REFRESHES_ESDR_TOKEN is not set.")
@@ -66,6 +53,17 @@ class EsdrAuthHandler {
         
         // send request
         GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: responseHandler)
+    }
+    
+    
+    // Alert the user that their account has been logged out and will be prompted to re-enter username/password
+    func alertLogout() -> Bool {
+        let globalHandler = GlobalHandler.sharedInstance
+        if globalHandler.settingsHandler.userLoggedIn && globalHandler.esdrAccount.expiresAt <= 0 {
+            globalHandler.esdrLoginHandler.removeEsdrAccount()
+            return true
+        }
+        return false
     }
     
 }

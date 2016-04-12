@@ -77,15 +77,12 @@ class GlobalHandler {
             let timestamp = Int(NSDate().timeIntervalSince1970)
             let expiredAt = esdrAccount.expiresAt!
             let timeRemaining = expiredAt - timestamp
-            if timeRemaining <= 0 {
-                esdrLoginHandler.setUserLoggedIn(false)
-                esdrAccount.clear()
-                UIAlertView.init(title: "www.specksensor.com", message: "Your session has timed out. Please log in.", delegate: nil, cancelButtonTitle: "OK").show()
-            } else if timeRemaining <= Constants.ESDR_TOKEN_TIME_TO_UPDATE_ON_REFRESH {
+            if timeRemaining <= Constants.ESDR_TOKEN_TIME_TO_UPDATE_ON_REFRESH {
                 let refreshToken = esdrAccount.refreshToken!
                 
                 func responseHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
                     if error != nil {
+                        esdrLoginHandler.updateEsdrTokens("", refreshToken: "", expiresAt: 0)
                         NSLog("requestEsdrRefresh received error from refreshToken=\(refreshToken)")
                     } else {
                         let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary

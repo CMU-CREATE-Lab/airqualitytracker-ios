@@ -82,6 +82,9 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
             ManualOverrides.loginEsdr()
         }
         
+        if globalHandler.esdrAuthHandler.alertLogout() {
+            UIAlertView.init(title: "www.specksensor.com", message: "Your session has timed out. Please log in.", delegate: nil, cancelButtonTitle: "OK").show()
+        }
         globalHandler.updateReadings()
         
         GlobalHandler.sharedInstance.servicesHandler.startLocationService()
