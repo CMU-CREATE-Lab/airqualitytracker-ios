@@ -129,4 +129,13 @@ class EsdrJsonParser {
         return results
     }
     
+    
+    static func parseDailyFeedTracker(feed: Feed, dataEntry: NSDictionary) -> DailyFeedTracker {
+        var result = DailyFeedTracker(feed: feed)
+        
+        // TODO parse
+        
+        return result
+    }
+    
 }

@@ -100,4 +100,13 @@ class EsdrTilesHandler {
         GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: firstHandler)
     }
     
+    
+    func requestFeedAverages(feed: Feed, response: (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void) {
+        // TODO given a Feed, construct the ESDR request to grab average values over a channel
+        // TODO time range (1 year up till now)
+        
+        let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/api/v1/TODO_URL", httpMethod: "GET")
+        GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: response)
+    }
+    
 }

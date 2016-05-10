@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		27C32FB81CB594490063BF23 /* ManualOverrides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C32FB71CB594490063BF23 /* ManualOverrides.swift */; };
+		27D9F7031CE21B490066E1B5 /* DailyFeedTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D9F7021CE21B490066E1B5 /* DailyFeedTracker.swift */; };
+		27D9F7051CE21B550066E1B5 /* DayFeedValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D9F7041CE21B550066E1B5 /* DayFeedValue.swift */; };
 		A103E6081BE12A5E0065378D /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103E6071BE12A5E0065378D /* SettingsController.swift */; };
 		A11844AF1BA9E7A600435D11 /* ServicesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11844AE1BA9E7A600435D11 /* ServicesHandler.swift */; };
 		A11844B11BA9FECC00435D11 /* CLLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11844B01BA9FECC00435D11 /* CLLocationService.swift */; };
@@ -103,6 +105,8 @@
 
 /* Begin PBXFileReference section */
 		27C32FB71CB594490063BF23 /* ManualOverrides.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualOverrides.swift; sourceTree = "<group>"; };
+		27D9F7021CE21B490066E1B5 /* DailyFeedTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyFeedTracker.swift; sourceTree = "<group>"; };
+		27D9F7041CE21B550066E1B5 /* DayFeedValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayFeedValue.swift; sourceTree = "<group>"; };
 		A103E6071BE12A5E0065378D /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		A11844AE1BA9E7A600435D11 /* ServicesHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesHandler.swift; sourceTree = "<group>"; };
 		A11844B01BA9FECC00435D11 /* CLLocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationService.swift; sourceTree = "<group>"; };
@@ -521,6 +525,8 @@
 				A15CDB341C85D849002D5C0F /* timers */,
 				A182D2371C6BBF2300DBA4F0 /* AirNowObservation.swift */,
 				A187D3621C7269EC000BB107 /* EsdrAccount.swift */,
+				27D9F7021CE21B490066E1B5 /* DailyFeedTracker.swift */,
+				27D9F7041CE21B550066E1B5 /* DayFeedValue.swift */,
 			);
 			name = classes;
 			sourceTree = "<group>";
@@ -685,6 +691,7 @@
 				A15675811B583AAA006982A1 /* AqiConverter.swift in Sources */,
 				A1666FB21B541CF400A8E39F /* GlobalHandler.swift in Sources */,
 				A15675831B5844C9006982A1 /* MapGeometry.swift in Sources */,
+				27D9F7051CE21B550066E1B5 /* DayFeedValue.swift in Sources */,
 				A1666FAC1B54190A00A8E39F /* Feed.swift in Sources */,
 				A1F58E5D1B975BE700D04C91 /* EsdrAuthHandler.swift in Sources */,
 				A1551C661C29CCFB005ED28B /* ReadingsHandlerCore.swift in Sources */,
@@ -711,6 +718,7 @@
 				A16481FB1B5D553F0023DE09 /* AddressShowController.swift in Sources */,
 				A1FEAB411B8CF19D00F9716B /* StoredAddress.swift in Sources */,
 				27C32FB81CB594490063BF23 /* ManualOverrides.swift in Sources */,
+				27D9F7031CE21B490066E1B5 /* DailyFeedTracker.swift in Sources */,
 				A17361F71C231EA40012FC62 /* EsdrSpecksHandler.swift in Sources */,
 				A182D2361C6BB4A600DBA4F0 /* AirNowReadable.swift in Sources */,
 				A1660FF71B568B6700608C5D /* ResultsControllerAddressSearch.swift in Sources */,

@@ -59,6 +59,7 @@ class SimpleAddress: AirNowReadable, Hashable {
     var closestFeed: Feed?
     var feeds: Array<Feed>
     let uid = 1
+    var dailyFeedTracker: DailyFeedTracker?
     
     
     init() {
@@ -69,6 +70,25 @@ class SimpleAddress: AirNowReadable, Hashable {
         feeds = []
         isCurrentLocation = false
         airNowObservations = []
+    }
+    
+    
+    // TODO pass controller as param?
+    func requestDailyFeedTracker() {
+        if closestFeed == nil {
+            NSLog("requestDailyFeedTracker failed (closestFeed is null)")
+            return;
+        }
+        if let tracker = dailyFeedTracker {
+            // TODO call method inside Activity to denote request is finished
+            return;
+        }
+        
+        func httpResponse(url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
+            let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
+            self.dailyFeedTracker = EsdrJsonParser.parseDailyFeedTracker(closestFeed!, dataEntry: data!)
+        }
+        GlobalHandler.sharedInstance.esdrTilesHandler.requestFeedAverages(closestFeed!, response: httpResponse)
     }
     
 }
