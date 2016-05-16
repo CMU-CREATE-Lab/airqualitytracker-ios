@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		279FB4CC1CEA502800B5C8AA /* DailyTrackerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279FB4CB1CEA502800B5C8AA /* DailyTrackerController.swift */; };
 		27C32FB81CB594490063BF23 /* ManualOverrides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C32FB71CB594490063BF23 /* ManualOverrides.swift */; };
 		27D9F7031CE21B490066E1B5 /* DailyFeedTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D9F7021CE21B490066E1B5 /* DailyFeedTracker.swift */; };
 		27D9F7051CE21B550066E1B5 /* DayFeedValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D9F7041CE21B550066E1B5 /* DayFeedValue.swift */; };
@@ -104,6 +105,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		279FB4CB1CEA502800B5C8AA /* DailyTrackerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTrackerController.swift; sourceTree = "<group>"; };
 		27C32FB71CB594490063BF23 /* ManualOverrides.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualOverrides.swift; sourceTree = "<group>"; };
 		27D9F7021CE21B490066E1B5 /* DailyFeedTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyFeedTracker.swift; sourceTree = "<group>"; };
 		27D9F7041CE21B550066E1B5 /* DayFeedValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayFeedValue.swift; sourceTree = "<group>"; };
@@ -218,6 +220,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		279FB4CA1CEA500200B5C8AA /* daily_tracker */ = {
+			isa = PBXGroup;
+			children = (
+				279FB4CB1CEA502800B5C8AA /* DailyTrackerController.swift */,
+			);
+			name = daily_tracker;
+			sourceTree = "<group>";
+		};
 		A11844AD1BA9E6CE00435D11 /* services */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,6 +431,7 @@
 			children = (
 				A15429B51CA1D5470023AC0C /* air_now */,
 				A15429B61CA1D5510023AC0C /* aqi_explanation */,
+				279FB4CA1CEA500200B5C8AA /* daily_tracker */,
 				A16481FA1B5D553F0023DE09 /* AddressShowController.swift */,
 			);
 			name = address_show;
@@ -709,6 +720,7 @@
 				A1666FAA1B54176D00A8E39F /* SimpleAddress.swift in Sources */,
 				A158F6161B8E504500FCE2E1 /* Location.swift in Sources */,
 				A15CDB3E1C861673002D5C0F /* AqiExplanationDetailsController.swift in Sources */,
+				279FB4CC1CEA502800B5C8AA /* DailyTrackerController.swift in Sources */,
 				A1626DF91B555A79006D990C /* AddressSearchController.swift in Sources */,
 				A14C456F1BA0B46700D6C9CF /* ReadableIndexCell.swift in Sources */,
 				A1551C701C29D35B005ED28B /* GpsReadingHandler.swift in Sources */,
