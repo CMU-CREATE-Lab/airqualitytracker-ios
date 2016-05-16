@@ -427,20 +427,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Segue Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsX-Ia-E16">
-                                <rect key="frame" x="20" y="28" width="560" height="21"/>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wyO-B9-9AK">
+                                <rect key="frame" x="20" y="28" width="560" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="QfY-0I-Zew"/>
+                                </constraints>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are dirty days?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqa-Bf-TSR">
+                                <rect key="frame" x="20" y="292" width="178.5" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ccy-pz-daU">
+                                <rect key="frame" x="20" y="321" width="560" height="21"/>
+                                <string key="text">Daily values are calculated from the 24-hour average of a given air station. This value is given in Air Quality Index (AQI) based off of PM 2.5 readings from the station. A day is considered dirty provided that its daily value exceeds 50 AQI.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDv-k5-UfH">
+                                <rect key="frame" x="20" y="136" width="560" height="128"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="PPw-ex-UTv"/>
+                                </constraints>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="wsX-Ia-E16" secondAttribute="trailing" id="P9M-E5-qRH"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="wsX-Ia-E16" secondAttribute="leading" id="dIu-Ms-NLR"/>
-                            <constraint firstItem="wsX-Ia-E16" firstAttribute="top" secondItem="Uvc-L6-YZ2" secondAttribute="bottom" constant="8" id="hQK-TG-jl1"/>
+                            <constraint firstItem="wyO-B9-9AK" firstAttribute="top" secondItem="Uvc-L6-YZ2" secondAttribute="bottom" constant="8" id="06Z-Al-NB2"/>
+                            <constraint firstItem="lqa-Bf-TSR" firstAttribute="top" secondItem="hDv-k5-UfH" secondAttribute="bottom" constant="28" id="2dd-ns-Q66"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wyO-B9-9AK" secondAttribute="trailing" id="F5a-xb-W6q"/>
+                            <constraint firstItem="hDv-k5-UfH" firstAttribute="top" secondItem="wyO-B9-9AK" secondAttribute="bottom" constant="28" id="Qn4-XN-fIk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ccy-pz-daU" secondAttribute="trailing" id="SiK-PU-slF"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="wyO-B9-9AK" secondAttribute="leading" id="Z33-Fd-FMd"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="lqa-Bf-TSR" secondAttribute="leading" id="dcP-Gs-zLt"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Ccy-pz-daU" secondAttribute="leading" id="hUt-KV-PuM"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="hDv-k5-UfH" secondAttribute="leading" id="iaA-8J-f0M"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hDv-k5-UfH" secondAttribute="trailing" id="wOX-7t-h2B"/>
+                            <constraint firstItem="Ccy-pz-daU" firstAttribute="top" secondItem="lqa-Bf-TSR" secondAttribute="bottom" constant="8" id="z2O-kS-Ryb"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="pickerView" destination="wyO-B9-9AK" id="VFh-Dc-LI1"/>
+                        <outlet property="webView" destination="hDv-k5-UfH" id="sy2-ua-pWk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4qN-Mm-bNm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
