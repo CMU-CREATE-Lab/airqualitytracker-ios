@@ -30,11 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if error != nil {
                     GlobalHandler.sharedInstance.esdrLoginHandler.updateEsdrTokens("", refreshToken: "", expiresAt: 0)
                     NSLog("requestEsdrRefresh received error from refreshToken=\(refreshToken)")
-                } else {
-                    let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
-                    let access_token = data!.valueForKey("access_token") as? String
-                    let refresh_token = data!.valueForKey("refresh_token") as? String
-                    let expires_in = data!.valueForKey("expires_in") as? Int
+                } else if let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary {
+                    let access_token = data.valueForKey("access_token") as? String
+                    let refresh_token = data.valueForKey("refresh_token") as? String
+                    let expires_in = data.valueForKey("expires_in") as? Int
                     if access_token != nil && refresh_token != nil && expires_in != nil {
                         NSLog("found access_token=\(access_token), refresh_token=\(refresh_token)")
                         GlobalHandler.sharedInstance.esdrLoginHandler.updateEsdrTokens(access_token!, refreshToken: refresh_token!, expiresAt: timestamp+expires_in!)
@@ -98,11 +97,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if error != nil {
                     NSLog("requestEsdrRefresh received error from refreshToken=\(refreshToken)")
                     completionHandler(UIBackgroundFetchResult.Failed)
-                } else {
-                    let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
-                    let access_token = data!.valueForKey("access_token") as? String
-                    let refresh_token = data!.valueForKey("refresh_token") as? String
-                    let expires_in = data!.valueForKey("expires_in") as? Int
+                } else if let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary {
+                    let access_token = data.valueForKey("access_token") as? String
+                    let refresh_token = data.valueForKey("refresh_token") as? String
+                    let expires_in = data.valueForKey("expires_in") as? Int
                     if access_token != nil && refresh_token != nil && expires_in != nil {
                         NSLog("found access_token=\(access_token), refresh_token=\(refresh_token)")
                         GlobalHandler.sharedInstance.esdrLoginHandler.updateEsdrTokens(access_token!, refreshToken: refresh_token!, expiresAt: timestamp+expires_in!)
