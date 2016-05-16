@@ -33,16 +33,6 @@ class EsdrTilesHandler {
     }
     
     
-    private func formatSafeJson(json: NSString) -> NSString {
-        var result = json
-        
-        // remove occurences of strings that break json parser (ex: -1e+308=>0)
-        result = result.stringByReplacingOccurrencesOfString("-1e+308", withString: "0")
-        
-        return result
-    }
-    
-    
     func requestTilesFromChannel(channel: Channel, timestamp: Int, completionHandler: (([Int: [Double]]) -> Void) ) {
         var firstResponse: [Int: [Double]]?
         var secondResponse: [Int: [Double]]?
@@ -66,7 +56,7 @@ class EsdrTilesHandler {
             
             // response handling
             let jsonString = try! NSString.init(contentsOfURL: url!, encoding: NSUTF8StringEncoding)
-            let formattedString = formatSafeJson(jsonString)
+            let formattedString = EsdrJsonParser.formatSafeJson(jsonString)
             let tempData = formattedString.dataUsingEncoding(NSUTF8StringEncoding)
             let data = (try! NSJSONSerialization.JSONObjectWithData(tempData!, options: [])) as? NSDictionary
             firstResponse = EsdrJsonParser.parseTiles(data!, fromTime: minTime, toTime: maxTime)
@@ -85,7 +75,7 @@ class EsdrTilesHandler {
             
             // response handling
             let jsonString = try! NSString.init(contentsOfURL: url!, encoding: NSUTF8StringEncoding)
-            let formattedString = formatSafeJson(jsonString)
+            let formattedString = EsdrJsonParser.formatSafeJson(jsonString)
             let tempData = formattedString.dataUsingEncoding(NSUTF8StringEncoding)
             let data = (try! NSJSONSerialization.JSONObjectWithData(tempData!, options: [])) as? NSDictionary
             secondResponse = EsdrJsonParser.parseTiles(data!, fromTime: minTime, toTime: maxTime)
@@ -101,11 +91,12 @@ class EsdrTilesHandler {
     }
     
     
-    func requestFeedAverages(feed: Feed, response: (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void) {
-        // TODO given a Feed, construct the ESDR request to grab average values over a channel
-        // TODO time range (1 year up till now)
+    func requestFeedAverages(feed: Feed, from: Int, to: Int, response: (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void) {
+        let channelName = feed.channels[0].name
+        let requestUrl = Constants.Esdr.API_URL + "/api/v1/feeds/\(feed.feed_id)/channels/\(channelName)_daily_mean,\(channelName)_daily_median,\(channelName)_daily_max/export"
+        let urlParams = "?format=json" + "&from=\(from)&to=\(to)"
         
-        let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/api/v1/TODO_URL", httpMethod: "GET")
+        let request = HttpHelper.generateRequest(requestUrl+urlParams, httpMethod: "GET")
         GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: response)
     }
     

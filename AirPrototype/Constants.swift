@@ -49,6 +49,9 @@ class Constants {
     // controls whether or not the code will perform esdr token refresh requests
     static let REFRESHES_ESDR_TOKEN = true
     
+    // determines what value we want to iterate over to determine number of dirty days
+    static let DIRTY_DAYS_VALUE_TYPE = DayFeedValue.DaysValueType.MEAN
+    
     struct ManualOverrides {
         // strongly encouraged to also set REFRESHES_ESDR_TOKEN = false when using this option
         static let MANUAL_ESDR_LOGIN = false;

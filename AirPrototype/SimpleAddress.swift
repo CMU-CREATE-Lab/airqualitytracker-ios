@@ -83,12 +83,18 @@ class SimpleAddress: AirNowReadable, Hashable {
             // TODO call method inside Activity to denote request is finished
             return;
         }
+        let to = Int(NSDate().timeIntervalSince1970)
+        let from = to - (86400 * 365)
         
         func httpResponse(url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
-            let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
-            self.dailyFeedTracker = EsdrJsonParser.parseDailyFeedTracker(closestFeed!, dataEntry: data!)
+            let jsonString = try! NSString.init(contentsOfURL: url!, encoding: NSUTF8StringEncoding)
+            let formattedString = EsdrJsonParser.formatSafeJson(jsonString)
+            let tempData = formattedString.dataUsingEncoding(NSUTF8StringEncoding)
+            let data = (try! NSJSONSerialization.JSONObjectWithData(tempData!, options: [])) as? NSDictionary
+            
+            self.dailyFeedTracker = EsdrJsonParser.parseDailyFeedTracker(closestFeed!, from: from, to: to, dataEntry: data!)
         }
-        GlobalHandler.sharedInstance.esdrTilesHandler.requestFeedAverages(closestFeed!, response: httpResponse)
+        GlobalHandler.sharedInstance.esdrTilesHandler.requestFeedAverages(closestFeed!, from: from, to: to, response: httpResponse)
     }
     
 }

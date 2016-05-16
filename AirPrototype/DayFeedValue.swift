@@ -10,6 +10,10 @@ import Foundation
 
 class DayFeedValue {
     
+    enum DaysValueType {
+        case MEAN, MEDIAN, MAX
+    }
+    
     var time: Int
     var mean: Double
     var median: Double
@@ -21,6 +25,21 @@ class DayFeedValue {
         self.mean = mean
         self.median = median
         self.max = max
+    }
+    
+    
+    func getCount(type: DaysValueType) -> Double {
+        switch type {
+        case DaysValueType.MEAN:
+            return mean;
+        case DaysValueType.MEDIAN:
+            return median;
+        case DaysValueType.MAX:
+            return max;
+        default:
+            NSLog("ERROR - Undefined enum type.")
+            return 0;
+        }
     }
     
 }

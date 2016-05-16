@@ -11,6 +11,16 @@ import Foundation
 class EsdrJsonParser {
     
     
+    static func formatSafeJson(json: NSString) -> NSString {
+        var result = json
+        
+        // remove occurences of strings that break json parser (ex: -1e+308=>0)
+        result = result.stringByReplacingOccurrencesOfString("-1e+308", withString: "0")
+        
+        return result
+    }
+    
+    
     static func populateFeedsFromJson(data: NSDictionary, maxTime: Double) -> [Feed] {
         var feeds = Array<Feed>()
         if let rows = (data.valueForKey("data") as! NSDictionary).valueForKey("rows") as? Array<NSDictionary> {
@@ -130,10 +140,20 @@ class EsdrJsonParser {
     }
     
     
-    static func parseDailyFeedTracker(feed: Feed, dataEntry: NSDictionary) -> DailyFeedTracker {
-        var result = DailyFeedTracker(feed: feed)
+    static func parseDailyFeedTracker(feed: Feed, from: Int, to: Int, dataEntry: NSDictionary) -> DailyFeedTracker {
+        var result = DailyFeedTracker(feed: feed, from: from, to: to)
+        var values = result.getValues()
         
-        // TODO parse
+        let data = dataEntry.valueForKey("data") as! NSArray
+        for row in data {
+            // ASSERT: request was done in the order: mean, median, max
+            let time = row[0] as! Int
+            let mean = row[1] as! Double
+            let median = row[2] as! Double
+            let max = row[3] as! Double
+            
+            values.append(DayFeedValue(time: time, mean: mean, median: median, max: max))
+        }
         
         return result
     }
