@@ -338,6 +338,7 @@
                         <outlet property="labelValueTitle" destination="sJo-27-Cc5" id="Qej-VM-OWL"/>
                         <outlet property="mainView" destination="Zjw-c5-CdA" id="UL1-DB-A0g"/>
                         <outlet property="viewAqiButton" destination="kwG-VL-kDS" id="ySa-XX-8S1"/>
+                        <outlet property="viewTrackerButton" destination="cwf-Jb-LtC" id="R39-sS-WYD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4FJ-Wj-5cG" userLabel="First Responder" sceneMemberID="firstResponder"/>

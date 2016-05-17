@@ -21,7 +21,9 @@ class AddressShowController: UIViewController {
     var closestFeed: Feed?
     var reading: Readable?
     @IBOutlet var viewAqiButton: UIView!
+    @IBOutlet weak var viewTrackerButton: UIView!
     @IBOutlet var labelClosestFeedName: UILabel!
+    
     
     private func clearAndHide(labels: [UILabel!]) {
         for label in labels {
@@ -44,6 +46,7 @@ class AddressShowController: UIViewController {
         mainView.backgroundColor = Constants.DefaultReading.DEFAULT_COLOR_BACKGROUND
         clearAndHide([labelMeasurementRange, labelShowValue, labelReadingMeasurement])
         viewAqiButton.hidden = true
+        viewTrackerButton.hidden = true
     }
     
     
@@ -85,6 +88,7 @@ class AddressShowController: UIViewController {
     
     func speckView(speck: Speck) {
         viewAqiButton.hidden = true
+        viewTrackerButton.hidden = true
         if speck.hasReadableValue() {
             let micrograms = speck.getReadableValue()
             labelShowValue.text = Int(micrograms).description
