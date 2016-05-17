@@ -23,8 +23,14 @@ class DailyTrackerController: UIViewController, UIPickerViewDelegate, UIPickerVi
         pickerView.dataSource = self
         pickerView.delegate = self
         
-        // TODO webview height-width ratio should be 1:5
-        // TODO load HTML with javascript
+        let localPath = NSBundle.mainBundle().pathForResource("daily_tracker_grid", ofType: "html")
+        let params = "?table-colors=ffffff,000000,ffffff,000000,ffffff,000000,ffffff,000000"
+        let urlWithParams = localPath?.stringByAppendingString(params)
+        NSLog("PATH=\(urlWithParams)")
+        
+        let url = NSURL(string: urlWithParams!)
+        let urlRequest = NSURLRequest(URL: url!)
+        webView.loadRequest(urlRequest)
     }
     
     

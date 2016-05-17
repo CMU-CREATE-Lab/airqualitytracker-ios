@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		279FB4CC1CEA502800B5C8AA /* DailyTrackerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279FB4CB1CEA502800B5C8AA /* DailyTrackerController.swift */; };
+		27C0225A1CEB50CC00C34EFD /* daily_tracker_grid.html in Resources */ = {isa = PBXBuildFile; fileRef = 27C022591CEB50CC00C34EFD /* daily_tracker_grid.html */; };
+		27C0225C1CEB50DC00C34EFD /* jquery-1.12.3.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 27C0225B1CEB50DC00C34EFD /* jquery-1.12.3.min.js */; };
 		27C32FB81CB594490063BF23 /* ManualOverrides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C32FB71CB594490063BF23 /* ManualOverrides.swift */; };
 		27D9F7031CE21B490066E1B5 /* DailyFeedTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D9F7021CE21B490066E1B5 /* DailyFeedTracker.swift */; };
 		27D9F7051CE21B550066E1B5 /* DayFeedValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D9F7041CE21B550066E1B5 /* DayFeedValue.swift */; };
@@ -106,6 +108,8 @@
 
 /* Begin PBXFileReference section */
 		279FB4CB1CEA502800B5C8AA /* DailyTrackerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTrackerController.swift; sourceTree = "<group>"; };
+		27C022591CEB50CC00C34EFD /* daily_tracker_grid.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = daily_tracker_grid.html; path = Assets/webviews/daily_tracker_grid.html; sourceTree = "<group>"; };
+		27C0225B1CEB50DC00C34EFD /* jquery-1.12.3.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-1.12.3.min.js"; path = "Assets/webviews/lib/jquery-1.12.3.min.js"; sourceTree = "<group>"; };
 		27C32FB71CB594490063BF23 /* ManualOverrides.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualOverrides.swift; sourceTree = "<group>"; };
 		27D9F7021CE21B490066E1B5 /* DailyFeedTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyFeedTracker.swift; sourceTree = "<group>"; };
 		27D9F7041CE21B550066E1B5 /* DayFeedValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayFeedValue.swift; sourceTree = "<group>"; };
@@ -226,6 +230,23 @@
 				279FB4CB1CEA502800B5C8AA /* DailyTrackerController.swift */,
 			);
 			name = daily_tracker;
+			sourceTree = "<group>";
+		};
+		27C022531CEB502D00C34EFD /* webviews */ = {
+			isa = PBXGroup;
+			children = (
+				27C022591CEB50CC00C34EFD /* daily_tracker_grid.html */,
+				27C022581CEB505A00C34EFD /* lib */,
+			);
+			name = webviews;
+			sourceTree = "<group>";
+		};
+		27C022581CEB505A00C34EFD /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				27C0225B1CEB50DC00C34EFD /* jquery-1.12.3.min.js */,
+			);
+			name = lib;
 			sourceTree = "<group>";
 		};
 		A11844AD1BA9E6CE00435D11 /* services */ = {
@@ -473,6 +494,7 @@
 		A1666F801B54125400A8E39F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				27C022531CEB502D00C34EFD /* webviews */,
 				A160A0EA1BD6826B0059833F /* ic_mode_edit_2x.png */,
 				A160A0EB1BD6826B0059833F /* ic_mode_edit_3x.png */,
 				A160A0EC1BD6826B0059833F /* ic_mode_edit.png */,
@@ -655,8 +677,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1666F8B1B54125400A8E39F /* Main.storyboard in Resources */,
+				27C0225C1CEB50DC00C34EFD /* jquery-1.12.3.min.js in Resources */,
 				A17A849B1C92052400FDACA7 /* ic_keyboard_arrow_right_3x.png in Resources */,
 				A15132431BB57D1D0036577D /* Icon-76.png in Resources */,
+				27C0225A1CEB50CC00C34EFD /* daily_tracker_grid.html in Resources */,
 				A15C18601BA757330070D52D /* twitterlogo_small_white.png in Resources */,
 				A15132441BB57D1D0036577D /* Icon-152.png in Resources */,
 				A156757B1B57D537006982A1 /* ResultsTableViewCellAddressSearch.xib in Resources */,
