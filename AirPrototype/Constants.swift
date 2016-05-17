@@ -44,7 +44,9 @@ class Constants {
     
     static let SPECKS_MAX_TIME_RANGE: Double = 1800  // 30 minutes
     
-    static let ESDR_TOKEN_TIME_TO_UPDATE_ON_REFRESH: Int = 86400 // 24 hours
+    static let TWENTY_FOUR_HOURS: Int = 86400
+    
+    static let ESDR_TOKEN_TIME_TO_UPDATE_ON_REFRESH: Int = TWENTY_FOUR_HOURS
     
     // controls whether or not the code will perform esdr token refresh requests
     static let REFRESHES_ESDR_TOKEN = true
@@ -217,6 +219,10 @@ class Constants {
             UIColor(red: 226.0/255.0, green: 79.0/255.0, blue: 54.0/255.0, alpha: 1.0),
             UIColor(red: 181.0/255.0, green: 67.0/255.0, blue: 130.0/255.0, alpha: 1.0),
             UIColor(red: 178.0/255.0, green: 38.0/255.0, blue: 81.0/255.0, alpha: 1.0)
+        ]
+        static let aqiColorsHexStrings = [
+            "a3ba5c", "e9b642", "e98c37",
+            "e24f36", "b54382", "b22651"
         ]
         static let aqiFontColors = [
             UIColor(red: 25.0/255.0, green: 32.0/255.0, blue: 21.0/255.0, alpha: 1.0),

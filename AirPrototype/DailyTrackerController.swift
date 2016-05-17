@@ -14,6 +14,70 @@ class DailyTrackerController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var webView: UIWebView!
     var pickerValues = ["Mean", "Median", "Max"]
+    var address: SimpleAddress?
+    var displayType = Constants.DIRTY_DAYS_VALUE_TYPE
+    
+    
+    private func constructColorsList() -> String {
+        var result = ""
+        // TODO check for nil tracker
+        let values = address!.dailyFeedTracker!.values
+        
+        var index = 0;
+        var startTime = address!.dailyFeedTracker!.getStartTime()
+        let list = [Int](0...364)
+        for _ in list {
+            startTime += Constants.TWENTY_FOUR_HOURS
+            
+            // only check for values we still have
+            if (index<values.count) {
+                let value = values[index]
+                // add color value if value was in the past day
+                if (value.time <= startTime) {
+                    index += 1
+                    let reading = value.getCount(displayType)
+                    let colorIndex = Constants.AqiReading.getIndexFromReading(AqiConverter.microgramsToAqi(reading))
+                    result += Constants.AqiReading.aqiColorsHexStrings[colorIndex]
+                }
+            }
+            // next value (even if empty day, then just an empty string)
+            result += ",";
+            
+        }
+        result = result.substringToIndex(result.endIndex.predecessor())
+        
+        NSLog("returning color list=\(result)")
+        return result
+    }
+    
+    
+    private func onSelected(string: String) {
+        // change displayType based on selected string
+        if string == "Mean" {
+            displayType = DayFeedValue.DaysValueType.MEAN
+        } else if string == "Median" {
+            displayType = DayFeedValue.DaysValueType.MEDIAN
+        } else if string == "Max" {
+            displayType = DayFeedValue.DaysValueType.MAX
+        } else {
+            NSLog("ERROR - Failed to grab selected; defaulting to dirty days.")
+            displayType = Constants.DIRTY_DAYS_VALUE_TYPE
+        }
+        
+        // get list of colors
+        let colorsList = constructColorsList()
+        // get local path of our HTML file
+        let localPath = NSBundle.mainBundle().pathForResource("daily_tracker_grid", ofType: "html")
+        // add params (color list)
+        let params = "?table-colors=\(colorsList)"
+        let urlWithParams = localPath?.stringByAppendingString(params)
+        let url = NSURL(string: urlWithParams!)
+        let urlRequest = NSURLRequest(URL: url!)
+        webView.loadRequest(urlRequest)
+    }
+    
+    
+    // MARK: UIViewController
     
     
     override func viewDidLoad() {
@@ -23,15 +87,11 @@ class DailyTrackerController: UIViewController, UIPickerViewDelegate, UIPickerVi
         pickerView.dataSource = self
         pickerView.delegate = self
         
-        let localPath = NSBundle.mainBundle().pathForResource("daily_tracker_grid", ofType: "html")
-        let params = "?table-colors=ffffff,000000,ffffff,000000,ffffff,000000,ffffff,000000"
-        let urlWithParams = localPath?.stringByAppendingString(params)
-        NSLog("PATH=\(urlWithParams)")
-        
-        let url = NSURL(string: urlWithParams!)
-        let urlRequest = NSURLRequest(URL: url!)
-        webView.loadRequest(urlRequest)
+        onSelected(pickerValues[0])
     }
+    
+    
+    // MARK: UIPickerView
     
     
     // The number of columns of data
@@ -54,6 +114,7 @@ class DailyTrackerController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         NSLog("Did select row \(pickerValues[row])")
+        onSelected(pickerValues[row])
     }
     
 }

@@ -11,11 +11,10 @@ import Foundation
 class DailyFeedTracker {
     
     private var feed: Feed
-    private var values = Array<DayFeedValue>()
+    var values = Array<DayFeedValue>()
     private var to,from: Int
     // getters
     func getFeed() -> Feed { return feed }
-    func getValues() -> Array<DayFeedValue> { return values }
     func getStartTime() -> Int { return from }
     
     

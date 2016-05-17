@@ -330,6 +330,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="labelClosestFeedName" destination="JzA-qp-4FJ" id="hID-TV-bRF"/>
+                        <outlet property="labelDirtyDays" destination="Cye-Vd-5LH" id="VYl-lm-Nph"/>
                         <outlet property="labelMeasurementRange" destination="wpZ-Zs-5F7" id="qri-qg-GsL"/>
                         <outlet property="labelReadingMeasurement" destination="6PX-Qm-Jcq" id="FTN-YW-XQk"/>
                         <outlet property="labelShowValue" destination="fpF-6f-Hm5" id="Duj-On-NYN"/>
@@ -347,7 +348,7 @@
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="hOV-hb-vbf">
                     <connections>
-                        <segue destination="voc-Jt-1en" kind="show" id="RMo-2D-Aa0"/>
+                        <segue destination="voc-Jt-1en" kind="show" identifier="showTrackerSegue" id="RMo-2D-Aa0"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -440,9 +441,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ccy-pz-daU">
-                                <rect key="frame" x="20" y="253" width="560" height="21"/>
+                                <rect key="frame" x="20" y="253" width="560" height="76.5"/>
                                 <string key="text">Daily values are calculated from the 24-hour average of a given air station. This value is given in Air Quality Index (AQI) based off of PM 2.5 readings from the station. A day is considered dirty provided that its daily value exceeds 50 AQI.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>

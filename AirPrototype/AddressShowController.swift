@@ -11,6 +11,7 @@ import UIKit
 
 class AddressShowController: UIViewController {
     
+    @IBOutlet weak var labelDirtyDays: UILabel!
     @IBOutlet var labelShowValue: UILabel!
     @IBOutlet var labelReadingMeasurement: UILabel!
     @IBOutlet var labelMeasurementRange: UILabel!
@@ -26,6 +27,13 @@ class AddressShowController: UIViewController {
         for label in labels {
             label.text = ""
             label.hidden = true
+        }
+    }
+    
+    
+    func setDirtyDaysText(text: String) {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.labelDirtyDays.text = text
         }
     }
     
@@ -66,6 +74,8 @@ class AddressShowController: UIViewController {
                     end
                     ] as [AnyObject]
                 mainView.layer.insertSublayer(gradient, atIndex: 0)
+                // request tracker
+                address.requestDailyFeedTracker(self)
             }
         } else {
             defaultView()
@@ -133,6 +143,10 @@ class AddressShowController: UIViewController {
                 let controller = segue.destinationViewController as! AqiExplanationDetailsController
                 controller.reading = address
                 controller.feed = address.closestFeed
+            } else if segue.identifier == "showTrackerSegue" {
+                let address = airNowReading as! SimpleAddress
+                let controller = segue.destinationViewController as! DailyTrackerController
+                controller.address = address
             } else {
                 NSLog("ERROR - bad segue name")
             }

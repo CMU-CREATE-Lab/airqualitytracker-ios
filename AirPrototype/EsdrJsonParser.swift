@@ -142,7 +142,6 @@ class EsdrJsonParser {
     
     static func parseDailyFeedTracker(feed: Feed, from: Int, to: Int, dataEntry: NSDictionary) -> DailyFeedTracker {
         var result = DailyFeedTracker(feed: feed, from: from, to: to)
-        var values = result.getValues()
         
         let data = dataEntry.valueForKey("data") as! NSArray
         for row in data {
@@ -152,7 +151,7 @@ class EsdrJsonParser {
             let median = row[2] as! Double
             let max = row[3] as! Double
             
-            values.append(DayFeedValue(time: time, mean: mean, median: median, max: max))
+            result.values.append(DayFeedValue(time: time, mean: mean, median: median, max: max))
         }
         
         return result
