@@ -74,19 +74,21 @@ class SimpleAddress: AirNowReadable, Hashable {
     
     
     func requestDailyFeedTracker(controller: AddressShowController) {
+        let to = Int(NSDate().timeIntervalSince1970)
+        let from = to - (86400 * 365)
         if closestFeed == nil {
             NSLog("requestDailyFeedTracker failed (closestFeed is null)")
             return;
         }
         if let tracker = dailyFeedTracker {
-            // TODO check that this tracker is at least within the last 24 hours (otherwise it needs updated)
-            let numberDirtyDays = dailyFeedTracker!.getDirtyDaysCount()
-            let text = "\(numberDirtyDays) dirty day\( (numberDirtyDays == 1 ? "" : "s") ) in the past year"
-            controller.feedTrackerResponse(text)
-            return;
+            // check that this tracker is at least within the last 24 hours (otherwise it needs updated)
+            if (to - tracker.getStartTime()) <= Constants.TWENTY_FOUR_HOURS {
+                let numberDirtyDays = tracker.getDirtyDaysCount()
+                let text = "\(numberDirtyDays) dirty day\( (numberDirtyDays == 1 ? "" : "s") ) in the past year"
+                controller.feedTrackerResponse(text)
+                return;
+            }
         }
-        let to = Int(NSDate().timeIntervalSince1970)
-        let from = to - (86400 * 365)
         
         func httpResponse(url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
             let jsonString = try! NSString.init(contentsOfURL: url!, encoding: NSUTF8StringEncoding)
