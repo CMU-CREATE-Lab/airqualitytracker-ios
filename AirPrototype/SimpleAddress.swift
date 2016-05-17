@@ -82,7 +82,7 @@ class SimpleAddress: AirNowReadable, Hashable {
             // TODO check that this tracker is at least within the last 24 hours (otherwise it needs updated)
             let numberDirtyDays = dailyFeedTracker!.getDirtyDaysCount()
             let text = "\(numberDirtyDays) dirty day\( (numberDirtyDays == 1 ? "" : "s") ) in the past year"
-            controller.setDirtyDaysText(text)
+            controller.feedTrackerResponse(text)
             return;
         }
         let to = Int(NSDate().timeIntervalSince1970)
@@ -97,7 +97,7 @@ class SimpleAddress: AirNowReadable, Hashable {
             self.dailyFeedTracker = EsdrJsonParser.parseDailyFeedTracker(closestFeed!, from: from, to: to, dataEntry: data!)
             let numberDirtyDays = dailyFeedTracker!.getDirtyDaysCount()
             let text = "\(numberDirtyDays) dirty day\( (numberDirtyDays == 1 ? "" : "s") ) in the past year"
-            controller.setDirtyDaysText(text)
+            controller.feedTrackerResponse(text)
         }
         GlobalHandler.sharedInstance.esdrTilesHandler.requestFeedAverages(closestFeed!, from: from, to: to, response: httpResponse)
     }

@@ -23,6 +23,7 @@ class AddressShowController: UIViewController {
     @IBOutlet var viewAqiButton: UIView!
     @IBOutlet weak var viewTrackerButton: UIView!
     @IBOutlet var labelClosestFeedName: UILabel!
+    @IBOutlet var gestureDailyTracker: UITapGestureRecognizer!
     
     
     private func clearAndHide(labels: [UILabel!]) {
@@ -33,7 +34,8 @@ class AddressShowController: UIViewController {
     }
     
     
-    func setDirtyDaysText(text: String) {
+    func feedTrackerResponse(text: String) {
+        gestureDailyTracker.enabled = true
         dispatch_async(dispatch_get_main_queue()) {
             self.labelDirtyDays.text = text
         }
@@ -112,6 +114,7 @@ class AddressShowController: UIViewController {
     
     
     func populateView() {
+        gestureDailyTracker.enabled = false
         navigationItem.title = reading!.getName()
         let type = reading!.getReadableType()
         switch type {

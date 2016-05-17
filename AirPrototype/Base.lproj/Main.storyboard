@@ -329,6 +329,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="gestureDailyTracker" destination="hOV-hb-vbf" id="9vS-vs-mGT"/>
                         <outlet property="labelClosestFeedName" destination="JzA-qp-4FJ" id="hID-TV-bRF"/>
                         <outlet property="labelDirtyDays" destination="Cye-Vd-5LH" id="VYl-lm-Nph"/>
                         <outlet property="labelMeasurementRange" destination="wpZ-Zs-5F7" id="qri-qg-GsL"/>
