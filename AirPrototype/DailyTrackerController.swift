@@ -86,6 +86,7 @@ class DailyTrackerController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         pickerView.dataSource = self
         pickerView.delegate = self
+        navigationItem.title = "Trends: \(address!.getName())"
         
         onSelected(pickerValues[0])
     }
