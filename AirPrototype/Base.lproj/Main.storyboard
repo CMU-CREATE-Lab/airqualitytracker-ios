@@ -437,23 +437,23 @@
                                 </constraints>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are dirty days?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqa-Bf-TSR">
-                                <rect key="frame" x="20" y="224" width="178.5" height="21"/>
+                                <rect key="frame" x="20" y="219.5" width="178.5" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ccy-pz-daU">
-                                <rect key="frame" x="20" y="253" width="560" height="76.5"/>
+                                <rect key="frame" x="20" y="248.5" width="560" height="76.5"/>
                                 <string key="text">Daily values are calculated from the 24-hour average of a given air station. This value is given in Air Quality Index (AQI) based off of PM 2.5 readings from the station. A day is considered dirty provided that its daily value exceeds 50 AQI.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDv-k5-UfH">
-                                <rect key="frame" x="20" y="116" width="560" height="80"/>
+                                <rect key="frame" x="20" y="116" width="560" height="75.5"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="hDv-k5-UfH" secondAttribute="height" multiplier="7:1" id="HbA-ZE-q3X"/>
+                                    <constraint firstAttribute="width" secondItem="hDv-k5-UfH" secondAttribute="height" multiplier="52:7" id="HbA-ZE-q3X"/>
                                 </constraints>
                             </webView>
                         </subviews>
