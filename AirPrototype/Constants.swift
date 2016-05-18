@@ -13,7 +13,7 @@ let MATH_PI = 3.14159265358979
 
 class Constants {
     
-    static let APP_VERSION_NUMBER = "2.4"
+    static let APP_VERSION_NUMBER = "2.5"
     
     static let USES_BACKGROUND_SERVICES = true
     
