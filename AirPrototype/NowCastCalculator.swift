@@ -35,6 +35,10 @@ class NowCastCalculator {
     // ASSERT: hourlyValues does not contain nil values
     // ASSERT: Ordered by hour (index 0 is most recent, index 11 is oldest)
     static func calculate(hourlyValues: [Double]) -> Double {
+        if hourlyValues.count == 0 {
+            NSLog("WARNING - tried NowCastCalculator.calculate with an empty array; returning 0")
+            return 0
+        }
         // find min/max of list
         let max = hourlyValues.maxElement()!
         let min = hourlyValues.minElement()!
