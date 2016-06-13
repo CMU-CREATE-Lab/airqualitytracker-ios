@@ -36,8 +36,8 @@ class DailyTrackerController: UIViewController, UIPickerViewDelegate, UIPickerVi
                 if (value.time <= startTime) {
                     index += 1
                     let reading = value.getCount(displayType)
-                    let colorIndex = Constants.AqiReading.getIndexFromReading(AqiConverter.microgramsToAqi(reading))
-                    result += Constants.AqiReading.aqiColorsHexStrings[colorIndex]
+                    let aqiReading = AQIReading(reading: reading)
+                    result += aqiReading.getAqiHexString()
                 }
             }
             // next value (even if empty day, then just an empty string)

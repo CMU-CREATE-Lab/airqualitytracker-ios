@@ -57,23 +57,22 @@ class AddressShowController: UIViewController {
             self.navigationItem.rightBarButtonItems = []
         }
         if address.hasReadableValue() {
-            let aqi = AqiConverter.microgramsToAqi(address.getReadableValue())
+            let micrograms = address.getReadableValue()
+            let aqi = AqiConverter.microgramsToAqi(micrograms)
             labelShowValue.text = Int(aqi).description
-            let index = Constants.AqiReading.getIndexFromReading(aqi)
-            if index < 0 {
-                defaultView()
-            } else {
+            let aqiReading = AQIReading(reading: micrograms)
+            if aqiReading.withinRange() {
                 // get feed name
                 closestFeed = address.closestFeed
                 labelClosestFeedName.text = closestFeed?.getName()
-                labelMeasurementRange.text = "\(Constants.AqiReading.getRangeFromIndex(index)) AQI"
-                labelValueTitle.text = Constants.AqiReading.titles[index]
-                labelValueDescription.text = Constants.AqiReading.descriptions[index]
+                labelMeasurementRange.text = "\(aqiReading.getRangeFromIndex()) AQI"
+                labelValueTitle.text = aqiReading.getTitle()
+                labelValueDescription.text = aqiReading.getDescription()
                 labelReadingMeasurement.text = Constants.Units.RANGE_AQI
                 let gradient = CAGradientLayer()
                 gradient.frame = mainView.bounds
-                let start = Constants.AqiReading.aqiGradientColorStart[index]
-                let end = Constants.AqiReading.aqiGradientColorEnd[index]
+                let start = aqiReading.getGradientStart()
+                let end = aqiReading.getGradientEnd()
                 gradient.colors = [
                     start,
                     end
@@ -81,6 +80,8 @@ class AddressShowController: UIViewController {
                 mainView.layer.insertSublayer(gradient, atIndex: 0)
                 // request tracker
                 address.requestDailyFeedTracker(self)
+            } else {
+                defaultView()
             }
         } else {
             defaultView()
@@ -94,18 +95,18 @@ class AddressShowController: UIViewController {
         if speck.hasReadableValue() {
             let micrograms = speck.getReadableValue()
             labelShowValue.text = Int(micrograms).description
-            let index = Constants.SpeckReading.getIndexFromReading(micrograms)
-            if index < 0{
-                defaultView()
-            } else {
+            let speckReading = SpeckReading(reading: micrograms)
+            if speckReading.withinRange() {
                 labelReadingMeasurement.hidden = false
-                labelMeasurementRange.text = "\(Constants.SpeckReading.getRangeFromIndex(index)) Micrograms"
-                labelValueTitle.text = Constants.SpeckReading.titles[index]
+                labelMeasurementRange.text = "\(speckReading.getRangeFromIndex()) Micrograms"
+                labelValueTitle.text = speckReading.getTitle()
                 // TODO descriptions for speck
-//                labelValueDescription.text = Constants.SpeckReading.descriptions[index]
-                labelValueDescription.text = Constants.AqiReading.descriptions[index]
-                mainView.backgroundColor = Constants.SpeckReading.normalColors[index]
+                //                labelValueDescription.text = Constants.SpeckReading.descriptions[index]
+                labelValueDescription.text = speckReading.getDescription()
+                mainView.backgroundColor = speckReading.getColor()
                 labelReadingMeasurement.text = Constants.Units.RANGE_MICROGRAMS_PER_CUBIC_METER
+            } else {
+                defaultView()
             }
         } else {
             defaultView()

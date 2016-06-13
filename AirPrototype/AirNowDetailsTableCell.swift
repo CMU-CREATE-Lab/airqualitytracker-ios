@@ -20,8 +20,8 @@ class AirNowDetailsTableCell: UITableViewCell {
         let aqi = observation.aqi
         labelAqi.text = "\(aqi.description) AQI"
         labelParamName.text = observation.parameterName
-        let index = Constants.AqiReading.getIndexFromReading(aqi)
-        viewColored.backgroundColor = Constants.AqiReading.aqiColors[index]
+        let aqiReading = AQIReading(reading: AqiConverter.aqiToMicrograms(aqi))
+        viewColored.backgroundColor = aqiReading.getColor()
     }
     
 }

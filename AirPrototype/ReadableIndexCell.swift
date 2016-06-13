@@ -21,18 +21,18 @@ class ReadableIndexCell: UICollectionViewCell {
         textCurrentLocation.hidden = true
         if reading.hasReadableValue() {
             var value: String
-            var index: Int
             let type = reading.getReadableType()
             textItemName.text = reading.getName()
             
             switch type {
             case .ADDRESS:
                 textItemLabel.text = Constants.Units.AQI
-                let aqi = AqiConverter.microgramsToAqi(reading.getReadableValue())
+                let micrograms = reading.getReadableValue()
+                let aqi = AqiConverter.microgramsToAqi(micrograms)
                 value = Int(aqi).description
-                index = Constants.AqiReading.getIndexFromReading(aqi)
-                if index >= 0 {
-                    self.backgroundColor = Constants.AqiReading.aqiColors[index]
+                let aqiReading = AQIReading(reading: micrograms)
+                if aqiReading.withinRange() {
+                    self.backgroundColor = aqiReading.getColor()
                 }
                 // current location
                 let address = reading as! SimpleAddress
@@ -43,9 +43,9 @@ class ReadableIndexCell: UICollectionViewCell {
                 textItemLabel.text = Constants.Units.MICROGRAMS_PER_CUBIC_METER
                 let micrograms = reading.getReadableValue()
                 value = Int(micrograms).description
-                index = Constants.SpeckReading.getIndexFromReading(micrograms)
-                if index >= 0 {
-                    self.backgroundColor = Constants.SpeckReading.normalColors[index]
+                let speckReading = SpeckReading(reading: micrograms)
+                if speckReading.withinRange() {
+                    self.backgroundColor = speckReading.getColor()
                 }
             default:
                 NSLog("WARNING - could not determine Readable type for ReadableIndexCell")
