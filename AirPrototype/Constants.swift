@@ -52,7 +52,7 @@ class Constants {
     static let REFRESHES_ESDR_TOKEN = true
     
     // determines what value we want to iterate over to determine number of dirty days
-    static let DIRTY_DAYS_VALUE_TYPE = DayFeedValue.DaysValueType.MEAN
+    static let DIRTY_DAYS_VALUE_TYPE = DayFeedValue.DaysValueType.MAX
     
     // any day exceeding this AQI value is defined as dirty
     static let DIRTY_DAYS_AQI_THRESHOLD = 50

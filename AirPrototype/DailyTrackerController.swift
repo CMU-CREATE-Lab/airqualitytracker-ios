@@ -14,7 +14,7 @@ class DailyTrackerController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var scalePickerView: UIPickerView!
     @IBOutlet weak var webView: UIWebView!
-    let pickerValues = ["Mean", "Median", "Max"]
+    let pickerValues = ["Max", "Median", "Mean"]
     let scalePickerValues = ["EPA AQI", "WHO"]
     var address: SimpleAddress?
     var displayType = Constants.DIRTY_DAYS_VALUE_TYPE
