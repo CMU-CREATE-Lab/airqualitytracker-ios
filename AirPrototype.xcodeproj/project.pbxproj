@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		274F6AE01D0B1C4C0012DE95 /* Scalable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274F6ADF1D0B1C4C0012DE95 /* Scalable.swift */; };
+		274F6AE21D0B1F550012DE95 /* AQIReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274F6AE11D0B1F550012DE95 /* AQIReading.swift */; };
+		274F6AE41D0B1F640012DE95 /* SpeckReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274F6AE31D0B1F640012DE95 /* SpeckReading.swift */; };
+		274F6AE61D0B1F800012DE95 /* WHOReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274F6AE51D0B1F800012DE95 /* WHOReading.swift */; };
 		279FB4CC1CEA502800B5C8AA /* DailyTrackerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279FB4CB1CEA502800B5C8AA /* DailyTrackerController.swift */; };
 		27C0225A1CEB50CC00C34EFD /* daily_tracker_grid.html in Resources */ = {isa = PBXBuildFile; fileRef = 27C022591CEB50CC00C34EFD /* daily_tracker_grid.html */; };
 		27C0225C1CEB50DC00C34EFD /* jquery-1.12.3.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 27C0225B1CEB50DC00C34EFD /* jquery-1.12.3.min.js */; };
@@ -107,6 +111,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		274F6ADF1D0B1C4C0012DE95 /* Scalable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scalable.swift; sourceTree = "<group>"; };
+		274F6AE11D0B1F550012DE95 /* AQIReading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AQIReading.swift; sourceTree = "<group>"; };
+		274F6AE31D0B1F640012DE95 /* SpeckReading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeckReading.swift; sourceTree = "<group>"; };
+		274F6AE51D0B1F800012DE95 /* WHOReading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHOReading.swift; sourceTree = "<group>"; };
 		279FB4CB1CEA502800B5C8AA /* DailyTrackerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTrackerController.swift; sourceTree = "<group>"; };
 		27C022591CEB50CC00C34EFD /* daily_tracker_grid.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = daily_tracker_grid.html; path = Assets/webviews/daily_tracker_grid.html; sourceTree = "<group>"; };
 		27C0225B1CEB50DC00C34EFD /* jquery-1.12.3.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-1.12.3.min.js"; path = "Assets/webviews/lib/jquery-1.12.3.min.js"; sourceTree = "<group>"; };
@@ -224,6 +232,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		274F6ADE1D0B1C350012DE95 /* aqi_scales */ = {
+			isa = PBXGroup;
+			children = (
+				274F6ADF1D0B1C4C0012DE95 /* Scalable.swift */,
+				274F6AE11D0B1F550012DE95 /* AQIReading.swift */,
+				274F6AE31D0B1F640012DE95 /* SpeckReading.swift */,
+				274F6AE51D0B1F800012DE95 /* WHOReading.swift */,
+			);
+			name = aqi_scales;
+			sourceTree = "<group>";
+		};
 		279FB4CA1CEA500200B5C8AA /* daily_tracker */ = {
 			isa = PBXGroup;
 			children = (
@@ -554,6 +573,7 @@
 		A1666FA81B54172300A8E39F /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				274F6ADE1D0B1C350012DE95 /* aqi_scales */,
 				A15CDB331C85D844002D5C0F /* readables */,
 				A15CDB341C85D849002D5C0F /* timers */,
 				A182D2371C6BBF2300DBA4F0 /* AirNowObservation.swift */,
@@ -729,6 +749,7 @@
 				27D9F7051CE21B550066E1B5 /* DayFeedValue.swift in Sources */,
 				A1666FAC1B54190A00A8E39F /* Feed.swift in Sources */,
 				A1F58E5D1B975BE700D04C91 /* EsdrAuthHandler.swift in Sources */,
+				274F6AE41D0B1F640012DE95 /* SpeckReading.swift in Sources */,
 				A1551C661C29CCFB005ED28B /* ReadingsHandlerCore.swift in Sources */,
 				A1740DBC1BC41B5B00617185 /* AboutSpeckController.swift in Sources */,
 				A16A14711B5FD9070026E9C8 /* EsdrJsonParser.swift in Sources */,
@@ -740,6 +761,7 @@
 				A17527C41BD556A7007526C0 /* ManageTrackersController.swift in Sources */,
 				A1666FB61B542E6A00A8E39F /* HttpRequestHandler.swift in Sources */,
 				A158E1361BCFE6370026944E /* Timer.swift in Sources */,
+				274F6AE61D0B1F800012DE95 /* WHOReading.swift in Sources */,
 				A1F58E5B1B972DD700D04C91 /* Speck.swift in Sources */,
 				A1666FAA1B54176D00A8E39F /* SimpleAddress.swift in Sources */,
 				A158F6161B8E504500FCE2E1 /* Location.swift in Sources */,
@@ -752,6 +774,7 @@
 				A187D3631C7269EC000BB107 /* EsdrAccount.swift in Sources */,
 				A182D2381C6BBF2300DBA4F0 /* AirNowObservation.swift in Sources */,
 				A16481FB1B5D553F0023DE09 /* AddressShowController.swift in Sources */,
+				274F6AE21D0B1F550012DE95 /* AQIReading.swift in Sources */,
 				A1FEAB411B8CF19D00F9716B /* StoredAddress.swift in Sources */,
 				27C32FB81CB594490063BF23 /* ManualOverrides.swift in Sources */,
 				27D9F7031CE21B490066E1B5 /* DailyFeedTracker.swift in Sources */,
@@ -775,6 +798,7 @@
 				A1D4F8981BE7CD19002D5849 /* SecretMenuTableCell.swift in Sources */,
 				A16764041C248A5C001A94D6 /* PositionIdHelper.swift in Sources */,
 				A16F70931BAB3D8100F616F6 /* LogoutView.swift in Sources */,
+				274F6AE01D0B1C4C0012DE95 /* Scalable.swift in Sources */,
 				A18479D71BDE6990009CB151 /* StoredSpeck.swift in Sources */,
 				A1551C631C29BB5F005ED28B /* ReadingsHandler.swift in Sources */,
 				A158E13A1BCFF9440026944E /* AutocompleteTimer.swift in Sources */,
