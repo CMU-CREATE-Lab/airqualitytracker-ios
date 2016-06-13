@@ -34,7 +34,7 @@ class DailyFeedTracker {
         var size = 0;
         
         for feedValue in values {
-            if AqiConverter.microgramsToAqi(feedValue.getCount(type)) > 50 {
+            if AqiConverter.microgramsToAqi(feedValue.getCount(type)) > Constants.DIRTY_DAYS_AQI_THRESHOLD {
                 size += 1;
             }
         }

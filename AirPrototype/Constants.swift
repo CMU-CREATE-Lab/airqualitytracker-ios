@@ -13,7 +13,7 @@ let MATH_PI = 3.14159265358979
 
 class Constants {
     
-    static let APP_VERSION_NUMBER = "2.6"
+    static let APP_VERSION_NUMBER = "2.7"
     
     static let USES_BACKGROUND_SERVICES = true
     
@@ -55,7 +55,7 @@ class Constants {
     static let DIRTY_DAYS_VALUE_TYPE = DayFeedValue.DaysValueType.MAX
     
     // any day exceeding this AQI value is defined as dirty
-    static let DIRTY_DAYS_AQI_THRESHOLD = 50
+    static let DIRTY_DAYS_AQI_THRESHOLD = 50.0
     
     struct ManualOverrides {
         // strongly encouraged to also set REFRESHES_ESDR_TOKEN = false when using this option
