@@ -12,10 +12,13 @@ import UIKit
 class DailyTrackerController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var scalePickerView: UIPickerView!
     @IBOutlet weak var webView: UIWebView!
-    var pickerValues = ["Mean", "Median", "Max"]
+    let pickerValues = ["Mean", "Median", "Max"]
+    let scalePickerValues = ["EPA AQI", "WHO"]
     var address: SimpleAddress?
     var displayType = Constants.DIRTY_DAYS_VALUE_TYPE
+    var scaleType = ScaleType.EPA_AQI
     
     
     private func constructColorsList() -> String {
@@ -36,8 +39,16 @@ class DailyTrackerController: UIViewController, UIPickerViewDelegate, UIPickerVi
                 if (value.time <= startTime) {
                     index += 1
                     let reading = value.getCount(displayType)
-                    let aqiReading = AQIReading(reading: reading)
-                    result += aqiReading.getAqiHexString()
+                    switch (scaleType) {
+                        case .EPA_AQI:
+                            let aqiReading = AQIReading(reading: reading)
+                            result += aqiReading.getAqiHexString()
+                        case .WHO:
+                            let whoReading = WHOReading(reading: reading)
+                            result += whoReading.getAqiHexString()
+                        default:
+                            NSLog("ERROR - Unrecognized ScaleType for Daily Tracker colors list.")
+                    }
                 }
             }
             // next value (even if empty day, then just an empty string)
@@ -59,6 +70,10 @@ class DailyTrackerController: UIViewController, UIPickerViewDelegate, UIPickerVi
             displayType = DayFeedValue.DaysValueType.MEDIAN
         } else if string == "Max" {
             displayType = DayFeedValue.DaysValueType.MAX
+        } else if string == "EPA AQI" {
+            scaleType = ScaleType.EPA_AQI
+        } else if string == "WHO" {
+            scaleType = ScaleType.WHO
         } else {
             NSLog("ERROR - Failed to grab selected; defaulting to dirty days.")
             displayType = Constants.DIRTY_DAYS_VALUE_TYPE
@@ -86,6 +101,8 @@ class DailyTrackerController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         pickerView.dataSource = self
         pickerView.delegate = self
+        scalePickerView.dataSource = self
+        scalePickerView.delegate = self
         navigationItem.title = "Trends: \(address!.getName())"
         
         onSelected(pickerValues[0])
@@ -103,19 +120,35 @@ class DailyTrackerController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     // The number of rows of data
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerValues.count
+        if pickerView == self.pickerView {
+            return pickerValues.count
+        } else if pickerView == self.scalePickerView {
+            return scalePickerValues.count
+        }
+        return 0
     }
     
     
     // The data to return for the row and component (column) that's being passed in
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerValues[row]
+        if pickerView == self.pickerView {
+            return pickerValues[row]
+        } else if pickerView == self.scalePickerView {
+            return scalePickerValues[row]
+        }
+        return nil
     }
     
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        NSLog("Did select row \(pickerValues[row])")
-        onSelected(pickerValues[row])
+        
+        if pickerView == self.pickerView {
+            NSLog("Did select row \(pickerValues[row])")
+            onSelected(pickerValues[row])
+        } else if pickerView == self.scalePickerView {
+            NSLog("Did select row \(scalePickerValues[row])")
+            onSelected(scalePickerValues[row])
+        }
     }
     
 }

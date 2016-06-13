@@ -98,7 +98,7 @@ class AQIReading: Scalable {
                 return index
             }
         }
-        return -1
+        return ranges.count
     }
     
     

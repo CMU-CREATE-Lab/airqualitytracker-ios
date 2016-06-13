@@ -18,6 +18,9 @@ class WHOReading: Scalable {
         UIColor(red: 233.0/255.0, green: 140.0/255.0, blue: 55.0/255.0, alpha: 1.0),
         UIColor(red: 226.0/255.0, green: 79.0/255.0, blue: 54.0/255.0, alpha: 1.0)
     ]
+    private static let aqiColorsHexStrings = [
+        "a3ba5c", "e9b642", "e98c37", "e24f36"
+    ]
     private static let titles = [
         "Good", "Moderate", "Elevated", "High"
     ]
@@ -30,12 +33,13 @@ class WHOReading: Scalable {
     private var index: Int
     // getters
     func getColor() -> UIColor { return WHOReading.colors[self.index] }
+    func getAqiHexString() -> String { return WHOReading.aqiColorsHexStrings[self.index] }
     func getTitle() -> String { return WHOReading.titles[self.index] }
     
     
     init(reading: Double) {
         self.reading = reading
-        self.index = SpeckReading.getIndexFromReading(self.reading)
+        self.index = WHOReading.getIndexFromReading(self.reading)
     }
     
     
@@ -54,7 +58,7 @@ class WHOReading: Scalable {
                 return index
             }
         }
-        return -1
+        return ranges.count
     }
     
     

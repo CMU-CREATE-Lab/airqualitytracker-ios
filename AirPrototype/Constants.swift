@@ -54,6 +54,9 @@ class Constants {
     // determines what value we want to iterate over to determine number of dirty days
     static let DIRTY_DAYS_VALUE_TYPE = DayFeedValue.DaysValueType.MEAN
     
+    // any day exceeding this AQI value is defined as dirty
+    static let DIRTY_DAYS_AQI_THRESHOLD = 50
+    
     struct ManualOverrides {
         // strongly encouraged to also set REFRESHES_ESDR_TOKEN = false when using this option
         static let MANUAL_ESDR_LOGIN = false;

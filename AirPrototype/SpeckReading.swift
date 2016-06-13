@@ -71,7 +71,7 @@ class SpeckReading: Scalable {
                 return index
             }
         }
-        return -1
+        return ranges.count
     }
     
     func getRangeFromIndex() -> String {

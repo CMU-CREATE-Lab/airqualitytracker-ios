@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Dosis-Light.ttf">
@@ -430,41 +431,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wyO-B9-9AK">
-                                <rect key="frame" x="20" y="28" width="560" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="QfY-0I-Zew"/>
-                                </constraints>
-                            </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are dirty days?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqa-Bf-TSR">
-                                <rect key="frame" x="20" y="219.5" width="178.5" height="21"/>
+                                <rect key="frame" x="20" y="211.5" width="179" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ccy-pz-daU">
-                                <rect key="frame" x="20" y="248.5" width="560" height="76.5"/>
+                                <rect key="frame" x="20" y="240.5" width="560" height="76.5"/>
                                 <string key="text">Daily values are calculated from the 24-hour average of a given air station. This value is given in Air Quality Index (AQI) based off of PM 2.5 readings from the station. A day is considered dirty provided that its daily value exceeds 50 AQI.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDv-k5-UfH">
-                                <rect key="frame" x="20" y="116" width="560" height="75.5"/>
+                                <rect key="frame" x="20" y="108" width="560" height="75.5"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="hDv-k5-UfH" secondAttribute="height" multiplier="52:7" id="HbA-ZE-q3X"/>
                                 </constraints>
                             </webView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="txX-Uq-hVd">
+                                <rect key="frame" x="20" y="20" width="560" height="80"/>
+                                <subviews>
+                                    <pickerView contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="xvI-SB-W0K">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="80"/>
+                                    </pickerView>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wyO-B9-9AK">
+                                        <rect key="frame" x="288" y="0.0" width="264" height="80"/>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="xvI-SB-W0K" firstAttribute="width" secondItem="txX-Uq-hVd" secondAttribute="width" multiplier="1:2" id="0tN-hM-aqV"/>
+                                    <constraint firstItem="xvI-SB-W0K" firstAttribute="leading" secondItem="txX-Uq-hVd" secondAttribute="leading" id="2BL-zd-vOG"/>
+                                    <constraint firstAttribute="trailing" secondItem="wyO-B9-9AK" secondAttribute="trailing" constant="8" id="EC9-Cg-zsP"/>
+                                    <constraint firstItem="wyO-B9-9AK" firstAttribute="top" secondItem="txX-Uq-hVd" secondAttribute="top" id="ONM-hn-pf0"/>
+                                    <constraint firstItem="wyO-B9-9AK" firstAttribute="leading" secondItem="xvI-SB-W0K" secondAttribute="trailing" constant="8" id="SEK-Ox-9dx"/>
+                                    <constraint firstAttribute="bottom" secondItem="xvI-SB-W0K" secondAttribute="bottom" id="du1-CT-kPA"/>
+                                    <constraint firstAttribute="height" constant="80" id="hRX-ic-6a1"/>
+                                    <constraint firstAttribute="bottom" secondItem="wyO-B9-9AK" secondAttribute="bottom" id="n87-Pw-UfR"/>
+                                    <constraint firstItem="xvI-SB-W0K" firstAttribute="top" secondItem="txX-Uq-hVd" secondAttribute="top" id="naP-Rv-c6X"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wyO-B9-9AK" firstAttribute="top" secondItem="Uvc-L6-YZ2" secondAttribute="bottom" constant="8" id="06Z-Al-NB2"/>
                             <constraint firstItem="lqa-Bf-TSR" firstAttribute="top" secondItem="hDv-k5-UfH" secondAttribute="bottom" constant="28" id="2dd-ns-Q66"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="wyO-B9-9AK" secondAttribute="trailing" id="F5a-xb-W6q"/>
-                            <constraint firstItem="hDv-k5-UfH" firstAttribute="top" secondItem="wyO-B9-9AK" secondAttribute="bottom" constant="8" id="Qn4-XN-fIk"/>
+                            <constraint firstItem="txX-Uq-hVd" firstAttribute="top" secondItem="Uvc-L6-YZ2" secondAttribute="bottom" id="3fH-Wg-Pd3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="txX-Uq-hVd" secondAttribute="trailing" id="H8T-as-l0T"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ccy-pz-daU" secondAttribute="trailing" id="SiK-PU-slF"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="wyO-B9-9AK" secondAttribute="leading" id="Z33-Fd-FMd"/>
+                            <constraint firstItem="hDv-k5-UfH" firstAttribute="top" secondItem="txX-Uq-hVd" secondAttribute="bottom" constant="8" id="U2Q-u1-O96"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="txX-Uq-hVd" secondAttribute="leading" id="XIR-eP-Sj7"/>
                             <constraint firstAttribute="leadingMargin" secondItem="lqa-Bf-TSR" secondAttribute="leading" id="dcP-Gs-zLt"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Ccy-pz-daU" secondAttribute="leading" id="hUt-KV-PuM"/>
                             <constraint firstAttribute="leadingMargin" secondItem="hDv-k5-UfH" secondAttribute="leading" id="iaA-8J-f0M"/>
@@ -474,6 +492,7 @@
                     </view>
                     <connections>
                         <outlet property="pickerView" destination="wyO-B9-9AK" id="VFh-Dc-LI1"/>
+                        <outlet property="scalePickerView" destination="xvI-SB-W0K" id="Bk8-S9-TC2"/>
                         <outlet property="webView" destination="hDv-k5-UfH" id="sy2-ua-pWk"/>
                     </connections>
                 </viewController>
