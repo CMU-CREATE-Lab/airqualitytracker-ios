@@ -80,8 +80,8 @@ class SpeckReading: Scalable {
             return ""
         } else if index == 0 {
             return "0-\(SpeckReading.ranges[0])"
-        } else if index == 5 {
-            return "\(SpeckReading.ranges[4])+"
+        } else if index == SpeckReading.ranges.count {
+            return "\(SpeckReading.ranges[SpeckReading.ranges.count-1])+"
         } else {
             return "\(SpeckReading.ranges[index-1])-\(SpeckReading.ranges[index])"
         }

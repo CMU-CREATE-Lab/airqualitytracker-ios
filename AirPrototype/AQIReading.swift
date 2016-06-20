@@ -108,8 +108,8 @@ class AQIReading: Scalable {
             return ""
         } else if index == 0 {
             return "0-\(AQIReading.ranges[0])"
-        } else if index == 5 {
-            return "\(AQIReading.ranges[4])+"
+        } else if index == AQIReading.ranges.count {
+            return "\(AQIReading.ranges[AQIReading.ranges.count-1])+"
         } else {
             return "\(AQIReading.ranges[index-1])-\(AQIReading.ranges[index])"
         }

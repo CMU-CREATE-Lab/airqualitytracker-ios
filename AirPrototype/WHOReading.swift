@@ -16,17 +16,19 @@ class WHOReading: Scalable {
         UIColor(red: 163.0/255.0, green: 186.0/255.0, blue: 92.0/255.0, alpha: 1.0),
         UIColor(red: 233.0/255.0, green: 182.0/255.0, blue: 66.0/255.0, alpha: 1.0),
         UIColor(red: 233.0/255.0, green: 140.0/255.0, blue: 55.0/255.0, alpha: 1.0),
-        UIColor(red: 226.0/255.0, green: 79.0/255.0, blue: 54.0/255.0, alpha: 1.0)
+        UIColor(red: 226.0/255.0, green: 79.0/255.0, blue: 54.0/255.0, alpha: 1.0),
+        UIColor(red: 181.0/255.0, green: 67.0/255.0, blue: 130.0/255.0, alpha: 1.0),
+        UIColor(red: 178.0/255.0, green: 38.0/255.0, blue: 81.0/255.0, alpha: 1.0)
     ]
     private static let aqiColorsHexStrings = [
-        "a3ba5c", "e9b642", "e98c37", "e24f36"
+        "a3ba5c", "e9b642", "e98c37", "e24f36", "b54382", "b22651"
     ]
     private static let titles = [
-        "Good", "Moderate", "Elevated", "High"
+        "Good", "Moderate", "Elevated", "High", "Very High", "Hazardous"
     ]
     // ranges measured in ug/m^3
     private static let ranges = [
-        10.1, 25.5, 50.5
+        10.1, 25.5, 50.5, 149.5, 249.5
     ]
     // class attributes
     private var reading: Double
@@ -67,11 +69,11 @@ class WHOReading: Scalable {
             NSLog("getRangeFromIndex received index < 0.")
             return ""
         } else if index == 0 {
-            return "0-\(WHOReading.ranges[0])"
-        } else if index == 3 {
-            return "\(WHOReading.ranges[4])+"
+            return "0-\(AqiConverter.microgramsToAqi(WHOReading.ranges[0]))"
+        } else if index == WHOReading.ranges.count {
+            return "\(AqiConverter.microgramsToAqi(WHOReading.ranges[WHOReading.ranges.count-1]))+"
         } else {
-            return "\(WHOReading.ranges[index-1])-\(WHOReading.ranges[index])"
+            return "\(AqiConverter.microgramsToAqi(WHOReading.ranges[index-1]))-\(AqiConverter.microgramsToAqi(WHOReading.ranges[index]))"
         }
     }
     
