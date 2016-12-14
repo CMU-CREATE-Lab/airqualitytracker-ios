@@ -141,7 +141,7 @@ class EsdrJsonParser {
     
     
     static func parseDailyFeedTracker(feed: Feed, from: Int, to: Int, dataEntry: NSDictionary) -> DailyFeedTracker {
-        var result = DailyFeedTracker(feed: feed, from: from, to: to)
+        let result = DailyFeedTracker(feed: feed, from: from, to: to)
         
         let data = dataEntry.valueForKey("data") as! NSArray
         for row in data {

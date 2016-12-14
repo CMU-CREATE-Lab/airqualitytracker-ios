@@ -93,7 +93,7 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
         self.gridView.addSubview(self.refreshController!)
         self.gridView.scrollEnabled = true
         self.gridView.alwaysBounceVertical = true
-        self.refreshController!.addTarget(self, action:"refreshLayout", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshController!.addTarget(self, action:#selector(ReadableIndexController.refreshLayout), forControlEvents: UIControlEvents.ValueChanged)
         
         self.navigationItem.title = "Speck Sensor"
     }

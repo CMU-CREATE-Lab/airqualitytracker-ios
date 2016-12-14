@@ -69,7 +69,7 @@ class LoginController: UIViewController {
     
     func display() {
         if loggedIn {
-            logoutView = NSBundle.mainBundle().loadNibNamed("LogoutView", owner: contentView, options: nil).last as? LogoutView
+            logoutView = NSBundle.mainBundle().loadNibNamed("LogoutView", owner: contentView, options: nil)!.last as? LogoutView
             logoutView!.frame = contentView.frame
             logoutView!.frame.origin = CGPoint(x: 0,y: 0)
             contentView.addSubview(logoutView!)
@@ -79,9 +79,9 @@ class LoginController: UIViewController {
                 loginView = nil
             }
             logoutView!.labelUsername.text = username
-            logoutView!.logoutButton.addTarget(self, action: "onClickLogout", forControlEvents: UIControlEvents.TouchDown)
+            logoutView!.logoutButton.addTarget(self, action: #selector(LoginController.onClickLogout), forControlEvents: UIControlEvents.TouchDown)
         } else {
-            loginView = NSBundle.mainBundle().loadNibNamed("LoginView", owner: contentView, options: nil).last as? LoginView
+            loginView = NSBundle.mainBundle().loadNibNamed("LoginView", owner: contentView, options: nil)!.last as? LoginView
             loginView!.frame = contentView.frame
             loginView!.frame.origin = CGPoint(x: 0,y: 0)
             contentView.addSubview(loginView!)
@@ -90,7 +90,7 @@ class LoginController: UIViewController {
                 logoutView!.removeFromSuperview()
                 logoutView = nil
             }
-            loginView!.loginButton.addTarget(self, action: "onClickLogin", forControlEvents: UIControlEvents.TouchDown)
+            loginView!.loginButton.addTarget(self, action: #selector(LoginController.onClickLogin), forControlEvents: UIControlEvents.TouchDown)
         }
     }
     

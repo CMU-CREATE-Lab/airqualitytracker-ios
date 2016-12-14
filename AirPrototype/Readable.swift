@@ -16,7 +16,8 @@ enum ReadableType {
 private var hashId = 1
 
 func generateHashForReadable() -> Int {
-    return hashId++
+    hashId = hashId + 1
+    return hashId
 }
 
 // NOTICE

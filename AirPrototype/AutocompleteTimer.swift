@@ -46,7 +46,7 @@ class AutocompleteTimer: NSObject, Timer {
     
     func startTimer() {
         self.stopTimer()
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(self.timerInterval, target: self, selector: Selector("timerExpires"), userInfo: nil, repeats: false)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(self.timerInterval, target: self, selector: #selector(AutocompleteTimer.timerExpires), userInfo: nil, repeats: false)
         if let tolerance = self.timerTolerance {
             self.timer!.tolerance = tolerance
         }
