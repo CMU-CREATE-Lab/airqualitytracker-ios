@@ -30,11 +30,40 @@ class Constants {
         SettingsKeys.speckLastPosition: 1
     ]
 
+    // TODO delete me?
     // these are the channel names that we want our feeds to report
     static let channelNames = [
             "pm2_5", "PM2_5", "pm2_5_1hr",
             "pm2_5_24hr", "PM25B_UG_M3", "PM25_UG_M3",
             "particle_concentration"
+    ]
+    
+    // particulate matter channel names
+    static let channelNamesPm = [
+            "pm2_5", "PM2_5", "pm2_5_1hr",
+            "pm2_5_24hr", "PM25B_UG_M3", "PM25_UG_M3",
+            "particle_concentration"
+    ]
+    
+    // ozone channel names
+    static let channelNamesOzone = [
+            "Ozone", "OZONE", "OZONE2_PPM",
+            "Ozone_O3", "OZONE_PPM"
+    ]
+    
+    // ozone channel names that use PPB instead of PPM
+    static let ppbOzoneNames = [
+            "Ozone", "OZONE", "Ozone_O3"
+    ]
+    
+    // humidity channel names (speck only for now)
+    static let channelNamesHumidity = [
+            "humidity"
+    ]
+    
+    // humidity channel names (speck only for now)
+    static let channelNamesTemperature = [
+            "temperature"
     ]
     
     // This should be either INSTANTCAST or NOWCAST
@@ -93,6 +122,8 @@ class Constants {
 
     struct Units {
         static let MICROGRAMS_PER_CUBIC_METER = "µg/m³";
+        static let PARTS_PER_MILLION = "ppm";
+        static let PARTS_PER_BILLION = "ppb";
         static let AQI = "AQI";
         static let RANGE_MICROGRAMS_PER_CUBIC_METER = "µg/m³    /500";
         static let RANGE_AQI = "AQI    /500";
