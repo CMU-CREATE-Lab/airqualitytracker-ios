@@ -21,35 +21,38 @@ class ReadableIndexCell: UICollectionViewCell {
         textCurrentLocation.hidden = true
         if reading.hasReadableValue() {
             var value: String
-            let type = reading.getReadableType()
             textItemName.text = reading.getName()
             
-            switch type {
-            case .ADDRESS:
-                textItemLabel.text = Constants.Units.AQI
-                let micrograms = reading.getReadableValue()
-                let aqi = AqiConverter.microgramsToAqi(micrograms)
-                value = Int(aqi).description
-                let aqiReading = AQIReading(reading: micrograms)
-                if aqiReading.withinRange() {
-                    self.backgroundColor = aqiReading.getColor()
+            if (reading.hasReadableValue()) {
+                if (reading is SimpleAddress) {
+                    textItemLabel.text = Constants.Units.AQI
+                    let micrograms = (reading as! SimpleAddress).getReadableValues().first!.getValue()
+                    let aqi = AqiConverter.microgramsToAqi(micrograms)
+                    value = Int(aqi).description
+                    let aqiReading = AQIReading(reading: micrograms)
+                    if aqiReading.withinRange() {
+                        self.backgroundColor = aqiReading.getColor()
+                    }
+                    // current location
+                    let address = reading as! SimpleAddress
+                    if address.isCurrentLocation && address.hasReadableValue() {
+                        textCurrentLocation.hidden = false
+                    }
+                } else if (reading is Speck) {
+                    textItemLabel.text = Constants.Units.MICROGRAMS_PER_CUBIC_METER
+                    let micrograms = (reading as! Speck).getReadablePm25Value().getValue()
+                    value = Int(micrograms).description
+                    let speckReading = SpeckReading(reading: micrograms)
+                    if speckReading.withinRange() {
+                        self.backgroundColor = speckReading.getColor()
+                    }
+                } else {
+                    NSLog("WARNING - could not determine Readable type for ReadableIndexCell")
+                    value = ""
                 }
-                // current location
-                let address = reading as! SimpleAddress
-                if address.isCurrentLocation && address.hasReadableValue() {
-                    textCurrentLocation.hidden = false
-                }
-            case .SPECK:
-                textItemLabel.text = Constants.Units.MICROGRAMS_PER_CUBIC_METER
-                let micrograms = reading.getReadableValue()
-                value = Int(micrograms).description
-                let speckReading = SpeckReading(reading: micrograms)
-                if speckReading.withinRange() {
-                    self.backgroundColor = speckReading.getColor()
-                }
-            default:
-                NSLog("WARNING - could not determine Readable type for ReadableIndexCell")
-                value = reading.getReadableValue().description
+            } else {
+                NSLog("WARNING - Readable does not have readable value")
+                value = ""
             }
             
             textItemValue.text = value

@@ -12,7 +12,7 @@ import UIKit
 class AqiExplanationDetailsController: UIViewController {
     
     var reading: AirNowReadable?
-    var feed: Feed?
+    var feed: Pm25Feed?
     
     override func viewDidLoad() {
         super.viewDidLoad()

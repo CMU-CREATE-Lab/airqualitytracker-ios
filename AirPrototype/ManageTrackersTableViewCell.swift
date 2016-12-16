@@ -38,16 +38,15 @@ class ManageTrackersTableViewCell: UITableViewCell, UIAlertViewDelegate {
     
     @IBAction func onClickEditName(sender: AnyObject) {
         let reading = self.reading!
-        switch(reading.getReadableType()) {
-        case .ADDRESS:
+        if (reading is SimpleAddress) {
             let dialog = UIAlertView.init(title: "Change Address Name", message: reading.getName(), delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Save")
             dialog.alertViewStyle = UIAlertViewStyle.PlainTextInput
             dialog.show()
-        case .SPECK:
+        } else if (reading is Speck) {
             let dialog = UIAlertView.init(title: "Change Address Name", message: reading.getName(), delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Save")
             dialog.alertViewStyle = UIAlertViewStyle.PlainTextInput
             dialog.show()
-        default:
+        } else {
             NSLog("Error - could not find readable type")
         }
     }

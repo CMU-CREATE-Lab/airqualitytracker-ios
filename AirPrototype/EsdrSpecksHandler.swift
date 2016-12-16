@@ -51,15 +51,12 @@ class EsdrSpecksHandler {
             if let channels = dataEntry.valueForKey("channelBounds")?.valueForKey("channels") as? NSDictionary {
                 let keys = channels.keyEnumerator()
                 while let channelName = keys.nextObject() as? String {
-                    // Only grab channels that we care about
-                    if let index = Constants.channelNames.indexOf(channelName) {
-                        // NOTICE: we must also make sure that this specific channel was updated
-                        // in the past 24 hours ("maxTime").
-                        let channel = channels.valueForKey(channelName) as! NSDictionary
-                        let channelTime = channel.valueForKey("maxTimeSecs") as! Double
-                        feedChannels.append(EsdrJsonParser.parseChannelFromJson(channelName, feed: speck, dataEntry: channel))
-                        break
-                    }
+                    // NOTICE: we must also make sure that this specific channel was updated
+                    // in the past 24 hours ("maxTime").
+                    let channel = channels.valueForKey(channelName) as! NSDictionary
+                    let channelTime = channel.valueForKey("maxTimeSecs") as! Double
+                    feedChannels.append(EsdrJsonParser.parseChannelFromJson(channelName, feed: speck, dataEntry: channel))
+                    break
                 }
                 speck.channels = feedChannels
                 GlobalHandler.sharedInstance.esdrFeedsHandler.requestUpdate(speck)

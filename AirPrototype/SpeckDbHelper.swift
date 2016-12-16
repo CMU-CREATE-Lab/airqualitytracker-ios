@@ -55,7 +55,7 @@ class SpeckDbHelper {
                     let is_mobile = match.valueForKey(SpeckKeys.isMobileKey) as! Bool
                     let product_id = match.valueForKey(SpeckKeys.productIdKey) as! Int
                     
-                    let feed = Feed()
+                    let feed = Pm25Feed()
                     feed.name = name
                     feed.location = Location(latitude: Double(latitude), longitude: Double(longitude))
                     feed.exposure = exposure

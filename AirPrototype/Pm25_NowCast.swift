@@ -20,7 +20,6 @@ class Pm25_NowCast: Pm25AqiReadableValue {
     }
     
     
-    func getChannel() -> Channel { return channel }
     func getReadableUnits() -> String { return "%" }
     func getValue() -> Double { return value }
     

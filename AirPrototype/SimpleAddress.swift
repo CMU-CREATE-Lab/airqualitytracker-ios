@@ -9,38 +9,35 @@
 import Foundation
 import CoreData
 
-class SimpleAddress: AirNowReadable, Hashable {
+class SimpleAddress: AirNowReadable, Pm25Readable, OzoneReadable, Hashable {
     
-    
-    // MARK: AirNowReadable/Hashable implementation
-    
-    
-    private let readableType = ReadableType.ADDRESS
+//    private let readableType = ReadableType.ADDRESS
+    var readablePm25Value: AqiReadableValue?
+    var readableOzoneValue: AqiReadableValue?
     var hashValue: Int { return generateHashForReadable() }
     var location: Location
     var airNowObservations: [AirNowObservation]
     
     
-    func getReadableType() -> ReadableType {
-        return self.readableType
-    }
-    
-    
-    func hasReadableValue() -> Bool {
-        if let feed = self.closestFeed {
-            return feed.hasReadableValue()
-        }
-        return false
-    }
-    
-    
-    func getReadableValue() -> Double {
-        if self.hasReadableValue() {
-            return self.closestFeed!.getReadableValue()
-        }
-        NSLog("Failed to get Readable Value on SimpleAddress; returning 0.0")
-        return 0.0
-    }
+//    func getReadableType() -> ReadableType {
+//        return self.readableType
+//    }
+//    
+//    
+//    func hasReadableValue() -> Bool {
+//        if let feed = self.closestFeed {
+//            return feed.hasReadableValue()
+//        }
+//        return false
+//    }
+//    
+//    
+//    func getReadableValues() -> Array<ReadableValue> {
+//        if self.hasReadableValue() {
+//            return self.closestFeed!.getReadableValues()
+//        }
+//        return Array()
+//    }
     
     
     func getName() -> String {
@@ -56,8 +53,8 @@ class SimpleAddress: AirNowReadable, Hashable {
     var name: String
     var zipcode: String
     var isCurrentLocation: Bool
-    var closestFeed: Feed?
-    var feeds: Array<Feed>
+    var closestFeed: AirQualityFeed?
+    var feeds: Array<AirQualityFeed>
     let uid = 1
     var dailyFeedTracker: DailyFeedTracker?
     
@@ -102,6 +99,79 @@ class SimpleAddress: AirNowReadable, Hashable {
             controller.feedTrackerResponse(text)
         }
         GlobalHandler.sharedInstance.esdrTilesHandler.requestFeedAverages(closestFeed!, from: from, to: to, response: httpResponse)
+    }
+    
+    
+    // Pm25Readable implementation
+    
+    
+    func getPm25Channels() -> Array<Pm25Channel> {
+        var result = Array<Pm25Channel>()
+        
+        for feed in self.feeds {
+            result.appendContentsOf(feed.getPm25Channels())
+        }
+        
+        return result
+    }
+    
+    
+    func hasReadablePm25Value() -> Bool {
+        return (readablePm25Value != nil)
+    }
+    
+    
+    func getReadablePm25Value() -> AqiReadableValue {
+        return readablePm25Value!
+    }
+
+    
+    // OzoneReadable implementation
+    
+    
+    func getOzoneChannels() -> Array<OzoneChannel> {
+        var result = Array<OzoneChannel>()
+        
+        for feed in self.feeds {
+            result.appendContentsOf(feed.getOzoneChannels())
+        }
+        
+        return result
+    }
+    
+    
+    func hasReadableOzoneValue() -> Bool {
+        return (readableOzoneValue != nil)
+    }
+    
+    
+    func getReadableOzoneValue() -> AqiReadableValue {
+        return readableOzoneValue!
+    }
+    
+    
+    // Readable Implementation
+    
+    
+    private func generateReadableValues() -> Array<ReadableValue> {
+        var result = Array<ReadableValue>()
+        if (hasReadablePm25Value()) {
+            result.append(self.readablePm25Value!)
+        }
+        if (hasReadableOzoneValue()) {
+            result.append(self.readableOzoneValue!)
+        }
+        return result
+    }
+    
+    
+    func hasReadableValue() -> Bool {
+        return (generateReadableValues().count > 0)
+    }
+    
+    
+    func getReadableValues() -> Array<ReadableValue> {
+        return generateReadableValues()
     }
     
 }

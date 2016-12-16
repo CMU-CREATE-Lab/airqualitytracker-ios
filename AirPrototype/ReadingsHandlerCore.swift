@@ -33,15 +33,22 @@ class ReadingsHandlerCore {
     
     
     func addReading(readable: Readable) {
-        let type = readable.getReadableType()
-        switch type {
-        case ReadableType.ADDRESS:
+        if (readable is SimpleAddress) {
             addresses.append(readable as! SimpleAddress)
-        case ReadableType.SPECK:
+        } else if (readable is Speck) {
             specks.append(readable as! Speck)
-        default:
+        } else {
             NSLog("Tried to add Readable of unknown Type in HeaderReadingsHashMap")
         }
+//        let type = readable.getReadableType()
+//        switch type {
+//        case ReadableType.ADDRESS:
+//            addresses.append(readable as! SimpleAddress)
+//        case ReadableType.SPECK:
+//            specks.append(readable as! Speck)
+//        default:
+//            NSLog("Tried to add Readable of unknown Type in HeaderReadingsHashMap")
+//        }
         refreshHash()
     }
     

@@ -33,9 +33,8 @@ protocol Readable {
     // ASSERT: this should return generateHashForReadable()
     var hashValue: Int { get }
     
-    func getReadableType() -> ReadableType
     func getName() -> String
     func hasReadableValue() -> Bool
-    func getReadableValue() -> Double
+    func getReadableValues() -> Array<ReadableValue>
     
 }

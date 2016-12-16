@@ -20,14 +20,14 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var labelExpiresAt: UILabel!
     @IBOutlet var tableView: UITableView!
     @IBAction func clickRequestFeeds(sender: AnyObject) {
-        var feeds = [Feed]()
+        var feeds = [AirQualityFeed]()
         if let addresses = GlobalHandler.sharedInstance.readingsHandler.adapterList[Constants.HEADER_TITLES[1]] {
             for reading in addresses {
                 feeds.appendContentsOf( (reading as! SimpleAddress).feeds )
             }
         }
         for feed in feeds {
-            GlobalHandler.sharedInstance.esdrFeedsHandler.requestChannelReading(feed, channel: feed.channels[0])
+            GlobalHandler.sharedInstance.esdrFeedsHandler.requestChannelReading(feed, channel: feed.channels[0] as! Channel)
         }
     }
     
@@ -75,7 +75,7 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let readingsHandler = GlobalHandler.sharedInstance.readingsHandler
         if let addresses = readingsHandler.adapterList[Constants.HEADER_TITLES[1]] {
-            if addresses[section].getReadableType() == ReadableType.ADDRESS {
+            if (addresses[section] is SimpleAddress) {
                 let address = addresses[section] as! SimpleAddress
                 return address.feeds.count
             }

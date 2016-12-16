@@ -62,7 +62,7 @@ class EsdrTilesHandler {
             firstResponse = EsdrJsonParser.parseTiles(data!, fromTime: minTime, toTime: maxTime)
             
             // send 2nd request
-            let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/api/v1/feeds/\(channel.feed.feed_id)/channels/\(channel.name)/tiles/\(level).\(offset-1)", httpMethod: "GET")
+            let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/api/v1/feeds/\(channel.feed!.feed_id)/channels/\(channel.name)/tiles/\(level).\(offset-1)", httpMethod: "GET")
             GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: secondHandler)
         }
         
@@ -86,13 +86,13 @@ class EsdrTilesHandler {
         }
         
         // send 1st request
-        let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/api/v1/feeds/\(channel.feed.feed_id)/channels/\(channel.name)/tiles/\(level).\(offset)", httpMethod: "GET")
+        let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/api/v1/feeds/\(channel.feed!.feed_id)/channels/\(channel.name)/tiles/\(level).\(offset)", httpMethod: "GET")
         GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: firstHandler)
     }
     
     
-    func requestFeedAverages(feed: Feed, from: Int, to: Int, response: (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void) {
-        let channelName = feed.channels[0].name
+    func requestFeedAverages(feed: Pm25Feed, from: Int, to: Int, response: (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void) {
+        let channelName = feed.getPm25Channels().first!.name
         let requestUrl = Constants.Esdr.API_URL + "/api/v1/feeds/\(feed.feed_id)/channels/\(channelName)_daily_mean,\(channelName)_daily_median,\(channelName)_daily_max/export"
         let urlParams = "?format=json" + "&from=\(from)&to=\(to)"
         

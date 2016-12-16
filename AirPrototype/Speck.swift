@@ -9,18 +9,7 @@
 import Foundation
 import CoreData
 
-class Speck: Feed {
-    
-    
-    // MARK: Readable implementation
-    
-
-    private let readableType = ReadableType.SPECK
-    
-    
-    override func getReadableType() -> ReadableType {
-        return readableType
-    }
+class Speck: Pm25Feed, HumidityReadable, TemperatureReadable {
     
     
     // MARK: class-specific definitions
@@ -32,7 +21,7 @@ class Speck: Feed {
     var apiKeyReadOnly: String?
     
     
-    init(feed: Feed, deviceId: Int) {
+    init(feed: Pm25Feed, deviceId: Int) {
         self.deviceId = deviceId
         super.init()
         
@@ -42,8 +31,58 @@ class Speck: Feed {
         self.isMobile = feed.isMobile
         self.location = feed.location
         self.productId = feed.productId
-        self.channels = feed.channels
+//        self.channels = feed.channels
+        self.pm25Channels = feed.pm25Channels
         self.lastTime = feed.lastTime
+    }
+    
+    
+    func addChannel(channel: Channel) {
+        // TODO actions
+    }
+    
+    
+    // HumidityReadable implementation
+    
+    
+    var readableHumidityValue: ReadableValue?
+    var humidityChannels = Array<HumidityChannel>()
+    
+    
+    func getHumidityChannels() -> Array<HumidityChannel> {
+        return humidityChannels
+    }
+    
+    
+    func hasReadableHumidityValue() -> Bool {
+        return (readableHumidityValue != nil)
+    }
+    
+    
+    func getReadableHumidityValue() -> ReadableValue {
+        return readableHumidityValue!
+    }
+    
+    
+    // TemperatureReadable implementation
+
+    
+    var readableTemperatureValue: ReadableValue?
+    var temperatureChannels = Array<TemperatureChannel>()
+    
+    
+    func getTemperatureChannels() -> Array<TemperatureChannel> {
+        return temperatureChannels
+    }
+    
+    
+    func hasReadableTemperatureValue() -> Bool {
+        return (readableTemperatureValue != nil)
+    }
+    
+    
+    func getReadableTemperatureValue() -> ReadableValue {
+        return readableTemperatureValue!
     }
     
 }

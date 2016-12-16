@@ -10,15 +10,15 @@ import Foundation
 
 class DailyFeedTracker {
     
-    private var feed: Feed
+    private var feed: Pm25Feed
     var values = Array<DayFeedValue>()
     private var to,from: Int
     // getters
-    func getFeed() -> Feed { return feed }
+    func getFeed() -> Pm25Feed { return feed }
     func getStartTime() -> Int { return from }
     
     
-    init(feed: Feed, from: Int, to: Int) {
+    init(feed: Pm25Feed, from: Int, to: Int) {
         self.feed = feed
         self.from = from
         self.to = to

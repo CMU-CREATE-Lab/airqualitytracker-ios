@@ -20,8 +20,8 @@ class EsdrFeedsHandler {
     
     
     // ASSERT: cannot pass both authToken and feedApiKey (if so, authToken takes priority)
-    private func requestChannelReading(authToken: String?, feedApiKey: String?, feed: Feed, channel: Channel, maxTime: Double?) {
-        let feedId = channel.feed.feed_id.description
+    private func requestChannelReading(authToken: String?, feedApiKey: String?, feed: Pm25Feed, channel: Channel, maxTime: Double?) {
+        let feedId = channel.feed!.feed_id.description
         let channelName = channel.name
         let timeRange = NSDate().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
         
@@ -43,17 +43,38 @@ class EsdrFeedsHandler {
                 let resultTime = temp.valueForKey("timeSecs") as? NSNumber
                 if resultValue != nil && resultTime != nil {
                     if maxTime == nil {
-                        feed.setReadableValueType(Feed.ReadableValueType.INSTANTCAST)
-                        channel.instantcastValue = resultValue!.doubleValue
+                        if (channel is Pm25Channel) {
+                            feed.readablePm25Value = Pm25_InstantCast(value: resultValue!.doubleValue, pm25Channel: channel as! Pm25Channel)
+                        } else if (channel is OzoneChannel) {
+                            (feed as! AirQualityFeed).readableOzoneValue = Ozone_InstantCast(value: resultValue!.doubleValue, ozoneChannel: channel as! OzoneChannel)
+                        } else if (channel is HumidityChannel) {
+                            (feed as! Speck).readableHumidityValue = HumidityValue(value: resultValue!.doubleValue, humidityChannel: channel as! HumidityChannel)
+                        } else if (channel is TemperatureChannel) {
+                            (feed as! Speck).readableTemperatureValue = TemperatureValue(value: resultValue!.doubleValue, temperatureChannel: channel as! TemperatureChannel)
+                        }
                         feed.lastTime = resultTime!.doubleValue
                     } else {
                         if maxTime <= resultTime!.doubleValue {
-                            feed.setReadableValueType(Feed.ReadableValueType.INSTANTCAST)
-                            channel.instantcastValue = resultValue!.doubleValue
+                            if (channel is Pm25Channel) {
+                                feed.readablePm25Value = Pm25_InstantCast(value: resultValue!.doubleValue, pm25Channel: channel as! Pm25Channel)
+                            } else if (channel is OzoneChannel) {
+                                (feed as! AirQualityFeed).readableOzoneValue = Ozone_InstantCast(value: resultValue!.doubleValue, ozoneChannel: channel as! OzoneChannel)
+                            } else if (channel is HumidityChannel) {
+                                (feed as! Speck).readableHumidityValue = HumidityValue(value: resultValue!.doubleValue, humidityChannel: channel as! HumidityChannel)
+                            } else if (channel is TemperatureChannel) {
+                                (feed as! Speck).readableTemperatureValue = TemperatureValue(value: resultValue!.doubleValue, temperatureChannel: channel as! TemperatureChannel)
+                            }
                             feed.lastTime = resultTime!.doubleValue
                         } else {
-                            feed.setReadableValueType(Feed.ReadableValueType.NONE)
-                            channel.instantcastValue = 0
+                            if (channel is Pm25Channel) {
+                                feed.readablePm25Value = nil
+                            } else if (channel is OzoneChannel) {
+                                (feed as! AirQualityFeed).readableOzoneValue = nil
+                            } else if (channel is HumidityChannel) {
+                                (feed as! Speck).readableHumidityValue = nil
+                            } else if (channel is TemperatureChannel) {
+                                (feed as! Speck).readableTemperatureValue = nil
+                            }
                             NSLog("found FEED VALUE out of bounds")
                             feed.lastTime = resultTime!.doubleValue
                         }
@@ -94,16 +115,20 @@ class EsdrFeedsHandler {
     }
     
     
-    func requestChannelReading(feed: Feed, channel: Channel) {
-        if Constants.DEFAULT_ADDRESS_READABLE_VALUE_TYPE == Feed.ReadableValueType.INSTANTCAST {
-            requestChannelReading(nil, feedApiKey: nil, feed: feed, channel: channel, maxTime: nil)
-        } else if Constants.DEFAULT_ADDRESS_READABLE_VALUE_TYPE == Feed.ReadableValueType.NOWCAST {
-            channel.requestNowCast()
-        }
+    func requestChannelReading(feed: Pm25Feed, channel: Channel) {
+        // TODO instantcast vs nowcast
+        //requestChannelReading(nil, feedApiKey: nil, feed: feed, channel: channel, maxTime: nil)
+        channel.requestNowCast()
+        
+//        if Constants.DEFAULT_ADDRESS_READABLE_VALUE_TYPE == Pm25Feed.ReadableValueType.INSTANTCAST {
+//            requestChannelReading(nil, feedApiKey: nil, feed: feed, channel: channel, maxTime: nil)
+//        } else if Constants.DEFAULT_ADDRESS_READABLE_VALUE_TYPE == Feed.ReadableValueType.NOWCAST {
+//            channel.requestNowCast()
+//        }
     }
     
     
-    func requestAuthorizedChannelReading(authToken: String, feed: Feed, channel: Channel) {
+    func requestAuthorizedChannelReading(authToken: String, feed: Pm25Feed, channel: Channel) {
         let timeRange = NSDate().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
         requestChannelReading(authToken, feedApiKey: nil, feed: feed, channel: channel, maxTime: timeRange)
     }
@@ -122,14 +147,19 @@ class EsdrFeedsHandler {
                 address.feeds.appendContentsOf(EsdrJsonParser.populateFeedsFromJson(data!, maxTime: maxTime))
                 if address.feeds.count > 0 {
                     if let closestFeed = MapGeometry.getClosestFeedToAddress(address, feeds: address.feeds) {
+                        // TODO make all feeds store address
+                        closestFeed.simpleAddress = address
                         address.closestFeed = closestFeed
                         
                         // Responsible for calculating the value to be displayed
-                        if Constants.DEFAULT_ADDRESS_READABLE_VALUE_TYPE == Feed.ReadableValueType.NOWCAST {
-                            closestFeed.channels[0].requestNowCast()
-                        } else if Constants.DEFAULT_ADDRESS_READABLE_VALUE_TYPE == Feed.ReadableValueType.INSTANTCAST {
-                            requestChannelReading(nil, feedApiKey: nil, feed: closestFeed, channel: closestFeed.channels[0], maxTime: maxTime)
-                        }
+                        // TODO instantcast vs nowcast
+                        //requestChannelReading(nil, feedApiKey: nil, feed: closestFeed, channel: closestFeed.channels[0], maxTime: maxTime)
+                        closestFeed.getPm25Channels().first!.requestNowCast()
+//                        if Constants.DEFAULT_ADDRESS_READABLE_VALUE_TYPE == Feed.ReadableValueType.NOWCAST {
+//                            closestFeed.channels[0].requestNowCast()
+//                        } else if Constants.DEFAULT_ADDRESS_READABLE_VALUE_TYPE == Feed.ReadableValueType.INSTANTCAST {
+//                            requestChannelReading(nil, feedApiKey: nil, feed: closestFeed, channel: closestFeed.channels[0], maxTime: maxTime)
+//                        }
                     } else {
                         NSLog("Found non-zero feeds but closestFeed DNE?")
                     }
@@ -141,9 +171,9 @@ class EsdrFeedsHandler {
     
     
     func requestUpdate(speck: Speck) {
-        if speck.channels.count > 0 {
+        if speck.pm25Channels.count > 0 {
             let timeRange = NSDate().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
-            requestChannelReading(nil, feedApiKey: speck.apiKeyReadOnly!, feed: speck, channel: speck.channels[0], maxTime: timeRange)
+            requestChannelReading(nil, feedApiKey: speck.apiKeyReadOnly!, feed: speck, channel: speck.getPm25Channels().first!, maxTime: timeRange)
         } else {
             NSLog("No channels found from speck id=\(speck.feed_id)")
         }

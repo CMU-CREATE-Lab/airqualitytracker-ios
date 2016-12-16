@@ -25,7 +25,6 @@ class Ozone_NowCast: AqiReadableValue {
     }
     
     
-    func getChannel() -> Channel { return channel }
     func getReadableUnits() -> String { return Constants.Units.PARTS_PER_MILLION }
     func getValue() -> Double { return value }
     

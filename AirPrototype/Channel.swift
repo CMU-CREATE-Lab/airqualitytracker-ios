@@ -11,7 +11,7 @@ import Foundation
 class Channel {
     
     var name: String
-    var feed: Feed
+    var feed: Pm25Feed?
     var minTimeSecs: Double
     var maxTimeSecs: Double
     var minValue: Double
@@ -22,7 +22,6 @@ class Channel {
     
     init() {
         name = ""
-        feed = Feed()
         minTimeSecs = 0
         maxTimeSecs = 0
         minValue = 0
@@ -39,7 +38,8 @@ class Channel {
             
             // find NowCast
             self.nowcastValue = NowCastCalculator.calculate(array)
-            self.feed.setReadableValueType(Feed.ReadableValueType.NOWCAST)
+            feed?.readablePm25Value = Pm25_NowCast(value: self.nowcastValue!, pm25Channel: self as! Pm25Channel)
+            (feed as! AirQualityFeed).simpleAddress!.readablePm25Value = feed?.readablePm25Value
             
             // update adapters
             GlobalHandler.sharedInstance.notifyGlobalDataSetChanged()

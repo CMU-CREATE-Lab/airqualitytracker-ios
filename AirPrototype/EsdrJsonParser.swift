@@ -21,13 +21,14 @@ class EsdrJsonParser {
     }
     
     
-    static func populateFeedsFromJson(data: NSDictionary, maxTime: Double) -> [Feed] {
-        var feeds = Array<Feed>()
+    static func populateFeedsFromJson(data: NSDictionary, maxTime: Double) -> [AirQualityFeed] {
+        var feeds = Array<AirQualityFeed>()
         if let rows = (data.valueForKey("data") as! NSDictionary).valueForKey("rows") as? Array<NSDictionary> {
             for row in rows {
                 let feed = parseFeedFromJson(row, maxTime: maxTime)
                 // only consider non-null feeds with at least 1 channel
-                if feed.channels.count > 0 {
+                // TODO save more than just PM25?
+                if feed.getPm25Channels().count > 0 {
                     feeds.append(feed)
                 }
             }
@@ -40,9 +41,11 @@ class EsdrJsonParser {
         var specks = Array<Speck>()
         if let rows = (data.valueForKey("data") as! NSDictionary).valueForKey("rows") as? Array<NSDictionary> {
             for row in rows {
+                // TODO this needs its own function or else you won't call addChannel() properly
                 let feed = parseFeedFromJson(row, maxTime: 0)
                 // only consider non-null feeds with at least 1 channel
-                if feed.channels.count > 0 {
+//                if feed.channels.count > 0 {
+                if feed.pm25Channels.count > 0 {
                     let deviceId = row.valueForKey("deviceId") as! Int
                     let apiKeyReadOnly = row.valueForKey("apiKeyReadOnly") as! String
                     let speck = Speck(feed: feed, deviceId: deviceId)
@@ -55,9 +58,9 @@ class EsdrJsonParser {
     }
     
     
-    static func parseFeedFromJson(dataEntry: NSDictionary, maxTime: Double) -> Feed {
-        let result = Feed()
-        var feedChannels = Array<Channel>()
+    static func parseFeedFromJson(dataEntry: NSDictionary, maxTime: Double) -> AirQualityFeed {
+        let result = AirQualityFeed()
+//        var feedChannels = Array<Channel>()
         
         let feed_id = dataEntry.valueForKey("id") as! Int
         let name = dataEntry.valueForKey("name") as! String
@@ -83,27 +86,47 @@ class EsdrJsonParser {
         if let channels = dataEntry.valueForKey("channelBounds")?.valueForKey("channels") as? NSDictionary {
             let keys = channels.keyEnumerator()
             while let channelName = keys.nextObject() as? String {
-                // Only grab channels that we care about
-                if let index = Constants.channelNames.indexOf(channelName) {
-                    // NOTICE: we must also make sure that this specific channel was updated
-                    // in the past 24 hours ("maxTime").
-                    let channel = channels.valueForKey(channelName) as! NSDictionary
-                    let channelTime = channel.valueForKey("maxTimeSecs") as! Double
-                    if channelTime >= maxTime {
-                        feedChannels.append(parseChannelFromJson(channelName, feed: result, dataEntry: channel))
-                        break
-                    }
+//                // Only grab channels that we care about
+//                if let index = Constants.channelNames.indexOf(channelName) {
+//                    // ... now we grab them all
+//                }
+                // NOTICE: we must also make sure that this specific channel was updated
+                // in the past 24 hours ("maxTime").
+                let channel = channels.valueForKey(channelName) as! NSDictionary
+                let channelTime = channel.valueForKey("maxTimeSecs") as! Double
+                if channelTime >= maxTime {
+//                    feedChannels.append(parseChannelFromJson(channelName, feed: result, dataEntry: channel))
+                    result.addChannel(parseChannelFromJson(channelName, feed: result, dataEntry: channel))
+                    //break
                 }
             }
-            result.channels = feedChannels
+//            result.channels = feedChannels
         }
         
         return result
     }
     
     
-    static func parseChannelFromJson(channelName: String, feed: Feed, dataEntry: NSDictionary) -> Channel {
-        let channel = Channel()
+    static func parseChannelFromJson(channelName: String, feed: Pm25Feed, dataEntry: NSDictionary) -> Channel {
+        var channel: Channel
+        
+        // check for known channel types
+        if (Constants.channelNamesPm.contains(channelName)) {
+            channel = Pm25Channel()
+            NSLog("new Pm25Channel \(channelName)")
+        } else if (Constants.channelNamesOzone.contains(channelName)) {
+            channel = OzoneChannel()
+            NSLog("new OzoneChannel \(channelName)")
+        } else if (Constants.channelNamesHumidity.contains(channelName)) {
+            channel = HumidityChannel()
+            NSLog("new HumidityChannel \(channelName)")
+        } else if (Constants.channelNamesTemperature.contains(channelName)) {
+            channel = TemperatureChannel()
+            NSLog("new TemperatureChannel \(channelName)")
+        } else {
+            channel = Channel()
+            NSLog("General Channel created from channelName=\(channelName)")
+        }
         
         let minTimeSecs = dataEntry.valueForKey("minTimeSecs") as! Double
         let maxTimeSecs = dataEntry.valueForKey("maxTimeSecs") as! Double
@@ -140,7 +163,7 @@ class EsdrJsonParser {
     }
     
     
-    static func parseDailyFeedTracker(feed: Feed, from: Int, to: Int, dataEntry: NSDictionary) -> DailyFeedTracker {
+    static func parseDailyFeedTracker(feed: Pm25Feed, from: Int, to: Int, dataEntry: NSDictionary) -> DailyFeedTracker {
         let result = DailyFeedTracker(feed: feed, from: from, to: to)
         
         let data = dataEntry.valueForKey("data") as! NSArray

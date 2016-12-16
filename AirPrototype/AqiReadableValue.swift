@@ -10,8 +10,6 @@ import Foundation
 
 protocol AqiReadableValue: ReadableValue {
     
-//    static func calculateLinearAqi(ihi: Double,ilo: Double,chi: Double,clo: Double,units: Double) -> Double
-    
     // convert stored class value into AQI
     func getAqiValue() -> Double
     

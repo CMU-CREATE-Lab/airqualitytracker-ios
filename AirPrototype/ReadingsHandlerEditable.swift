@@ -38,42 +38,38 @@ class ReadingsHandlerEditable: ReadingsHandlerCore {
 
     
     func reorderReading(reading: Readable, destination: Readable) {
-        if reading.getReadableType() == destination.getReadableType() {
-            if reading.getReadableType() == ReadableType.ADDRESS {
-                let from = findIndexFromAddress(reading as! SimpleAddress)
-                let to = findIndexFromAddress(destination as! SimpleAddress)
-                addresses.removeAtIndex(from!)
-                addresses.insert(reading as! SimpleAddress, atIndex: to!)
-            } else if reading.getReadableType() == ReadableType.SPECK {
-                let from = findIndexFromSpeck(reading as! Speck)
-                let to = findIndexFromSpeck(destination as! Speck)
-                specks.removeAtIndex(from!)
-                specks.insert(reading as! Speck, atIndex: to!)
-            }
-            let positionIdHelper = GlobalHandler.sharedInstance.positionIdHelper
-            positionIdHelper.reorderAddressPositions(addresses)
-            positionIdHelper.reorderSpeckPositions(specks)
-            refreshHash()
+        if (reading is SimpleAddress) {
+            let from = findIndexFromAddress(reading as! SimpleAddress)
+            let to = findIndexFromAddress(destination as! SimpleAddress)
+            addresses.removeAtIndex(from!)
+            addresses.insert(reading as! SimpleAddress, atIndex: to!)
+        } else if (reading is Speck) {
+            let from = findIndexFromSpeck(reading as! Speck)
+            let to = findIndexFromSpeck(destination as! Speck)
+            specks.removeAtIndex(from!)
+            specks.insert(reading as! Speck, atIndex: to!)
         }
+        let positionIdHelper = GlobalHandler.sharedInstance.positionIdHelper
+        positionIdHelper.reorderAddressPositions(addresses)
+        positionIdHelper.reorderSpeckPositions(specks)
+        refreshHash()
     }
     
     
     func removeReading(readable: Readable) {
-        let type = readable.getReadableType()
-        switch type {
-        case ReadableType.ADDRESS:
+        if (readable is SimpleAddress) {
             if let index = findIndexFromAddress(readable as! SimpleAddress) {
                 addresses.removeAtIndex(index)
             }
             AddressDbHelper.deleteAddressFromDb(readable as! SimpleAddress)
-        case ReadableType.SPECK:
+        } else if (readable is Speck) {
             if let speckIndex = findIndexFromSpeck(readable as! Speck) {
                 specks.removeAtIndex(speckIndex)
             }
             let speck = readable as! Speck
             SpeckDbHelper.deleteSpeckFromDb(speck)
             GlobalHandler.sharedInstance.settingsHandler.addToBlacklistedDevices(speck.deviceId)
-        default:
+        } else {
             NSLog("Tried to remove Readable of unknown Type in HeaderReadingsHashMap")
         }
         refreshHash()
@@ -81,11 +77,11 @@ class ReadingsHandlerEditable: ReadingsHandlerCore {
     
     
     func renameReading(reading: Readable, name: String) {
-        if reading.getReadableType() == ReadableType.ADDRESS {
+        if (reading is SimpleAddress) {
             let address = reading as! SimpleAddress
             address.name = name
             AddressDbHelper.updateAddressInDb(address)
-        } else if reading.getReadableType() == ReadableType.SPECK {
+        } else if (reading is Speck) {
             let speck = reading as! Speck
             speck.name = name
             SpeckDbHelper.updateSpeckInDb(speck)

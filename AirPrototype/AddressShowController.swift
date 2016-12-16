@@ -18,7 +18,7 @@ class AddressShowController: UIViewController {
     @IBOutlet var labelValueTitle: UILabel!
     @IBOutlet var labelValueDescription: UILabel!
     @IBOutlet var mainView: UIView!
-    var closestFeed: Feed?
+    var closestFeed: Pm25Feed?
     var reading: Readable?
     @IBOutlet var viewAqiButton: UIView!
     @IBOutlet weak var viewTrackerButton: UIView!
@@ -57,7 +57,7 @@ class AddressShowController: UIViewController {
             self.navigationItem.rightBarButtonItems = []
         }
         if address.hasReadableValue() {
-            let micrograms = address.getReadableValue()
+            let micrograms = address.getReadablePm25Value().getValue()
             let aqi = AqiConverter.microgramsToAqi(micrograms)
             labelShowValue.text = Int(aqi).description
             let aqiReading = AQIReading(reading: micrograms)
@@ -93,7 +93,7 @@ class AddressShowController: UIViewController {
         viewAqiButton.hidden = true
         viewTrackerButton.hidden = true
         if speck.hasReadableValue() {
-            let micrograms = speck.getReadableValue()
+            let micrograms = speck.getReadablePm25Value().getValue()
             labelShowValue.text = Int(micrograms).description
             let speckReading = SpeckReading(reading: micrograms)
             if speckReading.withinRange() {
@@ -117,13 +117,11 @@ class AddressShowController: UIViewController {
     func populateView() {
         gestureDailyTracker.enabled = false
         navigationItem.title = reading!.getName()
-        let type = reading!.getReadableType()
-        switch type {
-        case .ADDRESS:
+        if (reading! is SimpleAddress) {
             addressView(reading as! SimpleAddress)
-        case .SPECK:
+        } else if (reading! is Speck) {
             speckView(reading as! Speck)
-        default:
+        } else {
             NSLog("WARNING - could not populate view; unknown readable type")
         }
     }

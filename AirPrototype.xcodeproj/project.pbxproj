@@ -24,6 +24,12 @@
 		274F6AE41D0B1F640012DE95 /* SpeckReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274F6AE31D0B1F640012DE95 /* SpeckReading.swift */; };
 		274F6AE61D0B1F800012DE95 /* WHOReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274F6AE51D0B1F800012DE95 /* WHOReading.swift */; };
 		275D62111E02E725001292D8 /* Ozone_NowCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D62101E02E725001292D8 /* Ozone_NowCast.swift */; };
+		275D62141E03036F001292D8 /* Pm25Readable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D62131E03036F001292D8 /* Pm25Readable.swift */; };
+		275D62161E0303E9001292D8 /* OzoneReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D62151E0303E9001292D8 /* OzoneReadable.swift */; };
+		275D62181E0307C9001292D8 /* HumidityReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D62171E0307C9001292D8 /* HumidityReadable.swift */; };
+		275D621A1E03083B001292D8 /* TemperatureReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D62191E03083B001292D8 /* TemperatureReadable.swift */; };
+		275D621C1E030C2C001292D8 /* Pm25Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D621B1E030C2C001292D8 /* Pm25Feed.swift */; };
+		275D621E1E030F89001292D8 /* AirQualityFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D621D1E030F89001292D8 /* AirQualityFeed.swift */; };
 		279FB4CC1CEA502800B5C8AA /* DailyTrackerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279FB4CB1CEA502800B5C8AA /* DailyTrackerController.swift */; };
 		27C0225A1CEB50CC00C34EFD /* daily_tracker_grid.html in Resources */ = {isa = PBXBuildFile; fileRef = 27C022591CEB50CC00C34EFD /* daily_tracker_grid.html */; };
 		27C0225C1CEB50DC00C34EFD /* jquery-1.12.3.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 27C0225B1CEB50DC00C34EFD /* jquery-1.12.3.min.js */; };
@@ -141,6 +147,12 @@
 		274F6AE31D0B1F640012DE95 /* SpeckReading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeckReading.swift; sourceTree = "<group>"; };
 		274F6AE51D0B1F800012DE95 /* WHOReading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WHOReading.swift; sourceTree = "<group>"; };
 		275D62101E02E725001292D8 /* Ozone_NowCast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ozone_NowCast.swift; sourceTree = "<group>"; };
+		275D62131E03036F001292D8 /* Pm25Readable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pm25Readable.swift; sourceTree = "<group>"; };
+		275D62151E0303E9001292D8 /* OzoneReadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OzoneReadable.swift; sourceTree = "<group>"; };
+		275D62171E0307C9001292D8 /* HumidityReadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HumidityReadable.swift; sourceTree = "<group>"; };
+		275D62191E03083B001292D8 /* TemperatureReadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureReadable.swift; sourceTree = "<group>"; };
+		275D621B1E030C2C001292D8 /* Pm25Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pm25Feed.swift; sourceTree = "<group>"; };
+		275D621D1E030F89001292D8 /* AirQualityFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirQualityFeed.swift; sourceTree = "<group>"; };
 		279FB4CB1CEA502800B5C8AA /* DailyTrackerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTrackerController.swift; sourceTree = "<group>"; };
 		27C022591CEB50CC00C34EFD /* daily_tracker_grid.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = daily_tracker_grid.html; path = Assets/webviews/daily_tracker_grid.html; sourceTree = "<group>"; };
 		27C0225B1CEB50DC00C34EFD /* jquery-1.12.3.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-1.12.3.min.js"; path = "Assets/webviews/lib/jquery-1.12.3.min.js"; sourceTree = "<group>"; };
@@ -297,6 +309,18 @@
 			name = aqi_scales;
 			sourceTree = "<group>";
 		};
+		275D62121E02FF33001292D8 /* interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				275D62171E0307C9001292D8 /* HumidityReadable.swift */,
+				A1F58E581B97284800D04C91 /* Readable.swift */,
+				275D62131E03036F001292D8 /* Pm25Readable.swift */,
+				275D62151E0303E9001292D8 /* OzoneReadable.swift */,
+				275D62191E03083B001292D8 /* TemperatureReadable.swift */,
+			);
+			name = interfaces;
+			sourceTree = "<group>";
+		};
 		279FB4CA1CEA500200B5C8AA /* daily_tracker */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,9 +424,11 @@
 		A15CDB331C85D844002D5C0F /* readables */ = {
 			isa = PBXGroup;
 			children = (
+				275D62121E02FF33001292D8 /* interfaces */,
 				A182D2351C6BB4A600DBA4F0 /* AirNowReadable.swift */,
 				A1666FAB1B54190A00A8E39F /* Feed.swift */,
-				A1F58E581B97284800D04C91 /* Readable.swift */,
+				275D621B1E030C2C001292D8 /* Pm25Feed.swift */,
+				275D621D1E030F89001292D8 /* AirQualityFeed.swift */,
 				A1666FA91B54176D00A8E39F /* SimpleAddress.swift */,
 				A1F58E5A1B972DD700D04C91 /* Speck.swift */,
 			);
@@ -799,10 +825,13 @@
 				A1666FAE1B5419D300A8E39F /* Channel.swift in Sources */,
 				A16764021C248128001A94D6 /* EsdrLoginHandler.swift in Sources */,
 				A156757D1B57D549006982A1 /* ResultsTableViewCellAddressSearch.swift in Sources */,
+				275D62161E0303E9001292D8 /* OzoneReadable.swift in Sources */,
 				A1F58E591B97284800D04C91 /* Readable.swift in Sources */,
 				A17DFA7C1C4438DA00B2A7B4 /* EsdrTilesHandler.swift in Sources */,
+				275D62181E0307C9001292D8 /* HumidityReadable.swift in Sources */,
 				A15675811B583AAA006982A1 /* AqiConverter.swift in Sources */,
 				A1666FB21B541CF400A8E39F /* GlobalHandler.swift in Sources */,
+				275D621A1E03083B001292D8 /* TemperatureReadable.swift in Sources */,
 				27242E191E01DFB500DB24F3 /* TemperatureValue.swift in Sources */,
 				A15675831B5844C9006982A1 /* MapGeometry.swift in Sources */,
 				27D9F7051CE21B550066E1B5 /* DayFeedValue.swift in Sources */,
@@ -822,11 +851,13 @@
 				A1666FB61B542E6A00A8E39F /* HttpRequestHandler.swift in Sources */,
 				27242E151E01DD6800DB24F3 /* Pm25Channel.swift in Sources */,
 				A158E1361BCFE6370026944E /* Timer.swift in Sources */,
+				275D621C1E030C2C001292D8 /* Pm25Feed.swift in Sources */,
 				274F6AE61D0B1F800012DE95 /* WHOReading.swift in Sources */,
 				A1F58E5B1B972DD700D04C91 /* Speck.swift in Sources */,
 				A1666FAA1B54176D00A8E39F /* SimpleAddress.swift in Sources */,
 				A158F6161B8E504500FCE2E1 /* Location.swift in Sources */,
 				27242E091E01B02C00DB24F3 /* ReadableValue.swift in Sources */,
+				275D621E1E030F89001292D8 /* AirQualityFeed.swift in Sources */,
 				275D62111E02E725001292D8 /* Ozone_NowCast.swift in Sources */,
 				A15CDB3E1C861673002D5C0F /* AqiExplanationDetailsController.swift in Sources */,
 				279FB4CC1CEA502800B5C8AA /* DailyTrackerController.swift in Sources */,
@@ -849,6 +880,7 @@
 				A14C456B1BA0B2B000D6C9CF /* ReadableIndexController.swift in Sources */,
 				A103E6081BE12A5E0065378D /* SettingsController.swift in Sources */,
 				A11844B11BA9FECC00435D11 /* CLLocationService.swift in Sources */,
+				275D62141E03036F001292D8 /* Pm25Readable.swift in Sources */,
 				A167F08D1C6D0A9B0006E1F6 /* AirNowRequestHandler.swift in Sources */,
 				A158F6111B8E000F00FCE2E1 /* DatabaseHelper.swift in Sources */,
 				A158B4D21C21FF27006CC0E5 /* SpeckDbHelper.swift in Sources */,

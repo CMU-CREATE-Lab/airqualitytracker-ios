@@ -71,16 +71,19 @@ class MapGeometry {
     }
 
 
-    static func getDistanceFromFeedToAddress(simpleAddress: SimpleAddress, feed: Feed) -> Double {
+    static func getDistanceFromFeedToAddress(simpleAddress: SimpleAddress, feed: Pm25Feed) -> Double {
         return getDistance(simpleAddress.location, to: feed.location)
     }
 
 
-    static func getClosestFeedToAddress(simpleAddress: SimpleAddress, feeds: Array<Feed>) -> Feed? {
-        var closestFeed: Feed? = nil
+    static func getClosestFeedToAddress(simpleAddress: SimpleAddress, feeds: Array<AirQualityFeed>) -> AirQualityFeed? {
+        var closestFeed: AirQualityFeed? = nil
         var distance: Double? = nil
 
         for feed in feeds {
+            if (feed.getPm25Channels().count == 0) {
+                continue
+            }
             if (closestFeed == nil) {
                 distance = getDistanceFromFeedToAddress(simpleAddress, feed: feed);
                 closestFeed = feed;
