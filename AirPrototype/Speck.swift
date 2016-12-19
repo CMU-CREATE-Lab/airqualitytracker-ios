@@ -31,14 +31,19 @@ class Speck: Pm25Feed, HumidityReadable, TemperatureReadable {
         self.isMobile = feed.isMobile
         self.location = feed.location
         self.productId = feed.productId
-//        self.channels = feed.channels
         self.pm25Channels = feed.pm25Channels
         self.lastTime = feed.lastTime
     }
     
     
     func addChannel(channel: Channel) {
-        // TODO actions
+        if channel is Pm25Channel {
+            pm25Channels.append(channel as! Pm25Channel)
+        } else if channel is HumidityChannel {
+            humidityChannels.append(channel as! HumidityChannel)
+        } else if channel is TemperatureChannel {
+            temperatureChannels.append(channel as! TemperatureChannel)
+        }
     }
     
     

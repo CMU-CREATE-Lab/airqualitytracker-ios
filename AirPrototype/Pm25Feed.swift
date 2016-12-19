@@ -19,7 +19,6 @@ class Pm25Feed: Feed, Pm25Readable {
     var isMobile = false
     var location = Location(latitude: 0, longitude: 0)
     var productId = 0
-    var channels = []
     var lastTime = Double()
     
     

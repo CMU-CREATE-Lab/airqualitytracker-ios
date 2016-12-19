@@ -27,7 +27,9 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
         for feed in feeds {
-            GlobalHandler.sharedInstance.esdrFeedsHandler.requestChannelReading(feed, channel: feed.channels[0] as! Channel)
+            if feed.hasReadablePm25Value() {
+                GlobalHandler.sharedInstance.esdrFeedsHandler.requestChannelReading(feed, channel: feed.getPm25Channels().first! as Pm25Channel)
+            }
         }
     }
     
