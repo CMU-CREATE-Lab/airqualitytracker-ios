@@ -17,6 +17,10 @@ class Constants {
     
     static let USES_BACKGROUND_SERVICES = true
     
+    static let DEFAULT_ADDRESS_PM25_READABLE_VALUE_TYPE = ReadableValueType.NOWCAST
+    
+    static let DEFAULT_ADDRESS_OZONE_READABLE_VALUE_TYPE = ReadableValueType.NOWCAST
+    
     static let DEFAULT_SETTINGS: [String:AnyObject] = [
         SettingsKeys.appUsesLocation: true,
         SettingsKeys.userLoggedIn: false,

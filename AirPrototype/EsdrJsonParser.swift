@@ -21,7 +21,7 @@ class EsdrJsonParser {
     }
     
     
-    static func populateFeedsFromJson(data: NSDictionary, maxTime: Double) -> [AirQualityFeed] {
+    static func populateFeedsFromJson(data: NSDictionary, simpleAddress: SimpleAddress, maxTime: Double) -> [AirQualityFeed] {
         var feeds = Array<AirQualityFeed>()
         if let rows = (data.valueForKey("data") as! NSDictionary).valueForKey("rows") as? Array<NSDictionary> {
             for row in rows {
@@ -30,6 +30,7 @@ class EsdrJsonParser {
                 // TODO save more than just PM25?
                 if feed.getPm25Channels().count > 0 {
                     feeds.append(feed)
+                    feed.simpleAddress = simpleAddress
                 }
             }
         }

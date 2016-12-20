@@ -20,7 +20,7 @@ class ReadingsHandlerCore {
     
     func updateAddresses() {
         for address in addresses {
-            GlobalHandler.sharedInstance.esdrFeedsHandler.requestUpdateFeeds(address)
+            GlobalHandler.sharedInstance.esdrFeedsHandler.requestUpdate(address)
         }
     }
     

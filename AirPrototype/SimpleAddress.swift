@@ -102,6 +102,64 @@ class SimpleAddress: AirNowReadable, Pm25Readable, OzoneReadable, Hashable {
     }
     
     
+    func requestReadablePm25Reading() {
+        let maxTime = NSDate().timeIntervalSince1970 - Constants.READINGS_MAX_TIME_RANGE
+        
+        func completionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
+            if HttpHelper.successfulResponse(response, error: error) {
+                let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
+                
+                self.feeds = EsdrJsonParser.populateFeedsFromJson(data!, simpleAddress: self, maxTime: maxTime)
+                if (feeds.count > 0) {
+                    let closestFeed = MapGeometry.getClosestFeedWithPmToAddress(self, feeds: self.feeds)
+                    if closestFeed != nil {
+                        closestFeed!.simpleAddress = self
+                        if Constants.DEFAULT_ADDRESS_PM25_READABLE_VALUE_TYPE == ReadableValueType.NOWCAST {
+                            closestFeed!.getPm25Channels().first!.requestNowCast()
+                        } else if Constants.DEFAULT_ADDRESS_PM25_READABLE_VALUE_TYPE == ReadableValueType.INSTANTCAST {
+                            GlobalHandler.sharedInstance.esdrFeedsHandler.requestChannelReading(nil, feedApiKey: nil, feed: closestFeed!, channel: closestFeed!.getPm25Channels().first!, maxTime: maxTime)
+                        }
+                    }
+                }
+            } else {
+                NSLog("unsuccessful response")
+            }
+        }
+        
+        GlobalHandler.sharedInstance.esdrFeedsHandler.requestFeeds(self.location, withinSeconds: maxTime, completionHandler: completionHandler)
+    }
+    
+    
+    func requestReadableOzoneReading() {
+        let maxTime = NSDate().timeIntervalSince1970 - Constants.READINGS_MAX_TIME_RANGE
+        
+        func completionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
+            if HttpHelper.successfulResponse(response, error: error) {
+                let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
+                
+                self.feeds = EsdrJsonParser.populateFeedsFromJson(data!, simpleAddress: self, maxTime: maxTime)
+                if (feeds.count > 0) {
+                    let closestFeed = MapGeometry.getClosestFeedWithOzoneToAddress(self, feeds: self.feeds)
+                    if closestFeed != nil {
+                        // TODO request instantcast/nowcast
+                        closestFeed!.simpleAddress = self
+                        GlobalHandler.sharedInstance.esdrFeedsHandler.requestChannelReading(nil, feedApiKey: nil, feed: closestFeed!, channel: closestFeed!.getOzoneChannels().first!, maxTime: maxTime)
+//                        if Constants.DEFAULT_ADDRESS_OZONE_READABLE_VALUE_TYPE == ReadableValueType.INSTANTCAST {
+//                            closestFeed!.getOzoneChannels().first!.requestNowCast()
+//                        } else if Constants.DEFAULT_ADDRESS_OZONE_READABLE_VALUE_TYPE == ReadableValueType.NOWCAST {
+//                            GlobalHandler.sharedInstance.esdrFeedsHandler.requestChannelReading(nil, feedApiKey: nil, feed: closestFeed!, channel: closestFeed!.getOzoneChannels().first!, maxTime: maxTime)
+//                        }
+                    }
+                }
+            } else {
+                NSLog("unsuccessful response")
+            }
+        }
+        
+        GlobalHandler.sharedInstance.esdrFeedsHandler.requestFeeds(self.location, withinSeconds: maxTime, completionHandler: completionHandler)
+    }
+    
+    
     // Pm25Readable implementation
     
     

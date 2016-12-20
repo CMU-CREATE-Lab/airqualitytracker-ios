@@ -107,7 +107,7 @@ class GlobalHandler {
         readingsHandler.updateAddresses()
         readingsHandler.updateSpecks()
         if settingsHandler.appUsesLocation {
-            esdrFeedsHandler.requestUpdateFeeds(readingsHandler.gpsReadingHandler.gpsAddress)
+            esdrFeedsHandler.requestUpdate(readingsHandler.gpsReadingHandler.gpsAddress)
         }
         self.refreshTimer.startTimer()
     }

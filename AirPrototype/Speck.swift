@@ -47,6 +47,39 @@ class Speck: Pm25Feed, HumidityReadable, TemperatureReadable {
     }
     
     
+    func requestReadablePm25Reading() {
+        if pm25Channels.count > 0 {
+            let timeRange = NSDate().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
+            let handler = GlobalHandler.sharedInstance.esdrFeedsHandler
+            handler.requestChannelReading(nil, feedApiKey: self.apiKeyReadOnly!, feed: self, channel: self.pm25Channels.first!, maxTime: timeRange)
+        } else {
+            NSLog("ERROR - No PM25 channels found from speck id=\(self.feed_id)")
+        }
+    }
+    
+    
+    func requestReadableHumidityReading() {
+        if humidityChannels.count > 0 {
+            let timeRange = NSDate().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
+            let handler = GlobalHandler.sharedInstance.esdrFeedsHandler
+            handler.requestChannelReading(nil, feedApiKey: self.apiKeyReadOnly!, feed: self, channel: self.humidityChannels.first!, maxTime: timeRange)
+        } else {
+            NSLog("ERROR - No Humidity channels found from speck id=\(self.feed_id)")
+        }
+    }
+    
+    
+    func requestReadableTemperatureReading() {
+        if temperatureChannels.count > 0 {
+            let timeRange = NSDate().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
+            let handler = GlobalHandler.sharedInstance.esdrFeedsHandler
+            handler.requestChannelReading(nil, feedApiKey: self.apiKeyReadOnly!, feed: self, channel: self.temperatureChannels.first!, maxTime: timeRange)
+        } else {
+            NSLog("ERROR - No Temperature channels found from speck id=\(self.feed_id)")
+        }
+    }
+    
+    
     // HumidityReadable implementation
     
     

@@ -74,14 +74,43 @@ class MapGeometry {
     static func getDistanceFromFeedToAddress(simpleAddress: SimpleAddress, feed: Pm25Feed) -> Double {
         return getDistance(simpleAddress.location, to: feed.location)
     }
-
-
-    static func getClosestFeedToAddress(simpleAddress: SimpleAddress, feeds: Array<AirQualityFeed>) -> AirQualityFeed? {
+    
+    
+    static func getClosestFeedWithPmToAddress(simpleAddress: SimpleAddress, feeds: Array<AirQualityFeed>) -> AirQualityFeed? {
         var closestFeed: AirQualityFeed? = nil
         var distance: Double? = nil
-
+        
         for feed in feeds {
             if (feed.getPm25Channels().count == 0) {
+                continue
+            }
+            if (closestFeed == nil) {
+                distance = getDistanceFromFeedToAddress(simpleAddress, feed: feed);
+                closestFeed = feed;
+            } else {
+                let temp = getDistanceFromFeedToAddress(simpleAddress, feed: feed);
+                if (temp < distance) {
+                    distance = temp;
+                    closestFeed = feed;
+                }
+                if (temp < 0) {
+                    NSLog("Distance from address=\(simpleAddress._id!) to feed=\(feed.feed_id) has negative distance \(temp)")
+                }
+            }
+        }
+        if (closestFeed == nil) {
+            NSLog("getClosestFeedToAddress returning null.")
+        }
+        return closestFeed
+    }
+    
+    
+    static func getClosestFeedWithOzoneToAddress(simpleAddress: SimpleAddress, feeds: Array<AirQualityFeed>) -> AirQualityFeed? {
+        var closestFeed: AirQualityFeed? = nil
+        var distance: Double? = nil
+        
+        for feed in feeds {
+            if (feed.getOzoneChannels().count == 0) {
                 continue
             }
             if (closestFeed == nil) {

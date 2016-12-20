@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum ReadableValueType {
+    case INSTANTCAST, NOWCAST
+}
+
 protocol ReadableValue {
     
     // returns human-readable units that the value is measured in
