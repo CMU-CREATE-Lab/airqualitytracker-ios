@@ -273,6 +273,7 @@
 		27242E061E01AFB100DB24F3 /* channels */ = {
 			isa = PBXGroup;
 			children = (
+				A17DFA791C4418D200B2A7B4 /* NowCastCalculator.swift */,
 				A1666FAD1B5419D300A8E39F /* Channel.swift */,
 				27242E101E01DCFC00DB24F3 /* HumidityChannel.swift */,
 				27242E121E01DD1100DB24F3 /* OzoneChannel.swift */,
@@ -685,7 +686,6 @@
 				A1666FB31B541D0500A8E39F /* Constants.swift */,
 				27C32FB71CB594490063BF23 /* ManualOverrides.swift */,
 				A15675821B5844C9006982A1 /* MapGeometry.swift */,
-				A17DFA791C4418D200B2A7B4 /* NowCastCalculator.swift */,
 				A14E5C731C7CDA2800D08A34 /* HttpHelper.swift */,
 			);
 			name = static_classes;

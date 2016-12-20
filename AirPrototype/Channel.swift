@@ -18,6 +18,7 @@ class Channel {
     var maxValue: Double
     var instantcastValue: Double?
     var nowcastValue: Double?
+    var nowCastCalculator: NowCastCalculator
     
     
     init() {
@@ -26,6 +27,7 @@ class Channel {
         maxTimeSecs = 0
         minValue = 0
         maxValue = 0
+        nowCastCalculator = NowCastCalculator(hours: 12, weightType: NowCastCalculator.WeightType.PIECEWISE)
     }
     
     
@@ -34,10 +36,10 @@ class Channel {
         
         func response(data: [Int: [Double]]) {
             // construct array of values
-            let array = NowCastCalculator.constructArrayFromHash(data, currentTime: timestamp)
+            let array = nowCastCalculator.constructArrayFromHash(data, currentTime: timestamp)
             
             // find NowCast
-            self.nowcastValue = NowCastCalculator.calculate(array)
+            self.nowcastValue = nowCastCalculator.calculate(array)
             feed?.readablePm25Value = Pm25_NowCast(value: self.nowcastValue!, pm25Channel: self as! Pm25Channel)
             (feed as! AirQualityFeed).simpleAddress!.readablePm25Value = feed?.readablePm25Value
             
