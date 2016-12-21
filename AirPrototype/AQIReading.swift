@@ -79,7 +79,7 @@ class AQIReading: Scalable {
     
     init(reading: Double) {
         self.reading = reading
-        self.index = AQIReading.getIndexFromReading(AqiConverter.microgramsToAqi(self.reading))
+        self.index = AQIReading.getIndexFromReading(Pm25AqiConverter.microgramsToAqi(self.reading))
     }
     
     

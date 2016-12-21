@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AqiConverter {
+class Pm25AqiConverter {
     
     
     private static func calculateLinearAqi(micrograms: Double, ihi: Double, ilo: Double, chi: Double, clo: Double) -> Double {

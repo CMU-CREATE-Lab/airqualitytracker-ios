@@ -27,7 +27,7 @@ class ReadableIndexCell: UICollectionViewCell {
                 if (reading is SimpleAddress) {
                     textItemLabel.text = Constants.Units.AQI
                     let micrograms = (reading as! SimpleAddress).getReadableValues().first!.getValue()
-                    let aqi = AqiConverter.microgramsToAqi(micrograms)
+                    let aqi = Pm25AqiConverter.microgramsToAqi(micrograms)
                     value = Int(aqi).description
                     let aqiReading = AQIReading(reading: micrograms)
                     if aqiReading.withinRange() {

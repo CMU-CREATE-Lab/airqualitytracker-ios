@@ -69,11 +69,11 @@ class WHOReading: Scalable {
             NSLog("getRangeFromIndex received index < 0.")
             return ""
         } else if index == 0 {
-            return "0-\(AqiConverter.microgramsToAqi(WHOReading.ranges[0]))"
+            return "0-\(Pm25AqiConverter.microgramsToAqi(WHOReading.ranges[0]))"
         } else if index == WHOReading.ranges.count {
-            return "\(AqiConverter.microgramsToAqi(WHOReading.ranges[WHOReading.ranges.count-1]))+"
+            return "\(Pm25AqiConverter.microgramsToAqi(WHOReading.ranges[WHOReading.ranges.count-1]))+"
         } else {
-            return "\(AqiConverter.microgramsToAqi(WHOReading.ranges[index-1]))-\(AqiConverter.microgramsToAqi(WHOReading.ranges[index]))"
+            return "\(Pm25AqiConverter.microgramsToAqi(WHOReading.ranges[index-1]))-\(Pm25AqiConverter.microgramsToAqi(WHOReading.ranges[index]))"
         }
     }
     

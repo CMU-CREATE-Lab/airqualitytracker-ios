@@ -141,9 +141,7 @@ class SimpleAddress: AirNowReadable, Pm25Readable, OzoneReadable, Hashable {
                 if (feeds.count > 0) {
                     let closestFeed = MapGeometry.getClosestFeedWithOzoneToAddress(self, feeds: self.feeds)
                     if closestFeed != nil {
-                        // TODO request instantcast/nowcast
                         closestFeed!.simpleAddress = self
-//                        GlobalHandler.sharedInstance.esdrFeedsHandler.requestChannelReading(nil, feedApiKey: nil, feed: closestFeed!, channel: closestFeed!.getOzoneChannels().first!, maxTime: maxTime)
                         if Constants.DEFAULT_ADDRESS_OZONE_READABLE_VALUE_TYPE == ReadableValueType.NOWCAST {
                             closestFeed!.getOzoneChannels().first!.requestNowCast()
                         } else if Constants.DEFAULT_ADDRESS_OZONE_READABLE_VALUE_TYPE == ReadableValueType.INSTANTCAST {

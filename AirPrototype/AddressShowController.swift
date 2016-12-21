@@ -58,7 +58,7 @@ class AddressShowController: UIViewController {
         }
         if address.hasReadableValue() {
             let micrograms = address.getReadablePm25Value().getValue()
-            let aqi = AqiConverter.microgramsToAqi(micrograms)
+            let aqi = Pm25AqiConverter.microgramsToAqi(micrograms)
             NSLog("PM2.5=\(aqi)")
             if address.hasReadableOzoneValue() {
                 let ozone = address.getReadableOzoneValue()
