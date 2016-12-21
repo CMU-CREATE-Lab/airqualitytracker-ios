@@ -20,7 +20,7 @@ class TemperatureValue: ReadableValue {
     }
     
     
-    func getReadableUnits() -> String { return "%" }
+    func getReadableUnits() -> String { return "°C" }
     func getValue() -> Double { return value }
     
 }

@@ -15,10 +15,15 @@ class ReadableIndexCell: UICollectionViewCell {
     @IBOutlet var textItemLabel: UILabel!
     @IBOutlet var textItemName: UILabel!
     @IBOutlet var textCurrentLocation: UILabel!
+    @IBOutlet weak var textTemperature: UILabel!
+    @IBOutlet weak var textHumidity: UILabel!
     
     
     func populate(reading: Readable) {
         textCurrentLocation.hidden = true
+        textTemperature.hidden = true
+        textHumidity.hidden = true
+        
         if reading.hasReadableValue() {
             var value: String
             textItemName.text = reading.getName()
@@ -35,16 +40,25 @@ class ReadableIndexCell: UICollectionViewCell {
                     }
                     // current location
                     let address = reading as! SimpleAddress
-                    if address.isCurrentLocation && address.hasReadableValue() {
+                    if address.isCurrentLocation {
                         textCurrentLocation.hidden = false
                     }
                 } else if (reading is Speck) {
                     textItemLabel.text = Constants.Units.MICROGRAMS_PER_CUBIC_METER
-                    let micrograms = (reading as! Speck).getReadablePm25Value().getValue()
+                    let speck = reading as! Speck
+                    let micrograms = speck.getReadablePm25Value().getValue()
                     value = Int(micrograms).description
                     let speckReading = SpeckReading(reading: micrograms)
                     if speckReading.withinRange() {
                         self.backgroundColor = speckReading.getColor()
+                    }
+                    if speck.hasReadableTemperatureValue() {
+                        textTemperature.text = "\(speck.getReadableTemperatureValue().getValue()) \(speck.getReadableTemperatureValue().getReadableUnits())"
+                        textTemperature.hidden = false
+                    }
+                    if speck.hasReadableHumidityValue() {
+                        textHumidity.text = "💧\(speck.getReadableHumidityValue().getValue()) \(speck.getReadableHumidityValue().getReadableUnits())"
+                        textHumidity.hidden = false
                     }
                 } else {
                     NSLog("WARNING - could not determine Readable type for ReadableIndexCell")
