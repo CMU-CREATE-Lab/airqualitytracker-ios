@@ -11,7 +11,7 @@ import Foundation
 class Ozone_InstantCast: AqiReadableValue {
     
     private var value: Double
-    private var channel: OzoneChannel
+    var channel: Channel
     
     
     init(value: Double, ozoneChannel: OzoneChannel) {

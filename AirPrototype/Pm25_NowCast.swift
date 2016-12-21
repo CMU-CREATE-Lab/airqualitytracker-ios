@@ -11,7 +11,7 @@ import Foundation
 class Pm25_NowCast: Pm25AqiReadableValue {
     
     private var value: Double
-    private var channel: Pm25Channel
+    var channel: Channel
     
     
     init(value: Double, pm25Channel: Pm25Channel) {

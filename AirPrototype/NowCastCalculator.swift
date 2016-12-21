@@ -149,4 +149,10 @@ class NowCastCalculator {
         return modResult
     }
     
+    
+    func getMostRecent(data: [Int: [Double]], currentTime: Int) -> Double {
+        let hourlyValues = constructArrayFromHash(data, currentTime: currentTime)
+        return  hourlyValues.first!
+    }
+    
 }

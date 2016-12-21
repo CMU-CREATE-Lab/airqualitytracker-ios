@@ -143,12 +143,12 @@ class SimpleAddress: AirNowReadable, Pm25Readable, OzoneReadable, Hashable {
                     if closestFeed != nil {
                         // TODO request instantcast/nowcast
                         closestFeed!.simpleAddress = self
-                        GlobalHandler.sharedInstance.esdrFeedsHandler.requestChannelReading(nil, feedApiKey: nil, feed: closestFeed!, channel: closestFeed!.getOzoneChannels().first!, maxTime: maxTime)
-//                        if Constants.DEFAULT_ADDRESS_OZONE_READABLE_VALUE_TYPE == ReadableValueType.INSTANTCAST {
-//                            closestFeed!.getOzoneChannels().first!.requestNowCast()
-//                        } else if Constants.DEFAULT_ADDRESS_OZONE_READABLE_VALUE_TYPE == ReadableValueType.NOWCAST {
-//                            GlobalHandler.sharedInstance.esdrFeedsHandler.requestChannelReading(nil, feedApiKey: nil, feed: closestFeed!, channel: closestFeed!.getOzoneChannels().first!, maxTime: maxTime)
-//                        }
+//                        GlobalHandler.sharedInstance.esdrFeedsHandler.requestChannelReading(nil, feedApiKey: nil, feed: closestFeed!, channel: closestFeed!.getOzoneChannels().first!, maxTime: maxTime)
+                        if Constants.DEFAULT_ADDRESS_OZONE_READABLE_VALUE_TYPE == ReadableValueType.NOWCAST {
+                            closestFeed!.getOzoneChannels().first!.requestNowCast()
+                        } else if Constants.DEFAULT_ADDRESS_OZONE_READABLE_VALUE_TYPE == ReadableValueType.INSTANTCAST {
+                            GlobalHandler.sharedInstance.esdrFeedsHandler.requestChannelReading(nil, feedApiKey: nil, feed: closestFeed!, channel: closestFeed!.getOzoneChannels().first!, maxTime: maxTime)
+                        }
                     }
                 }
             } else {

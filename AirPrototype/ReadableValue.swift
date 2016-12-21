@@ -14,6 +14,9 @@ enum ReadableValueType {
 
 protocol ReadableValue {
     
+    var channel: Channel { get set }
+    
+    
     // returns human-readable units that the value is measured in
     func getReadableUnits() -> String
     

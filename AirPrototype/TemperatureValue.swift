@@ -11,7 +11,7 @@ import Foundation
 class TemperatureValue: ReadableValue {
     
     private var value: Double
-    private var channel: TemperatureChannel
+    var channel: Channel
     
     
     init(value: Double, temperatureChannel: TemperatureChannel) {

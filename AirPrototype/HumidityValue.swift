@@ -11,7 +11,7 @@ import Foundation
 class HumidityValue: ReadableValue {
     
     private var value: Double
-    private var channel: HumidityChannel
+    var channel: Channel
     
     
     init(value: Double, humidityChannel: HumidityChannel) {

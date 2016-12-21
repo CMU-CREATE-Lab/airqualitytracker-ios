@@ -25,9 +25,17 @@ class OzoneChannel: Channel {
             let array = nowCastCalculator.constructArrayFromHash(data, currentTime: timestamp)
             
             // find NowCast
-            self.nowcastValue = nowCastCalculator.calculate(array)
-            (feed as! AirQualityFeed).readableOzoneValue = Ozone_NowCast(value: self.nowcastValue!, ozoneChannel: self )
-            (feed as! AirQualityFeed).simpleAddress!.readableOzoneValue = (feed as! AirQualityFeed).readableOzoneValue
+            let ozoneNowcast = Ozone_NowCast(value: nowCastCalculator.calculate(array), ozoneChannel: self )
+            let ozoneInstantcast = Ozone_InstantCast(value: nowCastCalculator.getMostRecent(data, currentTime: timestamp), ozoneChannel: self)
+            
+            // compare AQI values
+            if ozoneInstantcast.getAqiValue() > ozoneNowcast.getAqiValue() {
+                (feed as! AirQualityFeed).readableOzoneValue = ozoneInstantcast
+                (feed as! AirQualityFeed).simpleAddress!.readableOzoneValue = ozoneInstantcast
+            } else {
+                (feed as! AirQualityFeed).readableOzoneValue = ozoneNowcast
+                (feed as! AirQualityFeed).simpleAddress!.readableOzoneValue = ozoneNowcast
+            }
             
             // update adapters
             GlobalHandler.sharedInstance.notifyGlobalDataSetChanged()

@@ -59,11 +59,20 @@ class AddressShowController: UIViewController {
         if address.hasReadableValue() {
             let micrograms = address.getReadablePm25Value().getValue()
             let aqi = AqiConverter.microgramsToAqi(micrograms)
+            NSLog("PM2.5=\(aqi)")
+            if address.hasReadableOzoneValue() {
+                let ozone = address.getReadableOzoneValue()
+                if ozone is Ozone_InstantCast {
+                    NSLog("instant OZONE=\((ozone as! Ozone_InstantCast).getAqiValue())")
+                } else if ozone is Ozone_NowCast {
+                    NSLog("nowcast OZONE=\((ozone as! Ozone_NowCast).getAqiValue())")
+                }
+            }
             labelShowValue.text = Int(aqi).description
             let aqiReading = AQIReading(reading: micrograms)
             if aqiReading.withinRange() {
                 // get feed name
-                closestFeed = address.closestFeed
+                closestFeed = address.getReadablePm25Value().channel.feed
                 labelClosestFeedName.text = closestFeed?.getName()
                 labelMeasurementRange.text = "\(aqiReading.getRangeFromIndex()) AQI"
                 labelValueTitle.text = aqiReading.getTitle()
