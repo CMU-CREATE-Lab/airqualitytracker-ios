@@ -11,38 +11,11 @@ import CoreData
 
 class SimpleAddress: AirNowReadable, Pm25Readable, OzoneReadable, Hashable {
     
-//    private let readableType = ReadableType.ADDRESS
     var readablePm25Value: AqiReadableValue?
     var readableOzoneValue: AqiReadableValue?
     var hashValue: Int { return generateHashForReadable() }
     var location: Location
     var airNowObservations: [AirNowObservation]
-    
-    
-//    func getReadableType() -> ReadableType {
-//        return self.readableType
-//    }
-//    
-//    
-//    func hasReadableValue() -> Bool {
-//        if let feed = self.closestFeed {
-//            return feed.hasReadableValue()
-//        }
-//        return false
-//    }
-//    
-//    
-//    func getReadableValues() -> Array<ReadableValue> {
-//        if self.hasReadableValue() {
-//            return self.closestFeed!.getReadableValues()
-//        }
-//        return Array()
-//    }
-    
-    
-    func getName() -> String {
-        return self.name
-    }
     
     
     // MARK: class-specific definitions
@@ -53,7 +26,6 @@ class SimpleAddress: AirNowReadable, Pm25Readable, OzoneReadable, Hashable {
     var name: String
     var zipcode: String
     var isCurrentLocation: Bool
-    var closestFeed: AirQualityFeed?
     var feeds: Array<AirQualityFeed>
     let uid = 1
     var dailyFeedTracker: DailyFeedTracker?
@@ -63,7 +35,6 @@ class SimpleAddress: AirNowReadable, Pm25Readable, OzoneReadable, Hashable {
         name = ""
         zipcode = ""
         location = Location(latitude: 0, longitude: 0)
-        closestFeed = nil
         feeds = []
         isCurrentLocation = false
         airNowObservations = []
@@ -73,32 +44,33 @@ class SimpleAddress: AirNowReadable, Pm25Readable, OzoneReadable, Hashable {
     func requestDailyFeedTracker(controller: AddressShowController) {
         let to = Int(NSDate().timeIntervalSince1970)
         let from = to - (86400 * 365)
-        if closestFeed == nil {
-            NSLog("requestDailyFeedTracker failed (closestFeed is null)")
-            return;
-        }
-        if let tracker = dailyFeedTracker {
-            // check that this tracker is at least within the last 24 hours (otherwise it needs updated)
-            if (to - tracker.getStartTime()) <= Constants.TWENTY_FOUR_HOURS {
-                let numberDirtyDays = tracker.getDirtyDaysCount()
+        if hasReadablePm25Value() {
+            let closestFeed = getReadablePm25Value().channel.feed
+            if let tracker = dailyFeedTracker {
+                // check that this tracker is at least within the last 24 hours (otherwise it needs updated)
+                if (to - tracker.getStartTime()) <= Constants.TWENTY_FOUR_HOURS {
+                    let numberDirtyDays = tracker.getDirtyDaysCount()
+                    let text = "\(numberDirtyDays) dirty day\( (numberDirtyDays == 1 ? "" : "s") ) in the past year"
+                    controller.feedTrackerResponse(text)
+                    return;
+                }
+            }
+            
+            func httpResponse(url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
+                let jsonString = try! NSString.init(contentsOfURL: url!, encoding: NSUTF8StringEncoding)
+                let formattedString = EsdrJsonParser.formatSafeJson(jsonString)
+                let tempData = formattedString.dataUsingEncoding(NSUTF8StringEncoding)
+                let data = (try! NSJSONSerialization.JSONObjectWithData(tempData!, options: [])) as? NSDictionary
+                
+                self.dailyFeedTracker = EsdrJsonParser.parseDailyFeedTracker(closestFeed!, from: from, to: to, dataEntry: data!)
+                let numberDirtyDays = dailyFeedTracker!.getDirtyDaysCount()
                 let text = "\(numberDirtyDays) dirty day\( (numberDirtyDays == 1 ? "" : "s") ) in the past year"
                 controller.feedTrackerResponse(text)
-                return;
             }
+            GlobalHandler.sharedInstance.esdrTilesHandler.requestFeedAverages(closestFeed!, from: from, to: to, response: httpResponse)
+        } else {
+            NSLog("requestDailyFeedTracker failed (ReadablePm25Value DNE)")
         }
-        
-        func httpResponse(url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
-            let jsonString = try! NSString.init(contentsOfURL: url!, encoding: NSUTF8StringEncoding)
-            let formattedString = EsdrJsonParser.formatSafeJson(jsonString)
-            let tempData = formattedString.dataUsingEncoding(NSUTF8StringEncoding)
-            let data = (try! NSJSONSerialization.JSONObjectWithData(tempData!, options: [])) as? NSDictionary
-            
-            self.dailyFeedTracker = EsdrJsonParser.parseDailyFeedTracker(closestFeed!, from: from, to: to, dataEntry: data!)
-            let numberDirtyDays = dailyFeedTracker!.getDirtyDaysCount()
-            let text = "\(numberDirtyDays) dirty day\( (numberDirtyDays == 1 ? "" : "s") ) in the past year"
-            controller.feedTrackerResponse(text)
-        }
-        GlobalHandler.sharedInstance.esdrTilesHandler.requestFeedAverages(closestFeed!, from: from, to: to, response: httpResponse)
     }
     
     
@@ -228,6 +200,11 @@ class SimpleAddress: AirNowReadable, Pm25Readable, OzoneReadable, Hashable {
     
     func getReadableValues() -> Array<ReadableValue> {
         return generateReadableValues()
+    }
+    
+    
+    func getName() -> String {
+        return self.name
     }
     
 }

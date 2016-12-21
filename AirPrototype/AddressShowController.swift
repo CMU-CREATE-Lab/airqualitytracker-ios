@@ -157,7 +157,9 @@ class AddressShowController: UIViewController {
                 let address = airNowReading as! SimpleAddress
                 let controller = segue.destinationViewController as! AqiExplanationDetailsController
                 controller.reading = address
-                controller.feed = address.closestFeed
+                if address.hasReadablePm25Value() {
+                    controller.feed = address.getReadablePm25Value().channel.feed
+                }
             } else if segue.identifier == "showTrackerSegue" {
                 let address = airNowReading as! SimpleAddress
                 let controller = segue.destinationViewController as! DailyTrackerController
