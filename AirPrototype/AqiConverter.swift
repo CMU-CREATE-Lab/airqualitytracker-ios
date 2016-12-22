@@ -40,7 +40,7 @@ class Pm25AqiConverter {
         } else if (micrograms < 12.0) {
             aqi = calculateLinearAqi(micrograms,ihi:50.0,ilo:0.0,chi:12.0,clo:0.0)
         } else if (micrograms < 35.4) {
-            aqi = calculateLinearAqi(micrograms,ihi:100.0,ilo:50.0,chi:35.4,clo:12.1)
+            aqi = calculateLinearAqi(micrograms,ihi:100.0,ilo:51.0,chi:35.4,clo:12.1)
         } else if (micrograms < 55.4) {
             aqi = calculateLinearAqi(micrograms,ihi:150.0,ilo:101.0,chi:55.4,clo:35.5)
         } else if (micrograms < 150.4) {
@@ -59,7 +59,7 @@ class Pm25AqiConverter {
     }
     
     
-    static func aqiToMicrograms(inputAqi: Double) -> Double {
+    static func aqiToMicrograms(inputAqi: Int) -> Double {
         var micrograms = 0.0;
         // round to tenths
         let aqi = Double(Int(inputAqi*10))/10.0;

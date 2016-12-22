@@ -18,12 +18,15 @@ class AddressShowController: UIViewController {
     @IBOutlet var labelValueTitle: UILabel!
     @IBOutlet var labelValueDescription: UILabel!
     @IBOutlet var mainView: UIView!
-    var closestFeed: Pm25Feed?
     var reading: Readable?
-    @IBOutlet var viewAqiButton: UIView!
     @IBOutlet weak var viewTrackerButton: UIView!
-    @IBOutlet var labelClosestFeedName: UILabel!
+    @IBOutlet weak var labelClosestPm25FeedValue: UILabel!
+    @IBOutlet weak var labelClosestPm25FeedName: UILabel!
+    @IBOutlet weak var labelClosestOzoneFeedValue: UILabel!
+    @IBOutlet weak var labelClosestOzoneFeedName: UILabel!
     @IBOutlet var gestureDailyTracker: UITapGestureRecognizer!
+    @IBOutlet weak var viewOzoneAqiButton: UIView!
+    @IBOutlet weak var viewPm25AqiButton: UIView!
     
     
     private func clearAndHide(labels: [UILabel!]) {
@@ -47,8 +50,6 @@ class AddressShowController: UIViewController {
         labelValueDescription.text = Constants.DefaultReading.DEFAULT_DESCRIPTION
         mainView.backgroundColor = Constants.DefaultReading.DEFAULT_COLOR_BACKGROUND
         clearAndHide([labelMeasurementRange, labelShowValue, labelReadingMeasurement])
-        viewAqiButton.hidden = true
-        viewTrackerButton.hidden = true
     }
     
     
@@ -57,23 +58,38 @@ class AddressShowController: UIViewController {
             self.navigationItem.rightBarButtonItems = []
         }
         if address.hasReadableValue() {
-            let micrograms = address.getReadablePm25Value().getValue()
-            let aqi = Pm25AqiConverter.microgramsToAqi(micrograms)
-            NSLog("PM2.5=\(aqi)")
+            var aqi: Int = 0
+            
             if address.hasReadableOzoneValue() {
+                viewOzoneAqiButton.hidden = false
                 let ozone = address.getReadableOzoneValue()
                 if ozone is Ozone_InstantCast {
                     NSLog("instant OZONE=\((ozone as! Ozone_InstantCast).getAqiValue())")
                 } else if ozone is Ozone_NowCast {
                     NSLog("nowcast OZONE=\((ozone as! Ozone_NowCast).getAqiValue())")
                 }
+                let closestFeed = ozone.channel.feed!
+                labelClosestOzoneFeedName.text = closestFeed.name
+                labelClosestOzoneFeedValue.text = Int(ozone.getAqiValue()).description
+                if Int(ozone.getAqiValue()) > aqi {
+                    aqi = Int(ozone.getAqiValue())
+                }
+            }
+            if address.hasReadablePm25Value() {
+                viewTrackerButton.hidden = false
+                viewPm25AqiButton.hidden = false
+                let pm25 = address.getReadablePm25Value()
+                NSLog("PM2.5=\(pm25.getAqiValue())")
+                let closestFeed = pm25.channel.feed!
+                labelClosestPm25FeedName.text = closestFeed.name
+                labelClosestPm25FeedValue.text = Int(pm25.getAqiValue()).description
+                if Int(pm25.getAqiValue()) > aqi {
+                    aqi = Int(pm25.getAqiValue())
+                }
             }
             labelShowValue.text = Int(aqi).description
-            let aqiReading = AQIReading(reading: micrograms)
+            let aqiReading = AQIReading(reading: Pm25AqiConverter.aqiToMicrograms(aqi))
             if aqiReading.withinRange() {
-                // get feed name
-                closestFeed = address.getReadablePm25Value().channel.feed
-                labelClosestFeedName.text = closestFeed?.getName()
                 labelMeasurementRange.text = "\(aqiReading.getRangeFromIndex()) AQI"
                 labelValueTitle.text = aqiReading.getTitle()
                 labelValueDescription.text = aqiReading.getDescription()
@@ -89,8 +105,6 @@ class AddressShowController: UIViewController {
                 mainView.layer.insertSublayer(gradient, atIndex: 0)
                 // request tracker
                 address.requestDailyFeedTracker(self)
-            } else {
-                defaultView()
             }
         } else {
             defaultView()
@@ -99,8 +113,6 @@ class AddressShowController: UIViewController {
     
     
     func speckView(speck: Speck) {
-        viewAqiButton.hidden = true
-        viewTrackerButton.hidden = true
         if speck.hasReadableValue() {
             let micrograms = speck.getReadablePm25Value().getValue()
             labelShowValue.text = Int(micrograms).description
@@ -125,6 +137,9 @@ class AddressShowController: UIViewController {
     
     func populateView() {
         gestureDailyTracker.enabled = false
+        viewOzoneAqiButton.hidden = true
+        viewPm25AqiButton.hidden = true
+        viewTrackerButton.hidden = true
         navigationItem.title = reading!.getName()
         if (reading! is SimpleAddress) {
             addressView(reading as! SimpleAddress)
@@ -157,9 +172,6 @@ class AddressShowController: UIViewController {
                 let address = airNowReading as! SimpleAddress
                 let controller = segue.destinationViewController as! AqiExplanationDetailsController
                 controller.reading = address
-                if address.hasReadablePm25Value() {
-                    controller.feed = address.getReadablePm25Value().channel.feed
-                }
             } else if segue.identifier == "showTrackerSegue" {
                 let address = airNowReading as! SimpleAddress
                 let controller = segue.destinationViewController as! DailyTrackerController

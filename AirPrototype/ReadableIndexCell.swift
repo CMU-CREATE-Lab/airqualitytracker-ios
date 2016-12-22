@@ -31,15 +31,20 @@ class ReadableIndexCell: UICollectionViewCell {
             if (reading.hasReadableValue()) {
                 if (reading is SimpleAddress) {
                     textItemLabel.text = Constants.Units.AQI
-                    let micrograms = (reading as! SimpleAddress).getReadableValues().first!.getValue()
-                    let aqi = Pm25AqiConverter.microgramsToAqi(micrograms)
+                    var aqi: Int = 0
+                    let address = reading as! SimpleAddress
+                    if address.hasReadablePm25Value() && Int(address.getReadablePm25Value().getAqiValue()) > aqi {
+                        aqi = Int(address.getReadablePm25Value().getAqiValue())
+                    }
+                    if address.hasReadableOzoneValue() && Int(address.getReadableOzoneValue().getAqiValue()) > aqi {
+                        aqi = Int(address.getReadableOzoneValue().getAqiValue())
+                    }
                     value = Int(aqi).description
-                    let aqiReading = AQIReading(reading: micrograms)
+                    let aqiReading = AQIReading(reading: Pm25AqiConverter.aqiToMicrograms(Int(aqi)))
                     if aqiReading.withinRange() {
                         self.backgroundColor = aqiReading.getColor()
                     }
                     // current location
-                    let address = reading as! SimpleAddress
                     if address.isCurrentLocation {
                         textCurrentLocation.hidden = false
                     }
