@@ -25,6 +25,7 @@ class OzoneChannel: Channel {
             let array = nowCastCalculator.constructArrayFromHash(data, currentTime: timestamp)
             
             // find NowCast
+            // NOTE: this may report 0 when there is actually no current reading
             let ozoneNowcast = Ozone_NowCast(value: nowCastCalculator.calculate(array), ozoneChannel: self )
             let ozoneInstantcast = Ozone_InstantCast(value: nowCastCalculator.getMostRecent(data, currentTime: timestamp), ozoneChannel: self)
             

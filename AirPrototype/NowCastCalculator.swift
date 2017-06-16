@@ -152,7 +152,11 @@ class NowCastCalculator {
     
     func getMostRecent(data: [Int: [Double]], currentTime: Int) -> Double {
         let hourlyValues = constructArrayFromHash(data, currentTime: currentTime)
-        return  hourlyValues.first!
+        if hourlyValues.count > 0 {
+            return  hourlyValues.first!
+        }
+        NSLog("WARNING - NowCastCalculator.getMostRecent has no recent value; returning zero")
+        return 0
     }
     
 }
