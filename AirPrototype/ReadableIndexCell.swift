@@ -19,10 +19,10 @@ class ReadableIndexCell: UICollectionViewCell {
     @IBOutlet weak var textHumidity: UILabel!
     
     
-    func populate(reading: Readable) {
-        textCurrentLocation.hidden = true
-        textTemperature.hidden = true
-        textHumidity.hidden = true
+    func populate(_ reading: Readable) {
+        textCurrentLocation.isHidden = true
+        textTemperature.isHidden = true
+        textHumidity.isHidden = true
         
         if reading.hasReadableValue() {
             var value: String
@@ -46,7 +46,7 @@ class ReadableIndexCell: UICollectionViewCell {
                     }
                     // current location
                     if address.isCurrentLocation {
-                        textCurrentLocation.hidden = false
+                        textCurrentLocation.isHidden = false
                     }
                 } else if (reading is Speck) {
                     textItemLabel.text = Constants.Units.MICROGRAMS_PER_CUBIC_METER
@@ -59,11 +59,11 @@ class ReadableIndexCell: UICollectionViewCell {
                     }
                     if speck.hasReadableTemperatureValue() {
                         textTemperature.text = "\(speck.getReadableTemperatureValue().getValue()) \(speck.getReadableTemperatureValue().getReadableUnits())"
-                        textTemperature.hidden = false
+                        textTemperature.isHidden = false
                     }
                     if speck.hasReadableHumidityValue() {
                         textHumidity.text = "💧\(speck.getReadableHumidityValue().getValue()) \(speck.getReadableHumidityValue().getReadableUnits())"
-                        textHumidity.hidden = false
+                        textHumidity.isHidden = false
                     }
                 } else {
                     NSLog("WARNING - could not determine Readable type for ReadableIndexCell")
@@ -75,15 +75,15 @@ class ReadableIndexCell: UICollectionViewCell {
             }
             
             textItemValue.text = value
-            textItemLabel.hidden = false
+            textItemLabel.isHidden = false
         } else {
             textItemName.text = reading.getName()
             textItemValue.text = Constants.DefaultReading.DEFAULT_LOCATION
-            textItemLabel.hidden = true
+            textItemLabel.isHidden = true
             self.backgroundColor = Constants.DefaultReading.DEFAULT_COLOR_BACKGROUND
             if let address = reading as? SimpleAddress {
                 if address.isCurrentLocation && address.hasReadableValue() {
-                    textCurrentLocation.hidden = false
+                    textCurrentLocation.isHidden = false
                 }
             }
         }
@@ -92,7 +92,7 @@ class ReadableIndexCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        textCurrentLocation.hidden = true
+        textCurrentLocation.isHidden = true
     }
     
 }

@@ -29,7 +29,7 @@ class AirNowDetailsController: UIViewController, UITableViewDelegate, UITableVie
         GlobalHandler.sharedInstance.airNowTable = tableAirNowObservations
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         GlobalHandler.sharedInstance.airNowTable = nil
     }
     
@@ -37,18 +37,18 @@ class AirNowDetailsController: UIViewController, UITableViewDelegate, UITableVie
     // MARK table view
     
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let observations = reading!.getMostRecentAirNowObservations()
         return observations.count
     }
     
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let observations = reading!.getMostRecentAirNowObservations()
         if observations.count > 0 {
             let title = "observed at \(observations[0].readableDate)"
@@ -59,13 +59,13 @@ class AirNowDetailsController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = "AirNowDetailsCell"
         var cell: AirNowDetailsTableCell?
         let observations = reading!.getMostRecentAirNowObservations()
         let observation = observations[indexPath.row]
         
-        cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? AirNowDetailsTableCell
+        cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? AirNowDetailsTableCell
         if cell == nil {
             cell = AirNowDetailsTableCell()
         }

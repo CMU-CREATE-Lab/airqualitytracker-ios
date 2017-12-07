@@ -746,7 +746,7 @@
 					A1666F7C1B54125400A8E39F = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = DJ238GZPC2;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0830;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1030,7 +1030,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1047,7 +1047,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cmucreatelab.tasota.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

@@ -17,21 +17,21 @@ class EsdrAccount {
     var refreshToken: String?
     
     
-    init(userDefaults: NSUserDefaults) {
-        username = userDefaults.valueForKey(Constants.SettingsKeys.username) as? String
-        userId = userDefaults.valueForKey(Constants.SettingsKeys.userId) as? Int
-        expiresAt = userDefaults.valueForKey(Constants.SettingsKeys.expiresAt) as? Int
-        accessToken = userDefaults.valueForKey(Constants.SettingsKeys.accessToken) as? String
-        refreshToken = userDefaults.valueForKey(Constants.SettingsKeys.refreshToken) as? String
+    init(userDefaults: UserDefaults) {
+        username = userDefaults.value(forKey: Constants.SettingsKeys.username) as? String
+        userId = userDefaults.value(forKey: Constants.SettingsKeys.userId) as? Int
+        expiresAt = userDefaults.value(forKey: Constants.SettingsKeys.expiresAt) as? Int
+        accessToken = userDefaults.value(forKey: Constants.SettingsKeys.accessToken) as? String
+        refreshToken = userDefaults.value(forKey: Constants.SettingsKeys.refreshToken) as? String
     }
     
     
-    func loadFromUserDefaults(userDefaults: NSUserDefaults) {
-        username = userDefaults.valueForKey(Constants.SettingsKeys.username) as? String
-        userId = userDefaults.valueForKey(Constants.SettingsKeys.userId) as? Int
-        expiresAt = userDefaults.valueForKey(Constants.SettingsKeys.expiresAt) as? Int
-        accessToken = userDefaults.valueForKey(Constants.SettingsKeys.accessToken) as? String
-        refreshToken = userDefaults.valueForKey(Constants.SettingsKeys.refreshToken) as? String
+    func loadFromUserDefaults(_ userDefaults: UserDefaults) {
+        username = userDefaults.value(forKey: Constants.SettingsKeys.username) as? String
+        userId = userDefaults.value(forKey: Constants.SettingsKeys.userId) as? Int
+        expiresAt = userDefaults.value(forKey: Constants.SettingsKeys.expiresAt) as? Int
+        accessToken = userDefaults.value(forKey: Constants.SettingsKeys.accessToken) as? String
+        refreshToken = userDefaults.value(forKey: Constants.SettingsKeys.refreshToken) as? String
     }
     
     

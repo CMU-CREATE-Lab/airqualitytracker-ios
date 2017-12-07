@@ -14,7 +14,7 @@ class NowCastCalculator {
     var weightType: WeightType
     
     enum WeightType {
-        case RATIO, PIECEWISE
+        case ratio, piecewise
     }
     
     struct TimeValue {
@@ -29,7 +29,7 @@ class NowCastCalculator {
     }
     
     
-    private func computeWeightFactor(range: Double, max: Double) -> Double {
+    fileprivate func computeWeightFactor(_ range: Double, max: Double) -> Double {
         var result: Double
         
         // avoid division by zero
@@ -41,7 +41,7 @@ class NowCastCalculator {
         }
         
         // piecewise weight type has a minimum weight factor of 1/2
-        if self.weightType == WeightType.PIECEWISE && result < 0.5 {
+        if self.weightType == WeightType.piecewise && result < 0.5 {
             result = 0.5
         }
         
@@ -49,10 +49,10 @@ class NowCastCalculator {
     }
     
     
-    private func summedWeightFactor(values: [Double], weightFactor: Double) -> Double {
+    fileprivate func summedWeightFactor(_ values: [Double], weightFactor: Double) -> Double {
         var result: Double
         result = 0
-        for (index,element) in values.enumerate() {
+        for (index,element) in values.enumerated() {
             result += element * pow(weightFactor, Double(index))
         }
         return result
@@ -62,14 +62,14 @@ class NowCastCalculator {
     // ASSERT: NowCast is calculated from a 12 hour range, so hourlyValues should have size 12
     // ASSERT: hourlyValues does not contain nil values
     // ASSERT: Ordered by hour (index 0 is most recent, index 11 is oldest)
-    func calculate(hourlyValues: [Double]) -> Double {
+    func calculate(_ hourlyValues: [Double]) -> Double {
         if hourlyValues.count == 0 {
             NSLog("WARNING - tried NowCastCalculator.calculate with an empty array; returning 0")
             return 0
         }
         // find min/max of list
-        let max = hourlyValues.maxElement()!
-        let min = hourlyValues.minElement()!
+        let max = hourlyValues.max()!
+        let min = hourlyValues.min()!
         // compute concentration range
         let range = max - min
         // compute the weight factor
@@ -88,7 +88,7 @@ class NowCastCalculator {
     }
     
     
-    func constructArrayFromHash(data: [Int: [Double]], currentTime: Int) -> [Double] {
+    func constructArrayFromHash(_ data: [Int: [Double]], currentTime: Int) -> [Double] {
         var result = [Double]()
         var tempResult = [TimeValue?]()
         for _ in 0...self.hours {
@@ -113,7 +113,7 @@ class NowCastCalculator {
         // Handle finding first non-empty value; return if entire array is empty
         var firstNonempty: Int?
         var firstValue: Double?
-        for (index,_) in tempResult.enumerate() {
+        for (index,_) in tempResult.enumerated() {
             if let element = tempResult[index] {
                 if element.count > 0 && element.value > 0 {
                     firstNonempty = index
@@ -127,7 +127,7 @@ class NowCastCalculator {
         }
         
         // Now, construct our final resulting array (from buckets)
-        for (index,_) in tempResult.enumerate() {
+        for (index,_) in tempResult.enumerated() {
             if index <= firstNonempty! {
                 // set all values to be the same as the first nonempty value
                 result[index] = firstValue!
@@ -150,7 +150,7 @@ class NowCastCalculator {
     }
     
     
-    func getMostRecent(data: [Int: [Double]], currentTime: Int) -> Double {
+    func getMostRecent(_ data: [Int: [Double]], currentTime: Int) -> Double {
         let hourlyValues = constructArrayFromHash(data, currentTime: currentTime)
         if hourlyValues.count > 0 {
             return  hourlyValues.first!

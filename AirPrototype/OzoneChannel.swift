@@ -13,14 +13,14 @@ class OzoneChannel: Channel {
     
     override init() {
         super.init()
-        nowCastCalculator = NowCastCalculator(hours: 8, weightType: NowCastCalculator.WeightType.RATIO)
+        nowCastCalculator = NowCastCalculator(hours: 8, weightType: NowCastCalculator.WeightType.ratio)
     }
     
     
     override func requestNowCast() {
-        let timestamp = Int(NSDate().timeIntervalSince1970)
+        let timestamp = Int(Date().timeIntervalSince1970)
         
-        func response(data: [Int: [Double]]) {
+        func response(_ data: [Int: [Double]]) {
             // construct array of values
             let array = nowCastCalculator.constructArrayFromHash(data, currentTime: timestamp)
             

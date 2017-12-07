@@ -21,7 +21,7 @@ class GpsReadingHandler {
     }
     
     
-    func setGpsAddressLocation(location: Location) {
+    func setGpsAddressLocation(_ location: Location) {
         gpsAddress.location = location
         GlobalHandler.sharedInstance.esdrFeedsHandler.requestUpdate(gpsAddress)
 //        GlobalHandler.sharedInstance.esdrFeedsHandler.requestUpdateFeeds(gpsAddress)

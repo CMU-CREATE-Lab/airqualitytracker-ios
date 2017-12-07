@@ -11,7 +11,7 @@ import Foundation
 class ManualOverrides {
     
     static func loginEsdr() {
-        let time = Int(NSDate().timeIntervalSince1970) + 1209600; // 2 weeks
+        let time = Int(Date().timeIntervalSince1970) + 1209600; // 2 weeks
         let userId = Constants.ManualOverrides.userId;
         let username = Constants.ManualOverrides.username;
         let accessToken = Constants.ManualOverrides.accessToken;

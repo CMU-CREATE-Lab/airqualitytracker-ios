@@ -10,7 +10,7 @@ import Foundation
 
 class TemperatureValue: ReadableValue {
     
-    private var value: Double
+    fileprivate var value: Double
     var channel: Channel
     
     

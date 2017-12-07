@@ -10,7 +10,7 @@ import Foundation
 
 class Ozone_InstantCast: AqiReadableValue {
     
-    private var value: Double
+    fileprivate var value: Double
     var channel: Channel
     
     

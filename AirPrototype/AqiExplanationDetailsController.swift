@@ -19,9 +19,9 @@ class AqiExplanationDetailsController: UIViewController {
     }
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showAirNowSegue" {
-            let controller = segue.destinationViewController as! AirNowDetailsController
+            let controller = segue.destination as! AirNowDetailsController
             controller.reading = self.reading
         } else {
             NSLog("ERROR - bad segue name")

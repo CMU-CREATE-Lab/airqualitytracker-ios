@@ -22,15 +22,15 @@ class AddressDbHelper {
     
     static func loadAddressesFromDb() {
         let managedObjectContext = GlobalHandler.sharedInstance.appDelegate.managedObjectContext
-        let entityDescription = NSEntityDescription.entityForName("StoredAddress", inManagedObjectContext: managedObjectContext!)
-        let request = NSFetchRequest()
+        let entityDescription = NSEntityDescription.entity(forEntityName: "StoredAddress", in: managedObjectContext!)
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
         // sort results
         request.sortDescriptors = [ NSSortDescriptor(key: SimpleAddressKeys.positionIdKey, ascending: true) ]
         var error: NSError?
         var objects: [AnyObject]?
         do {
-            objects = try managedObjectContext?.executeFetchRequest(request)
+            objects = try managedObjectContext?.fetch(request)
         } catch let error1 as NSError {
             error = error1
             objects = nil
@@ -40,11 +40,11 @@ class AddressDbHelper {
             if results.count > 0 {
                 for r in results {
                     let match = r as! NSManagedObject
-                    let name = match.valueForKey(SimpleAddressKeys.nameKey) as! String
-                    let zipcode = match.valueForKey(SimpleAddressKeys.zipcodeKey) as! String
-                    let latitude = match.valueForKey(SimpleAddressKeys.latitudeKey) as! Double
-                    let longitude = match.valueForKey(SimpleAddressKeys.longitudeKey) as! Double
-                    let positionId = match.valueForKey(SimpleAddressKeys.longitudeKey) as! Int
+                    let name = match.value(forKey: SimpleAddressKeys.nameKey) as! String
+                    let zipcode = match.value(forKey: SimpleAddressKeys.zipcodeKey) as! String
+                    let latitude = match.value(forKey: SimpleAddressKeys.latitudeKey) as! Double
+                    let longitude = match.value(forKey: SimpleAddressKeys.longitudeKey) as! Double
+                    let positionId = match.value(forKey: SimpleAddressKeys.longitudeKey) as! Int
                     
                     let address = SimpleAddress()
                     address._id = match.objectID
@@ -62,10 +62,10 @@ class AddressDbHelper {
     }
     
     
-    static func addAddressToDb(address: SimpleAddress) {
+    static func addAddressToDb(_ address: SimpleAddress) {
         let managedObjectContext = GlobalHandler.sharedInstance.appDelegate.managedObjectContext
-        let entityDescription = NSEntityDescription.entityForName("StoredAddress", inManagedObjectContext: managedObjectContext!)
-        let storedAddress = StoredAddress(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "StoredAddress", in: managedObjectContext!)
+        let storedAddress = StoredAddress(entity: entityDescription!, insertInto: managedObjectContext)
         var error: NSError?
         
         if let position = address.positionId {
@@ -77,13 +77,13 @@ class AddressDbHelper {
         }
         
         let insertValues: [String:AnyObject] = [
-            SimpleAddressKeys.nameKey: address.name,
-            SimpleAddressKeys.zipcodeKey: address.zipcode,
-            SimpleAddressKeys.latitudeKey: address.location.latitude,
-            SimpleAddressKeys.longitudeKey: address.location.longitude,
-            SimpleAddressKeys.positionIdKey: address.positionId!
+            SimpleAddressKeys.nameKey: address.name as AnyObject,
+            SimpleAddressKeys.zipcodeKey: address.zipcode as AnyObject,
+            SimpleAddressKeys.latitudeKey: address.location.latitude as AnyObject,
+            SimpleAddressKeys.longitudeKey: address.location.longitude as AnyObject,
+            SimpleAddressKeys.positionIdKey: address.positionId! as AnyObject
         ]
-        storedAddress.setValuesForKeysWithDictionary(insertValues)
+        storedAddress.setValuesForKeys(insertValues)
         
         do {
             try managedObjectContext?.save()
@@ -99,11 +99,11 @@ class AddressDbHelper {
     }
     
     
-    static func updateAddressInDb(address: SimpleAddress) {
+    static func updateAddressInDb(_ address: SimpleAddress) {
         let managedObjectContext = GlobalHandler.sharedInstance.appDelegate.managedObjectContext
         var error: NSError?
         
-        if let storedAddress = managedObjectContext?.objectWithID(address._id!) {
+        if let storedAddress = managedObjectContext?.object(with: address._id!) {
             if address.positionId == nil {
                 if let position = GlobalHandler.sharedInstance.positionIdHelper.getAdressLastPosition() {
                     address.positionId = position
@@ -113,13 +113,13 @@ class AddressDbHelper {
             }
             
             let updateValues: [String:AnyObject] = [
-                SimpleAddressKeys.nameKey: address.name,
-                SimpleAddressKeys.zipcodeKey: address.zipcode,
-                SimpleAddressKeys.latitudeKey: address.location.latitude,
-                SimpleAddressKeys.longitudeKey: address.location.longitude,
-                SimpleAddressKeys.positionIdKey: address.positionId!
+                SimpleAddressKeys.nameKey: address.name as AnyObject,
+                SimpleAddressKeys.zipcodeKey: address.zipcode as AnyObject,
+                SimpleAddressKeys.latitudeKey: address.location.latitude as AnyObject,
+                SimpleAddressKeys.longitudeKey: address.location.longitude as AnyObject,
+                SimpleAddressKeys.positionIdKey: address.positionId! as AnyObject
             ]
-            storedAddress.setValuesForKeysWithDictionary(updateValues)
+            storedAddress.setValuesForKeys(updateValues)
             
             do {
                 try managedObjectContext?.save()
@@ -136,11 +136,11 @@ class AddressDbHelper {
     }
 
     
-    static func deleteAddressFromDb(address: SimpleAddress) {
+    static func deleteAddressFromDb(_ address: SimpleAddress) {
         let managedObjectContext = GlobalHandler.sharedInstance.appDelegate.managedObjectContext
         
-        if let storedAddress = managedObjectContext?.objectWithID(address._id!) {
-            managedObjectContext?.deleteObject(storedAddress)
+        if let storedAddress = managedObjectContext?.object(with: address._id!) {
+            managedObjectContext?.delete(storedAddress)
             
             var error: NSError?
             do {

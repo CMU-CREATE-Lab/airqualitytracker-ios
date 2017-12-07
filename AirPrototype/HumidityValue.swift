@@ -10,7 +10,7 @@ import Foundation
 
 class HumidityValue: ReadableValue {
     
-    private var value: Double
+    fileprivate var value: Double
     var channel: Channel
     
     

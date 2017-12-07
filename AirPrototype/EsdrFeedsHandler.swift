@@ -8,6 +8,30 @@
 
 import Foundation
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func <= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l <= r
+  default:
+    return !(rhs < lhs)
+  }
+}
+
 
 class EsdrFeedsHandler {
     
@@ -15,32 +39,32 @@ class EsdrFeedsHandler {
     
     
     init() {
-        appDelegate = (UIApplication.sharedApplication().delegate! as? AppDelegate)!
+        appDelegate = (UIApplication.shared.delegate! as? AppDelegate)!
     }
     
     
     // ASSERT: cannot pass both authToken and feedApiKey (if so, authToken takes priority)
-    func requestChannelReading(authToken: String?, feedApiKey: String?, feed: Pm25Feed, channel: Channel, maxTime: Double?) {
+    func requestChannelReading(_ authToken: String?, feedApiKey: String?, feed: Pm25Feed, channel: Channel, maxTime: Double?) {
         let feedId = channel.feed!.feed_id.description
         let channelName = channel.name
-        let timeRange = NSDate().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
+        let timeRange = Date().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
         
         // handles http response
-        func completionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
+        func completionHandler(_ url: URL?, response: URLResponse?, error: Error?) -> Void {
             if HttpHelper.successfulResponse(response, error: error) {
-                let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
+                let data = (try? JSONSerialization.jsonObject(with: Data(contentsOf: url!), options: [])) as? NSDictionary
                 var temp:NSDictionary
                 
                 // NOTE (from Chris)
                 // "don't expect mostRecentDataSample to always exist in the response for every channel,
                 // and don't expect channelBounds.maxTimeSecs to always equal mostRecentDataSample.timeSecs"
-                temp = data?.valueForKey("data") as! NSDictionary
-                temp = temp.valueForKey("channels") as! NSDictionary
-                temp = temp.valueForKey(channelName) as! NSDictionary
-                temp = temp.valueForKey("mostRecentDataSample") as! NSDictionary
+                temp = data?.value(forKey: "data") as! NSDictionary
+                temp = temp.value(forKey: "channels") as! NSDictionary
+                temp = temp.value(forKey: channelName) as! NSDictionary
+                temp = temp.value(forKey: "mostRecentDataSample") as! NSDictionary
                 
-                let resultValue = temp.valueForKey("value") as? NSNumber
-                let resultTime = temp.valueForKey("timeSecs") as? NSNumber
+                let resultValue = temp.value(forKey: "value") as? NSNumber
+                let resultTime = temp.value(forKey: "timeSecs") as? NSNumber
                 if resultValue != nil && resultTime != nil {
                     if maxTime == nil {
                         if (channel is Pm25Channel) {
@@ -110,18 +134,18 @@ class EsdrFeedsHandler {
         // make & send request
         if let token = authToken {
             let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/api/v1/feeds/" + feedId + "/channels/" + channelName + "/most-recent", httpMethod: "GET")
-            GlobalHandler.sharedInstance.httpRequestHandler.sendAuthorizedJsonRequest(token, urlRequest: request, completionHandler: completionHandler)
+            GlobalHandler.sharedInstance.httpRequestHandler.sendAuthorizedJsonRequest(token, urlRequest: request as URLRequest, completionHandler: completionHandler)
         } else if let apiKey = feedApiKey {
             let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/api/v1/feeds/" + apiKey + "/channels/" + channelName + "/most-recent", httpMethod: "GET")
-            GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: completionHandler)
+            GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request as URLRequest, completionHandler: completionHandler)
         } else {
             let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/api/v1/feeds/" + feedId + "/channels/" + channelName + "/most-recent", httpMethod: "GET")
-            GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: completionHandler)
+            GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request as URLRequest, completionHandler: completionHandler)
         }
     }
     
     
-    func requestFeeds(location: Location, withinSeconds: Double, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
+    func requestFeeds(_ location: Location, withinSeconds: Double, completionHandler: @escaping ((URL?, URLResponse?, Error?) -> Void) ) {
         let bottomLeftPoint = Location(latitude: location.latitude - Constants.MapGeometry.BOUNDBOX_LAT, longitude: location.longitude - Constants.MapGeometry.BOUNDBOX_LONG)
         let topRightPoint = Location(latitude: location.latitude + Constants.MapGeometry.BOUNDBOX_LAT, longitude: location.longitude + Constants.MapGeometry.BOUNDBOX_LONG)
         
@@ -133,11 +157,11 @@ class EsdrFeedsHandler {
                 "&whereAnd=latitude>=\(bottomLeftPoint.latitude),latitude<=\(topRightPoint.latitude),longitude>=\(bottomLeftPoint.longitude),longitude<=\(topRightPoint.longitude),maxTimeSecs>=\(withinSeconds),exposure=outdoor" +
                 "&fields=id,name,exposure,isMobile,latitude,latitude,longitude,productId,channelBounds",
             httpMethod: "GET")
-        GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: completionHandler)
+        GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request as URLRequest, completionHandler: completionHandler)
     }
     
     
-    func requestChannelReading(feed: Pm25Feed, channel: Channel) {
+    func requestChannelReading(_ feed: Pm25Feed, channel: Channel) {
         // TODO instantcast vs nowcast
         //requestChannelReading(nil, feedApiKey: nil, feed: feed, channel: channel, maxTime: nil)
         channel.requestNowCast()
@@ -150,13 +174,13 @@ class EsdrFeedsHandler {
     }
     
     
-    func requestAuthorizedChannelReading(authToken: String, feed: Pm25Feed, channel: Channel) {
-        let timeRange = NSDate().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
+    func requestAuthorizedChannelReading(_ authToken: String, feed: Pm25Feed, channel: Channel) {
+        let timeRange = Date().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
         requestChannelReading(authToken, feedApiKey: nil, feed: feed, channel: channel, maxTime: timeRange)
     }
     
     
-    func requestUpdate(readable: Readable) {
+    func requestUpdate(_ readable: Readable) {
         if readable is SimpleAddress {
             let simpleAddress = readable as! SimpleAddress
             simpleAddress.requestReadablePm25Reading()

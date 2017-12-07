@@ -15,7 +15,7 @@ protocol AirNowReadable: Readable {
     
     func getMostRecentAirNowObservations() -> [AirNowObservation]
     func requestAirNow()
-    mutating func appendAndSort(values: [AirNowObservation])
+    mutating func appendAndSort(_ values: [AirNowObservation])
     
 }
 
@@ -28,7 +28,7 @@ extension AirNowReadable {
         if airNowObservations.count > 0 {
             let date = airNowObservations[0].observedDateTime
             for observation in airNowObservations {
-                if observation.observedDateTime.compare(date) == NSComparisonResult.OrderedSame {
+                if observation.observedDateTime.compare(date as Date) == ComparisonResult.orderedSame {
                     values.append(observation)
                 }
             }
@@ -42,10 +42,10 @@ extension AirNowReadable {
     }
     
     
-    mutating func appendAndSort(values: [AirNowObservation]) {
-        airNowObservations.appendContentsOf(values)
-        airNowObservations.sortInPlace {
-            $0.observedDateTime.compare($1.observedDateTime) == NSComparisonResult.OrderedDescending
+    mutating func appendAndSort(_ values: [AirNowObservation]) {
+        airNowObservations.append(contentsOf: values)
+        airNowObservations.sort {
+            $0.observedDateTime.compare($1.observedDateTime as Date) == ComparisonResult.orderedDescending
         }
     }
     

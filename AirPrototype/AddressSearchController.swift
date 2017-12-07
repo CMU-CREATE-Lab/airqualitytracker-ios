@@ -32,7 +32,7 @@ class AddressSearchController: UIViewController, UISearchBarDelegate {
         navItemAddressSearch.titleView = searchControllerAddressSearch!.searchBar
         self.definesPresentationContext = true
         
-        resultsController.tableView.registerNib(UINib(nibName: "ResultsTableViewCellAddressSearch", bundle: nil), forCellReuseIdentifier: Constants.CellReuseIdentifiers.ADDRESS_SEARCH)
+        resultsController.tableView.register(UINib(nibName: "ResultsTableViewCellAddressSearch", bundle: nil), forCellReuseIdentifier: Constants.CellReuseIdentifiers.ADDRESS_SEARCH)
     }
     
     
@@ -45,7 +45,7 @@ class AddressSearchController: UIViewController, UISearchBarDelegate {
     // MARK: SearchBar delegate
     
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar){
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
         resultsController.tableView.reloadData()
     }
     

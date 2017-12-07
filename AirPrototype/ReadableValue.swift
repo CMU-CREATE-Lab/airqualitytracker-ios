@@ -9,7 +9,7 @@
 import Foundation
 
 enum ReadableValueType {
-    case INSTANTCAST, NOWCAST
+    case instantcast, nowcast
 }
 
 protocol ReadableValue {

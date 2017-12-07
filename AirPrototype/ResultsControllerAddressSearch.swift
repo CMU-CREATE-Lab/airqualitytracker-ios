@@ -18,7 +18,7 @@ class ResultsControllerAddressSearch: UITableViewController, UISearchResultsUpda
     var autocompleteTimer: AutocompleteTimer?
     
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         let text = searchController.searchBar.text
         if text == "" {
             if let timer = autocompleteTimer {
@@ -38,26 +38,26 @@ class ResultsControllerAddressSearch: UITableViewController, UISearchResultsUpda
     // MARK: UITableView delegate
     
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResultsList.count
     }
     
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = Constants.CellReuseIdentifiers.ADDRESS_SEARCH
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ResultsTableViewCellAddressSearch
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ResultsTableViewCellAddressSearch
         cell.populate(searchResultsList[indexPath.row])
         return cell
     }
     
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // add to database and data structure
         AddressDbHelper.addAddressToDb(searchResultsList[indexPath.row])
         let globalHandler = GlobalHandler.sharedInstance
@@ -65,7 +65,7 @@ class ResultsControllerAddressSearch: UITableViewController, UISearchResultsUpda
         globalHandler.updateReadings()
         
         // finish
-        addressSearchController!.navigationController?.popViewControllerAnimated(true)
+        addressSearchController!.navigationController?.popViewController(animated: true)
     }
     
 }

@@ -17,16 +17,16 @@ class ManageTrackersTableViewCell: UITableViewCell, UIAlertViewDelegate {
     var tableView: UITableView?
     
     
-    func populate(reading: Readable, tableView: UITableView) {
+    func populate(_ reading: Readable, tableView: UITableView) {
         self.reading = reading
         self.tableView = tableView
         labelReadingName.text = reading.getName()
     }
     
     
-    func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
+    func alertView(_ alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
         if buttonIndex == 1{
-            let name = alertView.textFieldAtIndex(0)!.text!
+            let name = alertView.textField(at: 0)!.text!
             GlobalHandler.sharedInstance.readingsHandler.renameReading(self.reading!, name: name)
             self.tableView!.reloadData()
         }
@@ -36,15 +36,15 @@ class ManageTrackersTableViewCell: UITableViewCell, UIAlertViewDelegate {
     // MARK: Storyboard Events
     
     
-    @IBAction func onClickEditName(sender: AnyObject) {
+    @IBAction func onClickEditName(_ sender: AnyObject) {
         let reading = self.reading!
         if (reading is SimpleAddress) {
             let dialog = UIAlertView.init(title: "Change Address Name", message: reading.getName(), delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Save")
-            dialog.alertViewStyle = UIAlertViewStyle.PlainTextInput
+            dialog.alertViewStyle = UIAlertViewStyle.plainTextInput
             dialog.show()
         } else if (reading is Speck) {
             let dialog = UIAlertView.init(title: "Change Address Name", message: reading.getName(), delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Save")
-            dialog.alertViewStyle = UIAlertViewStyle.PlainTextInput
+            dialog.alertViewStyle = UIAlertViewStyle.plainTextInput
             dialog.show()
         } else {
             NSLog("Error - could not find readable type")

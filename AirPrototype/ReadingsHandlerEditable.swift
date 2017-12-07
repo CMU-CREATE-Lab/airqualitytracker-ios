@@ -13,7 +13,7 @@ class ReadingsHandlerEditable: ReadingsHandlerCore {
     
     // required helpers to get the index since find() does not properly
     // match objects that should be equivalent.
-    private func findIndexFromAddress(address: SimpleAddress) -> Int? {
+    fileprivate func findIndexFromAddress(_ address: SimpleAddress) -> Int? {
         let max = addresses.endIndex - 1
         for i in 0...max {
             if addresses[i] === address {
@@ -25,7 +25,7 @@ class ReadingsHandlerEditable: ReadingsHandlerCore {
     }
     
     
-    private func findIndexFromSpeck(speck: Speck) -> Int? {
+    fileprivate func findIndexFromSpeck(_ speck: Speck) -> Int? {
         let max = specks.endIndex - 1
         for i in 0...max {
             if specks[i] === speck {
@@ -37,17 +37,17 @@ class ReadingsHandlerEditable: ReadingsHandlerCore {
     }
 
     
-    func reorderReading(reading: Readable, destination: Readable) {
+    func reorderReading(_ reading: Readable, destination: Readable) {
         if (reading is SimpleAddress) {
             let from = findIndexFromAddress(reading as! SimpleAddress)
             let to = findIndexFromAddress(destination as! SimpleAddress)
-            addresses.removeAtIndex(from!)
-            addresses.insert(reading as! SimpleAddress, atIndex: to!)
+            addresses.remove(at: from!)
+            addresses.insert(reading as! SimpleAddress, at: to!)
         } else if (reading is Speck) {
             let from = findIndexFromSpeck(reading as! Speck)
             let to = findIndexFromSpeck(destination as! Speck)
-            specks.removeAtIndex(from!)
-            specks.insert(reading as! Speck, atIndex: to!)
+            specks.remove(at: from!)
+            specks.insert(reading as! Speck, at: to!)
         }
         let positionIdHelper = GlobalHandler.sharedInstance.positionIdHelper
         positionIdHelper.reorderAddressPositions(addresses)
@@ -56,15 +56,15 @@ class ReadingsHandlerEditable: ReadingsHandlerCore {
     }
     
     
-    func removeReading(readable: Readable) {
+    func removeReading(_ readable: Readable) {
         if (readable is SimpleAddress) {
             if let index = findIndexFromAddress(readable as! SimpleAddress) {
-                addresses.removeAtIndex(index)
+                addresses.remove(at: index)
             }
             AddressDbHelper.deleteAddressFromDb(readable as! SimpleAddress)
         } else if (readable is Speck) {
             if let speckIndex = findIndexFromSpeck(readable as! Speck) {
-                specks.removeAtIndex(speckIndex)
+                specks.remove(at: speckIndex)
             }
             let speck = readable as! Speck
             SpeckDbHelper.deleteSpeckFromDb(speck)
@@ -76,7 +76,7 @@ class ReadingsHandlerEditable: ReadingsHandlerCore {
     }
     
     
-    func renameReading(reading: Readable, name: String) {
+    func renameReading(_ reading: Readable, name: String) {
         if (reading is SimpleAddress) {
             let address = reading as! SimpleAddress
             address.name = name

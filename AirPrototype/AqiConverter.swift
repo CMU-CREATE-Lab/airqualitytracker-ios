@@ -11,17 +11,17 @@ import Foundation
 class Pm25AqiConverter {
     
     
-    private static func calculateLinearAqi(micrograms: Double, ihi: Double, ilo: Double, chi: Double, clo: Double) -> Double {
+    fileprivate static func calculateLinearAqi(_ micrograms: Double, ihi: Double, ilo: Double, chi: Double, clo: Double) -> Double {
         return (ihi-ilo) / (chi-clo) * (micrograms-clo) + ilo
     }
     
     
-    private static func calculateLinearMicrograms(aqi: Double, ihi: Double, ilo: Double, chi: Double, clo: Double) -> Double {
+    fileprivate static func calculateLinearMicrograms(_ aqi: Double, ihi: Double, ilo: Double, chi: Double, clo: Double) -> Double {
         return (aqi-ilo) * (chi-clo) / (ihi-ilo) + clo
     }
     
     
-    static func decimalPrecision(number: Double, digits: Int) -> Double {
+    static func decimalPrecision(_ number: Double, digits: Int) -> Double {
         if digits < 0 {
             return number
         }
@@ -30,7 +30,7 @@ class Pm25AqiConverter {
     }
     
     
-    static func microgramsToAqi(inputMicrograms: Double) -> Double {
+    static func microgramsToAqi(_ inputMicrograms: Double) -> Double {
         var aqi = 0.0
         // round to tenths
         let micrograms = Double(Int(inputMicrograms*10)) / 10.0
@@ -59,7 +59,7 @@ class Pm25AqiConverter {
     }
     
     
-    static func aqiToMicrograms(inputAqi: Int) -> Double {
+    static func aqiToMicrograms(_ inputAqi: Int) -> Double {
         var micrograms = 0.0;
         // round to tenths
         let aqi = Double(Int(inputAqi*10))/10.0;

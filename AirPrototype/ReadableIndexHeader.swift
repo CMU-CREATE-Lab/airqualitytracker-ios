@@ -14,7 +14,7 @@ class ReadableIndexHeader: UICollectionReusableView {
     @IBOutlet var textHeaderTitle: UILabel!
     
     
-    func populate(sectionTitle: String) {
+    func populate(_ sectionTitle: String) {
         textHeaderTitle.text = sectionTitle
     }
     

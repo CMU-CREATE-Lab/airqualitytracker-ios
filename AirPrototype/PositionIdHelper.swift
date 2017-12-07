@@ -11,24 +11,24 @@ import Foundation
 class PositionIdHelper {
     
     
-    private func setAddressLastPosition(position: Int) {
+    fileprivate func setAddressLastPosition(_ position: Int) {
         let userDefaults = GlobalHandler.sharedInstance.settingsHandler.userDefaults
-        userDefaults.setInteger(position, forKey: Constants.SettingsKeys.addressLastPosition)
+        userDefaults.set(position, forKey: Constants.SettingsKeys.addressLastPosition)
         userDefaults.synchronize()
     }
     
     
-    private func setSpeckLastPosition(position: Int) {
+    fileprivate func setSpeckLastPosition(_ position: Int) {
         let userDefaults = GlobalHandler.sharedInstance.settingsHandler.userDefaults
-        userDefaults.setInteger(position, forKey: Constants.SettingsKeys.speckLastPosition)
+        userDefaults.set(position, forKey: Constants.SettingsKeys.speckLastPosition)
         userDefaults.synchronize()
     }
     
     
     func getAdressLastPosition() -> Int? {
         let userDefaults = GlobalHandler.sharedInstance.settingsHandler.userDefaults
-        let position = userDefaults.valueForKey(Constants.SettingsKeys.addressLastPosition) as! Int
-        userDefaults.setInteger(position+1, forKey: Constants.SettingsKeys.addressLastPosition)
+        let position = userDefaults.value(forKey: Constants.SettingsKeys.addressLastPosition) as! Int
+        userDefaults.set(position+1, forKey: Constants.SettingsKeys.addressLastPosition)
         if userDefaults.synchronize() {
             return position
         }
@@ -38,8 +38,8 @@ class PositionIdHelper {
     
     func getSpeckLastPosition() -> Int? {
         let userDefaults = GlobalHandler.sharedInstance.settingsHandler.userDefaults
-        let position = userDefaults.valueForKey(Constants.SettingsKeys.speckLastPosition) as! Int
-        userDefaults.setInteger(position+1, forKey: Constants.SettingsKeys.speckLastPosition)
+        let position = userDefaults.value(forKey: Constants.SettingsKeys.speckLastPosition) as! Int
+        userDefaults.set(position+1, forKey: Constants.SettingsKeys.speckLastPosition)
         if userDefaults.synchronize() {
             return position
         }
@@ -47,7 +47,7 @@ class PositionIdHelper {
     }
     
     
-    func reorderAddressPositions(addresses: [SimpleAddress]) {
+    func reorderAddressPositions(_ addresses: [SimpleAddress]) {
         var index = 1
         for address in addresses {
             address.positionId = index
@@ -58,7 +58,7 @@ class PositionIdHelper {
     }
     
     
-    func reorderSpeckPositions(specks: [Speck]) {
+    func reorderSpeckPositions(_ specks: [Speck]) {
         var index = 1
         for speck in specks {
             speck.positionId = index

@@ -12,7 +12,7 @@ import UIKit
 class WHOReading: Scalable {
     
     // static class attributes
-    private static let colors = [
+    fileprivate static let colors = [
         UIColor(red: 163.0/255.0, green: 186.0/255.0, blue: 92.0/255.0, alpha: 1.0),
         UIColor(red: 233.0/255.0, green: 182.0/255.0, blue: 66.0/255.0, alpha: 1.0),
         UIColor(red: 233.0/255.0, green: 140.0/255.0, blue: 55.0/255.0, alpha: 1.0),
@@ -20,19 +20,19 @@ class WHOReading: Scalable {
         UIColor(red: 181.0/255.0, green: 67.0/255.0, blue: 130.0/255.0, alpha: 1.0),
         UIColor(red: 178.0/255.0, green: 38.0/255.0, blue: 81.0/255.0, alpha: 1.0)
     ]
-    private static let aqiColorsHexStrings = [
+    fileprivate static let aqiColorsHexStrings = [
         "a3ba5c", "e9b642", "e98c37", "e24f36", "b54382", "b22651"
     ]
-    private static let titles = [
+    fileprivate static let titles = [
         "Good", "Moderate", "Elevated", "High", "Very High", "Hazardous"
     ]
     // ranges measured in ug/m^3
-    private static let ranges = [
+    fileprivate static let ranges = [
         10.1, 25.5, 50.5, 149.5, 249.5
     ]
     // class attributes
-    private var reading: Double
-    private var index: Int
+    fileprivate var reading: Double
+    fileprivate var index: Int
     // getters
     func getColor() -> UIColor { return WHOReading.colors[self.index] }
     func getAqiHexString() -> String { return WHOReading.aqiColorsHexStrings[self.index] }
@@ -50,12 +50,12 @@ class WHOReading: Scalable {
     }
     
     
-    static func getIndexFromReading(reading: Double) -> Int {
+    static func getIndexFromReading(_ reading: Double) -> Int {
         if reading < 0 {
             return -1;
         }
         var index: Int
-        for index = 0; index < ranges.count; index+=1 {
+        for index in 0..<ranges.count {
             if reading < ranges[index] {
                 return index
             }

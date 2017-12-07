@@ -19,10 +19,10 @@ class SettingsController: UIViewController {
     
     
     // ASSERT: assumes we want the top-left corner included
-    private func getFramefromViews(views: [UIView!]) -> CGRect {
-        var result = CGRectMake(0, 0, 0, 0)
+    fileprivate func getFramefromViews(_ views: [UIView?]) -> CGRect {
+        var result = CGRect(x: 0, y: 0, width: 0, height: 0)
         for view in views {
-            result = CGRectUnion(result, view.frame)
+            result = result.union((view?.frame)!)
         }
         return result
     }
@@ -31,27 +31,27 @@ class SettingsController: UIViewController {
     // MARK: Storyboard Events
     
     
-    @IBAction func clickButtonLogin(sender: AnyObject) {
-        self.dismissViewControllerAnimated(false, completion: nil)
-        parentNavigationController!.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login"), animated: true)
+    @IBAction func clickButtonLogin(_ sender: AnyObject) {
+        self.dismiss(animated: false, completion: nil)
+        parentNavigationController!.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Login"), animated: true)
     }
     
     
-    @IBAction func clickButtonAboutAirQuality(sender: AnyObject) {
-        self.dismissViewControllerAnimated(false, completion: nil)
-        parentNavigationController!.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AboutAirQuality"), animated: true)
+    @IBAction func clickButtonAboutAirQuality(_ sender: AnyObject) {
+        self.dismiss(animated: false, completion: nil)
+        parentNavigationController!.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AboutAirQuality"), animated: true)
     }
     
     
-    @IBAction func clickButtonAboutSpeck(sender: AnyObject) {
-        self.dismissViewControllerAnimated(false, completion: nil)
-        parentNavigationController!.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AboutSpeck"), animated: true)
+    @IBAction func clickButtonAboutSpeck(_ sender: AnyObject) {
+        self.dismiss(animated: false, completion: nil)
+        parentNavigationController!.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AboutSpeck"), animated: true)
     }
     
     
-    @IBAction func clickButtonManageTrackers(sender: AnyObject) {
-        self.dismissViewControllerAnimated(false, completion: nil)
-        parentNavigationController!.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ManageTrackers"), animated: true)
+    @IBAction func clickButtonManageTrackers(_ sender: AnyObject) {
+        self.dismiss(animated: false, completion: nil)
+        parentNavigationController!.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ManageTrackers"), animated: true)
     }
     
     
@@ -62,7 +62,7 @@ class SettingsController: UIViewController {
         super.viewDidLoad()
         // calculates how large the popup window should be
         let frame = getFramefromViews([buttonManageTrackers, buttonLogin, buttonAboutAirQuality, buttonAboutSpeck])
-        self.preferredContentSize = CGSizeMake(frame.width + 20, frame.height)
+        self.preferredContentSize = CGSize(width: frame.width + 20, height: frame.height)
     }
     
 }

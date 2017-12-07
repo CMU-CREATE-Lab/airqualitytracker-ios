@@ -15,7 +15,7 @@ class AirQualityFeed: Pm25Feed, OzoneReadable {
     var simpleAddress: SimpleAddress?
     
     
-    func addChannel(channel: Channel) {
+    func addChannel(_ channel: Channel) {
         if (channel is Pm25Channel) {
             pm25Channels.append(channel as! Pm25Channel)
         } else if (channel is OzoneChannel) {
@@ -48,7 +48,7 @@ class AirQualityFeed: Pm25Feed, OzoneReadable {
     // Readable Implementation
     
     
-    private func generateReadableValues() -> Array<ReadableValue> {
+    fileprivate func generateReadableValues() -> Array<ReadableValue> {
         var result = Array<ReadableValue>()
         if (hasReadablePm25Value()) {
             result.append(self.readablePm25Value!)

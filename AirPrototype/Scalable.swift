@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 
 enum ScaleType {
-    case EPA_AQI, SPECK, WHO
+    case epa_AQI, speck, who
 }
 
 protocol Scalable {
     
     func withinRange() -> Bool
     
-    static func getIndexFromReading(reading: Double) -> Int
+    static func getIndexFromReading(_ reading: Double) -> Int
     
     func getRangeFromIndex() -> String
     

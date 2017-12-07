@@ -18,10 +18,10 @@ class DailyTrackerController: UIViewController, UIPickerViewDelegate, UIPickerVi
     let scalePickerValues = ["EPA AQI", "WHO"]
     var address: SimpleAddress?
     var displayType = Constants.DIRTY_DAYS_VALUE_TYPE
-    var scaleType = ScaleType.EPA_AQI
+    var scaleType = ScaleType.epa_AQI
     
     
-    private func constructColorsList() -> String {
+    fileprivate func constructColorsList() -> String {
         var result = ""
         // TODO check for nil tracker
         let values = address!.dailyFeedTracker!.values
@@ -40,10 +40,10 @@ class DailyTrackerController: UIViewController, UIPickerViewDelegate, UIPickerVi
                     index += 1
                     let reading = value.getCount(displayType)
                     switch (scaleType) {
-                        case .EPA_AQI:
+                        case .epa_AQI:
                             let aqiReading = AQIReading(reading: reading)
                             result += aqiReading.getAqiHexString()
-                        case .WHO:
+                        case .who:
                             let whoReading = WHOReading(reading: reading)
                             result += whoReading.getAqiHexString()
                         default:
@@ -55,25 +55,25 @@ class DailyTrackerController: UIViewController, UIPickerViewDelegate, UIPickerVi
             result += ",";
             
         }
-        result = result.substringToIndex(result.endIndex.predecessor())
+        result = result.substring(to: result.characters.index(before: result.endIndex))
         
         NSLog("returning color list=\(result)")
         return result
     }
     
     
-    private func onSelected(string: String) {
+    fileprivate func onSelected(_ string: String) {
         // change displayType based on selected string
         if string == "Mean" {
-            displayType = DayFeedValue.DaysValueType.MEAN
+            displayType = DayFeedValue.DaysValueType.mean
         } else if string == "Median" {
-            displayType = DayFeedValue.DaysValueType.MEDIAN
+            displayType = DayFeedValue.DaysValueType.median
         } else if string == "Max" {
-            displayType = DayFeedValue.DaysValueType.MAX
+            displayType = DayFeedValue.DaysValueType.max
         } else if string == "EPA AQI" {
-            scaleType = ScaleType.EPA_AQI
+            scaleType = ScaleType.epa_AQI
         } else if string == "WHO" {
-            scaleType = ScaleType.WHO
+            scaleType = ScaleType.who
         } else {
             NSLog("ERROR - Failed to grab selected; defaulting to dirty days.")
             displayType = Constants.DIRTY_DAYS_VALUE_TYPE
@@ -82,12 +82,12 @@ class DailyTrackerController: UIViewController, UIPickerViewDelegate, UIPickerVi
         // get list of colors
         let colorsList = constructColorsList()
         // get local path of our HTML file
-        let localPath = NSBundle.mainBundle().pathForResource("daily_tracker_grid", ofType: "html")
+        let localPath = Bundle.main.path(forResource: "daily_tracker_grid", ofType: "html")
         // add params (color list)
         let params = "?table-colors=\(colorsList)"
-        let urlWithParams = localPath?.stringByAppendingString(params)
-        let url = NSURL(string: urlWithParams!)
-        let urlRequest = NSURLRequest(URL: url!)
+        let urlWithParams = (localPath)! + params
+        let url = URL(string: urlWithParams)
+        let urlRequest = URLRequest(url: url!)
         webView.loadRequest(urlRequest)
     }
     
@@ -113,13 +113,13 @@ class DailyTrackerController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     
     // The number of columns of data
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     
     // The number of rows of data
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == self.pickerView {
             return pickerValues.count
         } else if pickerView == self.scalePickerView {
@@ -130,7 +130,7 @@ class DailyTrackerController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     
     // The data to return for the row and component (column) that's being passed in
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == self.pickerView {
             return pickerValues[row]
         } else if pickerView == self.scalePickerView {
@@ -140,7 +140,7 @@ class DailyTrackerController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         if pickerView == self.pickerView {
             NSLog("Did select row \(pickerValues[row])")

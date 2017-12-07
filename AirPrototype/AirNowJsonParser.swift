@@ -12,25 +12,25 @@ import UIKit
 class AirNowJsonParser {
     
     
-    private static func parseObservationFromJson(row: NSDictionary) -> AirNowObservation {
+    fileprivate static func parseObservationFromJson(_ row: NSDictionary) -> AirNowObservation {
         var observation: AirNowObservation
         
         // parse
-        let dateObserved = row.valueForKey("DateObserved") as! String
-        let hourObserved = row.valueForKey("HourObserved") as! NSNumber
-        let localTimeZone = row.valueForKey("LocalTimeZone") as! String
-        let reportingArea = row.valueForKey("ReportingArea") as! String
-        let stateCode = row.valueForKey("StateCode") as! String
-        let lat = row.valueForKey("Latitude") as! NSNumber
-        let long = row.valueForKey("Longitude") as! NSNumber
-        let parameterName = row.valueForKey("ParameterName") as! String
-        let aqi = row.valueForKey("AQI") as! NSNumber
+        let dateObserved = row.value(forKey: "DateObserved") as! String
+        let hourObserved = row.value(forKey: "HourObserved") as! NSNumber
+        let localTimeZone = row.value(forKey: "LocalTimeZone") as! String
+        let reportingArea = row.value(forKey: "ReportingArea") as! String
+        let stateCode = row.value(forKey: "StateCode") as! String
+        let lat = row.value(forKey: "Latitude") as! NSNumber
+        let long = row.value(forKey: "Longitude") as! NSNumber
+        let parameterName = row.value(forKey: "ParameterName") as! String
+        let aqi = row.value(forKey: "AQI") as! NSNumber
         
         // intermediate objects
         let formattedString = "\(dateObserved) \(hourObserved) \(localTimeZone)"
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd H z"
-        let time = dateFormatter.dateFromString(formattedString)
+        let time = dateFormatter.date(from: formattedString)
         let timeString = "\(hourObserved):00 \(localTimeZone)"
         let location = Location(latitude: Double(lat), longitude: Double(long))
         
@@ -40,7 +40,7 @@ class AirNowJsonParser {
     }
     
     
-    static func parseObservationsFromJson(data: NSArray?) -> [AirNowObservation] {
+    static func parseObservationsFromJson(_ data: NSArray?) -> [AirNowObservation] {
         var result = [AirNowObservation]()
         
         if data != nil {
@@ -51,7 +51,7 @@ class AirNowJsonParser {
         } else {
             // "catch" parsing error (likely from API limit)
             NSLog("CAUGHT - Bad format for parseObservationsFromJson")
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 UIAlertView.init(title: "AirNow Error", message: "Could not get latest reading from AirNow", delegate: nil, cancelButtonTitle: "OK").show()
             }
         }

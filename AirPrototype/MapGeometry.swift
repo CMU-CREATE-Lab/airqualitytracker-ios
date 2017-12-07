@@ -37,12 +37,25 @@
 //     formulas in the geographical distance article."
 
 import Foundation
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class MapGeometry {
     
     
     // implementation of the haversine function using sine
-    private static func haversine(theta: Double) -> Double {
+    fileprivate static func haversine(_ theta: Double) -> Double {
         let temp = sin(theta / 2.0)
         return temp * temp
     }
@@ -50,13 +63,13 @@ class MapGeometry {
 
     // the inverse of the haversine function
     // ASSERT: value is in range [0,1]
-    private static func archaversine(value: Double) -> Double {
+    fileprivate static func archaversine(_ value: Double) -> Double {
         return 2 * asin( sqrt(value) )
     }
 
 
     // calculates distance between two points on a Great Sphere
-    static func getDistance(from: Location, to: Location) -> Double {
+    static func getDistance(_ from: Location, to: Location) -> Double {
         // convert units from degrees to radians
         let p1 = from.latitude * MATH_PI / 180.0
         let p2 = to.latitude * MATH_PI / 180.0
@@ -71,12 +84,12 @@ class MapGeometry {
     }
 
 
-    static func getDistanceFromFeedToAddress(simpleAddress: SimpleAddress, feed: Pm25Feed) -> Double {
+    static func getDistanceFromFeedToAddress(_ simpleAddress: SimpleAddress, feed: Pm25Feed) -> Double {
         return getDistance(simpleAddress.location, to: feed.location)
     }
     
     
-    static func getClosestFeedWithPmToAddress(simpleAddress: SimpleAddress, feeds: Array<AirQualityFeed>) -> AirQualityFeed? {
+    static func getClosestFeedWithPmToAddress(_ simpleAddress: SimpleAddress, feeds: Array<AirQualityFeed>) -> AirQualityFeed? {
         var closestFeed: AirQualityFeed? = nil
         var distance: Double? = nil
         
@@ -105,7 +118,7 @@ class MapGeometry {
     }
     
     
-    static func getClosestFeedWithOzoneToAddress(simpleAddress: SimpleAddress, feeds: Array<AirQualityFeed>) -> AirQualityFeed? {
+    static func getClosestFeedWithOzoneToAddress(_ simpleAddress: SimpleAddress, feeds: Array<AirQualityFeed>) -> AirQualityFeed? {
         var closestFeed: AirQualityFeed? = nil
         var distance: Double? = nil
         

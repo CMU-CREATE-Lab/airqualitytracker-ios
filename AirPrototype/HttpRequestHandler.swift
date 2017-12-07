@@ -15,25 +15,25 @@ class HttpRequestHandler {
     
     
     init() {
-        appDelegate = (UIApplication.sharedApplication().delegate! as? AppDelegate)!
+        appDelegate = (UIApplication.shared.delegate! as? AppDelegate)!
     }
     
     
-    private func send(urlRequest: NSMutableURLRequest, additionalHeaders: [NSObject:AnyObject]?, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
-        let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        sessionConfiguration.HTTPAdditionalHeaders = additionalHeaders
-        let session = NSURLSession(configuration: sessionConfiguration)
-        let downloadTask = session.downloadTaskWithRequest(urlRequest, completionHandler: completionHandler)
+    fileprivate func send(_ urlRequest: URLRequest, additionalHeaders: [AnyHashable: Any]?, completionHandler: @escaping ((URL?, URLResponse?, Error?) -> Void) ) {
+        let sessionConfiguration = URLSessionConfiguration.default
+        sessionConfiguration.httpAdditionalHeaders = additionalHeaders
+        let session = URLSession(configuration: sessionConfiguration)
+        let downloadTask = session.downloadTask(with: urlRequest, completionHandler: completionHandler)
         downloadTask.resume()
     }
     
     
-    func sendRequest(urlRequest: NSMutableURLRequest, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
+    func sendRequest(_ urlRequest: URLRequest, completionHandler: (@escaping (URL?, URLResponse?, Error?) -> Void) ) {
         self.send(urlRequest, additionalHeaders: nil, completionHandler: completionHandler)
     }
     
     
-    func sendJsonRequest(urlRequest: NSMutableURLRequest, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
+    func sendJsonRequest(_ urlRequest: URLRequest, completionHandler: (@escaping (URL?, URLResponse?, Error?) -> Void) ) {
         let additionalHeaders = [
             "Content-Type" : "application/json"
         ]
@@ -41,7 +41,7 @@ class HttpRequestHandler {
     }
 
 
-    func sendAuthorizedJsonRequest(authToken: String, urlRequest: NSMutableURLRequest, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
+    func sendAuthorizedJsonRequest(_ authToken: String, urlRequest: URLRequest, completionHandler: (@escaping (URL?, URLResponse?, Error?) -> Void) ) {
         let additionalHeaders = [
             "Content-Type" : "application/json",
             "Authorization" : "Bearer \(authToken)"
@@ -50,9 +50,9 @@ class HttpRequestHandler {
     }
     
     
-    func requestGeocodingFromApi(input: String, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void)) {
+    func requestGeocodingFromApi(_ input: String, completionHandler: (@escaping (URL?, URLResponse?, Error?) -> Void)) {
         let request = HttpHelper.generateRequest("http://autocomplete.wunderground.com/aq?query=\(input)&c=US", httpMethod: "GET")
-        GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: completionHandler)
+        GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request as URLRequest, completionHandler: completionHandler)
     }
     
 }

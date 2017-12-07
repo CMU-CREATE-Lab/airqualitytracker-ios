@@ -10,7 +10,7 @@ import Foundation
 
 class Pm25_InstantCast: Pm25AqiReadableValue {
     
-    private var value: Double
+    fileprivate var value: Double
     var channel: Channel
     
     

@@ -18,7 +18,7 @@ class CLLocationSService: NSObject, CLLocationManagerDelegate {
     var serviceEnabled: Bool = false
     
     
-    private func updateCurrentLocation(location: Location, name: String) {
+    fileprivate func updateCurrentLocation(_ location: Location, name: String) {
         GlobalHandler.sharedInstance.readingsHandler.gpsReadingHandler.gpsAddress.name = name
         GlobalHandler.sharedInstance.readingsHandler.refreshHash()
     }
@@ -47,14 +47,14 @@ class CLLocationSService: NSObject, CLLocationManagerDelegate {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.requestWhenInUseAuthorization()
             let authStatus = CLLocationManager.authorizationStatus()
-            if authStatus != .Denied && authStatus != .Restricted && authStatus != .NotDetermined {
+            if authStatus != .denied && authStatus != .restricted && authStatus != .notDetermined {
                 serviceEnabled = true
             }
         }
     }
     
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = manager.location
         GlobalHandler.sharedInstance.readingsHandler.gpsReadingHandler.setGpsAddressLocation(Location(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude))
         
@@ -63,27 +63,27 @@ class CLLocationSService: NSObject, CLLocationManagerDelegate {
                 let placemark = results![results!.endIndex-1]
                 self.updateCurrentLocation(Location(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude), name: placemark.locality!)
             }
-        })
+        } as! CLGeocodeCompletionHandler)
         // TODO should we stop updating location once we find one?
 //        locationManager.stopUpdatingLocation()
     }
     
     
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         NSLog("FAIL at CLLocationSService")
         updateCurrentLocation(Location(latitude:0,longitude:0), name: "Unknown Location")
     }
     
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         let authStatus = CLLocationManager.authorizationStatus()
-        if authStatus != .Denied && authStatus != .Restricted && authStatus != .NotDetermined {
+        if authStatus != .denied && authStatus != .restricted && authStatus != .notDetermined {
             serviceEnabled = true
             startLocationService()
         } else {
             serviceEnabled = false
         }
-        if authStatus == .Denied || authStatus == .Restricted {
+        if authStatus == .denied || authStatus == .restricted {
             GlobalHandler.sharedInstance.settingsHandler.setAppUsesCurrentLocation(false)
         }
     }

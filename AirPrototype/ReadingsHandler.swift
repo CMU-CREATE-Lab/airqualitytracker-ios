@@ -26,15 +26,15 @@ class ReadingsHandler: ReadingsHandlerEditable {
     
     func populateAdapterList() {
         var items: [Readable]
-        headers.removeAll(keepCapacity: true)
+        headers.removeAll(keepingCapacity: true)
         
         
-        adapterList.removeAll(keepCapacity: true)
+        adapterList.removeAll(keepingCapacity: true)
         for header in Constants.HEADER_TITLES {
             items = hashMap[header]!
             
             if header == Constants.HEADER_TITLES[1] && GlobalHandler.sharedInstance.settingsHandler.appUsesLocation {
-                items.insert(gpsReadingHandler.gpsAddress, atIndex: 0)
+                items.insert(gpsReadingHandler.gpsAddress, at: 0)
                 adapterList[header] = items
                 headers.append(header)
             } else if items.count > 0 {
@@ -43,7 +43,7 @@ class ReadingsHandler: ReadingsHandlerEditable {
             }
         }
         
-        adapterListTracker.removeAll(keepCapacity: true)
+        adapterListTracker.removeAll(keepingCapacity: true)
         for header in Constants.HEADER_TITLES {
             items = hashMap[header]!
             if items.count > 0 {

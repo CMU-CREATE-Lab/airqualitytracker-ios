@@ -17,11 +17,11 @@ import Foundation
 protocol Timer {
     
     // actual timer object (from lib)
-    var timer:NSTimer? { get }
+    var timer:Foundation.Timer? { get }
     // length of time for the timer
-    var timerInterval: NSTimeInterval { get }
+    var timerInterval: TimeInterval { get }
     // tolerance allows less precision and saves on battery
-    var timerTolerance: NSTimeInterval? { get }
+    var timerTolerance: TimeInterval? { get }
     
     func timerExpires()
     func startTimer()

@@ -10,7 +10,7 @@ import Foundation
 
 class AirNowObservation {
     
-    var observedDateTime: NSDate
+    var observedDateTime: Date
     var readableDate: String
     var reportingArea: String
     var stateCode: String
@@ -20,7 +20,7 @@ class AirNowObservation {
     var aqi: Double
     
     
-    init(observedDateTime: NSDate, readableDate: String, reportingArea: String, stateCode: String, location: Location, parameterName: String, aqi: Double) {
+    init(observedDateTime: Date, readableDate: String, reportingArea: String, stateCode: String, location: Location, parameterName: String, aqi: Double) {
         self.observedDateTime = observedDateTime
         self.readableDate = readableDate
         self.reportingArea = reportingArea

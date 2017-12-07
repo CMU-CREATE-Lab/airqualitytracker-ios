@@ -27,26 +27,26 @@ class LoginController: UIViewController {
         display()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if GlobalHandler.sharedInstance.settingsHandler.userLoggedIn {
             if GlobalHandler.sharedInstance.esdrAuthHandler.alertLogout() {
                 UIAlertView.init(title: "www.specksensor.com", message: "Your session has timed out. Please log in.", delegate: nil, cancelButtonTitle: "OK").show()
                 loggedIn = false
                 self.display()
             } else {
-                let timestamp = Int(NSDate().timeIntervalSince1970)
+                let timestamp = Int(Date().timeIntervalSince1970)
                 let refreshToken = GlobalHandler.sharedInstance.esdrAccount.refreshToken!
                 
                 // response handler
-                func responseHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
+                func responseHandler(_ url: URL?, response: URLResponse?, error: Error?) {
                     if error != nil {
                         NSLog("requestEsdrRefresh received error from refreshToken=\(refreshToken)")
                         GlobalHandler.sharedInstance.esdrLoginHandler.updateEsdrTokens("", refreshToken: "", expiresAt: 0)
                     } else {
-                        let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
-                        let access_token = data!.valueForKey("access_token") as? String
-                        let refresh_token = data!.valueForKey("refresh_token") as? String
-                        let expires_in = data!.valueForKey("expires_in") as? Int
+                        let data = (try? JSONSerialization.jsonObject(with: Data(contentsOf: url!), options: [])) as? NSDictionary
+                        let access_token = data!.value(forKey: "access_token") as? String
+                        let refresh_token = data!.value(forKey: "refresh_token") as? String
+                        let expires_in = data!.value(forKey: "expires_in") as? Int
                         if access_token != nil && refresh_token != nil && expires_in != nil {
                             NSLog("found access_token=\(access_token), refresh_token=\(refresh_token)")
                             GlobalHandler.sharedInstance.esdrLoginHandler.updateEsdrTokens(access_token!, refreshToken: refresh_token!, expiresAt: timestamp+expires_in!)
@@ -69,7 +69,7 @@ class LoginController: UIViewController {
     
     func display() {
         if loggedIn {
-            logoutView = NSBundle.mainBundle().loadNibNamed("LogoutView", owner: contentView, options: nil)!.last as? LogoutView
+            logoutView = Bundle.main.loadNibNamed("LogoutView", owner: contentView, options: nil)!.last as? LogoutView
             logoutView!.frame = contentView.frame
             logoutView!.frame.origin = CGPoint(x: 0,y: 0)
             contentView.addSubview(logoutView!)
@@ -79,9 +79,9 @@ class LoginController: UIViewController {
                 loginView = nil
             }
             logoutView!.labelUsername.text = username
-            logoutView!.logoutButton.addTarget(self, action: #selector(LoginController.onClickLogout), forControlEvents: UIControlEvents.TouchDown)
+            logoutView!.logoutButton.addTarget(self, action: #selector(LoginController.onClickLogout), for: UIControlEvents.touchDown)
         } else {
-            loginView = NSBundle.mainBundle().loadNibNamed("LoginView", owner: contentView, options: nil)!.last as? LoginView
+            loginView = Bundle.main.loadNibNamed("LoginView", owner: contentView, options: nil)!.last as? LoginView
             loginView!.frame = contentView.frame
             loginView!.frame.origin = CGPoint(x: 0,y: 0)
             contentView.addSubview(loginView!)
@@ -90,31 +90,31 @@ class LoginController: UIViewController {
                 logoutView!.removeFromSuperview()
                 logoutView = nil
             }
-            loginView!.loginButton.addTarget(self, action: #selector(LoginController.onClickLogin), forControlEvents: UIControlEvents.TouchDown)
+            loginView!.loginButton.addTarget(self, action: #selector(LoginController.onClickLogin), for: UIControlEvents.touchDown)
         }
     }
     
     
     func onClickLogin() {
-        let timestamp = Int(NSDate().timeIntervalSince1970)
+        let timestamp = Int(Date().timeIntervalSince1970)
         username = loginView!.textFieldUsername.text
         let password = loginView!.textFieldPassword.text
         
-        GlobalHandler.sharedInstance.esdrAuthHandler.requestEsdrToken(username!, password: password!, completionHandler: { (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void in
+        GlobalHandler.sharedInstance.esdrAuthHandler.requestEsdrToken(username!, password: password!, completionHandler: { (url: URL?, response: URLResponse?, error: Error?) -> Void in
             
             if HttpHelper.successfulResponse(response, error: error) {
-                let data = (try! NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as! NSDictionary
-                let accessToken = data.valueForKey("access_token") as! String
-                let refreshToken = data.valueForKey("refresh_token") as! String
-                let expires_in = data.valueForKey("expires_in") as! Int
-                let userId = data.valueForKey("userId") as! Int
+                let data = (try! JSONSerialization.jsonObject(with: Data(contentsOf: url!), options: [])) as! NSDictionary
+                let accessToken = data.value(forKey: "access_token") as! String
+                let refreshToken = data.value(forKey: "refresh_token") as! String
+                let expires_in = data.value(forKey: "expires_in") as! Int
+                let userId = data.value(forKey: "userId") as! Int
                 
                 let esdrLoginHandler = GlobalHandler.sharedInstance.esdrLoginHandler
                 esdrLoginHandler.updateEsdrAccount(self.username!, userId: userId, accessToken: accessToken, refreshToken: refreshToken, expiresAt: timestamp+expires_in)
                 esdrLoginHandler.setUserLoggedIn(true)
             }
             if self.loggedIn == false {
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     self.display()
                     let dialog = UIAlertView.init(title: "www.specksensor.com", message: "Failed to log in", delegate: nil, cancelButtonTitle: "OK")
                     dialog.show()

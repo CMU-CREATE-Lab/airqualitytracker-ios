@@ -19,11 +19,11 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var labelAppVersion: UILabel!
     @IBOutlet var labelExpiresAt: UILabel!
     @IBOutlet var tableView: UITableView!
-    @IBAction func clickRequestFeeds(sender: AnyObject) {
+    @IBAction func clickRequestFeeds(_ sender: AnyObject) {
         var feeds = [AirQualityFeed]()
         if let addresses = GlobalHandler.sharedInstance.readingsHandler.adapterList[Constants.HEADER_TITLES[1]] {
             for reading in addresses {
-                feeds.appendContentsOf( (reading as! SimpleAddress).feeds )
+                feeds.append( contentsOf: (reading as! SimpleAddress).feeds )
             }
         }
         for feed in feeds {
@@ -58,7 +58,7 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
         GlobalHandler.sharedInstance.secretDebugMenuTable = tableView
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         GlobalHandler.sharedInstance.secretDebugMenuTable = nil
     }
     
@@ -66,7 +66,7 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK table view
     
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         if let addresses = GlobalHandler.sharedInstance.readingsHandler.adapterList[Constants.HEADER_TITLES[1]] {
             return addresses.count
         }
@@ -74,7 +74,7 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let readingsHandler = GlobalHandler.sharedInstance.readingsHandler
         if let addresses = readingsHandler.adapterList[Constants.HEADER_TITLES[1]] {
             if (addresses[section] is SimpleAddress) {
@@ -86,13 +86,13 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let address = (GlobalHandler.sharedInstance.readingsHandler.adapterList[Constants.HEADER_TITLES[1]]!)[section] as! SimpleAddress
         return "\(section.description) (\(address.location.latitude.description),\(address.location.longitude.description))"
     }
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = "SecretMenuCell"
         let readingsHandler = GlobalHandler.sharedInstance.readingsHandler
         let address = (readingsHandler.adapterList[Constants.HEADER_TITLES[1]]!)[indexPath.section] as! SimpleAddress
@@ -100,7 +100,7 @@ class SecretMenuController: UIViewController, UITableViewDelegate, UITableViewDa
         
         var cell: SecretMenuTableCell?
 
-        cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? SecretMenuTableCell
+        cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? SecretMenuTableCell
         if cell == nil {
             cell = SecretMenuTableCell()
         }

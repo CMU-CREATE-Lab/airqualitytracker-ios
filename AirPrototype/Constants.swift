@@ -17,21 +17,21 @@ class Constants {
     
     static let USES_BACKGROUND_SERVICES = true
     
-    static let DEFAULT_ADDRESS_PM25_READABLE_VALUE_TYPE = ReadableValueType.NOWCAST
+    static let DEFAULT_ADDRESS_PM25_READABLE_VALUE_TYPE = ReadableValueType.nowcast
     
-    static let DEFAULT_ADDRESS_OZONE_READABLE_VALUE_TYPE = ReadableValueType.NOWCAST
+    static let DEFAULT_ADDRESS_OZONE_READABLE_VALUE_TYPE = ReadableValueType.nowcast
     
     static let DEFAULT_SETTINGS: [String:AnyObject] = [
-        SettingsKeys.appUsesLocation: true,
-        SettingsKeys.userLoggedIn: false,
-        SettingsKeys.username: "",
-        SettingsKeys.userId: -1,
-        SettingsKeys.expiresAt:0,
-        SettingsKeys.accessToken: "",
-        SettingsKeys.refreshToken: "",
-        SettingsKeys.blacklistedDevices: [],
-        SettingsKeys.addressLastPosition: 1,
-        SettingsKeys.speckLastPosition: 1
+        SettingsKeys.appUsesLocation: true as AnyObject,
+        SettingsKeys.userLoggedIn: false as AnyObject,
+        SettingsKeys.username: "" as AnyObject,
+        SettingsKeys.userId: -1 as AnyObject,
+        SettingsKeys.expiresAt:0 as AnyObject,
+        SettingsKeys.accessToken: "" as AnyObject,
+        SettingsKeys.refreshToken: "" as AnyObject,
+        SettingsKeys.blacklistedDevices: [] as AnyObject,
+        SettingsKeys.addressLastPosition: 1 as AnyObject,
+        SettingsKeys.speckLastPosition: 1 as AnyObject
     ]
     
     // particulate matter channel names
@@ -74,7 +74,7 @@ class Constants {
     static let REFRESHES_ESDR_TOKEN = true
     
     // determines what value we want to iterate over to determine number of dirty days
-    static let DIRTY_DAYS_VALUE_TYPE = DayFeedValue.DaysValueType.MAX
+    static let DIRTY_DAYS_VALUE_TYPE = DayFeedValue.DaysValueType.max
     
     // any day exceeding this AQI value is defined as dirty
     static let DIRTY_DAYS_AQI_THRESHOLD = 50.0

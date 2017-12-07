@@ -27,15 +27,15 @@ class SpeckDbHelper {
     
     static func loadSpecksFromDb() {
         let managedObjectContext = GlobalHandler.sharedInstance.appDelegate.managedObjectContext
-        let entityDescription = NSEntityDescription.entityForName("StoredSpeck", inManagedObjectContext: managedObjectContext!)
-        let request = NSFetchRequest()
+        let entityDescription = NSEntityDescription.entity(forEntityName: "StoredSpeck", in: managedObjectContext!)
+        let request = NSFetchRequest<NSFetchRequestResult>()
         request.entity = entityDescription
         // sort results
         request.sortDescriptors = [ NSSortDescriptor(key: SpeckKeys.positionIdKey, ascending: true) ]
         var error: NSError?
         var objects: [AnyObject]?
         do {
-            objects = try managedObjectContext?.executeFetchRequest(request)
+            objects = try managedObjectContext?.fetch(request)
         } catch let error1 as NSError {
             error = error1
             objects = nil
@@ -45,15 +45,15 @@ class SpeckDbHelper {
             if results.count > 0 {
                 for r in results {
                     let match = r as! NSManagedObject
-                    let name = match.valueForKey(SpeckKeys.nameKey) as! String
-                    let latitude = match.valueForKey(SpeckKeys.latitudeKey) as! NSNumber
-                    let longitude = match.valueForKey(SpeckKeys.longitudeKey) as! NSNumber
-                    let position_id = match.valueForKey(SpeckKeys.positionIdKey) as! Int
-                    let device_id = match.valueForKey(SpeckKeys.deviceIdKey) as! Int
-                    let exposure = match.valueForKey(SpeckKeys.exposureKey) as! String
-                    let feed_id = match.valueForKey(SpeckKeys.feedIdKey) as! Int
-                    let is_mobile = match.valueForKey(SpeckKeys.isMobileKey) as! Bool
-                    let product_id = match.valueForKey(SpeckKeys.productIdKey) as! Int
+                    let name = match.value(forKey: SpeckKeys.nameKey) as! String
+                    let latitude = match.value(forKey: SpeckKeys.latitudeKey) as! NSNumber
+                    let longitude = match.value(forKey: SpeckKeys.longitudeKey) as! NSNumber
+                    let position_id = match.value(forKey: SpeckKeys.positionIdKey) as! Int
+                    let device_id = match.value(forKey: SpeckKeys.deviceIdKey) as! Int
+                    let exposure = match.value(forKey: SpeckKeys.exposureKey) as! String
+                    let feed_id = match.value(forKey: SpeckKeys.feedIdKey) as! Int
+                    let is_mobile = match.value(forKey: SpeckKeys.isMobileKey) as! Bool
+                    let product_id = match.value(forKey: SpeckKeys.productIdKey) as! Int
                     
                     let feed = Pm25Feed()
                     feed.name = name
@@ -67,7 +67,7 @@ class SpeckDbHelper {
                     speck.positionId = position_id
                     speck._id = match.objectID
                     
-                    if let apiKeyReadOnly = match.valueForKey(SpeckKeys.apiKeyReadOnlyKey) as? String {
+                    if let apiKeyReadOnly = match.value(forKey: SpeckKeys.apiKeyReadOnlyKey) as? String {
                         if apiKeyReadOnly == "" {
                             deleteSpeckFromDb(speck)
                         } else {
@@ -86,10 +86,10 @@ class SpeckDbHelper {
     }
     
     
-    static func addSpeckToDb(speck: Speck) {
+    static func addSpeckToDb(_ speck: Speck) {
         let managedObjectContext = GlobalHandler.sharedInstance.appDelegate.managedObjectContext
-        let entityDescription = NSEntityDescription.entityForName("StoredSpeck", inManagedObjectContext: managedObjectContext!)
-        let storedSpeck = StoredSpeck(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "StoredSpeck", in: managedObjectContext!)
+        let storedSpeck = StoredSpeck(entity: entityDescription!, insertInto: managedObjectContext)
         var error: NSError?
         
         if let position = speck.positionId {
@@ -101,18 +101,18 @@ class SpeckDbHelper {
         }
         
         let insertValues: [String:AnyObject] = [
-            SpeckKeys.nameKey: speck.name,
-            SpeckKeys.latitudeKey: speck.location.latitude,
-            SpeckKeys.longitudeKey: speck.location.longitude,
-            SpeckKeys.positionIdKey: speck.positionId!,
-            SpeckKeys.deviceIdKey: speck.deviceId,
-            SpeckKeys.exposureKey: speck.exposure,
-            SpeckKeys.feedIdKey: speck.feed_id,
-            SpeckKeys.isMobileKey: speck.isMobile,
-            SpeckKeys.productIdKey: speck.productId,
-            SpeckKeys.apiKeyReadOnlyKey: speck.apiKeyReadOnly!
+            SpeckKeys.nameKey: speck.name as AnyObject,
+            SpeckKeys.latitudeKey: speck.location.latitude as AnyObject,
+            SpeckKeys.longitudeKey: speck.location.longitude as AnyObject,
+            SpeckKeys.positionIdKey: speck.positionId! as AnyObject,
+            SpeckKeys.deviceIdKey: speck.deviceId as AnyObject,
+            SpeckKeys.exposureKey: speck.exposure as AnyObject,
+            SpeckKeys.feedIdKey: speck.feed_id as AnyObject,
+            SpeckKeys.isMobileKey: speck.isMobile as AnyObject,
+            SpeckKeys.productIdKey: speck.productId as AnyObject,
+            SpeckKeys.apiKeyReadOnlyKey: speck.apiKeyReadOnly! as AnyObject
         ]
-        storedSpeck.setValuesForKeysWithDictionary(insertValues)
+        storedSpeck.setValuesForKeys(insertValues)
         
         do {
             try managedObjectContext?.save()
@@ -128,11 +128,11 @@ class SpeckDbHelper {
     }
     
     
-    static func updateSpeckInDb(speck: Speck) {
+    static func updateSpeckInDb(_ speck: Speck) {
         let managedObjectContext = GlobalHandler.sharedInstance.appDelegate.managedObjectContext
         var error: NSError?
         
-        if let storedSpeck = managedObjectContext?.objectWithID(speck._id!) {
+        if let storedSpeck = managedObjectContext?.object(with: speck._id!) {
             if speck.positionId == nil {
                 if let position = GlobalHandler.sharedInstance.positionIdHelper.getSpeckLastPosition() {
                     speck.positionId = position
@@ -142,17 +142,17 @@ class SpeckDbHelper {
             }
             
             let insertValues: [String:AnyObject] = [
-                SpeckKeys.nameKey: speck.name,
-                SpeckKeys.latitudeKey: speck.location.latitude,
-                SpeckKeys.longitudeKey: speck.location.longitude,
-                SpeckKeys.positionIdKey: speck.positionId!,
-                SpeckKeys.deviceIdKey: speck.deviceId,
-                SpeckKeys.exposureKey: speck.exposure,
-                SpeckKeys.feedIdKey: speck.feed_id,
-                SpeckKeys.isMobileKey: speck.isMobile,
-                SpeckKeys.productIdKey: speck.productId
+                SpeckKeys.nameKey: speck.name as AnyObject,
+                SpeckKeys.latitudeKey: speck.location.latitude as AnyObject,
+                SpeckKeys.longitudeKey: speck.location.longitude as AnyObject,
+                SpeckKeys.positionIdKey: speck.positionId! as AnyObject,
+                SpeckKeys.deviceIdKey: speck.deviceId as AnyObject,
+                SpeckKeys.exposureKey: speck.exposure as AnyObject,
+                SpeckKeys.feedIdKey: speck.feed_id as AnyObject,
+                SpeckKeys.isMobileKey: speck.isMobile as AnyObject,
+                SpeckKeys.productIdKey: speck.productId as AnyObject
             ]
-            storedSpeck.setValuesForKeysWithDictionary(insertValues)
+            storedSpeck.setValuesForKeys(insertValues)
             
             do {
                 try managedObjectContext?.save()
@@ -170,11 +170,11 @@ class SpeckDbHelper {
     }
     
     
-    static func deleteSpeckFromDb(speck: Speck) {
+    static func deleteSpeckFromDb(_ speck: Speck) {
         let managedObjectContext = GlobalHandler.sharedInstance.appDelegate.managedObjectContext
         if let id = speck._id {
-            if let storedSpeck = managedObjectContext?.objectWithID(id) {
-                managedObjectContext?.deleteObject(storedSpeck)
+            if let storedSpeck = managedObjectContext?.object(with: id) {
+                managedObjectContext?.delete(storedSpeck)
                 
                 var error: NSError?
                 do {
@@ -194,13 +194,13 @@ class SpeckDbHelper {
     }
     
     
-    static func clearSpecksFromDb(specks: [Speck]) {
+    static func clearSpecksFromDb(_ specks: [Speck]) {
         let managedObjectContext = GlobalHandler.sharedInstance.appDelegate.managedObjectContext
         
         for speck in specks {
             if let id = speck._id {
-                if let storedSpeck = managedObjectContext?.objectWithID(id) {
-                    managedObjectContext?.deleteObject(storedSpeck)
+                if let storedSpeck = managedObjectContext?.object(with: id) {
+                    managedObjectContext?.delete(storedSpeck)
                     
                 }
             } else {

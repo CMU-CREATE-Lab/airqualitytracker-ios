@@ -11,7 +11,7 @@ import UIKit
 
 class SettingsHandler {
     
-    var userDefaults: NSUserDefaults
+    var userDefaults: UserDefaults
     var appUsesLocation: Bool
     var userLoggedIn: Bool
     var blacklistedDevices: [Int]?
@@ -19,25 +19,25 @@ class SettingsHandler {
     
     
     init() {
-        appDelegate = (UIApplication.sharedApplication().delegate! as? AppDelegate)!
-        userDefaults = NSUserDefaults.standardUserDefaults()
-        userDefaults.registerDefaults(Constants.DEFAULT_SETTINGS)
+        appDelegate = (UIApplication.shared.delegate! as? AppDelegate)!
+        userDefaults = UserDefaults.standard
+        userDefaults.register(defaults: Constants.DEFAULT_SETTINGS)
         // must declare in constructor since Swift is trash
-        appUsesLocation = userDefaults.valueForKey(Constants.SettingsKeys.appUsesLocation) as! Bool
-        userLoggedIn = userDefaults.valueForKey(Constants.SettingsKeys.userLoggedIn) as! Bool
-        blacklistedDevices = userDefaults.valueForKey(Constants.SettingsKeys.blacklistedDevices) as? [Int]
+        appUsesLocation = userDefaults.value(forKey: Constants.SettingsKeys.appUsesLocation) as! Bool
+        userLoggedIn = userDefaults.value(forKey: Constants.SettingsKeys.userLoggedIn) as! Bool
+        blacklistedDevices = userDefaults.value(forKey: Constants.SettingsKeys.blacklistedDevices) as? [Int]
     }
     
     
     func updateSettings() {
-        appUsesLocation = userDefaults.valueForKey(Constants.SettingsKeys.appUsesLocation) as! Bool
-        userLoggedIn = userDefaults.valueForKey(Constants.SettingsKeys.userLoggedIn) as! Bool
+        appUsesLocation = userDefaults.value(forKey: Constants.SettingsKeys.appUsesLocation) as! Bool
+        userLoggedIn = userDefaults.value(forKey: Constants.SettingsKeys.userLoggedIn) as! Bool
         GlobalHandler.sharedInstance.esdrAccount.loadFromUserDefaults(userDefaults)
-        blacklistedDevices = userDefaults.valueForKey(Constants.SettingsKeys.blacklistedDevices) as? [Int]
+        blacklistedDevices = userDefaults.value(forKey: Constants.SettingsKeys.blacklistedDevices) as? [Int]
     }
     
     
-    func deviceIsBlacklisted(deviceId: Int) -> Bool {
+    func deviceIsBlacklisted(_ deviceId: Int) -> Bool {
         for id in blacklistedDevices! {
             if id == deviceId {
                 return true
@@ -47,21 +47,21 @@ class SettingsHandler {
     }
     
     
-    func addToBlacklistedDevices(deviceId: Int) {
+    func addToBlacklistedDevices(_ deviceId: Int) {
         blacklistedDevices!.append(deviceId)
-        userDefaults.setObject(blacklistedDevices, forKey: Constants.SettingsKeys.blacklistedDevices)
+        userDefaults.set(blacklistedDevices, forKey: Constants.SettingsKeys.blacklistedDevices)
     }
     
     
     func clearBlacklistedDevices() {
         blacklistedDevices!.removeAll()
-        userDefaults.setObject(blacklistedDevices, forKey: Constants.SettingsKeys.blacklistedDevices)
+        userDefaults.set(blacklistedDevices, forKey: Constants.SettingsKeys.blacklistedDevices)
     }
     
     
-    func setAppUsesCurrentLocation(value: Bool) {
+    func setAppUsesCurrentLocation(_ value: Bool) {
         appUsesLocation = value
-        userDefaults.setBool(value, forKey: Constants.SettingsKeys.appUsesLocation)
+        userDefaults.set(value, forKey: Constants.SettingsKeys.appUsesLocation)
         if userDefaults.synchronize() {
             self.appUsesLocation = value
             GlobalHandler.sharedInstance.readingsHandler.refreshHash()

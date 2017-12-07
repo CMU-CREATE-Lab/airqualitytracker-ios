@@ -11,18 +11,18 @@ import Foundation
 class HttpHelper {
     
     
-    static func generateRequest(url: String, httpMethod: String?) -> NSMutableURLRequest {
-        let string = NSURL(string: url.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-        let request = NSMutableURLRequest(URL: string!)
+    static func generateRequest(_ url: String, httpMethod: String?) -> NSMutableURLRequest {
+        let string = URL(string: url.addingPercentEscapes(using: String.Encoding.utf8)!)
+        let request = NSMutableURLRequest(url: string!)
         if let method = httpMethod {
-            request.HTTPMethod = method
+            request.httpMethod = method
         }
         return request
     }
     
     
-    static func successfulResponse(response: NSURLResponse?, error: NSError?) -> Bool {
-        let httpResponse = response as! NSHTTPURLResponse
+    static func successfulResponse(_ response: URLResponse?, error: Error?) -> Bool {
+        let httpResponse = response as! HTTPURLResponse
         if error != nil {
             NSLog("successfulResponse: error is not nil")
         } else if httpResponse.statusCode != 200 {

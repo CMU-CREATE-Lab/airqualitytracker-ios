@@ -32,7 +32,7 @@ class ReadingsHandlerCore {
     }
     
     
-    func addReading(readable: Readable) {
+    func addReading(_ readable: Readable) {
         if (readable is SimpleAddress) {
             addresses.append(readable as! SimpleAddress)
         } else if (readable is Speck) {
@@ -55,14 +55,14 @@ class ReadingsHandlerCore {
     
     func clearSpecks() {
         SpeckDbHelper.clearSpecksFromDb(self.specks)
-        self.specks.removeAll(keepCapacity: true)
+        self.specks.removeAll(keepingCapacity: true)
         refreshHash()
     }
     
     
     func refreshHash() {
         var tempReadables: [Readable]
-        hashMap.removeAll(keepCapacity: true)
+        hashMap.removeAll(keepingCapacity: true)
         
         // specks
         if specks.count > 0 {
@@ -84,7 +84,7 @@ class ReadingsHandlerCore {
     }
     
     
-    private func findIndexOfSpeckWithDeviceId(deviceId: Int) -> Int? {
+    fileprivate func findIndexOfSpeckWithDeviceId(_ deviceId: Int) -> Int? {
         var i=0
         for speck in specks {
             if speck.deviceId == deviceId {
@@ -101,8 +101,8 @@ class ReadingsHandlerCore {
             let authToken = GlobalHandler.sharedInstance.esdrAccount.accessToken
             let userId = GlobalHandler.sharedInstance.esdrAccount.userId
             
-            func feedsCompletionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
-                let httpResponse = response as! NSHTTPURLResponse
+            func feedsCompletionHandler(_ url: URL?, response: URLResponse?, error: Error?) {
+                let httpResponse = response as! HTTPURLResponse
                 if error != nil {
                     // ensure we don't receive an error while trying to grab feeds
                 } else if httpResponse.statusCode != 200 {
@@ -110,7 +110,7 @@ class ReadingsHandlerCore {
                     // on me one time when starting up simulator & running
                     NSLog("Got status code \(httpResponse.statusCode) != 200")
                 } else {
-                    let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
+                    let data = (try? JSONSerialization.jsonObject(with: Data(contentsOf: url!), options: [])) as? NSDictionary
                     var resultSpecks: Array<Speck>
                     resultSpecks = EsdrJsonParser.populateSpecksFromJson(data!)
                     for speck in resultSpecks {
@@ -125,13 +125,13 @@ class ReadingsHandlerCore {
                     }
                 }
             }
-            func devicesCompletionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
-                let httpResponse = response as! NSHTTPURLResponse
+            func devicesCompletionHandler(_ url: URL?, response: URLResponse?, error: Error?) {
+                let httpResponse = response as! HTTPURLResponse
                 if error != nil {
                     // If this runs, it is likely that we are "Unauthorized"
                     // So, our token expired and we should clear everything
                     NSLog("Failed in the devicesCompletionHandler")
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
                         GlobalHandler.sharedInstance.loginController?.onClickLogout()
                         UIAlertView.init(title: "www.specksensor.com", message: "Unauthorized Token", delegate: nil, cancelButtonTitle: "OK").show()
                     }
@@ -139,18 +139,18 @@ class ReadingsHandlerCore {
                     // If this runs, it is likely that we are "Unauthorized"
                     // So, our token expired and we should clear everything
                     NSLog("4Got status code \(httpResponse.statusCode) != 200")
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
                         GlobalHandler.sharedInstance.loginController?.onClickLogout()
                         UIAlertView.init(title: "www.specksensor.com", message: "Unauthorized Token", delegate: nil, cancelButtonTitle: "OK").show()
                     }
                 } else {
-                    let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as! NSDictionary
-                    if let rows = (data.valueForKey("data") as! NSDictionary).valueForKey("rows") as? Array<NSDictionary> {
+                    let data = (try? JSONSerialization.jsonObject(with: Data(contentsOf: url!), options: [])) as! NSDictionary
+                    if let rows = (data.value(forKey: "data") as! NSDictionary).value(forKey: "rows") as? Array<NSDictionary> {
                         var deviceId: Int
                         var prettyName: String
                         for row in rows {
-                            deviceId = row.valueForKey("id") as! Int
-                            prettyName = row.valueForKey("name") as! String
+                            deviceId = row.value(forKey: "id") as! Int
+                            prettyName = row.value(forKey: "name") as! String
                             if let index = findIndexOfSpeckWithDeviceId(deviceId) {
                                 if specks[index]._id == nil {
                                     specks[index].name = prettyName

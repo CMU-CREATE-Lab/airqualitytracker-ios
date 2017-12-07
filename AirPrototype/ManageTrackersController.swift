@@ -18,8 +18,8 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: Storyboard Events
     
     
-    @IBAction func onSwitchUserCurrentLocation(sender: AnyObject) {
-        GlobalHandler.sharedInstance.settingsHandler.setAppUsesCurrentLocation(currentLocationSwitch.on)
+    @IBAction func onSwitchUserCurrentLocation(_ sender: AnyObject) {
+        GlobalHandler.sharedInstance.settingsHandler.setAppUsesCurrentLocation(currentLocationSwitch.isOn)
     }
     
     
@@ -30,15 +30,15 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
         tableView.delegate = self
         tableView.dataSource = self
         tableView.setEditing(true, animated: true)
-        currentLocationSwitch.on = GlobalHandler.sharedInstance.settingsHandler.appUsesLocation
+        currentLocationSwitch.isOn = GlobalHandler.sharedInstance.settingsHandler.appUsesLocation
     }
     
     
     // MARK table view
     
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.Delete {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
             let headerReadingsHashmap = GlobalHandler.sharedInstance.readingsHandler
             let reading = headerReadingsHashmap.adapterListTracker[headerReadingsHashmap.headers[indexPath.section]]![indexPath.row]
             GlobalHandler.sharedInstance.readingsHandler.removeReading(reading)
@@ -47,12 +47,12 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return GlobalHandler.sharedInstance.readingsHandler.headers.count
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let readingsHandler = GlobalHandler.sharedInstance.readingsHandler
         if let readings = readingsHandler.adapterListTracker[readingsHandler.headers[section]] {
             return readings.count
@@ -61,19 +61,19 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return Constants.HEADER_TITLES[section]
     }
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = "TrackerReuse"
         let readingsHandler = GlobalHandler.sharedInstance.readingsHandler
         let readings = readingsHandler.adapterListTracker[readingsHandler.headers[indexPath.section]]!
         
         var cell: ManageTrackersTableViewCell?
         
-        cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? ManageTrackersTableViewCell
+        cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? ManageTrackersTableViewCell
         if cell == nil {
             cell = ManageTrackersTableViewCell()
         }
@@ -83,17 +83,17 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
     
-    func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
     
-    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let readingsHandler = GlobalHandler.sharedInstance.readingsHandler
         let from = readingsHandler.adapterListTracker[readingsHandler.headers[sourceIndexPath.section]]![sourceIndexPath.row]
         let to = readingsHandler.adapterListTracker[readingsHandler.headers[destinationIndexPath.section]]![destinationIndexPath.row]
@@ -102,7 +102,7 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
-    func tableView(tableView: UITableView, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {
+    func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
         // force moving in same sections ONLY
         if sourceIndexPath.section != proposedDestinationIndexPath.section {
             return sourceIndexPath

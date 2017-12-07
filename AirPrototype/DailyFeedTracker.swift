@@ -10,9 +10,9 @@ import Foundation
 
 class DailyFeedTracker {
     
-    private var feed: Pm25Feed
+    fileprivate var feed: Pm25Feed
     var values = Array<DayFeedValue>()
-    private var to,from: Int
+    fileprivate var to,from: Int
     // getters
     func getFeed() -> Pm25Feed { return feed }
     func getStartTime() -> Int { return from }
@@ -30,7 +30,7 @@ class DailyFeedTracker {
     }
     
     
-    func getDaysCount(type: DayFeedValue.DaysValueType) -> Int {
+    func getDaysCount(_ type: DayFeedValue.DaysValueType) -> Int {
         var size = 0;
         
         for feedValue in values {

@@ -8,6 +8,30 @@
 
 import Foundation
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func <= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l <= r
+  default:
+    return !(rhs < lhs)
+  }
+}
+
 
 class EsdrAuthHandler {
     
@@ -15,11 +39,11 @@ class EsdrAuthHandler {
     
     
     init() {
-        appDelegate = (UIApplication.sharedApplication().delegate! as? AppDelegate)!
+        appDelegate = (UIApplication.shared.delegate! as? AppDelegate)!
     }
     
     
-    func requestEsdrToken(username: String, password: String, completionHandler: ((NSURL?, NSURLResponse?, NSError?) -> Void) ) {
+    func requestEsdrToken(_ username: String, password: String, completionHandler: @escaping ((URL?, URLResponse?, Error?) -> Void) ) {
         let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/oauth/token", httpMethod: "POST")
         let params:[String: String] = [
             "grant_type": Constants.Esdr.GRANT_TYPE_TOKEN,
@@ -28,14 +52,14 @@ class EsdrAuthHandler {
             "username": username,
             "password": password
         ]
-        request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions())
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: JSONSerialization.WritingOptions())
         
         // send request
-        GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: completionHandler)
+        GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request as URLRequest, completionHandler: completionHandler)
     }
     
     
-    func requestEsdrRefresh(refreshToken: String, responseHandler: (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void ) {
+    func requestEsdrRefresh(_ refreshToken: String, responseHandler: @escaping (_ url: URL?, _ response: URLResponse?, _ error: Error?) -> Void ) {
         if !Constants.REFRESHES_ESDR_TOKEN {
             NSLog("WARNING: requested ESDR refresh but REFRESHES_ESDR_TOKEN is not set.")
             return
@@ -49,10 +73,10 @@ class EsdrAuthHandler {
             "client_secret": Constants.AppSecrets.ESDR_CLIENT_SECRET,
             "refresh_token": refreshToken
         ]
-        request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions())
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: JSONSerialization.WritingOptions())
         
         // send request
-        GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request, completionHandler: responseHandler)
+        GlobalHandler.sharedInstance.httpRequestHandler.sendJsonRequest(request as URLRequest, completionHandler: responseHandler)
     }
     
     

@@ -27,14 +27,14 @@ class Channel {
         maxTimeSecs = 0
         minValue = 0
         maxValue = 0
-        nowCastCalculator = NowCastCalculator(hours: 12, weightType: NowCastCalculator.WeightType.PIECEWISE)
+        nowCastCalculator = NowCastCalculator(hours: 12, weightType: NowCastCalculator.WeightType.piecewise)
     }
     
     
     func requestNowCast() {
-        let timestamp = Int(NSDate().timeIntervalSince1970)
+        let timestamp = Int(Date().timeIntervalSince1970)
         
-        func response(data: [Int: [Double]]) {
+        func response(_ data: [Int: [Double]]) {
             // construct array of values
             let array = nowCastCalculator.constructArrayFromHash(data, currentTime: timestamp)
             

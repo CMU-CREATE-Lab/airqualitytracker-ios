@@ -14,9 +14,9 @@ class ResultsTableViewCellAddressSearch: UITableViewCell {
     @IBOutlet var labelResultsTableViewCellAddressSearch: UILabel!
     
     
-    func populate(address: SimpleAddress) {
+    func populate(_ address: SimpleAddress) {
         labelResultsTableViewCellAddressSearch.text = address.name
-        self.viewForBaselineLayout()
+        self.forBaselineLayout()
     }
     
     
@@ -28,7 +28,7 @@ class ResultsTableViewCellAddressSearch: UITableViewCell {
     }
     
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     

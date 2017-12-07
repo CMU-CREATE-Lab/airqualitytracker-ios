@@ -41,8 +41,8 @@ class SimpleAddress: AirNowReadable, Pm25Readable, OzoneReadable, Hashable {
     }
     
     
-    func requestDailyFeedTracker(controller: AddressShowController) {
-        let to = Int(NSDate().timeIntervalSince1970)
+    func requestDailyFeedTracker(_ controller: AddressShowController) {
+        let to = Int(Date().timeIntervalSince1970)
         let from = to - (86400 * 365)
         if hasReadablePm25Value() {
             let closestFeed = getReadablePm25Value().channel.feed
@@ -56,11 +56,11 @@ class SimpleAddress: AirNowReadable, Pm25Readable, OzoneReadable, Hashable {
                 }
             }
             
-            func httpResponse(url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
-                let jsonString = try! NSString.init(contentsOfURL: url!, encoding: NSUTF8StringEncoding)
+            func httpResponse(_ url: URL?, response: URLResponse?, error: Error?) -> Void {
+                let jsonString = try! NSString.init(contentsOf: url!, encoding: String.Encoding.utf8.rawValue)
                 let formattedString = EsdrJsonParser.formatSafeJson(jsonString)
-                let tempData = formattedString.dataUsingEncoding(NSUTF8StringEncoding)
-                let data = (try! NSJSONSerialization.JSONObjectWithData(tempData!, options: [])) as? NSDictionary
+                let tempData = formattedString.data(using: String.Encoding.utf8.rawValue)
+                let data = (try! JSONSerialization.jsonObject(with: tempData!, options: [])) as? NSDictionary
                 
                 self.dailyFeedTracker = EsdrJsonParser.parseDailyFeedTracker(closestFeed!, from: from, to: to, dataEntry: data!)
                 let numberDirtyDays = dailyFeedTracker!.getDirtyDaysCount()
@@ -75,20 +75,20 @@ class SimpleAddress: AirNowReadable, Pm25Readable, OzoneReadable, Hashable {
     
     
     func requestReadablePm25Reading() {
-        let maxTime = NSDate().timeIntervalSince1970 - Constants.READINGS_MAX_TIME_RANGE
+        let maxTime = Date().timeIntervalSince1970 - Constants.READINGS_MAX_TIME_RANGE
         
-        func completionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
+        func completionHandler(_ url: URL?, response: URLResponse?, error: Error?) {
             if HttpHelper.successfulResponse(response, error: error) {
-                let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
+                let data = (try? JSONSerialization.jsonObject(with: Data(contentsOf: url!), options: [])) as? NSDictionary
                 
                 self.feeds = EsdrJsonParser.populateFeedsFromJson(data!, simpleAddress: self, maxTime: maxTime)
                 if (feeds.count > 0) {
                     let closestFeed = MapGeometry.getClosestFeedWithPmToAddress(self, feeds: self.feeds)
                     if closestFeed != nil {
                         closestFeed!.simpleAddress = self
-                        if Constants.DEFAULT_ADDRESS_PM25_READABLE_VALUE_TYPE == ReadableValueType.NOWCAST {
+                        if Constants.DEFAULT_ADDRESS_PM25_READABLE_VALUE_TYPE == ReadableValueType.nowcast {
                             closestFeed!.getPm25Channels().first!.requestNowCast()
-                        } else if Constants.DEFAULT_ADDRESS_PM25_READABLE_VALUE_TYPE == ReadableValueType.INSTANTCAST {
+                        } else if Constants.DEFAULT_ADDRESS_PM25_READABLE_VALUE_TYPE == ReadableValueType.instantcast {
                             GlobalHandler.sharedInstance.esdrFeedsHandler.requestChannelReading(nil, feedApiKey: nil, feed: closestFeed!, channel: closestFeed!.getPm25Channels().first!, maxTime: maxTime)
                         }
                     }
@@ -103,20 +103,20 @@ class SimpleAddress: AirNowReadable, Pm25Readable, OzoneReadable, Hashable {
     
     
     func requestReadableOzoneReading() {
-        let maxTime = NSDate().timeIntervalSince1970 - Constants.READINGS_MAX_TIME_RANGE
+        let maxTime = Date().timeIntervalSince1970 - Constants.READINGS_MAX_TIME_RANGE
         
-        func completionHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
+        func completionHandler(_ url: URL?, response: URLResponse?, error: Error?) {
             if HttpHelper.successfulResponse(response, error: error) {
-                let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
+                let data = (try? JSONSerialization.jsonObject(with: Data(contentsOf: url!), options: [])) as? NSDictionary
                 
                 self.feeds = EsdrJsonParser.populateFeedsFromJson(data!, simpleAddress: self, maxTime: maxTime)
                 if (feeds.count > 0) {
                     let closestFeed = MapGeometry.getClosestFeedWithOzoneToAddress(self, feeds: self.feeds)
                     if closestFeed != nil {
                         closestFeed!.simpleAddress = self
-                        if Constants.DEFAULT_ADDRESS_OZONE_READABLE_VALUE_TYPE == ReadableValueType.NOWCAST {
+                        if Constants.DEFAULT_ADDRESS_OZONE_READABLE_VALUE_TYPE == ReadableValueType.nowcast {
                             closestFeed!.getOzoneChannels().first!.requestNowCast()
-                        } else if Constants.DEFAULT_ADDRESS_OZONE_READABLE_VALUE_TYPE == ReadableValueType.INSTANTCAST {
+                        } else if Constants.DEFAULT_ADDRESS_OZONE_READABLE_VALUE_TYPE == ReadableValueType.instantcast {
                             GlobalHandler.sharedInstance.esdrFeedsHandler.requestChannelReading(nil, feedApiKey: nil, feed: closestFeed!, channel: closestFeed!.getOzoneChannels().first!, maxTime: maxTime)
                         }
                     }
@@ -137,7 +137,7 @@ class SimpleAddress: AirNowReadable, Pm25Readable, OzoneReadable, Hashable {
         var result = Array<Pm25Channel>()
         
         for feed in self.feeds {
-            result.appendContentsOf(feed.getPm25Channels())
+            result.append(contentsOf: feed.getPm25Channels())
         }
         
         return result
@@ -161,7 +161,7 @@ class SimpleAddress: AirNowReadable, Pm25Readable, OzoneReadable, Hashable {
         var result = Array<OzoneChannel>()
         
         for feed in self.feeds {
-            result.appendContentsOf(feed.getOzoneChannels())
+            result.append(contentsOf: feed.getOzoneChannels())
         }
         
         return result
@@ -181,7 +181,7 @@ class SimpleAddress: AirNowReadable, Pm25Readable, OzoneReadable, Hashable {
     // Readable Implementation
     
     
-    private func generateReadableValues() -> Array<ReadableValue> {
+    fileprivate func generateReadableValues() -> Array<ReadableValue> {
         var result = Array<ReadableValue>()
         if (hasReadablePm25Value()) {
             result.append(self.readablePm25Value!)

@@ -36,7 +36,7 @@ class Speck: Pm25Feed, HumidityReadable, TemperatureReadable {
     }
     
     
-    func addChannel(channel: Channel) {
+    func addChannel(_ channel: Channel) {
         if channel is Pm25Channel {
             pm25Channels.append(channel as! Pm25Channel)
         } else if channel is HumidityChannel {
@@ -49,7 +49,7 @@ class Speck: Pm25Feed, HumidityReadable, TemperatureReadable {
     
     func requestReadablePm25Reading() {
         if pm25Channels.count > 0 {
-            let timeRange = NSDate().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
+            let timeRange = Date().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
             let handler = GlobalHandler.sharedInstance.esdrFeedsHandler
             handler.requestChannelReading(nil, feedApiKey: self.apiKeyReadOnly!, feed: self, channel: self.pm25Channels.first!, maxTime: timeRange)
         } else {
@@ -60,7 +60,7 @@ class Speck: Pm25Feed, HumidityReadable, TemperatureReadable {
     
     func requestReadableHumidityReading() {
         if humidityChannels.count > 0 {
-            let timeRange = NSDate().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
+            let timeRange = Date().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
             let handler = GlobalHandler.sharedInstance.esdrFeedsHandler
             handler.requestChannelReading(nil, feedApiKey: self.apiKeyReadOnly!, feed: self, channel: self.humidityChannels.first!, maxTime: timeRange)
         } else {
@@ -71,7 +71,7 @@ class Speck: Pm25Feed, HumidityReadable, TemperatureReadable {
     
     func requestReadableTemperatureReading() {
         if temperatureChannels.count > 0 {
-            let timeRange = NSDate().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
+            let timeRange = Date().timeIntervalSince1970 - Constants.SPECKS_MAX_TIME_RANGE
             let handler = GlobalHandler.sharedInstance.esdrFeedsHandler
             handler.requestChannelReading(nil, feedApiKey: self.apiKeyReadOnly!, feed: self, channel: self.temperatureChannels.first!, maxTime: timeRange)
         } else {

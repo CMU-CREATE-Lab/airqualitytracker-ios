@@ -10,14 +10,14 @@ import Foundation
 
 class AutocompleteTimer: NSObject, Timer {
     
-    var timer:NSTimer?
-    var timerInterval: NSTimeInterval
-    var timerTolerance: NSTimeInterval?
+    var timer:Foundation.Timer?
+    var timerInterval: TimeInterval
+    var timerTolerance: TimeInterval?
     var controller: ResultsControllerAddressSearch
     
     
-    private func completionHandler (url: NSURL?, response: NSURLResponse?, error: NSError?) -> Void {
-        let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary
+    fileprivate func completionHandler (_ url: URL?, response: URLResponse?, error: Error?) -> Void {
+        let data = (try? JSONSerialization.jsonObject(with: Data(contentsOf: url!), options: [])) as? NSDictionary
         let results = WuJsonParser.parseAddressesFromJson(data!)
         
         self.controller.searchResultsList.removeAll()
@@ -25,13 +25,13 @@ class AutocompleteTimer: NSObject, Timer {
             self.controller.searchResultsList.append(value)
         }
         
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.controller.tableView.reloadData()
         }
     }
     
     
-    init(controller: ResultsControllerAddressSearch, interval: NSTimeInterval, withTolerance: NSTimeInterval?) {
+    init(controller: ResultsControllerAddressSearch, interval: TimeInterval, withTolerance: TimeInterval?) {
         self.timerInterval = interval
         self.timerTolerance = withTolerance
         self.controller = controller
@@ -46,7 +46,7 @@ class AutocompleteTimer: NSObject, Timer {
     
     func startTimer() {
         self.stopTimer()
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(self.timerInterval, target: self, selector: #selector(AutocompleteTimer.timerExpires), userInfo: nil, repeats: false)
+        self.timer = Foundation.Timer.scheduledTimer(timeInterval: self.timerInterval, target: self, selector: #selector(AutocompleteTimer.timerExpires), userInfo: nil, repeats: false)
         if let tolerance = self.timerTolerance {
             self.timer!.tolerance = tolerance
         }

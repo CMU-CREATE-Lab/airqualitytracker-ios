@@ -29,17 +29,17 @@ class AddressShowController: UIViewController {
     @IBOutlet weak var viewPm25AqiButton: UIView!
     
     
-    private func clearAndHide(labels: [UILabel!]) {
+    fileprivate func clearAndHide(_ labels: [UILabel?]) {
         for label in labels {
-            label.text = ""
-            label.hidden = true
+            label?.text = ""
+            label?.isHidden = true
         }
     }
     
     
-    func feedTrackerResponse(text: String) {
-        gestureDailyTracker.enabled = true
-        dispatch_async(dispatch_get_main_queue()) {
+    func feedTrackerResponse(_ text: String) {
+        gestureDailyTracker.isEnabled = true
+        DispatchQueue.main.async {
             self.labelDirtyDays.text = text
         }
     }
@@ -53,7 +53,7 @@ class AddressShowController: UIViewController {
     }
     
     
-    func addressView(address: SimpleAddress) {
+    func addressView(_ address: SimpleAddress) {
         if address.isCurrentLocation {
             self.navigationItem.rightBarButtonItems = []
         }
@@ -61,7 +61,7 @@ class AddressShowController: UIViewController {
             var aqi: Int = 0
             
             if address.hasReadableOzoneValue() {
-                viewOzoneAqiButton.hidden = false
+                viewOzoneAqiButton.isHidden = false
                 let ozone = address.getReadableOzoneValue()
                 if ozone is Ozone_InstantCast {
                     NSLog("instant OZONE=\((ozone as! Ozone_InstantCast).getAqiValue())")
@@ -76,8 +76,8 @@ class AddressShowController: UIViewController {
                 }
             }
             if address.hasReadablePm25Value() {
-                viewTrackerButton.hidden = false
-                viewPm25AqiButton.hidden = false
+                viewTrackerButton.isHidden = false
+                viewPm25AqiButton.isHidden = false
                 let pm25 = address.getReadablePm25Value()
                 NSLog("PM2.5=\(pm25.getAqiValue())")
                 let closestFeed = pm25.channel.feed!
@@ -102,7 +102,7 @@ class AddressShowController: UIViewController {
                     start,
                     end
                     ] as [AnyObject]
-                mainView.layer.insertSublayer(gradient, atIndex: 0)
+                mainView.layer.insertSublayer(gradient, at: 0)
                 // request tracker
                 address.requestDailyFeedTracker(self)
             }
@@ -112,13 +112,13 @@ class AddressShowController: UIViewController {
     }
     
     
-    func speckView(speck: Speck) {
+    func speckView(_ speck: Speck) {
         if speck.hasReadableValue() {
             let micrograms = speck.getReadablePm25Value().getValue()
             labelShowValue.text = Int(micrograms).description
             let speckReading = SpeckReading(reading: micrograms)
             if speckReading.withinRange() {
-                labelReadingMeasurement.hidden = false
+                labelReadingMeasurement.isHidden = false
                 labelMeasurementRange.text = "\(speckReading.getRangeFromIndex()) Micrograms"
                 labelValueTitle.text = speckReading.getTitle()
                 // TODO descriptions for speck
@@ -136,10 +136,10 @@ class AddressShowController: UIViewController {
     
     
     func populateView() {
-        gestureDailyTracker.enabled = false
-        viewOzoneAqiButton.hidden = true
-        viewPm25AqiButton.hidden = true
-        viewTrackerButton.hidden = true
+        gestureDailyTracker.isEnabled = false
+        viewOzoneAqiButton.isHidden = true
+        viewPm25AqiButton.isHidden = true
+        viewTrackerButton.isHidden = true
         navigationItem.title = reading!.getName()
         if (reading! is SimpleAddress) {
             addressView(reading as! SimpleAddress)
@@ -154,8 +154,8 @@ class AddressShowController: UIViewController {
     // MARK: Storyboard Events
     
     
-    @IBAction func onClickRemove(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
+    @IBAction func onClickRemove(_ sender: AnyObject) {
+        self.navigationController?.popViewController(animated: true)
         GlobalHandler.sharedInstance.readingsHandler.removeReading(reading!)
     }
     
@@ -163,18 +163,18 @@ class AddressShowController: UIViewController {
     // MARK: UIView Overrides
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let airNowReading = self.reading as? AirNowReadable {
             if segue.identifier == "showAirNowSegue" {
-                let controller = segue.destinationViewController as! AirNowDetailsController
+                let controller = segue.destination as! AirNowDetailsController
                 controller.reading = airNowReading
             } else if segue.identifier == "showAqiExplainSegue" {
                 let address = airNowReading as! SimpleAddress
-                let controller = segue.destinationViewController as! AqiExplanationDetailsController
+                let controller = segue.destination as! AqiExplanationDetailsController
                 controller.reading = address
             } else if segue.identifier == "showTrackerSegue" {
                 let address = airNowReading as! SimpleAddress
-                let controller = segue.destinationViewController as! DailyTrackerController
+                let controller = segue.destination as! DailyTrackerController
                 controller.address = address
             } else {
                 NSLog("ERROR - bad segue name")

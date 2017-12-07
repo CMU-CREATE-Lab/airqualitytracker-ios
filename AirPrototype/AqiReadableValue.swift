@@ -16,6 +16,6 @@ protocol AqiReadableValue: ReadableValue {
 }
 
 
-func calculateLinearAqi(ihi: Double,ilo: Double,chi: Double,clo: Double,units: Double) -> Double {
+func calculateLinearAqi(_ ihi: Double,ilo: Double,chi: Double,clo: Double,units: Double) -> Double {
     return (ihi-ilo) / (chi-clo) * (units-clo) + ilo
 }

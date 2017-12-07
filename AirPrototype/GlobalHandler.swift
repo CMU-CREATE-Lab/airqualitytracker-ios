@@ -48,8 +48,8 @@ class GlobalHandler {
     var refreshTimer: RefreshTimer
     
     
-    private init() {
-        appDelegate = (UIApplication.sharedApplication().delegate! as! AppDelegate)
+    fileprivate init() {
+        appDelegate = (UIApplication.shared.delegate! as! AppDelegate)
         // global instances
         airNowRequestHandler = AirNowRequestHandler()
         esdrAuthHandler = EsdrAuthHandler()
@@ -74,20 +74,20 @@ class GlobalHandler {
     func updateReadings() {
         // check expiresAt timer and determine if we should update tokens (within threshold)
         if settingsHandler.userLoggedIn {
-            let timestamp = Int(NSDate().timeIntervalSince1970)
+            let timestamp = Int(Date().timeIntervalSince1970)
             let expiredAt = esdrAccount.expiresAt!
             let timeRemaining = expiredAt - timestamp
             if timeRemaining <= Constants.ESDR_TOKEN_TIME_TO_UPDATE_ON_REFRESH {
                 let refreshToken = esdrAccount.refreshToken!
                 
-                func responseHandler(url: NSURL?, response: NSURLResponse?, error: NSError?) {
+                func responseHandler(_ url: URL?, response: URLResponse?, error: Error?) {
                     if error != nil {
                         esdrLoginHandler.updateEsdrTokens("", refreshToken: "", expiresAt: 0)
                         NSLog("requestEsdrRefresh received error from refreshToken=\(refreshToken)")
-                    } else if let data = (try? NSJSONSerialization.JSONObjectWithData(NSData(contentsOfURL: url!)!, options: [])) as? NSDictionary {
-                        let access_token = data.valueForKey("access_token") as? String
-                        let refresh_token = data.valueForKey("refresh_token") as? String
-                        let expires_in = data.valueForKey("expires_in") as? Int
+                    } else if let data = (try? JSONSerialization.jsonObject(with: Data(contentsOf: url!), options: [])) as? NSDictionary {
+                        let access_token = data.value(forKey: "access_token") as? String
+                        let refresh_token = data.value(forKey: "refresh_token") as? String
+                        let expires_in = data.value(forKey: "expires_in") as? Int
                         if access_token != nil && refresh_token != nil && expires_in != nil {
                             NSLog("found access_token=\(access_token), refresh_token=\(refresh_token)")
                             esdrLoginHandler.updateEsdrTokens(access_token!, refreshToken: refresh_token!, expiresAt: timestamp+expires_in!)
@@ -115,18 +115,18 @@ class GlobalHandler {
     
     func notifyGlobalDataSetChanged() {
         if let readableIndexListView = self.readableIndexListView {
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 readableIndexListView.reloadData()
             }
         }
         if let secretMenu = self.secretDebugMenuTable {
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 // (crashes here)
                 secretMenu.reloadData()
             }
         }
         if let airNowMenu = self.airNowTable {
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 airNowMenu.reloadData()
             }
         }

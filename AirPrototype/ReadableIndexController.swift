@@ -18,15 +18,15 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
     var longPressActive = false
     
     
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return .None
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
     }
     
     
-    func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
+    func alertView(_ alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
         longPressActive = false
         if buttonIndex > 0 {
-            self.navigationController!.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SecretMenu"), animated: true)
+            self.navigationController!.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SecretMenu"), animated: true)
         }
     }
     
@@ -40,7 +40,7 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
     // MARK: Storyboard Events
     
     
-    @IBAction func longPressOccurred(sender: UILongPressGestureRecognizer) {
+    @IBAction func longPressOccurred(_ sender: UILongPressGestureRecognizer) {
         if !longPressActive {
             longPressActive = true
             let dialog = UIAlertView.init(title: "DEBUG", message: "View Debug Screen?", delegate: self, cancelButtonTitle: "No", otherButtonTitles: "Yes")
@@ -49,16 +49,16 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
     }
 
     
-    @IBAction func menuClicked(sender: UIBarButtonItem) {
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SettingsPopup") as! SettingsController
+    @IBAction func menuClicked(_ sender: UIBarButtonItem) {
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingsPopup") as! SettingsController
         // NOTE: preferred content size is controlled on SettingsController's viewDidLoad() function
         controller.parentNavigationController = self.navigationController
-        controller.modalPresentationStyle = UIModalPresentationStyle.Popover
+        controller.modalPresentationStyle = UIModalPresentationStyle.popover
         if let popover = controller.popoverPresentationController {
             popover.delegate = self
             popover.barButtonItem = sender
-            popover.permittedArrowDirections = .Any
-            self.presentViewController(controller, animated: true, completion: nil)
+            popover.permittedArrowDirections = .any
+            self.present(controller, animated: true, completion: nil)
             controller.view.sizeToFit()
         }
     }
@@ -91,9 +91,9 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
         
         self.refreshController = UIRefreshControl()
         self.gridView.addSubview(self.refreshController!)
-        self.gridView.scrollEnabled = true
+        self.gridView.isScrollEnabled = true
         self.gridView.alwaysBounceVertical = true
-        self.refreshController!.addTarget(self, action:#selector(ReadableIndexController.refreshLayout), forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshController!.addTarget(self, action:#selector(ReadableIndexController.refreshLayout), for: UIControlEvents.valueChanged)
         
         self.navigationItem.title = "Speck Sensor"
     }
@@ -105,22 +105,22 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
     }
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         gridView.reloadData()
     }
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "searchSegue" {
             // prepare for search segue
         } else if segue.identifier == "showSegue" {
-            let addressShowController = segue.destinationViewController as! AddressShowController
-            var indexPaths = gridView.indexPathsForSelectedItems()!
+            let addressShowController = segue.destination as! AddressShowController
+            var indexPaths = gridView.indexPathsForSelectedItems!
             let readingsHandler = GlobalHandler.sharedInstance.readingsHandler
             let indexPath = indexPaths[0]
             let reading = readingsHandler.adapterList[readingsHandler.headers[indexPath.section]]![indexPath.row]
             addressShowController.reading = reading
-            gridView.deselectItemAtIndexPath(indexPaths[0], animated: true)
+            gridView.deselectItem(at: indexPaths[0], animated: true)
         } else {
             NSLog("ERROR - bad segue name")
         }
@@ -130,19 +130,19 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
     // MARK: Collection View Delegate
     
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return GlobalHandler.sharedInstance.readingsHandler.adapterList.keys.count
     }
     
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let readingsHandler = GlobalHandler.sharedInstance.readingsHandler
         return readingsHandler.adapterList[readingsHandler.headers[section]]!.count
     }
     
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MyCell", forIndexPath: indexPath) as! ReadableIndexCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCell", for: indexPath) as! ReadableIndexCell
         let readingsHandler = GlobalHandler.sharedInstance.readingsHandler
         let readings = readingsHandler.adapterList[readingsHandler.headers[indexPath.section]]!
         // TODO sometimes we get out of index here?
@@ -151,11 +151,11 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
     }
     
     
-    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         var reusableView: UICollectionReusableView?
         
         if kind == UICollectionElementKindSectionHeader {
-            let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "MyViewHeader", forIndexPath: indexPath) as! ReadableIndexHeader
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "MyViewHeader", for: indexPath) as! ReadableIndexHeader
             header.populate(GlobalHandler.sharedInstance.readingsHandler.headers[indexPath.section])
             reusableView = header
         }
@@ -164,8 +164,8 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
     }
     
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(collectionView.bounds.size.width/2.0-0.5, collectionView.bounds.size.width/2.0-1.0)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.bounds.size.width/2.0-0.5, height: collectionView.bounds.size.width/2.0-1.0)
     }
     
 }

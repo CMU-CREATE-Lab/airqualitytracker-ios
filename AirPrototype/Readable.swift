@@ -10,7 +10,7 @@ import Foundation
 
 
 enum ReadableType {
-    case ADDRESS, FEED, SPECK
+    case address, feed, speck
 }
 
 private var hashId = 1

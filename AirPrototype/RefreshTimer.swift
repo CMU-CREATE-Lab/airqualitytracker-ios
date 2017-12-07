@@ -10,12 +10,12 @@ import Foundation
 
 class RefreshTimer: NSObject, Timer {
     
-    var timer:NSTimer?
-    var timerInterval: NSTimeInterval
-    var timerTolerance: NSTimeInterval?
+    var timer:Foundation.Timer?
+    var timerInterval: TimeInterval
+    var timerTolerance: TimeInterval?
     
     
-    init(interval: NSTimeInterval, withTolerance: NSTimeInterval?) {
+    init(interval: TimeInterval, withTolerance: TimeInterval?) {
         self.timerInterval = interval
         self.timerTolerance = withTolerance
     }
@@ -28,7 +28,7 @@ class RefreshTimer: NSObject, Timer {
     
     func startTimer() {
         self.stopTimer()
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(self.timerInterval, target: self, selector: #selector(RefreshTimer.timerExpires), userInfo: nil, repeats: false)
+        self.timer = Foundation.Timer.scheduledTimer(timeInterval: self.timerInterval, target: self, selector: #selector(RefreshTimer.timerExpires), userInfo: nil, repeats: false)
         if let tolerance = self.timerTolerance {
             self.timer!.tolerance = tolerance
         }
