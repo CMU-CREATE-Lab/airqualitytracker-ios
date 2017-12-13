@@ -20,7 +20,8 @@ class ReadingsHandler: ReadingsHandlerEditable {
         super.init()
         
         hashMap[headers[0]] = specks
-        hashMap[headers[1]] = addresses
+        hashMap[headers[1]] = honeybees
+        hashMap[headers[2]] = addresses
     }
     
     
@@ -33,7 +34,7 @@ class ReadingsHandler: ReadingsHandlerEditable {
         for header in Constants.HEADER_TITLES {
             items = hashMap[header]!
             
-            if header == Constants.HEADER_TITLES[1] && GlobalHandler.sharedInstance.settingsHandler.appUsesLocation {
+            if header == Constants.HEADER_TITLES[2] && GlobalHandler.sharedInstance.settingsHandler.appUsesLocation {
                 items.insert(gpsReadingHandler.gpsAddress, at: 0)
                 adapterList[header] = items
                 headers.append(header)

@@ -13,6 +13,7 @@ import UIKit
 class ReadingsHandlerCore {
     
     var addresses = [SimpleAddress]()
+    var honeybees = [Readable]()
     var specks = [Speck]()
     var headers = Constants.HEADER_TITLES
     var hashMap = [String: [Readable]]()
@@ -75,11 +76,15 @@ class ReadingsHandlerCore {
             hashMap[Constants.HEADER_TITLES[0]] = specks
         }
         
+        // TODO honeybees
+        //hashMap[Constants.HEADER_TITLES[1]] = honeybees
+
         // cities
         tempReadables = [Readable]()
         for address in addresses {
             tempReadables.append(address)
         }
+        hashMap[Constants.HEADER_TITLES[2]] = tempReadables
         hashMap[Constants.HEADER_TITLES[1]] = tempReadables
     }
     

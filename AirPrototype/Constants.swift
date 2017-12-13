@@ -148,6 +148,7 @@ class Constants {
     
     static let HEADER_TITLES = [
         "SPECK DEVICES",
+        "HONEYBEE DEVICES",
         "CITIES"
     ]
     
