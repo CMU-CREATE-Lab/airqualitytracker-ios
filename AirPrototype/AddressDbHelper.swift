@@ -44,7 +44,7 @@ class AddressDbHelper {
                     let zipcode = match.value(forKey: SimpleAddressKeys.zipcodeKey) as! String
                     let latitude = match.value(forKey: SimpleAddressKeys.latitudeKey) as! Double
                     let longitude = match.value(forKey: SimpleAddressKeys.longitudeKey) as! Double
-                    let positionId = match.value(forKey: SimpleAddressKeys.longitudeKey) as! Int
+                    let positionId = match.value(forKey: SimpleAddressKeys.positionIdKey) as! Int
                     
                     let address = SimpleAddress()
                     address._id = match.objectID
