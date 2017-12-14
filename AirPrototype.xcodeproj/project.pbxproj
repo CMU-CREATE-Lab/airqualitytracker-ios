@@ -30,6 +30,11 @@
 		275D621A1E03083B001292D8 /* TemperatureReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D62191E03083B001292D8 /* TemperatureReadable.swift */; };
 		275D621C1E030C2C001292D8 /* Pm25Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D621B1E030C2C001292D8 /* Pm25Feed.swift */; };
 		275D621E1E030F89001292D8 /* AirQualityFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D621D1E030F89001292D8 /* AirQualityFeed.swift */; };
+		275E69881FE2C955009900EF /* LargeParticleReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275E69871FE2C955009900EF /* LargeParticleReadable.swift */; };
+		275E698A1FE2C9C2009900EF /* LargeParticleChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275E69891FE2C9C2009900EF /* LargeParticleChannel.swift */; };
+		275E698C1FE2CF7B009900EF /* SmallParticleChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275E698B1FE2CF7B009900EF /* SmallParticleChannel.swift */; };
+		275E698E1FE2CFBB009900EF /* SmallParticleReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275E698D1FE2CFBB009900EF /* SmallParticleReadable.swift */; };
+		275E69901FE2D105009900EF /* Honeybee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275E698F1FE2D105009900EF /* Honeybee.swift */; };
 		279FB4CC1CEA502800B5C8AA /* DailyTrackerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279FB4CB1CEA502800B5C8AA /* DailyTrackerController.swift */; };
 		27C0225A1CEB50CC00C34EFD /* daily_tracker_grid.html in Resources */ = {isa = PBXBuildFile; fileRef = 27C022591CEB50CC00C34EFD /* daily_tracker_grid.html */; };
 		27C0225C1CEB50DC00C34EFD /* jquery-1.12.3.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 27C0225B1CEB50DC00C34EFD /* jquery-1.12.3.min.js */; };
@@ -153,6 +158,11 @@
 		275D62191E03083B001292D8 /* TemperatureReadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureReadable.swift; sourceTree = "<group>"; };
 		275D621B1E030C2C001292D8 /* Pm25Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pm25Feed.swift; sourceTree = "<group>"; };
 		275D621D1E030F89001292D8 /* AirQualityFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirQualityFeed.swift; sourceTree = "<group>"; };
+		275E69871FE2C955009900EF /* LargeParticleReadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeParticleReadable.swift; sourceTree = "<group>"; };
+		275E69891FE2C9C2009900EF /* LargeParticleChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeParticleChannel.swift; sourceTree = "<group>"; };
+		275E698B1FE2CF7B009900EF /* SmallParticleChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallParticleChannel.swift; sourceTree = "<group>"; };
+		275E698D1FE2CFBB009900EF /* SmallParticleReadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallParticleReadable.swift; sourceTree = "<group>"; };
+		275E698F1FE2D105009900EF /* Honeybee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Honeybee.swift; sourceTree = "<group>"; };
 		279FB4CB1CEA502800B5C8AA /* DailyTrackerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTrackerController.swift; sourceTree = "<group>"; };
 		27C022591CEB50CC00C34EFD /* daily_tracker_grid.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = daily_tracker_grid.html; path = Assets/webviews/daily_tracker_grid.html; sourceTree = "<group>"; };
 		27C0225B1CEB50DC00C34EFD /* jquery-1.12.3.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-1.12.3.min.js"; path = "Assets/webviews/lib/jquery-1.12.3.min.js"; sourceTree = "<group>"; };
@@ -279,6 +289,8 @@
 				27242E121E01DD1100DB24F3 /* OzoneChannel.swift */,
 				27242E141E01DD6800DB24F3 /* Pm25Channel.swift */,
 				27242E161E01DD7D00DB24F3 /* TemperatureChannel.swift */,
+				275E69891FE2C9C2009900EF /* LargeParticleChannel.swift */,
+				275E698B1FE2CF7B009900EF /* SmallParticleChannel.swift */,
 			);
 			name = channels;
 			sourceTree = "<group>";
@@ -318,6 +330,8 @@
 				275D62131E03036F001292D8 /* Pm25Readable.swift */,
 				275D62151E0303E9001292D8 /* OzoneReadable.swift */,
 				275D62191E03083B001292D8 /* TemperatureReadable.swift */,
+				275E69871FE2C955009900EF /* LargeParticleReadable.swift */,
+				275E698D1FE2CFBB009900EF /* SmallParticleReadable.swift */,
 			);
 			name = interfaces;
 			sourceTree = "<group>";
@@ -432,6 +446,7 @@
 				275D621D1E030F89001292D8 /* AirQualityFeed.swift */,
 				A1666FA91B54176D00A8E39F /* SimpleAddress.swift */,
 				A1F58E5A1B972DD700D04C91 /* Speck.swift */,
+				275E698F1FE2D105009900EF /* Honeybee.swift */,
 			);
 			name = readables;
 			sourceTree = "<group>";
@@ -845,6 +860,7 @@
 				A15CDB401C861689002D5C0F /* AirNowDetailsController.swift in Sources */,
 				A167F08B1C6D02C80006E1F6 /* AirNowJsonParser.swift in Sources */,
 				27242E0F1E01DCA800DB24F3 /* HumidityValue.swift in Sources */,
+				275E698C1FE2CF7B009900EF /* SmallParticleChannel.swift in Sources */,
 				A1E2A91D1B99ED47003A3B3A /* SettingsHandler.swift in Sources */,
 				A1666F831B54125400A8E39F /* AppDelegate.swift in Sources */,
 				A17527C41BD556A7007526C0 /* ManageTrackersController.swift in Sources */,
@@ -870,6 +886,7 @@
 				A187D3631C7269EC000BB107 /* EsdrAccount.swift in Sources */,
 				A182D2381C6BBF2300DBA4F0 /* AirNowObservation.swift in Sources */,
 				A16481FB1B5D553F0023DE09 /* AddressShowController.swift in Sources */,
+				275E698E1FE2CFBB009900EF /* SmallParticleReadable.swift in Sources */,
 				274F6AE21D0B1F550012DE95 /* AQIReading.swift in Sources */,
 				A1FEAB411B8CF19D00F9716B /* StoredAddress.swift in Sources */,
 				27C32FB81CB594490063BF23 /* ManualOverrides.swift in Sources */,
@@ -877,6 +894,7 @@
 				A17361F71C231EA40012FC62 /* EsdrSpecksHandler.swift in Sources */,
 				A182D2361C6BB4A600DBA4F0 /* AirNowReadable.swift in Sources */,
 				A1660FF71B568B6700608C5D /* ResultsControllerAddressSearch.swift in Sources */,
+				275E69881FE2C955009900EF /* LargeParticleReadable.swift in Sources */,
 				A14C456B1BA0B2B000D6C9CF /* ReadableIndexController.swift in Sources */,
 				A103E6081BE12A5E0065378D /* SettingsController.swift in Sources */,
 				A11844B11BA9FECC00435D11 /* CLLocationService.swift in Sources */,
@@ -889,11 +907,13 @@
 				A14CA69E1C87309700E61894 /* AirNowDetailsTableCell.swift in Sources */,
 				27242E171E01DD7D00DB24F3 /* TemperatureChannel.swift in Sources */,
 				27242E111E01DCFC00DB24F3 /* HumidityChannel.swift in Sources */,
+				275E698A1FE2C9C2009900EF /* LargeParticleChannel.swift in Sources */,
 				A14C456D1BA0B45D00D6C9CF /* ReadableIndexHeader.swift in Sources */,
 				A158B4D01C21FD48006CC0E5 /* AddressDbHelper.swift in Sources */,
 				A1666F861B54125400A8E39F /* AirPrototype.xcdatamodeld in Sources */,
 				A1E092A71BE2B51400D652CA /* SecretMenuController.swift in Sources */,
 				A16F70911BAB3BD500F616F6 /* LoginView.swift in Sources */,
+				275E69901FE2D105009900EF /* Honeybee.swift in Sources */,
 				A167F0891C6CED3E0006E1F6 /* WuJsonParser.swift in Sources */,
 				A1D4F8981BE7CD19002D5849 /* SecretMenuTableCell.swift in Sources */,
 				A16764041C248A5C001A94D6 /* PositionIdHelper.swift in Sources */,

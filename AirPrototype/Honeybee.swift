@@ -1,0 +1,103 @@
+//
+//  Honeybee.swift
+//  SpeckSensor
+//
+//  Created by Mike Tasota on 12/14/17.
+//  Copyright © 2017 CMU Create Lab. All rights reserved.
+//
+
+import Foundation
+
+class Honeybee: Feed, LargeParticleReadable, SmallParticleReadable {
+    
+    var feed_id = Int()
+    var name = String()
+    var exposure = String()
+    var isMobile = false
+    var location = Location(latitude: 0, longitude: 0)
+    var productId = 0
+    var lastTime = Double()
+    
+    
+    init() {
+        // TODO actions
+    }
+    
+    
+    func addChannel(channel: Channel) {
+        if (channel is LargeParticleChannel) {
+            largeParticleChannels.append(channel as! LargeParticleChannel)
+        } else if (channel is SmallParticleChannel) {
+            smallParticleChannels.append(channel as! SmallParticleChannel)
+        } else {
+            NSLog("cannot add channel to Honeybee (class not recognized)")
+        }
+    }
+    
+    
+    func getLargeParticleChannels() -> Array<LargeParticleChannel> {
+        return largeParticleChannels
+    }
+    
+    
+    func getSmallParticleChannels() -> Array<SmallParticleChannel> {
+        return smallParticleChannels
+    }
+    
+    
+    // LargeParticleReadable
+    
+    var readableLargeParticleValue: ReadableValue?
+    var largeParticleChannels = Array<LargeParticleChannel>()
+    
+    
+    func hasReadableLargeParticleValue() -> Bool {
+        return (readableLargeParticleValue != nil)
+    }
+    
+    
+    func getReadableLargeParticleValue() -> ReadableValue {
+        return readableLargeParticleValue!
+    }
+    
+    
+    // SmallParticleReadable
+    
+    var readableSmallParticleValue: ReadableValue?
+    var smallParticleChannels = Array<SmallParticleChannel>()
+    
+    
+    func hasReadableSmallParticleValue() -> Bool {
+        return (readableSmallParticleValue != nil)
+    }
+    
+    
+    func getReadableSmallParticleValue() -> ReadableValue {
+        return readableSmallParticleValue!
+    }
+    
+    
+    // Readable Implementation
+    
+    
+    func hasReadableValue() -> Bool {
+        // TODO do we want large or small as default
+        return (readableLargeParticleValue != nil)
+    }
+    
+    
+    func getReadableValues() -> Array<ReadableValue> {
+        var result = Array<ReadableValue>()
+        if (hasReadableValue()) {
+            // TODO do we want large or small as default
+            result.append(readableLargeParticleValue!)
+        }
+        return result
+    }
+
+}
+
+// conforms to Equatable protocol
+func == (lhs: Honeybee, rhs: Honeybee) -> Bool {
+    return lhs.hashValue == rhs.hashValue
+}
