@@ -35,6 +35,7 @@
 		275E698C1FE2CF7B009900EF /* SmallParticleChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275E698B1FE2CF7B009900EF /* SmallParticleChannel.swift */; };
 		275E698E1FE2CFBB009900EF /* SmallParticleReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275E698D1FE2CFBB009900EF /* SmallParticleReadable.swift */; };
 		275E69901FE2D105009900EF /* Honeybee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275E698F1FE2D105009900EF /* Honeybee.swift */; };
+		275E69921FE2E881009900EF /* EsdrHoneybeesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275E69911FE2E881009900EF /* EsdrHoneybeesHandler.swift */; };
 		279FB4CC1CEA502800B5C8AA /* DailyTrackerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279FB4CB1CEA502800B5C8AA /* DailyTrackerController.swift */; };
 		27C0225A1CEB50CC00C34EFD /* daily_tracker_grid.html in Resources */ = {isa = PBXBuildFile; fileRef = 27C022591CEB50CC00C34EFD /* daily_tracker_grid.html */; };
 		27C0225C1CEB50DC00C34EFD /* jquery-1.12.3.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 27C0225B1CEB50DC00C34EFD /* jquery-1.12.3.min.js */; };
@@ -163,6 +164,7 @@
 		275E698B1FE2CF7B009900EF /* SmallParticleChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallParticleChannel.swift; sourceTree = "<group>"; };
 		275E698D1FE2CFBB009900EF /* SmallParticleReadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallParticleReadable.swift; sourceTree = "<group>"; };
 		275E698F1FE2D105009900EF /* Honeybee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Honeybee.swift; sourceTree = "<group>"; };
+		275E69911FE2E881009900EF /* EsdrHoneybeesHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EsdrHoneybeesHandler.swift; sourceTree = "<group>"; };
 		279FB4CB1CEA502800B5C8AA /* DailyTrackerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTrackerController.swift; sourceTree = "<group>"; };
 		27C022591CEB50CC00C34EFD /* daily_tracker_grid.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = daily_tracker_grid.html; path = Assets/webviews/daily_tracker_grid.html; sourceTree = "<group>"; };
 		27C0225B1CEB50DC00C34EFD /* jquery-1.12.3.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-1.12.3.min.js"; path = "Assets/webviews/lib/jquery-1.12.3.min.js"; sourceTree = "<group>"; };
@@ -501,6 +503,7 @@
 				A158F6121B8E305A00FCE2E1 /* EsdrFeedsHandler.swift */,
 				A17361F61C231EA40012FC62 /* EsdrSpecksHandler.swift */,
 				A17DFA7B1C4438DA00B2A7B4 /* EsdrTilesHandler.swift */,
+				275E69911FE2E881009900EF /* EsdrHoneybeesHandler.swift */,
 			);
 			name = esdr;
 			sourceTree = "<group>";
@@ -836,6 +839,7 @@
 				27242E1D1E01E92400DB24F3 /* Pm25_NowCast.swift in Sources */,
 				27242E1B1E01E00400DB24F3 /* Pm25_InstantCast.swift in Sources */,
 				A17DFA7A1C4418D200B2A7B4 /* NowCastCalculator.swift in Sources */,
+				275E69921FE2E881009900EF /* EsdrHoneybeesHandler.swift in Sources */,
 				A16F70871BAB277A00F616F6 /* LoginController.swift in Sources */,
 				A1666FAE1B5419D300A8E39F /* Channel.swift in Sources */,
 				A16764021C248128001A94D6 /* EsdrLoginHandler.swift in Sources */,

@@ -31,6 +31,7 @@ class GlobalHandler {
     var esdrFeedsHandler: EsdrFeedsHandler
     var esdrLoginHandler: EsdrLoginHandler
     var esdrSpecksHandler: EsdrSpecksHandler
+    var esdrHoneybeesHandler: EsdrHoneybeesHandler
     var esdrTilesHandler: EsdrTilesHandler
     var httpRequestHandler: HttpRequestHandler
     var positionIdHelper: PositionIdHelper
@@ -54,6 +55,7 @@ class GlobalHandler {
         airNowRequestHandler = AirNowRequestHandler()
         esdrAuthHandler = EsdrAuthHandler()
         esdrSpecksHandler = EsdrSpecksHandler()
+        esdrHoneybeesHandler = EsdrHoneybeesHandler()
         esdrFeedsHandler = EsdrFeedsHandler()
         esdrTilesHandler = EsdrTilesHandler()
         httpRequestHandler = HttpRequestHandler()
