@@ -17,9 +17,13 @@ class Honeybee: Feed, LargeParticleReadable, SmallParticleReadable {
     var location = Location(latitude: 0, longitude: 0)
     var productId = 0
     var lastTime = Double()
+    var deviceId: Int
+    var positionId: Int?
+    var apiKeyReadOnly: String?
     
     
-    init() {
+    init(deviceId: Int) {
+        self.deviceId = deviceId
         // TODO actions
     }
     
