@@ -101,6 +101,9 @@ class ReadingsHandlerCore {
     }
     
     
+    // TODO func populateHoneybees()
+    
+    
     func populateSpecks() {
         if GlobalHandler.sharedInstance.settingsHandler.userLoggedIn {
             let authToken = GlobalHandler.sharedInstance.esdrAccount.accessToken

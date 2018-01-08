@@ -39,6 +39,26 @@ class Honeybee: Feed, LargeParticleReadable, SmallParticleReadable {
     }
     
     
+    func requestReadableLargeParticleReading() {
+        if largeParticleChannels.count > 0 {
+            let handler = GlobalHandler.sharedInstance.esdrFeedsHandler
+            handler.requestChannelReadingForHoneybee(feedApiKey: self.apiKeyReadOnly!, honeybee: self, channel: self.largeParticleChannels.first!, maxTime: nil)
+        } else {
+            NSLog("ERROR - No LargeParticle channels found from honeybee id=\(self.feed_id)")
+        }
+    }
+    
+    
+    func requestReadableSmallParticleReading() {
+        if smallParticleChannels.count > 0 {
+            let handler = GlobalHandler.sharedInstance.esdrFeedsHandler
+            handler.requestChannelReadingForHoneybee(feedApiKey: self.apiKeyReadOnly!, honeybee: self, channel: self.smallParticleChannels.first!, maxTime: nil)
+        } else {
+            NSLog("ERROR - No LargeParticle channels found from honeybee id=\(self.feed_id)")
+        }
+    }
+    
+    
     func getLargeParticleChannels() -> Array<LargeParticleChannel> {
         return largeParticleChannels
     }

@@ -19,6 +19,8 @@
 		27242E1B1E01E00400DB24F3 /* Pm25_InstantCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27242E1A1E01E00400DB24F3 /* Pm25_InstantCast.swift */; };
 		27242E1D1E01E92400DB24F3 /* Pm25_NowCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27242E1C1E01E92400DB24F3 /* Pm25_NowCast.swift */; };
 		27242E1F1E01EA4400DB24F3 /* Ozone_InstantCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27242E1E1E01EA4400DB24F3 /* Ozone_InstantCast.swift */; };
+		2744C3682003E01900A189AA /* LargeParticleValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2744C3672003E01900A189AA /* LargeParticleValue.swift */; };
+		2744C36A2003E02500A189AA /* SmallParticleValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2744C3692003E02500A189AA /* SmallParticleValue.swift */; };
 		274F6AE01D0B1C4C0012DE95 /* Scalable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274F6ADF1D0B1C4C0012DE95 /* Scalable.swift */; };
 		274F6AE21D0B1F550012DE95 /* AQIReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274F6AE11D0B1F550012DE95 /* AQIReading.swift */; };
 		274F6AE41D0B1F640012DE95 /* SpeckReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274F6AE31D0B1F640012DE95 /* SpeckReading.swift */; };
@@ -148,6 +150,8 @@
 		27242E1A1E01E00400DB24F3 /* Pm25_InstantCast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pm25_InstantCast.swift; sourceTree = "<group>"; };
 		27242E1C1E01E92400DB24F3 /* Pm25_NowCast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pm25_NowCast.swift; sourceTree = "<group>"; };
 		27242E1E1E01EA4400DB24F3 /* Ozone_InstantCast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ozone_InstantCast.swift; sourceTree = "<group>"; };
+		2744C3672003E01900A189AA /* LargeParticleValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeParticleValue.swift; sourceTree = "<group>"; };
+		2744C3692003E02500A189AA /* SmallParticleValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallParticleValue.swift; sourceTree = "<group>"; };
 		274F6ADF1D0B1C4C0012DE95 /* Scalable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scalable.swift; sourceTree = "<group>"; };
 		274F6AE11D0B1F550012DE95 /* AQIReading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AQIReading.swift; sourceTree = "<group>"; };
 		274F6AE31D0B1F640012DE95 /* SpeckReading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeckReading.swift; sourceTree = "<group>"; };
@@ -309,6 +313,8 @@
 				27242E1C1E01E92400DB24F3 /* Pm25_NowCast.swift */,
 				27242E0E1E01DCA800DB24F3 /* HumidityValue.swift */,
 				27242E181E01DFB500DB24F3 /* TemperatureValue.swift */,
+				2744C3672003E01900A189AA /* LargeParticleValue.swift */,
+				2744C3692003E02500A189AA /* SmallParticleValue.swift */,
 			);
 			name = readable_values;
 			sourceTree = "<group>";
@@ -851,6 +857,7 @@
 				A15675811B583AAA006982A1 /* AqiConverter.swift in Sources */,
 				A1666FB21B541CF400A8E39F /* GlobalHandler.swift in Sources */,
 				275D621A1E03083B001292D8 /* TemperatureReadable.swift in Sources */,
+				2744C3682003E01900A189AA /* LargeParticleValue.swift in Sources */,
 				27242E191E01DFB500DB24F3 /* TemperatureValue.swift in Sources */,
 				A15675831B5844C9006982A1 /* MapGeometry.swift in Sources */,
 				27D9F7051CE21B550066E1B5 /* DayFeedValue.swift in Sources */,
@@ -908,6 +915,7 @@
 				A158B4D21C21FF27006CC0E5 /* SpeckDbHelper.swift in Sources */,
 				A158F6131B8E305A00FCE2E1 /* EsdrFeedsHandler.swift in Sources */,
 				27242E1F1E01EA4400DB24F3 /* Ozone_InstantCast.swift in Sources */,
+				2744C36A2003E02500A189AA /* SmallParticleValue.swift in Sources */,
 				A14CA69E1C87309700E61894 /* AirNowDetailsTableCell.swift in Sources */,
 				27242E171E01DD7D00DB24F3 /* TemperatureChannel.swift in Sources */,
 				27242E111E01DCFC00DB24F3 /* HumidityChannel.swift in Sources */,
