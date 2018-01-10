@@ -65,6 +65,11 @@ class ReadableIndexCell: UICollectionViewCell {
                         textHumidity.text = "💧\(speck.getReadableHumidityValue().getValue()) \(speck.getReadableHumidityValue().getReadableUnits())"
                         textHumidity.isHidden = false
                     }
+                } else if (reading is Honeybee) {
+                    textItemLabel.text = Constants.Units.PARTICLES_PER_CUBIC_FOOT
+                    let honeybee = reading as! Honeybee
+                    value = Int(honeybee.readableLargeParticleValue!.getValue()).description
+                    // TODO background color
                 } else {
                     NSLog("WARNING - could not determine Readable type for ReadableIndexCell")
                     value = ""

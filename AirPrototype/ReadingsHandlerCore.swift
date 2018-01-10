@@ -61,6 +61,14 @@ class ReadingsHandlerCore {
     }
     
     
+    func clearHoneybees() {
+        // TODO Honeybee DB
+        //SpeckDbHelper.clearSpecksFromDb(self.specks)
+        self.honeybees.removeAll(keepingCapacity: true)
+        refreshHash()
+    }
+    
+    
     func refreshHash() {
         var tempReadables: [Readable]
         hashMap.removeAll(keepingCapacity: true)
@@ -76,8 +84,16 @@ class ReadingsHandlerCore {
             hashMap[Constants.HEADER_TITLES[0]] = specks
         }
         
-        // TODO honeybees
-        //hashMap[Constants.HEADER_TITLES[1]] = honeybees
+        // honeybees
+        if honeybees.count > 0 {
+            tempReadables = [Readable]()
+            for honeybee in honeybees {
+                tempReadables.append(honeybee)
+            }
+            hashMap[Constants.HEADER_TITLES[1]] = tempReadables
+        } else {
+            hashMap[Constants.HEADER_TITLES[1]] = honeybees
+        }
 
         // cities
         tempReadables = [Readable]()
@@ -85,7 +101,6 @@ class ReadingsHandlerCore {
             tempReadables.append(address)
         }
         hashMap[Constants.HEADER_TITLES[2]] = tempReadables
-        hashMap[Constants.HEADER_TITLES[1]] = tempReadables
     }
     
     
@@ -101,7 +116,92 @@ class ReadingsHandlerCore {
     }
     
     
-    // TODO func populateHoneybees()
+    fileprivate func findIndexOfHoneybeeWithDeviceId(_ deviceId: Int) -> Int? {
+        var i=0
+        for honeybee in honeybees {
+            if (honeybee as! Honeybee).deviceId == deviceId {
+                return i
+            }
+            i+=1
+        }
+        return nil
+    }
+    
+    
+    func populateHoneybees() {
+        if GlobalHandler.sharedInstance.settingsHandler.userLoggedIn {
+            let authToken = GlobalHandler.sharedInstance.esdrAccount.accessToken
+            let userId = GlobalHandler.sharedInstance.esdrAccount.userId
+            
+            func feedsCompletionHandler(_ url: URL?, response: URLResponse?, error: Error?) {
+                let httpResponse = response as! HTTPURLResponse
+                if error != nil {
+                    // ensure we don't receive an error while trying to grab feeds
+                } else if httpResponse.statusCode != 200 {
+                    // not sure if necessary... error usually is not nil but crashed
+                    // on me one time when starting up simulator & running
+                    NSLog("Got status code \(httpResponse.statusCode) != 200")
+                } else {
+                    let data = (try? JSONSerialization.jsonObject(with: Data(contentsOf: url!), options: [])) as? NSDictionary
+                    var resultHoneybees: Array<Honeybee>
+                    resultHoneybees = EsdrJsonParser.populateHoneybeesFromJson(data!)
+                    for honeybee in resultHoneybees {
+                        // only add what isnt in the DB already
+                        if findIndexOfSpeckWithDeviceId(honeybee.deviceId) == nil {
+                            self.honeybees.append(honeybee)
+                            GlobalHandler.sharedInstance.esdrFeedsHandler.requestUpdate(honeybee)
+                        }
+                    }
+                    if resultHoneybees.count > 0 {
+                        GlobalHandler.sharedInstance.esdrHoneybeesHandler.requestHoneybeeDevices(authToken!, userId: userId!, completionHandler: devicesCompletionHandler)
+                    }
+                }
+            }
+            func devicesCompletionHandler(_ url: URL?, response: URLResponse?, error: Error?) {
+                let httpResponse = response as! HTTPURLResponse
+                if error != nil {
+                    // If this runs, it is likely that we are "Unauthorized"
+                    // So, our token expired and we should clear everything
+                    NSLog("Failed in the devicesCompletionHandler")
+                    DispatchQueue.main.async {
+                        GlobalHandler.sharedInstance.loginController?.onClickLogout()
+                        UIAlertView.init(title: "www.specksensor.com", message: "Unauthorized Token", delegate: nil, cancelButtonTitle: "OK").show()
+                    }
+                } else if httpResponse.statusCode != 200 {
+                    // If this runs, it is likely that we are "Unauthorized"
+                    // So, our token expired and we should clear everything
+                    NSLog("4Got status code \(httpResponse.statusCode) != 200")
+                    DispatchQueue.main.async {
+                        GlobalHandler.sharedInstance.loginController?.onClickLogout()
+                        UIAlertView.init(title: "www.specksensor.com", message: "Unauthorized Token", delegate: nil, cancelButtonTitle: "OK").show()
+                    }
+                } else {
+                    let data = (try? JSONSerialization.jsonObject(with: Data(contentsOf: url!), options: [])) as! NSDictionary
+                    if let rows = (data.value(forKey: "data") as! NSDictionary).value(forKey: "rows") as? Array<NSDictionary> {
+                        var deviceId: Int
+                        var prettyName: String
+                        for row in rows {
+                            deviceId = row.value(forKey: "id") as! Int
+                            prettyName = row.value(forKey: "name") as! String
+                            if let index = findIndexOfSpeckWithDeviceId(deviceId) {
+                                if (honeybees[index] as! Honeybee)._id == nil {
+                                    (honeybees[index] as! Honeybee).name = prettyName
+                                }
+                            }
+                        }
+                    }
+                    for honeybee in honeybees {
+                        if (honeybee as! Honeybee)._id == nil {
+                            // TODO add honeybees into the database
+                        }
+                    }
+                    refreshHash()
+                }
+            }
+            GlobalHandler.sharedInstance.esdrHoneybeesHandler.requestHoneybeeFeeds(authToken!, userId: userId!, completionHandler: feedsCompletionHandler)
+        }
+        refreshHash()
+    }
     
     
     func populateSpecks() {

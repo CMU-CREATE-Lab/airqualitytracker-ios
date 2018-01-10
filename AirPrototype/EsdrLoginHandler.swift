@@ -19,7 +19,8 @@ class EsdrLoginHandler {
             GlobalHandler.sharedInstance.settingsHandler.userLoggedIn = userLoggedIn
             // repopulates specks on successful login/logout
             GlobalHandler.sharedInstance.readingsHandler.populateSpecks()
-            // TODO call to populateHoneybees()
+            // repopulates honeybees on successful login/logout
+            GlobalHandler.sharedInstance.readingsHandler.populateHoneybees()
             // also clears the blacklisted devices
             GlobalHandler.sharedInstance.settingsHandler.clearBlacklistedDevices()
         }

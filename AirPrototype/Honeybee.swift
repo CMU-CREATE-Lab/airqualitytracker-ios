@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import CoreData
 
 class Honeybee: Feed, LargeParticleReadable, SmallParticleReadable {
     
+    var _id: NSManagedObjectID?
     var feed_id = Int()
     var name = String()
     var exposure = String()

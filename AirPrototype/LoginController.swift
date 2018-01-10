@@ -132,6 +132,7 @@ class LoginController: UIViewController {
         loggedIn = false
         GlobalHandler.sharedInstance.esdrLoginHandler.setUserLoggedIn(false)
         GlobalHandler.sharedInstance.readingsHandler.clearSpecks()
+        GlobalHandler.sharedInstance.readingsHandler.clearHoneybees()
         display()
     }
     

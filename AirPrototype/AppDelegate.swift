@@ -14,40 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    
-    // TODO move code to ReadingsHandlerCore
-    private func requestHoneybeesFromEsdr() {
-        let authToken = ""
-        let userId = 0
-        func devicesResponseHandler(_ url: URL?, response: URLResponse?, error: Error?) {
-            if error != nil {
-                NSLog("requestHoneybeeDevices received error.")
-            } else if let data = (try? JSONSerialization.jsonObject(with: Data(contentsOf: url!), options: [])) as? NSDictionary {
-                // {id,name,productId,serialNumber}[]
-                NSLog("requestHoneybeeDevices received data: \(data)")
-            }
-        }
-        func feedsResponseHandler(_ url: URL?, response: URLResponse?, error: Error?) {
-            if error != nil {
-                NSLog("requestHoneybeeFeeds received error.")
-            } else if let data = (try? JSONSerialization.jsonObject(with: Data(contentsOf: url!), options: [])) as? NSDictionary {
-                NSLog("requestHoneybeeFeeds received data: \(data)")
-            }
-        }
-        
-        GlobalHandler.sharedInstance.esdrHoneybeesHandler.requestHoneybeeDevices(authToken, userId: userId, completionHandler: devicesResponseHandler(_:response:error:));
-        GlobalHandler.sharedInstance.esdrHoneybeesHandler.requestHoneybeeFeeds(authToken, userId: userId, completionHandler: feedsResponseHandler(_:response:error:));
-    }
-    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         NSLog(" ---- Application Launches ----")
         NSLog(" ==============================")
         NSLog("\n")
-        
-        // TODO move code to ReadingsHandlerCore
-        requestHoneybeesFromEsdr()
         
         if GlobalHandler.sharedInstance.settingsHandler.userLoggedIn {
             let timestamp = Int(Date().timeIntervalSince1970)
@@ -67,6 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         NSLog("found access_token=\(access_token), refresh_token=\(refresh_token)")
                         GlobalHandler.sharedInstance.esdrLoginHandler.updateEsdrTokens(access_token!, refreshToken: refresh_token!, expiresAt: timestamp+expires_in!)
                         NSLog("Updated ESDR Tokens!")
+                        // TODO save in DB instead of populating every time (should only happen on first login)
+                        GlobalHandler.sharedInstance.readingsHandler.populateHoneybees()
                     } else {
                         GlobalHandler.sharedInstance.esdrLoginHandler.removeEsdrAccount()
                         NSLog("Failed to grab access/refresh token(s)")

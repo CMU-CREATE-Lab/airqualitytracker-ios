@@ -61,6 +61,16 @@ class Constants {
     static let channelNamesTemperature = [
             "temperature"
     ]
+    
+    // Large particle channel names (dylos)
+    static let channelNamesLargeParticles = [
+            "Large"
+    ]
+    
+    // Small particle channel names (dylos)
+    static let channelNamesSmallParticles = [
+            "Small"
+    ]
 
     static let READINGS_MAX_TIME_RANGE: Double = 86400 // 24 hours
     
@@ -115,6 +125,7 @@ class Constants {
 
     struct Units {
         static let MICROGRAMS_PER_CUBIC_METER = "µg/m³";
+        static let PARTICLES_PER_CUBIC_FOOT = "p/ft³"
         static let PARTS_PER_MILLION = "ppm";
         static let PARTS_PER_BILLION = "ppb";
         static let AQI = "AQI";

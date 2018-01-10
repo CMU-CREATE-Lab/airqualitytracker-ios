@@ -44,7 +44,7 @@ class EsdrFeedsHandler {
     
     
     func requestChannelReadingForHoneybee(feedApiKey: String?, honeybee: Honeybee, channel: Channel, maxTime: Double?) {
-        let feedId = channel.feed!.feed_id.description
+        let feedId = honeybee.feed_id.description
         let channelName = channel.name
         
         // handles http response
