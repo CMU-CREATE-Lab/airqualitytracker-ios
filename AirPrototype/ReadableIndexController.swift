@@ -145,8 +145,11 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCell", for: indexPath) as! ReadableIndexCell
         let readingsHandler = GlobalHandler.sharedInstance.readingsHandler
         let readings = readingsHandler.adapterList[readingsHandler.headers[indexPath.section]]!
-        // TODO sometimes we get out of index here?
-        cell.populate(readings[indexPath.row])
+        if readings.count > indexPath.row {
+            cell.populate(readings[indexPath.row])
+        } else {
+            NSLog("WARNING - tried to populate cell at indexPath=\(indexPath.row) but section count was \(readings.count)")
+        }
         return cell
     }
     

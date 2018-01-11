@@ -37,7 +37,6 @@ class EsdrHoneybeesHandler {
         }
         
         // send request
-        NSLog(Constants.Esdr.API_URL + "/api/v1/devices?whereAnd=userId=\(userId),productId=\(HONEYBEE_PRODUCT_ID)\(listDevices)")
         let request = HttpHelper.generateRequest(Constants.Esdr.API_URL + "/api/v1/devices?whereAnd=userId=\(userId),productId=\(HONEYBEE_PRODUCT_ID)\(listDevices)", httpMethod: "GET")
         GlobalHandler.sharedInstance.httpRequestHandler.sendAuthorizedJsonRequest(authToken, urlRequest: request as URLRequest, completionHandler: completionHandler)
     }

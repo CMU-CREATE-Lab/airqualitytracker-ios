@@ -45,9 +45,17 @@ class AddressShowController: UIViewController {
     }
     
     
-    func defaultView() {
+    func defaultAddressView() {
         labelValueTitle.text = Constants.DefaultReading.DEFAULT_TITLE
-        labelValueDescription.text = Constants.DefaultReading.DEFAULT_DESCRIPTION
+        labelValueDescription.text = Constants.DefaultReading.DEFAULT_ADDRESS_DESCRIPTION
+        mainView.backgroundColor = Constants.DefaultReading.DEFAULT_COLOR_BACKGROUND
+        clearAndHide([labelMeasurementRange, labelShowValue, labelReadingMeasurement])
+    }
+    
+    
+    func defaultDeviceView() {
+        labelValueTitle.text = Constants.DefaultReading.DEFAULT_TITLE
+        labelValueDescription.text = Constants.DefaultReading.DEFAULT_DEVICE_DESCRIPTION
         mainView.backgroundColor = Constants.DefaultReading.DEFAULT_COLOR_BACKGROUND
         clearAndHide([labelMeasurementRange, labelShowValue, labelReadingMeasurement])
     }
@@ -107,7 +115,7 @@ class AddressShowController: UIViewController {
                 address.requestDailyFeedTracker(self)
             }
         } else {
-            defaultView()
+            defaultAddressView()
         }
     }
     
@@ -127,10 +135,32 @@ class AddressShowController: UIViewController {
                 mainView.backgroundColor = speckReading.getColor()
                 labelReadingMeasurement.text = Constants.Units.RANGE_MICROGRAMS_PER_CUBIC_METER
             } else {
-                defaultView()
+                defaultDeviceView()
             }
         } else {
-            defaultView()
+            defaultDeviceView()
+        }
+    }
+    
+    
+    func honeybeeView(_ honeybee: Honeybee) {
+        NSLog("honeybeeView")
+        if honeybee.hasReadableValue() {
+            let particles = honeybee.getReadableValues().first!.getValue()
+            labelShowValue.text = Int(particles).description
+            let honeybeeReading = HoneybeeReading(reading: particles)
+            if honeybeeReading.withinRange() {
+                labelReadingMeasurement.isHidden = false
+                labelMeasurementRange.text = "\(honeybeeReading.getRangeFromIndex()) small particles"
+                labelValueTitle.text = honeybeeReading.getTitle()
+                labelValueDescription.text = honeybeeReading.getDescription()
+                mainView.backgroundColor = honeybeeReading.getColor()
+                labelReadingMeasurement.text = Constants.Units.RANGE_PARTICLES_PER_CUBIC_FOOT
+            } else {
+                defaultDeviceView()
+            }
+        } else {
+            defaultDeviceView()
         }
     }
     
@@ -145,6 +175,8 @@ class AddressShowController: UIViewController {
             addressView(reading as! SimpleAddress)
         } else if (reading! is Speck) {
             speckView(reading as! Speck)
+        } else if (reading! is Honeybee) {
+            honeybeeView(reading as! Honeybee)
         } else {
             NSLog("WARNING - could not populate view; unknown readable type")
         }

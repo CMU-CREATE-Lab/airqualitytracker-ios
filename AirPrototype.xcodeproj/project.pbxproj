@@ -39,6 +39,7 @@
 		275E69901FE2D105009900EF /* Honeybee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275E698F1FE2D105009900EF /* Honeybee.swift */; };
 		275E69921FE2E881009900EF /* EsdrHoneybeesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275E69911FE2E881009900EF /* EsdrHoneybeesHandler.swift */; };
 		279FB4CC1CEA502800B5C8AA /* DailyTrackerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279FB4CB1CEA502800B5C8AA /* DailyTrackerController.swift */; };
+		27A1593C2006ABA400C7B79F /* HoneybeeReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1593B2006ABA400C7B79F /* HoneybeeReading.swift */; };
 		27C0225A1CEB50CC00C34EFD /* daily_tracker_grid.html in Resources */ = {isa = PBXBuildFile; fileRef = 27C022591CEB50CC00C34EFD /* daily_tracker_grid.html */; };
 		27C0225C1CEB50DC00C34EFD /* jquery-1.12.3.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 27C0225B1CEB50DC00C34EFD /* jquery-1.12.3.min.js */; };
 		27C32FB81CB594490063BF23 /* ManualOverrides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C32FB71CB594490063BF23 /* ManualOverrides.swift */; };
@@ -170,6 +171,7 @@
 		275E698F1FE2D105009900EF /* Honeybee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Honeybee.swift; sourceTree = "<group>"; };
 		275E69911FE2E881009900EF /* EsdrHoneybeesHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EsdrHoneybeesHandler.swift; sourceTree = "<group>"; };
 		279FB4CB1CEA502800B5C8AA /* DailyTrackerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTrackerController.swift; sourceTree = "<group>"; };
+		27A1593B2006ABA400C7B79F /* HoneybeeReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoneybeeReading.swift; sourceTree = "<group>"; };
 		27C022591CEB50CC00C34EFD /* daily_tracker_grid.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = daily_tracker_grid.html; path = Assets/webviews/daily_tracker_grid.html; sourceTree = "<group>"; };
 		27C0225B1CEB50DC00C34EFD /* jquery-1.12.3.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-1.12.3.min.js"; path = "Assets/webviews/lib/jquery-1.12.3.min.js"; sourceTree = "<group>"; };
 		27C32FB71CB594490063BF23 /* ManualOverrides.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualOverrides.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				274F6AE11D0B1F550012DE95 /* AQIReading.swift */,
 				274F6AE31D0B1F640012DE95 /* SpeckReading.swift */,
 				274F6AE51D0B1F800012DE95 /* WHOReading.swift */,
+				27A1593B2006ABA400C7B79F /* HoneybeeReading.swift */,
 			);
 			name = aqi_scales;
 			sourceTree = "<group>";
@@ -869,6 +872,7 @@
 				A16A14711B5FD9070026E9C8 /* EsdrJsonParser.swift in Sources */,
 				A1551C6A1C29CD72005ED28B /* ReadingsHandlerEditable.swift in Sources */,
 				A15CDB401C861689002D5C0F /* AirNowDetailsController.swift in Sources */,
+				27A1593C2006ABA400C7B79F /* HoneybeeReading.swift in Sources */,
 				A167F08B1C6D02C80006E1F6 /* AirNowJsonParser.swift in Sources */,
 				27242E0F1E01DCA800DB24F3 /* HumidityValue.swift in Sources */,
 				275E698C1FE2CF7B009900EF /* SmallParticleChannel.swift in Sources */,

@@ -107,16 +107,14 @@ class Honeybee: Feed, LargeParticleReadable, SmallParticleReadable {
     
     
     func hasReadableValue() -> Bool {
-        // TODO do we want large or small as default
-        return (readableLargeParticleValue != nil)
+        return (readableSmallParticleValue != nil)
     }
     
     
     func getReadableValues() -> Array<ReadableValue> {
         var result = Array<ReadableValue>()
         if (hasReadableValue()) {
-            // TODO do we want large or small as default
-            result.append(readableLargeParticleValue!)
+            result.append(readableSmallParticleValue!)
         }
         return result
     }

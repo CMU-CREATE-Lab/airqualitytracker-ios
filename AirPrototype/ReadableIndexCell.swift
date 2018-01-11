@@ -68,8 +68,12 @@ class ReadableIndexCell: UICollectionViewCell {
                 } else if (reading is Honeybee) {
                     textItemLabel.text = Constants.Units.PARTICLES_PER_CUBIC_FOOT
                     let honeybee = reading as! Honeybee
-                    value = Int(honeybee.readableLargeParticleValue!.getValue()).description
-                    // TODO background color
+                    let smallParticles = honeybee.getReadableValues().first!.getValue()
+                    value = Int(smallParticles).description
+                    let honeybeeReading = HoneybeeReading(reading: smallParticles)
+                    if honeybeeReading.withinRange() {
+                        self.backgroundColor = honeybeeReading.getColor()
+                    }
                 } else {
                     NSLog("WARNING - could not determine Readable type for ReadableIndexCell")
                     value = ""

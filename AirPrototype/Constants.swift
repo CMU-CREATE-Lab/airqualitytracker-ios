@@ -130,6 +130,7 @@ class Constants {
         static let PARTS_PER_BILLION = "ppb";
         static let AQI = "AQI";
         static let RANGE_MICROGRAMS_PER_CUBIC_METER = "µg/m³    /500";
+        static let RANGE_PARTICLES_PER_CUBIC_FOOT = "particles/ft³    /3000";
         static let RANGE_AQI = "AQI    /500";
     }
     
@@ -174,7 +175,8 @@ class Constants {
         static let DEFAULT_LOCATION = "N/A";
         static let DEFAULT_COLOR_BACKGROUND = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 65.0/255.0, alpha: 1.0)
         static let DEFAULT_TITLE = "Unavailable";
-        static let DEFAULT_DESCRIPTION = "The current AQI for this region is unavailable.";
+        static let DEFAULT_ADDRESS_DESCRIPTION = "The current AQI for this region is unavailable.";
+        static let DEFAULT_DEVICE_DESCRIPTION = "The current value for this device is unavailable."
     }
     
 }

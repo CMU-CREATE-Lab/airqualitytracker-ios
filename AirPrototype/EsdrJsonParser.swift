@@ -66,18 +66,10 @@ class EsdrJsonParser {
             // actions
             let keys = channels.keyEnumerator()
             while let channelName = keys.nextObject() as? String {
-                //                // Only grab channels that we care about
-                //                if let index = Constants.channelNames.indexOf(channelName) {
-                //                    // ... now we grab them all
-                //                }
-                // NOTICE: we must also make sure that this specific channel was updated
-                // in the past 24 hours ("maxTime").
                 let channel = channels.value(forKey: channelName) as! NSDictionary
                 let channelTime = channel.value(forKey: "maxTimeSecs") as! Double
                 if channelTime >= maxTime {
-                    //                    feedChannels.append(parseChannelFromJson(channelName, feed: result, dataEntry: channel))
                     result.append(parseChannelFromJson(channelName, feed: feed, dataEntry: channel))
-                    //break
                 }
             }
 
@@ -155,24 +147,11 @@ class EsdrJsonParser {
         }
         result.productId = productId
         
-        if let channels = (dataEntry.value(forKey: "channelBounds") as AnyObject).value(forKey: "channels") as? NSDictionary {
-            let keys = channels.keyEnumerator()
-            while let channelName = keys.nextObject() as? String {
-//                // Only grab channels that we care about
-//                if let index = Constants.channelNames.indexOf(channelName) {
-//                    // ... now we grab them all
-//                }
-                // NOTICE: we must also make sure that this specific channel was updated
-                // in the past 24 hours ("maxTime").
-                let channel = channels.value(forKey: channelName) as! NSDictionary
-                let channelTime = channel.value(forKey: "maxTimeSecs") as! Double
-                if channelTime >= maxTime {
-//                    feedChannels.append(parseChannelFromJson(channelName, feed: result, dataEntry: channel))
-                    result.addChannel(parseChannelFromJson(channelName, feed: result, dataEntry: channel))
-                    //break
-                }
+        let channels = parseChannelsFromFeed(result, dataEntry: dataEntry, maxTime: maxTime)
+        if channels.count > 0 {
+            for channel in channels {
+                result.addChannel(channel)
             }
-//            result.channels = feedChannels
         }
         
         return result
