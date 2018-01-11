@@ -108,6 +108,7 @@ class GlobalHandler {
         // Now, perform readings update
         readingsHandler.updateAddresses()
         readingsHandler.updateSpecks()
+        readingsHandler.updateHoneybees()
         if settingsHandler.appUsesLocation {
             esdrFeedsHandler.requestUpdate(readingsHandler.gpsReadingHandler.gpsAddress)
         }

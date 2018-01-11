@@ -15,6 +15,7 @@ class DatabaseHelper {
     static func loadFromDb() {
         AddressDbHelper.loadAddressesFromDb()
         SpeckDbHelper.loadSpecksFromDb()
+        HoneybeeDbHelper.loadHoneybeesFromDb()
     }
     
 }

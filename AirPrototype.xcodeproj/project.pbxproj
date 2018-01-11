@@ -45,6 +45,8 @@
 		27C32FB81CB594490063BF23 /* ManualOverrides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C32FB71CB594490063BF23 /* ManualOverrides.swift */; };
 		27D9F7031CE21B490066E1B5 /* DailyFeedTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D9F7021CE21B490066E1B5 /* DailyFeedTracker.swift */; };
 		27D9F7051CE21B550066E1B5 /* DayFeedValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D9F7041CE21B550066E1B5 /* DayFeedValue.swift */; };
+		27E8B3672007C23B00B0A692 /* HoneybeeDbHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E8B3662007C23B00B0A692 /* HoneybeeDbHelper.swift */; };
+		27E8B3692007C3CA00B0A692 /* StoredHoneybee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E8B3682007C3CA00B0A692 /* StoredHoneybee.swift */; };
 		A103E6081BE12A5E0065378D /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103E6071BE12A5E0065378D /* SettingsController.swift */; };
 		A11844AF1BA9E7A600435D11 /* ServicesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11844AE1BA9E7A600435D11 /* ServicesHandler.swift */; };
 		A11844B11BA9FECC00435D11 /* CLLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11844B01BA9FECC00435D11 /* CLLocationService.swift */; };
@@ -177,6 +179,8 @@
 		27C32FB71CB594490063BF23 /* ManualOverrides.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualOverrides.swift; sourceTree = "<group>"; };
 		27D9F7021CE21B490066E1B5 /* DailyFeedTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyFeedTracker.swift; sourceTree = "<group>"; };
 		27D9F7041CE21B550066E1B5 /* DayFeedValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayFeedValue.swift; sourceTree = "<group>"; };
+		27E8B3662007C23B00B0A692 /* HoneybeeDbHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoneybeeDbHelper.swift; sourceTree = "<group>"; };
+		27E8B3682007C3CA00B0A692 /* StoredHoneybee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredHoneybee.swift; sourceTree = "<group>"; };
 		A103E6071BE12A5E0065378D /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		A11844AE1BA9E7A600435D11 /* ServicesHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesHandler.swift; sourceTree = "<group>"; };
 		A11844B01BA9FECC00435D11 /* CLLocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationService.swift; sourceTree = "<group>"; };
@@ -435,6 +439,8 @@
 				A158F6101B8E000F00FCE2E1 /* DatabaseHelper.swift */,
 				A158B4CF1C21FD48006CC0E5 /* AddressDbHelper.swift */,
 				A158B4D11C21FF27006CC0E5 /* SpeckDbHelper.swift */,
+				27E8B3662007C23B00B0A692 /* HoneybeeDbHelper.swift */,
+				27E8B3682007C3CA00B0A692 /* StoredHoneybee.swift */,
 			);
 			name = database;
 			sourceTree = "<group>";
@@ -912,6 +918,7 @@
 				275E69881FE2C955009900EF /* LargeParticleReadable.swift in Sources */,
 				A14C456B1BA0B2B000D6C9CF /* ReadableIndexController.swift in Sources */,
 				A103E6081BE12A5E0065378D /* SettingsController.swift in Sources */,
+				27E8B3672007C23B00B0A692 /* HoneybeeDbHelper.swift in Sources */,
 				A11844B11BA9FECC00435D11 /* CLLocationService.swift in Sources */,
 				275D62141E03036F001292D8 /* Pm25Readable.swift in Sources */,
 				A167F08D1C6D0A9B0006E1F6 /* AirNowRequestHandler.swift in Sources */,
@@ -939,6 +946,7 @@
 				A18479D71BDE6990009CB151 /* StoredSpeck.swift in Sources */,
 				A1551C631C29BB5F005ED28B /* ReadingsHandler.swift in Sources */,
 				A158E13A1BCFF9440026944E /* AutocompleteTimer.swift in Sources */,
+				27E8B3692007C3CA00B0A692 /* StoredHoneybee.swift in Sources */,
 				A17527C61BD55791007526C0 /* ManageTrackersTableViewCell.swift in Sources */,
 				A14E5C741C7CDA2800D08A34 /* HttpHelper.swift in Sources */,
 				A158E1381BCFE9B20026944E /* RefreshTimer.swift in Sources */,

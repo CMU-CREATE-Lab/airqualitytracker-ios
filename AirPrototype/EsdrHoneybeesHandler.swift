@@ -48,17 +48,16 @@ class EsdrHoneybeesHandler {
             let data = (try? JSONSerialization.jsonObject(with: Data(contentsOf: url!), options: [])) as! NSDictionary
             let dataEntry = data.value(forKey: "data") as! NSDictionary
             if let channels = (dataEntry.value(forKey: "channelBounds") as AnyObject).value(forKey: "channels") as? NSDictionary {
-                // TODO enumerate through channels and add for Honeybee
                 
-//                let keys = channels.keyEnumerator()
-//                while let channelName = keys.nextObject() as? String {
-//                    // NOTICE: we must also make sure that this specific channel was updated
-//                    // in the past 24 hours ("maxTime").
-//                    let channel = channels.value(forKey: channelName) as! NSDictionary
-//                    let channelTime = channel.value(forKey: "maxTimeSecs") as! Double
-//                    honeybee.addChannel(EsdrJsonParser.parseChannelFromJson(channelName, feed: honeybee, dataEntry: channel))
-//                }
-//                GlobalHandler.sharedInstance.esdrFeedsHandler.requestUpdate(honeybee)
+                let keys = channels.keyEnumerator()
+                while let channelName = keys.nextObject() as? String {
+                    // NOTICE: we must also make sure that this specific channel was updated
+                    // in the past 24 hours ("maxTime").
+                    let channel = channels.value(forKey: channelName) as! NSDictionary
+                    let channelTime = channel.value(forKey: "maxTimeSecs") as! Double
+                    honeybee.addChannel(channel: EsdrJsonParser.parseChannelFromJson(channelName, feed: nil, dataEntry: channel))
+                }
+                GlobalHandler.sharedInstance.esdrFeedsHandler.requestUpdate(honeybee)
             }
         }
         

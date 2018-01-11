@@ -150,7 +150,8 @@ class SpeckDbHelper {
                 SpeckKeys.exposureKey: speck.exposure as AnyObject,
                 SpeckKeys.feedIdKey: speck.feed_id as AnyObject,
                 SpeckKeys.isMobileKey: speck.isMobile as AnyObject,
-                SpeckKeys.productIdKey: speck.productId as AnyObject
+                SpeckKeys.productIdKey: speck.productId as AnyObject,
+                SpeckKeys.apiKeyReadOnlyKey: speck.apiKeyReadOnly! as AnyObject
             ]
             storedSpeck.setValuesForKeys(insertValues)
             

@@ -39,8 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         NSLog("found access_token=\(access_token), refresh_token=\(refresh_token)")
                         GlobalHandler.sharedInstance.esdrLoginHandler.updateEsdrTokens(access_token!, refreshToken: refresh_token!, expiresAt: timestamp+expires_in!)
                         NSLog("Updated ESDR Tokens!")
-                        // TODO save in DB instead of populating every time (should only happen on first login)
-                        GlobalHandler.sharedInstance.readingsHandler.populateHoneybees()
                     } else {
                         GlobalHandler.sharedInstance.esdrLoginHandler.removeEsdrAccount()
                         NSLog("Failed to grab access/refresh token(s)")

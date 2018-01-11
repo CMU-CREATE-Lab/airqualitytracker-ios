@@ -26,7 +26,6 @@ class Honeybee: Feed, LargeParticleReadable, SmallParticleReadable {
     
     init(deviceId: Int) {
         self.deviceId = deviceId
-        // TODO actions
     }
     
     

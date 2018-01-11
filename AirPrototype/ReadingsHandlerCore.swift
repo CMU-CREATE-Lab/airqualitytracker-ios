@@ -13,7 +13,7 @@ import UIKit
 class ReadingsHandlerCore {
     
     var addresses = [SimpleAddress]()
-    var honeybees = [Readable]()
+    var honeybees = [Honeybee]()
     var specks = [Speck]()
     var headers = Constants.HEADER_TITLES
     var hashMap = [String: [Readable]]()
@@ -33,11 +33,20 @@ class ReadingsHandlerCore {
     }
     
     
+    func updateHoneybees() {
+        for honeybee in honeybees {
+            GlobalHandler.sharedInstance.esdrFeedsHandler.requestUpdate(honeybee)
+        }
+    }
+    
+    
     func addReading(_ readable: Readable) {
         if (readable is SimpleAddress) {
             addresses.append(readable as! SimpleAddress)
         } else if (readable is Speck) {
             specks.append(readable as! Speck)
+        } else if (readable is Honeybee) {
+            honeybees.append(readable as! Honeybee)
         } else {
             NSLog("Tried to add Readable of unknown Type in HeaderReadingsHashMap")
         }
@@ -62,8 +71,7 @@ class ReadingsHandlerCore {
     
     
     func clearHoneybees() {
-        // TODO Honeybee DB
-        //SpeckDbHelper.clearSpecksFromDb(self.specks)
+        HoneybeeDbHelper.clearHoneybeesFromDb(self.honeybees)
         self.honeybees.removeAll(keepingCapacity: true)
         refreshHash()
     }
@@ -119,7 +127,7 @@ class ReadingsHandlerCore {
     fileprivate func findIndexOfHoneybeeWithDeviceId(_ deviceId: Int) -> Int? {
         var i=0
         for honeybee in honeybees {
-            if (honeybee as! Honeybee).deviceId == deviceId {
+            if honeybee.deviceId == deviceId {
                 return i
             }
             i+=1
@@ -147,7 +155,7 @@ class ReadingsHandlerCore {
                     resultHoneybees = EsdrJsonParser.populateHoneybeesFromJson(data!)
                     for honeybee in resultHoneybees {
                         // only add what isnt in the DB already
-                        if findIndexOfSpeckWithDeviceId(honeybee.deviceId) == nil {
+                        if findIndexOfHoneybeeWithDeviceId(honeybee.deviceId) == nil {
                             self.honeybees.append(honeybee)
                             GlobalHandler.sharedInstance.esdrFeedsHandler.requestUpdate(honeybee)
                         }
@@ -184,15 +192,16 @@ class ReadingsHandlerCore {
                             deviceId = row.value(forKey: "id") as! Int
                             prettyName = row.value(forKey: "name") as! String
                             if let index = findIndexOfSpeckWithDeviceId(deviceId) {
-                                if (honeybees[index] as! Honeybee)._id == nil {
-                                    (honeybees[index] as! Honeybee).name = prettyName
+                                if honeybees[index]._id == nil {
+                                    honeybees[index].name = prettyName
                                 }
                             }
                         }
                     }
+                    // add all honeybees into the database which arent in there already
                     for honeybee in honeybees {
-                        if (honeybee as! Honeybee)._id == nil {
-                            // TODO add honeybees into the database
+                        if honeybee._id == nil {
+                            HoneybeeDbHelper.addHoneybeeToDb(honeybee)
                         }
                     }
                     refreshHash()

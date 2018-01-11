@@ -31,7 +31,8 @@ class Constants {
         SettingsKeys.refreshToken: "" as AnyObject,
         SettingsKeys.blacklistedDevices: [] as AnyObject,
         SettingsKeys.addressLastPosition: 1 as AnyObject,
-        SettingsKeys.speckLastPosition: 1 as AnyObject
+        SettingsKeys.speckLastPosition: 1 as AnyObject,
+        SettingsKeys.honeybeeLastPosition: 1 as AnyObject
     ]
     
     // particulate matter channel names
@@ -116,6 +117,7 @@ class Constants {
         static let blacklistedDevices = "blacklisted_devices"
         static let addressLastPosition = "address_last_position"
         static let speckLastPosition = "speck_last_position"
+        static let honeybeeLastPosition = "honeybee_last_position"
     }
 
     struct Location {

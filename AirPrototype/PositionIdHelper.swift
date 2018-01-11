@@ -47,6 +47,17 @@ class PositionIdHelper {
     }
     
     
+    func getHoneybeeLastPosition() -> Int? {
+        let userDefaults = GlobalHandler.sharedInstance.settingsHandler.userDefaults
+        let position = userDefaults.value(forKey: Constants.SettingsKeys.honeybeeLastPosition) as! Int
+        userDefaults.set(position+1, forKey: Constants.SettingsKeys.honeybeeLastPosition)
+        if userDefaults.synchronize() {
+            return position
+        }
+        return nil
+    }
+    
+    
     func reorderAddressPositions(_ addresses: [SimpleAddress]) {
         var index = 1
         for address in addresses {

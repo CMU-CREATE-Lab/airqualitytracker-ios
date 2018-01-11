@@ -72,8 +72,10 @@ class ReadableIndexController: UICollectionViewController, UICollectionViewDeleg
         // NOTICE: in Swiftland, we cannot call these functions
         // within GlobalHandler (since we cannot pass the reference 
         // until after init). Instead, we load from the DB here.
-        AddressDbHelper.loadAddressesFromDb()
-        SpeckDbHelper.loadSpecksFromDb()
+//        AddressDbHelper.loadAddressesFromDb()
+//        SpeckDbHelper.loadSpecksFromDb()
+//        HoneybeeDbHelper.loadHoneybeesFromDb()
+        DatabaseHelper.loadFromDb()
         let globalHandler = GlobalHandler.sharedInstance
         globalHandler.readableIndexListView = self.gridView
         
