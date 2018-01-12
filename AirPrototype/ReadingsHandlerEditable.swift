@@ -35,6 +35,18 @@ class ReadingsHandlerEditable: ReadingsHandlerCore {
         NSLog("WARNING - Failed to find index from speck")
         return nil
     }
+    
+    
+    fileprivate func findIndexFromHoneybee(_ honeybee: Honeybee) -> Int? {
+        let max = honeybees.endIndex - 1
+        for i in 0...max {
+            if honeybees[i] === honeybee {
+                return i
+            }
+        }
+        NSLog("WARNING - Failed to find index from honeybee")
+        return nil
+    }
 
     
     func reorderReading(_ reading: Readable, destination: Readable) {
@@ -48,6 +60,11 @@ class ReadingsHandlerEditable: ReadingsHandlerCore {
             let to = findIndexFromSpeck(destination as! Speck)
             specks.remove(at: from!)
             specks.insert(reading as! Speck, at: to!)
+        } else if (reading is Honeybee) {
+            let from = findIndexFromHoneybee(reading as! Honeybee)
+            let to = findIndexFromHoneybee(destination as! Honeybee)
+            honeybees.remove(at: from!)
+            honeybees.insert(reading as! Honeybee, at: to!)
         }
         let positionIdHelper = GlobalHandler.sharedInstance.positionIdHelper
         positionIdHelper.reorderAddressPositions(addresses)
@@ -69,6 +86,13 @@ class ReadingsHandlerEditable: ReadingsHandlerCore {
             let speck = readable as! Speck
             SpeckDbHelper.deleteSpeckFromDb(speck)
             GlobalHandler.sharedInstance.settingsHandler.addToBlacklistedDevices(speck.deviceId)
+        } else if (readable is Honeybee) {
+            if let honeybeeIndex = findIndexFromHoneybee(readable as! Honeybee) {
+                honeybees.remove(at: honeybeeIndex)
+            }
+            let honeybee = readable as! Honeybee
+            HoneybeeDbHelper.deleteHoneybeeFromDb(honeybee)
+            GlobalHandler.sharedInstance.settingsHandler.addToBlacklistedDevices(honeybee.deviceId)
         } else {
             NSLog("Tried to remove Readable of unknown Type in HeaderReadingsHashMap")
         }
@@ -85,6 +109,12 @@ class ReadingsHandlerEditable: ReadingsHandlerCore {
             let speck = reading as! Speck
             speck.name = name
             SpeckDbHelper.updateSpeckInDb(speck)
+        } else if (reading is Honeybee) {
+            let honeybee = reading as! Honeybee
+            honeybee.name = name
+            HoneybeeDbHelper.updateHoneybeeInDb(honeybee)
+        } else {
+            NSLog("WARNING - could not rename reading to \(name) from unknown class")
         }
     }
     

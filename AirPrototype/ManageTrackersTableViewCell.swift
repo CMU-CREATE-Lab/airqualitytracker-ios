@@ -43,7 +43,11 @@ class ManageTrackersTableViewCell: UITableViewCell, UIAlertViewDelegate {
             dialog.alertViewStyle = UIAlertViewStyle.plainTextInput
             dialog.show()
         } else if (reading is Speck) {
-            let dialog = UIAlertView.init(title: "Change Address Name", message: reading.getName(), delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Save")
+            let dialog = UIAlertView.init(title: "Change Speck Name", message: reading.getName(), delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Save")
+            dialog.alertViewStyle = UIAlertViewStyle.plainTextInput
+            dialog.show()
+        } else if (reading is Honeybee) {
+            let dialog = UIAlertView.init(title: "Change Honeybee Name", message: reading.getName(), delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Save")
             dialog.alertViewStyle = UIAlertViewStyle.plainTextInput
             dialog.show()
         } else {
