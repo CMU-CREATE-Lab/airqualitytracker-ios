@@ -23,7 +23,7 @@ class SecretMenuTableCell: UITableViewCell {
         labelFeedName.text = feed.getName()
         labelLatitude.text = feed.location.latitude.description
         labelLongitude.text = feed.location.longitude.description
-        labelFeedValue.text = feed.getReadablePm25Value().getValue().description
+        labelFeedValue.text = feed.hasReadablePm25Value() ? feed.getReadablePm25Value().getValue().description : "pm25 DNE"
         let distance = MapGeometry.getDistance(address.location, to: feed.location)
         labelFeedDistance.text = "\(Pm25AqiConverter.decimalPrecision(distance, digits: 2)) mi"
         labelFeedId.text = "id=\(feed.feed_id.description)"
