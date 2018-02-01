@@ -15,12 +15,12 @@ class HoneybeeReading: Scalable {
     
     // static class attributes
     fileprivate static let descriptions = [
-        "This is a small particle count from a Dylos device configured with a Honeybee.",
-        "This is a small particle count from a Dylos device configured with a Honeybee.",
-        "This is a small particle count from a Dylos device configured with a Honeybee.",
-        "This is a small particle count from a Dylos device configured with a Honeybee.",
-        "This is a small particle count from a Dylos device configured with a Honeybee.",
-        "This is a small particle count from a Dylos device configured with a Honeybee.",
+        "This is a particle count from a Dylos device configured with a Honeybee.",
+        "This is a particle count from a Dylos device configured with a Honeybee.",
+        "This is a particle count from a Dylos device configured with a Honeybee.",
+        "This is a particle count from a Dylos device configured with a Honeybee.",
+        "This is a particle count from a Dylos device configured with a Honeybee.",
+        "This is a particle count from a Dylos device configured with a Honeybee.",
     ]
     // TODO change colors (uses Speck colors for now)
     fileprivate static let normalColors = [
