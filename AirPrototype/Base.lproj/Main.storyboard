@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qsw-IM-QUZ">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qsw-IM-QUZ">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -27,13 +30,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Log in to specksensor.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zd0-cr-s1e">
-                                <frame key="frameInset" minX="20" minY="28" width="560" height="29"/>
+                                <rect key="frame" x="20" y="28" width="560" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CAZ-Qu-aNz">
-                                <frame key="frameInset" minX="4" minY="65" width="592" height="527"/>
+                                <rect key="frame" x="4" y="65" width="592" height="527"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -69,8 +72,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqu-a7-7Od">
+                                <rect key="frame" x="-4" y="0.0" width="383" height="623"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpF-6f-Hm5">
+                                        <rect key="frame" x="20" y="0.0" width="343" height="160"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="160" id="EBx-ou-xIe"/>
                                         </constraints>
@@ -79,36 +84,44 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AQI  /500" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6PX-Qm-Jcq">
+                                        <rect key="frame" x="20" y="168" width="343" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AQI 0-50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpZ-Zs-5F7">
+                                        <rect key="frame" x="20" y="264" width="343" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJo-27-Cc5">
+                                        <rect key="frame" x="20" y="306" width="343" height="17"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Air quality is considered satisfactory, and air pollution poses little or no risk" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fF-aT-VuF">
+                                        <rect key="frame" x="28" y="331" width="343" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cwf-Jb-LtC">
+                                        <rect key="frame" x="0.0" y="373" width="383" height="66"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8t4-2W-cl9">
+                                                <rect key="frame" x="8" y="0.0" width="32" height="66"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="32" id="IGU-J9-If9"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="20k-i5-lL7">
+                                                <rect key="frame" x="48" y="0.0" width="287" height="66"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# dirty days in the past year" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cye-Vd-5LH">
+                                                        <rect key="frame" x="0.0" y="26" width="287" height="14.5"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -122,8 +135,11 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c06-eg-AFc">
+                                                <rect key="frame" x="343" y="0.0" width="32" height="66"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_keyboard_arrow_right_3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="RSS-je-sxc"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_keyboard_arrow_right_3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="RSS-je-sxc">
+                                                        <rect key="frame" x="0.0" y="0.0" width="32" height="66"/>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -155,10 +171,14 @@
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kwG-VL-kDS">
+                                        <rect key="frame" x="0.0" y="454" width="383" height="66"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w9M-pV-ROu">
+                                                <rect key="frame" x="8" y="0.0" width="32" height="66"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_near_me_3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="Fha-Fe-shi"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_near_me_3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="Fha-Fe-shi">
+                                                        <rect key="frame" x="8" y="8" width="24" height="58"/>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -170,8 +190,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MNX-kl-725">
+                                                <rect key="frame" x="48" y="0.0" width="247" height="66"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PM2.5 READING:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B0i-Ci-7Rd">
+                                                        <rect key="frame" x="0.0" y="16" width="247" height="12"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="12" id="yIU-Ge-RvR"/>
                                                         </constraints>
@@ -180,6 +202,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reading Name at Street AirNow" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JzA-qp-4FJ">
+                                                        <rect key="frame" x="0.0" y="28" width="247" height="14.5"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -196,8 +219,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9CZ-5k-uI8">
+                                                <rect key="frame" x="303" y="0.0" width="32" height="66"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Tk-JY-eTE">
+                                                        <rect key="frame" x="0.0" y="0.0" width="32" height="66"/>
                                                         <fontDescription key="fontDescription" name="Dosis-Light" family="Dosis" pointSize="17"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -213,8 +238,11 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mm5-1o-LCH">
+                                                <rect key="frame" x="343" y="0.0" width="32" height="66"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_keyboard_arrow_right_3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="ypv-EZ-2Kn"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_keyboard_arrow_right_3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="ypv-EZ-2Kn">
+                                                        <rect key="frame" x="0.0" y="0.0" width="32" height="66"/>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -248,10 +276,14 @@
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="etp-Hv-a6v">
+                                        <rect key="frame" x="0.0" y="535" width="383" height="80"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FyY-Xa-xf5">
+                                                <rect key="frame" x="8" y="0.0" width="32" height="80"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_near_me_3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="uuh-Pm-wCj"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_near_me_3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="uuh-Pm-wCj">
+                                                        <rect key="frame" x="8" y="8" width="24" height="72"/>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -263,8 +295,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QdA-Zc-S1L">
+                                                <rect key="frame" x="48" y="0.0" width="247" height="80"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OZONE READING:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xU-pa-d4g">
+                                                        <rect key="frame" x="0.0" y="16" width="247" height="12"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="12" id="hv2-i7-9fh"/>
                                                         </constraints>
@@ -273,6 +307,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reading Name at Street AirNow" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JM1-5H-0Md">
+                                                        <rect key="frame" x="0.0" y="28" width="247" height="14.5"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -289,8 +324,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MvF-dP-xM6">
+                                                <rect key="frame" x="303" y="0.0" width="32" height="80"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oww-La-P5A">
+                                                        <rect key="frame" x="0.0" y="0.0" width="32" height="80"/>
                                                         <fontDescription key="fontDescription" name="Dosis-Light" family="Dosis" pointSize="17"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -306,8 +343,11 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ufm-nZ-iZo">
+                                                <rect key="frame" x="343" y="0.0" width="32" height="80"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_keyboard_arrow_right_3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="uQj-hd-cAE"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_keyboard_arrow_right_3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="uQj-hd-cAE">
+                                                        <rect key="frame" x="0.0" y="0.0" width="32" height="80"/>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -340,14 +380,17 @@
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kvf-Oo-SnU">
+                                        <rect key="frame" x="47.5" y="643" width="288" height="20"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitterlogo_small_white.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZpF-4u-OGe">
+                                                <rect key="frame" x="8" y="0.0" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="UAU-Hw-arT"/>
                                                     <constraint firstAttribute="width" constant="20" id="r6R-Vd-mfB"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join the conversation @SpeckSensor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqO-Kt-TFW">
+                                                <rect key="frame" x="36" y="-1" width="244" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="244" id="b5P-Sa-YC7"/>
                                                 </constraints>
@@ -369,6 +412,13 @@
                                             <constraint firstItem="ZpF-4u-OGe" firstAttribute="leading" secondItem="kvf-Oo-SnU" secondAttribute="leading" constant="8" id="yQp-pZ-dTT"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YRj-2m-vmD">
+                                        <rect key="frame" x="20" y="206" width="343" height="30"/>
+                                        <state key="normal" title="switch to measurement"/>
+                                        <connections>
+                                            <action selector="switchMeasurementOnClick:" destination="Ckw-z9-HQ4" eventType="touchDown" id="lqA-ip-bo5"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="kvf-Oo-SnU" secondAttribute="bottom" constant="40" id="203-KV-ezb"/>
@@ -385,6 +435,7 @@
                                     <constraint firstItem="fpF-6f-Hm5" firstAttribute="leading" secondItem="hqu-a7-7Od" secondAttribute="leading" constant="20" id="YCc-6Q-Lm7"/>
                                     <constraint firstItem="wpZ-Zs-5F7" firstAttribute="top" secondItem="6PX-Qm-Jcq" secondAttribute="bottom" constant="66" id="aZU-7H-TlK"/>
                                     <constraint firstItem="fpF-6f-Hm5" firstAttribute="centerX" secondItem="hqu-a7-7Od" secondAttribute="centerX" id="aea-tF-Iij"/>
+                                    <constraint firstItem="YRj-2m-vmD" firstAttribute="top" secondItem="6PX-Qm-Jcq" secondAttribute="bottom" constant="8" id="knQ-y4-oqF"/>
                                     <constraint firstAttribute="trailing" secondItem="etp-Hv-a6v" secondAttribute="trailing" id="koE-zt-5pK"/>
                                     <constraint firstItem="kwG-VL-kDS" firstAttribute="top" secondItem="cwf-Jb-LtC" secondAttribute="bottom" constant="15" id="pht-IE-85Y"/>
                                     <constraint firstItem="cwf-Jb-LtC" firstAttribute="top" secondItem="7fF-aT-VuF" secondAttribute="bottom" constant="13" id="vXD-MZ-dPT"/>
@@ -402,10 +453,12 @@
                             <constraint firstAttribute="leadingMargin" secondItem="hqu-a7-7Od" secondAttribute="leading" constant="20" id="Lqy-0C-Usm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="wpZ-Zs-5F7" secondAttribute="trailing" id="NMz-sj-T59"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6PX-Qm-Jcq" secondAttribute="trailing" id="Rq6-5S-Tsa"/>
+                            <constraint firstItem="YRj-2m-vmD" firstAttribute="leading" secondItem="Zjw-c5-CdA" secondAttribute="leading" constant="16" id="Sel-eM-Xn3"/>
                             <constraint firstAttribute="leadingMargin" secondItem="wpZ-Zs-5F7" secondAttribute="leading" id="Yp7-28-aUD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hqu-a7-7Od" secondAttribute="trailing" constant="-20" id="Z6J-MI-uBg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kwG-VL-kDS" secondAttribute="trailing" constant="-20" id="aKB-c1-v2X"/>
                             <constraint firstAttribute="trailingMargin" secondItem="sJo-27-Cc5" secondAttribute="trailing" id="eEd-e1-uZr"/>
+                            <constraint firstAttribute="trailing" secondItem="YRj-2m-vmD" secondAttribute="trailing" constant="16" id="fRG-Yk-oPR"/>
                             <constraint firstAttribute="leadingMargin" secondItem="sJo-27-Cc5" secondAttribute="leading" id="gI1-EW-MIg"/>
                             <constraint firstItem="cbR-Gh-XfB" firstAttribute="top" secondItem="hqu-a7-7Od" secondAttribute="bottom" id="lPO-mm-U8v"/>
                             <constraint firstAttribute="leadingMargin" secondItem="6PX-Qm-Jcq" secondAttribute="leading" id="wEv-xq-sMO"/>
@@ -431,6 +484,7 @@
                         <outlet property="labelValueDescription" destination="7fF-aT-VuF" id="WJC-R4-tDg"/>
                         <outlet property="labelValueTitle" destination="sJo-27-Cc5" id="Qej-VM-OWL"/>
                         <outlet property="mainView" destination="Zjw-c5-CdA" id="UL1-DB-A0g"/>
+                        <outlet property="switchMeasurementButton" destination="YRj-2m-vmD" id="aSZ-Mh-3Hl"/>
                         <outlet property="viewOzoneAqiButton" destination="etp-Hv-a6v" id="V2j-eS-h4W"/>
                         <outlet property="viewPm25AqiButton" destination="kwG-VL-kDS" id="gWn-VV-BLH"/>
                         <outlet property="viewTrackerButton" destination="cwf-Jb-LtC" id="R39-sS-WYD"/>
@@ -453,7 +507,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1362" y="320"/>
+            <point key="canvasLocation" x="1360.8" y="319.79010494752629"/>
         </scene>
         <!--AQI Explanation-->
         <scene sceneID="EqQ-ts-hyV">
@@ -468,23 +522,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where does the reported number come from?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2mi-UF-tts">
+                                <rect key="frame" x="16" y="72" width="343" height="43"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0MB-FG-hBt">
+                                <rect key="frame" x="16" y="143" width="343" height="84"/>
                                 <string key="text">This number comes from a federal air monitoring station. The SpeckSensor app pulls its data from the Allegheny County Health Department (ACHD) and federal AirNow sensors. We choose the feed that is closest in distance for the given city or address.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKl-yc-BwP">
+                                <rect key="frame" x="16" y="255" width="343" height="100.5"/>
                                 <string key="text">To calculate AQI, we pull the sensor's PM2.5/Ozone readings from the past 12 hours and apply the EPA NowCast formula. This is a weighted average that gives more recent readings higher weight than older ones. Finally, we convert to AQI from a piecewise linear function (defined by the EPA).</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i5d-iq-GaZ">
+                                <rect key="frame" x="16" y="573" width="343" height="30"/>
                                 <state key="normal" title="check AirNow"/>
                                 <connections>
                                     <segue destination="NBd-lW-9dU" kind="show" identifier="showAirNowSegue" id="GZv-bn-naK"/>
@@ -526,33 +584,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="What are dirty days?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqa-Bf-TSR">
-                                <frame key="frameInset" minX="20" minY="211" width="179" height="21"/>
+                                <rect key="frame" x="20" y="211" width="179" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ccy-pz-daU">
-                                <frame key="frameInset" minX="20" minY="240.5" width="560" height="57.5"/>
+                                <rect key="frame" x="20" y="240.5" width="560" height="57.5"/>
                                 <string key="text">Daily values for a given air station are calculated using the highest reading from that day. This value is based off of PM 2.5 readings from the station. A day is considered dirty provided that its daily value exceeds 50 AQI.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hDv-k5-UfH">
-                                <frame key="frameInset" minX="20" minY="108" width="560" height="75.5"/>
+                                <rect key="frame" x="20" y="108" width="560" height="75.5"/>
                                 <color key="backgroundColor" red="0.28958413004875183" green="0.31462949514389038" blue="0.32950475811958313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="hDv-k5-UfH" secondAttribute="height" multiplier="52:7" id="HbA-ZE-q3X"/>
                                 </constraints>
                             </webView>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="txX-Uq-hVd">
-                                <frame key="frameInset" minX="20" minY="20" width="560" height="80"/>
+                                <rect key="frame" x="20" y="20" width="560" height="80"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xvI-SB-W0K">
-                                        <frame key="frameInset" width="280" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="80"/>
                                     </pickerView>
                                     <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wyO-B9-9AK">
-                                        <frame key="frameInset" minX="288" width="264" height="80"/>
+                                        <rect key="frame" x="288" y="0.0" width="264" height="80"/>
                                     </pickerView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -607,13 +665,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="AirNow Readings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3A-XA-8ai">
-                                <frame key="frameInset" minX="20" minY="28" width="560" height="22"/>
+                                <rect key="frame" x="20" y="28" width="560" height="22"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rdf-2o-PZb">
-                                <frame key="frameInset" minX="20" minY="68" width="560" height="120"/>
+                                <rect key="frame" x="20" y="68" width="560" height="120"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="9Fu-fQ-2Ky"/>
@@ -623,21 +681,24 @@
                                         <rect key="frame" x="0.0" y="28" width="560" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vf2-o9-cII" id="UeS-rS-fEf">
-                                            <frame key="frameInset" width="560" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="ParamName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnF-hP-iLQ">
+                                                    <rect key="frame" x="15" y="12.5" width="412" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZCe-5a-ysq">
+                                                    <rect key="frame" x="435" y="11" width="22" height="22"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="0.31833584337349397" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="ZCe-5a-ysq" secondAttribute="height" multiplier="1:1" id="aJX-Ci-Kj4"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123 AQI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XxB-3k-VmA">
+                                                    <rect key="frame" x="465" y="16" width="80" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="rk4-xc-EA5"/>
                                                     </constraints>
@@ -666,13 +727,13 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Why does the app not report this?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OTh-s5-eBY">
-                                <frame key="frameInset" minX="20" minY="206" width="560" height="20"/>
+                                <rect key="frame" x="20" y="206" width="560" height="20"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJL-na-XKq">
-                                <frame key="frameInset" minX="20" minY="254" width="560" height="84"/>
+                                <rect key="frame" x="20" y="254" width="560" height="84"/>
                                 <string key="text">AirNow reports air quality by finding the AirNow sensor with the highest NowCast reading for a given region. By contrast, we report the NowCast of the closest sensor from a specific location. We report our values this way because it provides the user with a better estimate of the air quality levels for a specific location instead of a general region.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -717,7 +778,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter Address or Zipcode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0d-FT-vbE">
-                                <frame key="frameInset" minX="16" minY="72" width="568" height="21"/>
+                                <rect key="frame" x="16" y="72" width="568" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -748,15 +809,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SbG-dy-Kdw">
-                                <frame key="frameInset" minY="20" width="600" height="49"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="49"/>
                                 <subviews>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lCE-Nl-S1k">
-                                        <frame key="frameInset" minX="543" minY="8" width="51" height="31"/>
+                                        <rect key="frame" x="543" y="8" width="51" height="31"/>
                                         <connections>
                                             <action selector="onSwitchUserCurrentLocation:" destination="Z9v-9q-H4G" eventType="valueChanged" id="wuj-rP-giR"/>
                                         </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXg-Eg-p2y">
+                                        <rect key="frame" x="8" y="13" width="128" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -772,7 +834,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="50" sectionHeaderHeight="30" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="xbD-na-VIy">
-                                <frame key="frameInset" minY="69" width="600" height="531"/>
+                                <rect key="frame" x="0.0" y="69" width="600" height="531"/>
                                 <color key="backgroundColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -780,11 +842,11 @@
                                         <rect key="frame" x="0.0" y="30" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" tableViewCell="wm4-a0-xQi" id="Irq-WM-aI4">
-                                            <frame key="frameInset" width="600" height="49"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJ2-Gy-w4T">
-                                                    <frame key="frameInset" minX="562" minY="10" width="30" height="30"/>
+                                                    <rect key="frame" x="562" y="10" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="dJ2-Gy-w4T" secondAttribute="height" multiplier="1:1" id="jrJ-AO-EYk"/>
                                                     </constraints>
@@ -796,7 +858,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tracker Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CKD-fG-kDn">
-                                                    <frame key="frameInset" minX="8" minY="10" width="546" height="30"/>
+                                                    <rect key="frame" x="8" y="10" width="546" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -856,13 +918,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vxa-mp-8YL">
-                                <frame key="frameInset" minX="20" minY="20" width="560" height="560"/>
+                                <rect key="frame" x="20" y="20" width="560" height="560"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jI2-cX-eCT">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="1450"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FY4-F1-HZv">
-                                                <frame key="frameInset" width="560" height="335"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="560" height="335"/>
                                                 <string key="text">The Air Quality Index (AQI) is a measure for reporting daily air quality based on how clean or polluted the air is in your community. A high AQI value is associated with a greater level of air pollution and increased health risks. AQI is based on five major pollutants - ozone, fine particulate matter, nitrogen dioxide, carbon monoxide, and sulphur dioxide. The two that pose the highest health risks are ozone and fine particulate matter.The EPA implemented the Clean Air Act to control air pollution, but millions of Americans live in areas that exceed government-established safety levels.
 
 People with diabetes, lung disease, asthma, or heart disease are very sensitive to air pollution. A high AQI reading can make it harder to breathe or worsen chronic disease by irritating lungs and airways. Fine particles can lodge deep in the lungs and enter the bloodstream.
@@ -875,13 +937,13 @@ Help keep our air pollution laws strong by joining the @SpeckSensor conversation
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="AQI Scale" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0F-5E-eJU">
-                                                <frame key="frameInset" minY="357" width="83" height="22"/>
+                                                <rect key="frame" x="0.0" y="357" width="83" height="22"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WSQ-5F-pfc">
-                                                <frame key="frameInset" minY="391" width="40" height="40"/>
+                                                <rect key="frame" x="0.0" y="391" width="40" height="40"/>
                                                 <color key="backgroundColor" red="0.63921568627450975" green="0.72941176470588232" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="Ea4-W6-7h6"/>
@@ -889,7 +951,7 @@ Help keep our air pollution laws strong by joining the @SpeckSensor conversation
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cv9-QY-LDp">
-                                                <frame key="frameInset" minX="48" minY="391" width="40" height="40"/>
+                                                <rect key="frame" x="48" y="391" width="40" height="40"/>
                                                 <color key="backgroundColor" red="0.9137254901960784" green="0.71372549019607845" blue="0.25882352941176467" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="669-h4-yLO"/>
@@ -897,7 +959,7 @@ Help keep our air pollution laws strong by joining the @SpeckSensor conversation
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qhb-rh-oiM">
-                                                <frame key="frameInset" minX="96" minY="391" width="40" height="40"/>
+                                                <rect key="frame" x="96" y="391" width="40" height="40"/>
                                                 <color key="backgroundColor" red="0.9137254901960784" green="0.5490196078431373" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="euC-kw-xwX"/>
@@ -905,7 +967,7 @@ Help keep our air pollution laws strong by joining the @SpeckSensor conversation
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ng-0Q-Eb4">
-                                                <frame key="frameInset" minY="443" width="560" height="401"/>
+                                                <rect key="frame" x="0.0" y="443" width="560" height="401"/>
                                                 <string key="text">Each category corresponds to a different level of health concern. The six levels of health concern and what they mean are taken from AirNow's website: http://airnow.gov
 
 Good AQI is 0 - 50. Air quality is considered satisfactory, and air pollution poses little or no risk.
@@ -924,7 +986,7 @@ Hazardous AQI is greater than 300. This would trigger a health warning of emerge
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TeL-WZ-0QA">
-                                                <frame key="frameInset" minX="144" minY="391" width="40" height="40"/>
+                                                <rect key="frame" x="144" y="391" width="40" height="40"/>
                                                 <color key="backgroundColor" red="0.88627450980392153" green="0.30980392156862746" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="5nN-vx-xL4"/>
@@ -932,7 +994,7 @@ Hazardous AQI is greater than 300. This would trigger a health warning of emerge
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="clC-oj-YKm">
-                                                <frame key="frameInset" minX="192" minY="391" width="40" height="40"/>
+                                                <rect key="frame" x="192" y="391" width="40" height="40"/>
                                                 <color key="backgroundColor" red="0.70980392156862748" green="0.2627450980392157" blue="0.50980392156862742" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="72Y-oA-d8S"/>
@@ -940,7 +1002,7 @@ Hazardous AQI is greater than 300. This would trigger a health warning of emerge
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9QH-3y-xXs">
-                                                <frame key="frameInset" minX="240" minY="391" width="40" height="40"/>
+                                                <rect key="frame" x="240" y="391" width="40" height="40"/>
                                                 <color key="backgroundColor" red="0.69803921568627447" green="0.14901960784313725" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="IHn-KP-ixw"/>
@@ -1010,7 +1072,7 @@ Hazardous AQI is greater than 300. This would trigger a health warning of emerge
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngF-SJ-qjP">
-                                <frame key="frameInset" minX="20" minY="28" width="560" height="168"/>
+                                <rect key="frame" x="20" y="28" width="560" height="168"/>
                                 <string key="text">The Speck Sensor (www.specksensor.com) is an air quality monitor that detects fine particulate matter in your indoor environment and informs you about trends and changes in particle concentration. At its core, Speck is about empowerment, enabling you to make informed decisions about how to improve your air quality. Data collected with Speck belongs to you, its user, and you have the power to decide how to apply that information and take action to breathe easier!
 
 Many people are already using the Speck Sensors to monitor trends when using a vacuum, cleaning or dusting with different products, cooking, maintaining air conditioning systems, or testing air purification systems.</string>
@@ -1019,13 +1081,13 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="App Version: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="otV-g8-D4C">
-                                <frame key="frameInset" minX="20" minY="577" width="76" height="15"/>
+                                <rect key="frame" x="20" y="577" width="76" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="###" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWc-T3-TYG">
-                                <frame key="frameInset" minX="96" minY="577" width="23" height="15"/>
+                                <rect key="frame" x="96" y="577" width="23" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1065,7 +1127,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="access_token: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaQ-eV-JWV">
-                                <frame key="frameInset" minX="20" minY="78" width="95" height="17"/>
+                                <rect key="frame" x="20" y="78" width="95" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="95" id="3MN-Tf-rHJ"/>
                                 </constraints>
@@ -1074,7 +1136,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="username: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xn9-e6-SxL">
-                                <frame key="frameInset" minX="20" minY="28" width="72" height="17"/>
+                                <rect key="frame" x="20" y="28" width="72" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="72" id="le8-30-RGb"/>
                                 </constraints>
@@ -1083,7 +1145,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="refresh_token: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKO-ym-hRz">
-                                <frame key="frameInset" minX="20" minY="103" width="96" height="17"/>
+                                <rect key="frame" x="20" y="103" width="96" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="96" id="5ER-eI-S3x"/>
                                 </constraints>
@@ -1092,13 +1154,13 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="expires_at:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQ5-SG-yVr">
-                                <frame key="frameInset" minX="20" minY="128" width="69" height="17"/>
+                                <rect key="frame" x="20" y="128" width="69" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="device_id ignore list: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMP-rx-tL6">
-                                <frame key="frameInset" minX="20" minY="153" width="135" height="17"/>
+                                <rect key="frame" x="20" y="153" width="135" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="135" id="pqH-Qf-Mqa"/>
                                 </constraints>
@@ -1107,7 +1169,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="user_id: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZd-R3-t28">
-                                <frame key="frameInset" minX="20" minY="53" width="54" height="17"/>
+                                <rect key="frame" x="20" y="53" width="54" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="54" id="rJi-hc-KTb"/>
                                 </constraints>
@@ -1116,7 +1178,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="app version: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BbB-As-B4n">
-                                <frame key="frameInset" minX="20" minY="178" width="83" height="17"/>
+                                <rect key="frame" x="20" y="178" width="83" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="83" id="lfD-pd-FZ8"/>
                                 </constraints>
@@ -1125,63 +1187,66 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="username_goeshere" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aag-5O-YRT">
-                                <frame key="frameInset" minX="92" minY="28" width="488" height="17"/>
+                                <rect key="frame" x="92" y="28" width="488" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAg-Zb-Bde">
-                                <frame key="frameInset" minX="74" minY="53" width="511" height="17"/>
+                                <rect key="frame" x="74" y="53" width="511" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="largehash1234567890" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RXW-cP-3MR">
-                                <frame key="frameInset" minX="115" minY="78" width="465" height="17"/>
+                                <rect key="frame" x="115" y="78" width="465" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="largehash1234567890" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXq-Sb-pGf">
-                                <frame key="frameInset" minX="116" minY="103" width="464" height="17"/>
+                                <rect key="frame" x="116" y="103" width="464" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="###" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQR-id-6vM">
-                                <frame key="frameInset" minX="103" minY="178" width="477" height="17"/>
+                                <rect key="frame" x="103" y="178" width="477" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1,2,3,45" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8SD-D0-Qsd">
-                                <frame key="frameInset" minX="155" minY="153" width="425" height="17"/>
+                                <rect key="frame" x="155" y="153" width="425" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jdQ-YD-PAv">
-                                <frame key="frameInset" minX="20" minY="241" width="560" height="351"/>
+                                <rect key="frame" x="20" y="241" width="560" height="351"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SecretMenuCell" id="yhV-Pg-5d7" customClass="SecretMenuTableCell" customModule="SpeckSensor" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="560" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yhV-Pg-5d7" id="qla-KJ-aiF">
-                                            <frame key="frameInset" width="560" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yO-SI-RVg">
+                                                    <rect key="frame" x="15" y="11" width="450" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E9d-Vx-Pvq">
+                                                    <rect key="frame" x="15" y="28" width="450" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Long" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndT-rw-C8h">
+                                                    <rect key="frame" x="465" y="28" width="80" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="F2A-BO-Nse"/>
                                                     </constraints>
@@ -1190,6 +1255,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lat" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKs-Ks-jsl">
+                                                    <rect key="frame" x="465" y="11" width="80" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="sQK-BP-mX0"/>
                                                     </constraints>
@@ -1198,11 +1264,13 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="feed value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J0E-rz-kaL">
+                                                    <rect key="frame" x="15" y="48.5" width="79" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="id=#" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWj-cK-1IV">
+                                                    <rect key="frame" x="465" y="48.5" width="80" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="FSo-kT-O5k"/>
                                                     </constraints>
@@ -1240,14 +1308,14 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qQ0-2P-iL6">
-                                <frame key="frameInset" minX="20" minY="203" width="225" height="30"/>
+                                <rect key="frame" x="20" y="203" width="225" height="30"/>
                                 <state key="normal" title="Request most recent feed values"/>
                                 <connections>
                                     <action selector="clickRequestFeeds:" destination="4Ao-Y8-pDL" eventType="touchDown" id="cAO-7f-Byc"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="60400" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XvF-7H-Sg3">
-                                <frame key="frameInset" minX="97" minY="128" width="44" height="17"/>
+                                <rect key="frame" x="97" y="128" width="44" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.37647058820000001" green="0.37647058820000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1325,7 +1393,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAJ-gw-u1a">
-                                <frame key="frameInset" minX="20" minY="108" width="123" height="32"/>
+                                <rect key="frame" x="20" y="108" width="123" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="About Air Quality">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1335,7 +1403,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eh2-Y3-IaQ">
-                                <frame key="frameInset" minX="20" minY="148" width="94" height="32"/>
+                                <rect key="frame" x="20" y="148" width="94" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="About Speck">
                                     <color key="titleShadowColor" red="0.49803921568627452" green="0.49803921568627452" blue="0.49803921568627452" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1345,7 +1413,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lG1-0g-Ofh">
-                                <frame key="frameInset" minX="20" minY="28" width="95" height="32"/>
+                                <rect key="frame" x="20" y="28" width="95" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Edit Trackers">
                                     <color key="titleShadowColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1355,7 +1423,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="llM-s4-NBc">
-                                <frame key="frameInset" minX="20" minY="68" width="89" height="32"/>
+                                <rect key="frame" x="20" y="68" width="89" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Speck Login">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1404,19 +1472,21 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MyCell" id="Xfp-UX-CzV" customClass="ReadableIndexCell" customModule="SpeckSensor" customModuleProvider="target">
-                                <rect key="frame" x="88" y="40" width="200" height="200"/>
+                                <rect key="frame" x="87.5" y="40" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AEr-9m-ncG">
+                                            <rect key="frame" x="8" y="8" width="184" height="25"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="jtm-SM-qOh"/>
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reading Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7tv-xA-TlB">
+                                            <rect key="frame" x="8" y="167" width="184" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="hM7-5h-6iz"/>
                                             </constraints>
@@ -1425,6 +1495,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AD0-Qn-ppI">
+                                            <rect key="frame" x="8" y="33" width="131" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="z0T-qW-Zbh"/>
                                             </constraints>
@@ -1433,6 +1504,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="µg/m³" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itt-T4-5jm">
+                                            <rect key="frame" x="147" y="33" width="45" height="19.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="45" id="oAn-Rx-EYk"/>
                                             </constraints>
@@ -1441,18 +1513,22 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ugu-gS-KAV">
+                                            <rect key="frame" x="8" y="93" width="184" height="36.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEMP" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7nx-DN-eE5">
+                                                    <rect key="frame" x="0.0" y="0.0" width="79" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HUMID" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eT9-27-JVr">
+                                                    <rect key="frame" x="105" y="0.0" width="79" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NgL-Eg-b1i">
+                                                    <rect key="frame" x="87" y="0.0" width="10" height="36.5"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="10" id="WLQ-3o-plQ"/>
@@ -1473,6 +1549,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KF4-vV-dcL">
+                                            <rect key="frame" x="8" y="152.5" width="184" height="14.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -1516,6 +1593,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqA-fH-DXY">
+                                    <rect key="frame" x="8" y="8" width="42" height="24"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -1570,7 +1648,7 @@ Many people are already using the Speck Sensors to monitor trends when using a v
             <objects>
                 <navigationController id="qsw-IM-QUZ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MPB-wv-OLh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

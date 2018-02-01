@@ -27,6 +27,7 @@ class AddressShowController: UIViewController {
     @IBOutlet var gestureDailyTracker: UITapGestureRecognizer!
     @IBOutlet weak var viewOzoneAqiButton: UIView!
     @IBOutlet weak var viewPm25AqiButton: UIView!
+    @IBOutlet weak var switchMeasurementButton: UIButton!
     
     
     fileprivate func clearAndHide(_ labels: [UILabel?]) {
@@ -50,6 +51,17 @@ class AddressShowController: UIViewController {
         labelValueDescription.text = Constants.DefaultReading.DEFAULT_ADDRESS_DESCRIPTION
         mainView.backgroundColor = Constants.DefaultReading.DEFAULT_COLOR_BACKGROUND
         clearAndHide([labelMeasurementRange, labelShowValue, labelReadingMeasurement])
+    }
+    
+    
+    @IBAction func switchMeasurementOnClick(_ sender: Any) {
+        NSLog("switchMeasurementOnClick")
+        if !(reading is Honeybee) {
+            NSLog("unexpected reading in switchMeasurementOnClick (non-Honeybee)")
+            return
+        }
+        // TODO set honeybee particles small/large
+        //let honeybee = reading as! Honeybee
     }
     
     
@@ -146,6 +158,7 @@ class AddressShowController: UIViewController {
     func honeybeeView(_ honeybee: Honeybee) {
         NSLog("honeybeeView")
         if honeybee.hasReadableValue() {
+            switchMeasurementButton.isHidden = false
             let particles = honeybee.getReadableValues().first!.getValue()
             labelShowValue.text = Int(particles).description
             let honeybeeReading = HoneybeeReading(reading: particles)
@@ -170,6 +183,7 @@ class AddressShowController: UIViewController {
         viewOzoneAqiButton.isHidden = true
         viewPm25AqiButton.isHidden = true
         viewTrackerButton.isHidden = true
+        switchMeasurementButton.isHidden = true
         navigationItem.title = reading!.getName()
         if (reading! is SimpleAddress) {
             addressView(reading as! SimpleAddress)
