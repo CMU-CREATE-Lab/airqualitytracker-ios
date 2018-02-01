@@ -21,5 +21,6 @@ class StoredHoneybee: NSManagedObject {
     @NSManaged var is_mobile: Bool
     @NSManaged var product_id: Int
     @NSManaged var api_key_read_only: String
+    @NSManaged var measure_small: Bool
     
 }

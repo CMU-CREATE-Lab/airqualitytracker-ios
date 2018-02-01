@@ -7,7 +7,7 @@
         <attribute name="position_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="zipcode" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="StoredHoneybee" syncable="YES">
+    <entity name="StoredHoneybee" representedClassName="StoredHoneybee" syncable="YES">
         <attribute name="api_key_read_only" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="device_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="exposure" optional="YES" attributeType="String" syncable="YES"/>
@@ -15,6 +15,7 @@
         <attribute name="is_mobile" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="measure_small" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="position_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="product_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
@@ -33,7 +34,7 @@
     </entity>
     <elements>
         <element name="StoredAddress" positionX="-54" positionY="-9" width="128" height="120"/>
+        <element name="StoredHoneybee" positionX="-54" positionY="81" width="128" height="210"/>
         <element name="StoredSpeck" positionX="-54" positionY="27" width="128" height="195"/>
-        <element name="StoredHoneybee" positionX="-54" positionY="81" width="128" height="195"/>
     </elements>
 </model>

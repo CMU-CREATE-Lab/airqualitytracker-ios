@@ -22,6 +22,7 @@ class Honeybee: Feed, LargeParticleReadable, SmallParticleReadable {
     var deviceId: Int
     var positionId: Int?
     var apiKeyReadOnly: String?
+    var measureSmall = true
     
     
     init(deviceId: Int) {

@@ -22,6 +22,7 @@ class HoneybeeDbHelper {
         static let isMobileKey = "is_mobile"
         static let productIdKey = "product_id"
         static let apiKeyReadOnlyKey = "api_key_read_only"
+        static let measureSmall = "measure_small"
     }
     
     
@@ -54,6 +55,7 @@ class HoneybeeDbHelper {
                     let feed_id = match.value(forKey: HoneybeeKeys.feedIdKey) as! Int
                     let is_mobile = match.value(forKey: HoneybeeKeys.isMobileKey) as! Bool
                     let product_id = match.value(forKey: HoneybeeKeys.productIdKey) as! Int
+                    let measure_small = match.value(forKey: HoneybeeKeys.measureSmall) as! Bool
                     
                     let honeybee = Honeybee(deviceId: device_id)
                     honeybee.positionId = position_id
@@ -64,6 +66,7 @@ class HoneybeeDbHelper {
                     honeybee.exposure = exposure
                     honeybee.isMobile = is_mobile
                     honeybee.productId = product_id
+                    honeybee.measureSmall = measure_small
 
                     if let apiKeyReadOnly = match.value(forKey: HoneybeeKeys.apiKeyReadOnlyKey) as? String {
                         if apiKeyReadOnly == "" {
@@ -108,7 +111,8 @@ class HoneybeeDbHelper {
             HoneybeeKeys.feedIdKey: honeybee.feed_id as AnyObject,
             HoneybeeKeys.isMobileKey: honeybee.isMobile as AnyObject,
             HoneybeeKeys.productIdKey: honeybee.productId as AnyObject,
-            HoneybeeKeys.apiKeyReadOnlyKey: honeybee.apiKeyReadOnly! as AnyObject
+            HoneybeeKeys.apiKeyReadOnlyKey: honeybee.apiKeyReadOnly! as AnyObject,
+            HoneybeeKeys.measureSmall: honeybee.measureSmall as AnyObject
         ]
         storedHoneybee.setValuesForKeys(insertValues)
 
@@ -149,7 +153,8 @@ class HoneybeeDbHelper {
                 HoneybeeKeys.feedIdKey: honeybee.feed_id as AnyObject,
                 HoneybeeKeys.isMobileKey: honeybee.isMobile as AnyObject,
                 HoneybeeKeys.productIdKey: honeybee.productId as AnyObject,
-                HoneybeeKeys.apiKeyReadOnlyKey: honeybee.apiKeyReadOnly! as AnyObject
+                HoneybeeKeys.apiKeyReadOnlyKey: honeybee.apiKeyReadOnly! as AnyObject,
+                HoneybeeKeys.measureSmall: honeybee.measureSmall as AnyObject
             ]
             storedHoneybee.setValuesForKeys(insertValues)
 
