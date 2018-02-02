@@ -62,7 +62,7 @@ class ManageTrackersController: UIViewController, UITableViewDelegate, UITableVi
     
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return Constants.HEADER_TITLES[section]
+        return GlobalHandler.sharedInstance.readingsHandler.headers[section]
     }
     
     

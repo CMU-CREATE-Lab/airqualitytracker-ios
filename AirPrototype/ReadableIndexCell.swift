@@ -66,8 +66,8 @@ class ReadableIndexCell: UICollectionViewCell {
                         textHumidity.isHidden = false
                     }
                 } else if (reading is Honeybee) {
-                    textItemLabel.text = Constants.Units.PARTICLES_PER_CUBIC_FOOT
                     let honeybee = reading as! Honeybee
+                    textItemLabel.text = honeybee.measureSmall ? "small" : "large"
                     let smallParticles = honeybee.getReadableValues().first!.getValue()
                     value = Int(smallParticles).description
                     let honeybeeReading = HoneybeeReading(reading: smallParticles)

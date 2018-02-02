@@ -60,8 +60,10 @@ class AddressShowController: UIViewController {
             NSLog("unexpected reading in switchMeasurementOnClick (non-Honeybee)")
             return
         }
-        // TODO set honeybee particles small/large
-        //let honeybee = reading as! Honeybee
+        let honeybee = reading as! Honeybee
+        honeybee.measureSmall = !honeybee.measureSmall
+        HoneybeeDbHelper.updateHoneybeeInDb(honeybee)
+        populateView()
     }
     
     
@@ -157,14 +159,20 @@ class AddressShowController: UIViewController {
     
     func honeybeeView(_ honeybee: Honeybee) {
         NSLog("honeybeeView")
+        let switchSize = honeybee.measureSmall ? "large" : "small"
+        switchMeasurementButton.isHidden = false
+        switchMeasurementButton.setTitle("switch to \(switchSize) particles", for: UIControlState.normal)
+
         if honeybee.hasReadableValue() {
-            switchMeasurementButton.isHidden = false
+            let particleSize = honeybee.measureSmall ? "small" : "large"
             let particles = honeybee.getReadableValues().first!.getValue()
+            labelShowValue.isHidden = false
             labelShowValue.text = Int(particles).description
             let honeybeeReading = HoneybeeReading(reading: particles)
             if honeybeeReading.withinRange() {
+                labelMeasurementRange.isHidden = false
                 labelReadingMeasurement.isHidden = false
-                labelMeasurementRange.text = "\(honeybeeReading.getRangeFromIndex()) small particles"
+                labelMeasurementRange.text = "\(honeybeeReading.getRangeFromIndex()) \(particleSize) particles"
                 labelValueTitle.text = honeybeeReading.getTitle()
                 labelValueDescription.text = honeybeeReading.getDescription()
                 mainView.backgroundColor = honeybeeReading.getColor()
